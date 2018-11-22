@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D7380BB821A62E21003D19F8 /* Mont-HeavyDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */; };
 		D744775521A4BB1D00270726 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744775421A4BB1D00270726 /* AppDelegate.swift */; };
 		D744775721A4BB1D00270726 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744775621A4BB1D00270726 /* FirstViewController.swift */; };
 		D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744775821A4BB1D00270726 /* SecondViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mont-HeavyDEMO.otf"; sourceTree = "<group>"; };
 		D744775121A4BB1D00270726 /* Cast Club.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cast Club.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D744775421A4BB1D00270726 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D744775621A4BB1D00270726 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				D744775D21A4BB1F00270726 /* Assets.xcassets */,
 				D744775F21A4BB1F00270726 /* LaunchScreen.storyboard */,
 				D744776221A4BB1F00270726 /* Info.plist */,
+				D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */,
 			);
 			path = "Cast Club";
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			files = (
 				D744776121A4BB1F00270726 /* LaunchScreen.storyboard in Resources */,
 				D744775E21A4BB1F00270726 /* Assets.xcassets in Resources */,
+				D7380BB821A62E21003D19F8 /* Mont-HeavyDEMO.otf in Resources */,
 				D744775C21A4BB1D00270726 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

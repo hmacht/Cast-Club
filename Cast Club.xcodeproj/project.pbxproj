@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		127AD3A5EE784F7684203773 /* Pods_Cast_ClubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF7D563C98ACDE4735780BC /* Pods_Cast_ClubTests.framework */; };
 		218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */; };
+		21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */; };
 		21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C87D4521A87FF300F9E727 /* TunesHelper.swift */; };
 		21C87D4821A883DF00F9E727 /* PodcastAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C87D4721A883DF00F9E727 /* PodcastAlbum.swift */; };
 		7D9B7A4D6109563FC3AC3D8C /* Pods_Cast_ClubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0A1B1CF8D6A51F3BB8F8C5 /* Pods_Cast_ClubUITests.framework */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		132A83E24B1AA60FADB60849 /* Pods-Cast ClubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubTests/Pods-Cast ClubTests.release.xcconfig"; sourceTree = "<group>"; };
 		218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPodcastsViewController.swift; sourceTree = "<group>"; };
+		21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		21C87D4521A87FF300F9E727 /* TunesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunesHelper.swift; sourceTree = "<group>"; };
 		21C87D4721A883DF00F9E727 /* PodcastAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAlbum.swift; sourceTree = "<group>"; };
 		469DDBDC6BBE1707C49B41FF /* Pods-Cast Club.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast Club.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cast Club/Pods-Cast Club.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				D744775621A4BB1D00270726 /* FirstViewController.swift */,
 				D744775821A4BB1D00270726 /* SecondViewController.swift */,
 				218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */,
+				21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */,
 				D744775421A4BB1D00270726 /* AppDelegate.swift */,
 				D744775A21A4BB1D00270726 /* Main.storyboard */,
 				D744775D21A4BB1F00270726 /* Assets.xcassets */,
@@ -421,6 +424,7 @@
 				D744775721A4BB1D00270726 /* FirstViewController.swift in Sources */,
 				21C87D4821A883DF00F9E727 /* PodcastAlbum.swift in Sources */,
 				218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */,
+				21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

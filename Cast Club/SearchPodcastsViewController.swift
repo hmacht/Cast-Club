@@ -15,6 +15,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var searchBar: UISearchBar!
     
     var searchResults = [PodcastAlbum]()
+    var selectedAlbum = PodcastAlbum()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +76,18 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedAlbum = self.searchResults[indexPath.row]
+        self.performSegue(withIdentifier: "toAlbumView", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAlbumView" {
+            let destination = segue.destination as! AlbumViewController
+            destination.album = self.selectedAlbum
+        }
     }
     
     // Search button clicked

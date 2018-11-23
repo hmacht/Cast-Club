@@ -138,11 +138,92 @@
                     <connections>
                         <outlet property="searchBar" destination="rqq-Dp-iOc" id="QVf-B6-TIN"/>
                         <outlet property="tableView" destination="ici-FL-Z9i" id="Ce9-Md-v9n"/>
+                        <segue destination="YnJ-Ln-gEA" kind="show" identifier="toAlbumView" id="S7V-rU-xOc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v6n-wr-sUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1584.8" y="-266.71664167916043"/>
+        </scene>
+        <!--Album View Controller-->
+        <scene sceneID="sib-pj-XIO">
+            <objects>
+                <viewController id="YnJ-Ln-gEA" customClass="AlbumViewController" customModule="Cast_Club" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4e9-Pq-bVH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wui-SK-oGZ">
+                                <rect key="frame" x="112.5" y="45" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="5F3-Ug-fYF"/>
+                                    <constraint firstAttribute="height" constant="150" id="OSh-kq-MfA"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcV-Vf-ETu">
+                                <rect key="frame" x="5" y="205" width="365" height="23"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHW-yB-Y2K">
+                                <rect key="frame" x="5" y="238" width="365" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N Episodes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuf-Oo-rZx">
+                                <rect key="frame" x="5" y="268" width="365" height="17.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b4O-f6-MDI">
+                                <rect key="frame" x="0.0" y="295.5" width="375" height="371.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PodcastCell" id="gaw-if-jjl">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gaw-if-jjl" id="Hgw-t9-KoX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="zHW-yB-Y2K" secondAttribute="trailing" constant="5" id="2Xf-vq-QAf"/>
+                            <constraint firstItem="zHW-yB-Y2K" firstAttribute="top" secondItem="rcV-Vf-ETu" secondAttribute="bottom" constant="10" id="AZy-Fr-nGV"/>
+                            <constraint firstItem="Zuf-Oo-rZx" firstAttribute="top" secondItem="zHW-yB-Y2K" secondAttribute="bottom" constant="10" id="BFE-dy-pwv"/>
+                            <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="Zuf-Oo-rZx" secondAttribute="trailing" constant="5" id="Fdf-yp-3P4"/>
+                            <constraint firstItem="wui-SK-oGZ" firstAttribute="centerX" secondItem="4e9-Pq-bVH" secondAttribute="centerX" id="KPX-s5-jSR"/>
+                            <constraint firstItem="zHW-yB-Y2K" firstAttribute="leading" secondItem="XC5-Ub-DX1" secondAttribute="leading" constant="5" id="PxW-dU-axQ"/>
+                            <constraint firstItem="Zuf-Oo-rZx" firstAttribute="leading" secondItem="XC5-Ub-DX1" secondAttribute="leading" constant="5" id="RVo-7D-xW3"/>
+                            <constraint firstItem="wui-SK-oGZ" firstAttribute="top" secondItem="XC5-Ub-DX1" secondAttribute="top" constant="25" id="VNx-9t-1RO"/>
+                            <constraint firstItem="rcV-Vf-ETu" firstAttribute="top" secondItem="wui-SK-oGZ" secondAttribute="bottom" constant="10" id="VuJ-l1-Zzx"/>
+                            <constraint firstItem="rcV-Vf-ETu" firstAttribute="leading" secondItem="XC5-Ub-DX1" secondAttribute="leading" constant="5" id="hbT-Ow-fxU"/>
+                            <constraint firstItem="b4O-f6-MDI" firstAttribute="top" secondItem="Zuf-Oo-rZx" secondAttribute="bottom" constant="10" id="m1J-Ns-WLy"/>
+                            <constraint firstItem="XC5-Ub-DX1" firstAttribute="bottom" secondItem="b4O-f6-MDI" secondAttribute="bottom" id="r9d-3B-Ic3"/>
+                            <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="b4O-f6-MDI" secondAttribute="trailing" id="rNk-rv-aTg"/>
+                            <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="rcV-Vf-ETu" secondAttribute="trailing" constant="5" id="wu3-6t-N3H"/>
+                            <constraint firstItem="b4O-f6-MDI" firstAttribute="leading" secondItem="XC5-Ub-DX1" secondAttribute="leading" id="xeI-Uh-R5y"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XC5-Ub-DX1"/>
+                    </view>
+                    <connections>
+                        <outlet property="artistLabel" destination="zHW-yB-Y2K" id="XpC-DX-d6N"/>
+                        <outlet property="imgView" destination="wui-SK-oGZ" id="hO5-SK-ERh"/>
+                        <outlet property="numEpisodesLabel" destination="Zuf-Oo-rZx" id="rhB-jF-ZbW"/>
+                        <outlet property="tableView" destination="b4O-f6-MDI" id="X6O-ip-5y4"/>
+                        <outlet property="titleLabel" destination="rcV-Vf-ETu" id="Z9v-q5-jNR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Oz-fi-IX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2342" y="-383"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">

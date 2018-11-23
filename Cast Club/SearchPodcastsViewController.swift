@@ -21,10 +21,12 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
 
         // Do any additional setup after loading the view.
         
-        // Set delegates
+        // Set delegates for tableview
         tableView.delegate = self
         tableView.dataSource = self
+        // Set delegate for search bar
         searchBar.delegate = self
+        
         
     }
     

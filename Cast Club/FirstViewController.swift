@@ -17,6 +17,10 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         
         createHeader()
         createSearchButton()
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(FirstViewController.goToSearch))
+        doubleTap.numberOfTapsRequired = 2
+        self.view.addGestureRecognizer(doubleTap)
     }
     
     // --- Currently Everything is hard Coded for prototyping. ---
@@ -99,7 +103,10 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     @objc func search() {
         print("Searching...")
     }
-
+    
+    @objc func goToSearch() {
+        self.performSegue(withIdentifier: "toSearch", sender: self)
+    }
 
 }
 

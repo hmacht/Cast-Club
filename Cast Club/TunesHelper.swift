@@ -18,7 +18,7 @@ class TunesHelper {
     // Completion is success if true error if false
     func searchiTunes(term: String, completion: @escaping (Bool, [PodcastAlbum]?) -> ()) {
         let termNoSpaces = term.replacingOccurrences(of: " ", with: "+")
-        let fullSearch = baseUrl + termNoSpaces + "&media=podcast"
+        let fullSearch = baseUrl + termNoSpaces + "&media=podcast&limit=25"
         // Search api for podcasts that match search term
         if let url = URL(string: fullSearch) {
             print("searching ", fullSearch)
@@ -72,6 +72,11 @@ class TunesHelper {
                     if let feedUrl = album["feedUrl"] as? String {
                         newAlbum.feedUrl = feedUrl
                     }
+                    /*self.getImage(url: newAlbum.artworkUrl) { (img) in
+                        if let image = img {
+                            newAlbum.artworkImage = image
+                        }
+                    }*/
                     albums.append(newAlbum)
                 }
             }

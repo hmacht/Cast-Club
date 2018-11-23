@@ -27,7 +27,6 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         // Set delegate for search bar
         searchBar.delegate = self
         
-        
     }
     
 
@@ -56,8 +55,14 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         if let numEpisodesLabel = cell.viewWithTag(3) as? UILabel {
             numEpisodesLabel.text = String(searchResults[indexPath.row].numEpisodes) + " Episodes"
         }
-        if let imgView = cell.viewWithTag(0) as? UIImageView {
-            imgView.image = searchResults[indexPath.row].artworkImage
+        if let imgView = cell.viewWithTag(4) as? UIImageView {
+            if let img = searchResults[indexPath.row].artworkImage {
+                imgView.image = img
+            } else {
+                if let img = searchResults[indexPath.row].getImageData() {
+                    imgView.image = img
+                }
+            }
         }
         
         

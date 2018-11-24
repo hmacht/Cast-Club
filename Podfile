@@ -7,6 +7,7 @@ target 'Cast Club' do
 
   # Pods for Cast Club
   pod 'Alamofire'
+  pod 'FeedKit'
 
   target 'Cast ClubTests' do
     inherit! :search_paths

@@ -28,6 +28,8 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         searchBar.delegate = self
         
         
+        
+        
     }
     
 

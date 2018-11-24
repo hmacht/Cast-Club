@@ -16,7 +16,7 @@ class PodcastAlbum {
     var numEpisodes = 0
     var artworkUrl = ""
     var feedUrl = ""
-    var artworkImage = UIImage()
+    var artworkImage: UIImage?
     
     convenience init(artist: String, title: String, numEpisodes: Int, url: String, feedUrl: String) {
         self.init()
@@ -27,15 +27,19 @@ class PodcastAlbum {
         self.feedUrl = feedUrl
     }
     
-    
-    // Not currently working
-    func getImageData() {
+    func getImageData() -> UIImage? {
         if let url = URL(string: artworkUrl) {
             if let data = try? Data(contentsOf: url) {
                 if let img = UIImage(data: data) {
                     self.artworkImage = img
+                    return img
+                } else {
+                    return nil
                 }
+            } else {
+                return nil
             }
         }
+        return nil
     }
 }

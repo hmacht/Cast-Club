@@ -29,20 +29,8 @@ class PlayPodcastViewController: UIViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
-        /*AudioDownloadHelper.instance.getAudioFromUrl(self.selectedPodcast.contentUrl) { (data) in
-            if let d = data {
-                if let p = try? AVAudioPlayer(data: d) {
-                    print("we have data")
-                    self.player = p
-                    self.player.prepareToPlay()
-                    self.player.volume = 1.0
-                    self.player.play()
-                }
-            } else {
-                print("Cant find data")
-            }
-        }*/
         
+        // Get audio and set up player
         AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url) in
             if let u = url {
                 if let p = try? AVAudioPlayer(contentsOf: u) {

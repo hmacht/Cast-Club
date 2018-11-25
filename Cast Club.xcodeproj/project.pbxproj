@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		127AD3A5EE784F7684203773 /* Pods_Cast_ClubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF7D563C98ACDE4735780BC /* Pods_Cast_ClubTests.framework */; };
 		211BDD7721A9F1560025A132 /* PlayPodcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */; };
+		213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */; };
 		218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */; };
 		21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */; };
 		21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C87D4521A87FF300F9E727 /* TunesHelper.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		132A83E24B1AA60FADB60849 /* Pods-Cast ClubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubTests/Pods-Cast ClubTests.release.xcconfig"; sourceTree = "<group>"; };
 		211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPodcastViewController.swift; sourceTree = "<group>"; };
+		213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDownloadHelper.swift; sourceTree = "<group>"; };
 		218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPodcastsViewController.swift; sourceTree = "<group>"; };
 		21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		21C87D4521A87FF300F9E727 /* TunesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunesHelper.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				21C87D4721A883DF00F9E727 /* PodcastAlbum.swift */,
 				21D13FB521A9E7E40087F00E /* Podcast.swift */,
 				21D13FB721A9E8380087F00E /* FeedHelper.swift */,
+				213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */,
 				D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */,
 				D744775521A4BB1D00270726 /* AppDelegate.swift in Sources */,
 				21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */,

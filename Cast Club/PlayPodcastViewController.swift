@@ -20,30 +20,39 @@ class PlayPodcastViewController: UIViewController {
     var player = AVAudioPlayer()
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        
-        
-        if let p = try? AVAudioPlayer(contentsOf: URL(string: self.selectedPodcast.contentUrl)!) {
-            self.player = p
-            self.player.play()
-        }
-    
-        
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.imageView.image = self.coverImage
         self.titleLabel.text = self.selectedPodcast.title
         self.descriptionLabel.text = self.selectedPodcast.description
-        
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
-        //self.player.prepareToPlay()
-        //self.player.play()
+        /*AudioDownloadHelper.instance.getAudioFromUrl(self.selectedPodcast.contentUrl) { (data) in
+            if let d = data {
+                if let p = try? AVAudioPlayer(data: d) {
+                    print("we have data")
+                    self.player = p
+                    self.player.prepareToPlay()
+                    self.player.volume = 1.0
+                    self.player.play()
+                }
+            } else {
+                print("Cant find data")
+            }
+        }*/
+        
+        AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url) in
+            if let u = url {
+                if let p = try? AVAudioPlayer(contentsOf: u) {
+                    self.player = p
+                    self.player.prepareToPlay()
+                    self.player.volume = 1.0
+                    self.player.play()
+                }
+            }
+        }
     }
     
 

@@ -29,6 +29,7 @@
 		D744777721A4BB1F00270726 /* Cast_ClubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744777621A4BB1F00270726 /* Cast_ClubUITests.swift */; };
 		D760166621AC84DC00CB25BB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166521AC84DC00CB25BB /* SearchBar.swift */; };
 		D760166821AC9C6E00CB25BB /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166721AC9C6E00CB25BB /* CollectionViewCell.swift */; };
+		D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166921ACAC2700CB25BB /* navViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		D744777821A4BB1F00270726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D760166521AC84DC00CB25BB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		D760166721AC9C6E00CB25BB /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		D760166921ACAC2700CB25BB /* navViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
 		DE091DA3C8396931DF9C4B85 /* Pods-Cast ClubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubTests/Pods-Cast ClubTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				D760166521AC84DC00CB25BB /* SearchBar.swift */,
+				D760166921ACAC2700CB25BB /* navViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */,
 				D744775521A4BB1D00270726 /* AppDelegate.swift in Sources */,
 				21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */,
+				D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */,
 				D744775721A4BB1D00270726 /* FirstViewController.swift in Sources */,
 				D760166621AC84DC00CB25BB /* SearchBar.swift in Sources */,
 				21D13FB821A9E8380087F00E /* FeedHelper.swift in Sources */,

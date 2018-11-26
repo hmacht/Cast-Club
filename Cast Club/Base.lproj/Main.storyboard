@@ -97,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1582" y="-244"/>
+            <point key="canvasLocation" x="1577" y="-322"/>
         </scene>
         <!--Search Podcasts View Controller-->
         <scene sceneID="hep-Va-jI4">
@@ -197,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v6n-wr-sUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2441" y="-996"/>
+            <point key="canvasLocation" x="2554" y="-1013"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="sib-pj-XIO">
@@ -317,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Oz-fi-IX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3280.8000000000002" y="-383.65817091454278"/>
+            <point key="canvasLocation" x="3398" y="-321"/>
         </scene>
         <!--Play Podcast View Controller-->
         <scene sceneID="5an-SQ-pP8">
@@ -386,9 +386,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kQ-KF-OPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4426" y="-321"/>
+            <point key="canvasLocation" x="4319" y="-321"/>
         </scene>
-        <!--Second-->
+        <!--View Controller-->
+        <scene sceneID="yY6-du-Nek">
+            <objects>
+                <viewController id="zCF-y8-IBF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AZz-if-PMT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jrp-0F-xLl"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="Club-L-1" selectedImage="Club-L" id="YYX-i2-pDK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tgu-be-mk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1070"/>
+        </scene>
+        <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Cast_Club" customModuleProvider="target" sceneMemberID="viewController">
@@ -419,11 +435,27 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="" image="Browse-L" selectedImage="Browse-D" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HVd-JC-qsQ">
+            <objects>
+                <viewController id="68A-R0-YTa" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vJR-gH-ss8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="rc4-7u-TcB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="Profile-L" selectedImage="Profile-D" id="Fh0-Di-OFg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aKA-TP-LuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1821"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -432,22 +464,25 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="wHO-qR-UOp" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="zCF-y8-IBF" kind="relationship" relationship="viewControllers" id="p38-Qb-JEw"/>
+                        <segue destination="68A-R0-YTa" kind="relationship" relationship="viewControllers" id="UKe-XV-2Wp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-650" y="742"/>
         </scene>
-        <!--First-->
+        <!--Nav View Controller-->
         <scene sceneID="9F1-zQ-Fc3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wHO-qR-UOp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wHO-qR-UOp" customClass="navViewController" customModule="Cast_Club" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Grid-L" selectedImage="Grid-D" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="aas-Rn-8OL">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -468,9 +503,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Browse-D" width="27" height="27"/>
+        <image name="Browse-L" width="27" height="27"/>
+        <image name="Club-L" width="26" height="28"/>
+        <image name="Club-L-1" width="26" height="28"/>
+        <image name="Grid-D" width="23.5" height="23.5"/>
+        <image name="Grid-L" width="23.5" height="23.5"/>
+        <image name="Profile-D" width="24" height="26.5"/>
+        <image name="Profile-L" width="24" height="26.5"/>
         <image name="Rectangle 164" width="131" height="43"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QTv-ZG-pl4"/>

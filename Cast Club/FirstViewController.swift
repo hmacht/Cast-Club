@@ -20,7 +20,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         super.viewDidLoad()
         self.extendedLayoutIncludesOpaqueBars = true
         
-        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        
         self.tabBarController?.tabBar.setValue(true, forKey: "hidesShadow")
         self.navigationItem.title = "Home"
         

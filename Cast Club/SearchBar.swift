@@ -18,6 +18,8 @@ class SearchBar: UISearchBar {
     }
     */
     
+    let screenSize = UIScreen.main.bounds
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         if let textField = self.value(forKey: "searchField") as? UITextField {
@@ -34,6 +36,19 @@ class SearchBar: UISearchBar {
             if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
                 textFieldInsideSearchBarLabel.textColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
                 textField.font = UIFont(name: "Mont-HeavyDEMO", size: 16)
+            }
+        }
+        
+        for subView in self.subviews  {
+            for subsubView in subView.subviews  {
+                if let textField = subsubView as? UITextField {
+                    var bounds: CGRect
+                    bounds = textField.bounds
+                    bounds.size.height = 50 //(set height whatever you want)
+                    bounds.size.width = screenSize.width - 30
+                    textField.bounds = bounds
+                    textField.borderStyle = UITextField.BorderStyle.roundedRect
+                }
             }
         }
     }

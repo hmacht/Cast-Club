@@ -27,11 +27,13 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.navigationItem.title = "Episoids"
+        self.navigationItem.title = "Episodes"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.imgView.image = self.album.getImageData(dimensions: .hundred)
+        self.imgView.layer.cornerRadius = 6.0
+        self.imgView.clipsToBounds = true
         self.titleLabel.text = self.album.title
         self.artistLabel.text = self.album.artistName
         self.numEpisodesLabel.text = String(self.album.numEpisodes) + " Episodes"

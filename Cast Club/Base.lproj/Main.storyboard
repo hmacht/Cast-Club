@@ -378,6 +378,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KW3-r9-Sem"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="descriptionLabel" destination="lam-ua-8sF" id="DXQ-mp-Mwu"/>
                         <outlet property="imageView" destination="m24-SD-h0T" id="m2K-ye-WwR"/>

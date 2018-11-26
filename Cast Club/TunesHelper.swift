@@ -66,8 +66,15 @@ class TunesHelper {
                     if let numEpisodes = album["trackCount"] as? Int {
                         newAlbum.numEpisodes = numEpisodes
                     }
-                    if let artworkUrl = album["artworkUrl60"] as? String {
+                    if let artworkUrl = album["artworkUrl30"] as? String {
                         newAlbum.artworkUrl = artworkUrl
+                    } else {
+                        if let artworkUrl = album["artworkUrl60"] as? String {
+                            newAlbum.artworkUrl = artworkUrl
+                        }
+                    }
+                    if let artworkUrl100 = album["artworkUrl100"] as? String {
+                        newAlbum.artworkUrl100 = artworkUrl100
                     }
                     if let feedUrl = album["feedUrl"] as? String {
                         newAlbum.feedUrl = feedUrl

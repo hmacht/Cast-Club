@@ -23,6 +23,8 @@ class PlayPodcastViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.imageView.image = self.coverImage
+        self.imageView.layer.cornerRadius = 6.0
+        self.imageView.clipsToBounds = true
         self.titleLabel.text = self.selectedPodcast.title
         self.descriptionLabel.text = self.selectedPodcast.description
     }
@@ -33,6 +35,13 @@ class PlayPodcastViewController: UIViewController {
         // Get audio and set up player
         AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url) in
             if let u = url {
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
+                    try AVAudioSession.sharedInstance().setActive(true)
+                } catch {
+                    print(error)
+                }
+
                 if let p = try? AVAudioPlayer(contentsOf: u) {
                     self.player = p
                     self.player.prepareToPlay()
@@ -42,17 +51,6 @@ class PlayPodcastViewController: UIViewController {
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func playPressed(_ sender: Any) {
         if self.player.isPlaying {

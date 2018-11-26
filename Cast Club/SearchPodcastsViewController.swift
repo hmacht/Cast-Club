@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-    
+    let screenSize = UIScreen.main.bounds
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -28,9 +28,30 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         // Set delegate for search bar
         searchBar.delegate = self
         
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
+        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        
+        tableView.keyboardDismissMode = .onDrag
         
         
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        for subView in searchBar.subviews  {
+            for subsubView in subView.subviews  {
+                if let textField = subsubView as? UITextField {
+                    var bounds: CGRect
+                    bounds = textField.bounds
+                    bounds.size.height = 50 //(set height whatever you want)
+                    bounds.size.width = screenSize.width - 30
+                    textField.bounds = bounds
+                    textField.borderStyle = UITextField.BorderStyle.roundedRect
+                }
+            }
+        }
     }
     
 
@@ -60,6 +81,8 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
             numEpisodesLabel.text = String(searchResults[indexPath.row].numEpisodes) + " Episodes"
         }
         if let imgView = cell.viewWithTag(4) as? UIImageView {
+            imgView.layer.cornerRadius = 4.0
+            imgView.clipsToBounds = true
             if let img = searchResults[indexPath.row].artworkImage {
                 imgView.image = img
             } else {
@@ -78,7 +101,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 70
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

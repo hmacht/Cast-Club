@@ -26,9 +26,14 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Set delegates
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        self.navigationItem.title = "Episoids"
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.imgView.image = self.album.artworkImage
+        imgView.layer.cornerRadius = 6.0
+        imgView.clipsToBounds = true
         self.imgView.image = self.album.artworkImage
         self.titleLabel.text = self.album.title
         self.artistLabel.text = self.album.artistName
@@ -76,9 +81,11 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let podcast = podcastResults[indexPath.row]
         
         if let titleLabel = cell.viewWithTag(1) as? UILabel {
-            titleLabel.text = String(indexPath.row + 1) + ". " + podcast.title
+            //titleLabel.text = String(indexPath.row + 1) + ". " + podcast.title
+            titleLabel.text = podcast.title
         }
         if let descriptionLabel = cell.viewWithTag(2) as? UILabel {
+            descriptionLabel.numberOfLines = 50
             descriptionLabel.text = podcast.description
         }
         
@@ -97,5 +104,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.selectedPodcast = self.podcastResults[indexPath.row]
         self.performSegue(withIdentifier: "toPlayPodcast", sender: self)
     }
-
+    @IBAction func subscribe(_ sender: Any) {
+        subscriptionAlbum.append(album)
+    }
+    
 }

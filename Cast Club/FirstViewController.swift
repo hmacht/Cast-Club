@@ -8,104 +8,74 @@
 
 import UIKit
 
+var subscriptionAlbum = [PodcastAlbum]()
+
 class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     let screenSize = UIScreen.main.bounds
+    var homeSelection = PodcastAlbum()
     
+    @IBOutlet weak var myCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.extendedLayoutIncludesOpaqueBars = true
         
-        createHeader()
-        createSearchButton()
+        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        self.tabBarController?.tabBar.setValue(true, forKey: "hidesShadow")
+        self.navigationItem.title = "Home"
         
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(FirstViewController.goToSearch))
-        doubleTap.numberOfTapsRequired = 2
-        self.view.addGestureRecognizer(doubleTap)
+        let yourBackImage = UIImage(named: "Group 29")
+        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
+        
+        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 135"), style: .done, target: self, action: #selector(FirstViewController.search))
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Path 82"), style: .done, target: self, action: #selector(FirstViewController.settings))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
     // --- Currently Everything is hard Coded for prototyping. ---
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 125, left: 10, bottom: 20, right: 10)
-        layout.itemSize = CGSize(width: 110, height: 110)
-        let myCollectionView:UICollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        myCollectionView.dataSource = self
-        myCollectionView.delegate = self
-        myCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "MyCell")
-        myCollectionView.backgroundColor = UIColor.white
-        self.view.addSubview(myCollectionView)
+    override func viewDidAppear(_ animated: Bool) {
+        myCollectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return subscriptionAlbum.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath as IndexPath)
-        cell.backgroundColor = UIColor.white
-        cell.layer.shadowColor = UIColor(red: 196.0/255.0, green: 196.0/255.0, blue: 201.0/255.0, alpha: 1.0).cgColor
-        cell.layer.shadowOpacity = 0.51
-        cell.layer.shadowOffset = CGSize.zero
-        cell.layer.shadowRadius = 23
-        cell.layer.cornerRadius = 6
-        /*
-        let imageView = UIImageView()
-        imageView.frame = CGRect(origin: cell.center, size: CGSize(width: cell.frame.width, height: cell.frame.height))
-        imageView.center = CGPoint(x: cell.center.x, y: cell.center.y)
-        imageView.image = UIImage(named: "Group 224")
-        imageView.layer.cornerRadius = 6
-        cell.contentView.addSubview(imageView)
-        */
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
+        
+        cell.imgView.layer.cornerRadius = 6.0
+        cell.imgView.clipsToBounds = true
+        cell.imgView.image = subscriptionAlbum[indexPath.row].artworkImage
+        
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: IndexPath)
-    {
-        print("User tapped on item \(indexPath.row)")
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        homeSelection = subscriptionAlbum[indexPath.row]
+        self.performSegue(withIdentifier: "viewDetails", sender: self)
+        //print(homeSelection)
     }
     
-    func createHeader(){
-        let customFont = UIFont(name: "Mont-HeavyDEMO", size: 31)
-        let header1 = UILabel()
-        header1.frame = CGRect(x: 15, y: 30, width: 200, height: 100)
-        header1.textAlignment = .left
-        header1.font = customFont
-        header1.textColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        header1.text = "Currently"
-        header1.layer.zPosition = 1
-        self.view.addSubview(header1)
-        
-        let header2 = UILabel()
-        header2.frame = CGRect(x: 15, y: 70, width: 200, height: 100)
-        header2.textAlignment = .left
-        header2.font = customFont
-        header2.textColor = UIColor(red: 196.0/255.0, green: 196.0/255.0, blue: 201.0/255.0, alpha: 1.0)
-        header2.text = "listening to"
-        header2.layer.zPosition = 1
-        self.view.addSubview(header2)
-    }
-    
-    func createSearchButton(){
-        let image = UIImage(named: "Group 135") as UIImage?
-        let searchButton = UIButton()
-        searchButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        searchButton.center = CGPoint(x: screenSize.width - 55, y: 90)
-        searchButton.setImage(image, for: .normal)
-        searchButton.contentMode = .scaleAspectFill
-        searchButton.addTarget(self, action: #selector(FirstViewController.search), for: UIControl.Event.touchUpInside)
-        searchButton.layer.zPosition = 1
-        self.view.addSubview(searchButton)
-    }
     
     @objc func search() {
         print("Searching...")
+        self.performSegue(withIdentifier: "toSearch", sender: self)
     }
     
-    @objc func goToSearch() {
-        self.performSegue(withIdentifier: "toSearch", sender: self)
+    @objc func settings() {
+        print("Changing settings")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //print("olleh")
+        if segue.identifier == "viewDetails" {
+            let destination = segue.destination as! AlbumViewController
+            destination.album = self.homeSelection
+        }
     }
 
 }

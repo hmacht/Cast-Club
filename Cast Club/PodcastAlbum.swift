@@ -9,12 +9,17 @@
 import Foundation
 import UIKit
 
+enum ArtworkDimension {
+    case thrity, hundred
+}
+
 class PodcastAlbum {
     
     var artistName = ""
     var title = ""
     var numEpisodes = 0
     var artworkUrl = ""
+    var artworkUrl100 = ""
     var feedUrl = ""
     var artworkImage: UIImage?
     
@@ -27,8 +32,13 @@ class PodcastAlbum {
         self.feedUrl = feedUrl
     }
     
-    func getImageData() -> UIImage? {
-        if let url = URL(string: artworkUrl) {
+    func getImageData(dimensions: ArtworkDimension = ArtworkDimension.thrity) -> UIImage? {
+        var aUrl = self.artworkUrl
+        // To get higher resolution img
+        if dimensions == ArtworkDimension.hundred {
+            aUrl = self.artworkUrl100
+        }
+        if let url = URL(string: aUrl) {
             if let data = try? Data(contentsOf: url) {
                 if let img = UIImage(data: data) {
                     self.artworkImage = img

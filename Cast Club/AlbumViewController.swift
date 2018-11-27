@@ -105,6 +105,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     @IBAction func subscribe(_ sender: Any) {
         subscriptionAlbum.append(album)
+        newSubscriptions += 1
     }
     
 }

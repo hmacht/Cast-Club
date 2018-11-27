@@ -215,7 +215,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b4O-f6-MDI">
-                                <rect key="frame" x="0.0" y="138" width="375" height="416"/>
+                                <rect key="frame" x="0.0" y="143" width="375" height="411"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PodcastCell" rowHeight="104" id="gaw-if-jjl">
@@ -273,7 +273,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-F8-ogh">
                                 <rect key="frame" x="127" y="83" width="131" height="43"/>
-                                <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="10"/>
+                                <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="11"/>
                                 <color key="tintColor" red="0.2313699722" green="0.23137080669999999" blue="0.23137262459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Subscribe" backgroundImage="Rectangle 164">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -288,7 +288,7 @@
                             <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="zHW-yB-Y2K" secondAttribute="trailing" constant="22" id="2Xf-vq-QAf"/>
                             <constraint firstItem="zHW-yB-Y2K" firstAttribute="top" secondItem="rcV-Vf-ETu" secondAttribute="bottom" constant="5" id="AZy-Fr-nGV"/>
                             <constraint firstItem="Zuf-Oo-rZx" firstAttribute="top" secondItem="zHW-yB-Y2K" secondAttribute="bottom" constant="4" id="BFE-dy-pwv"/>
-                            <constraint firstItem="b4O-f6-MDI" firstAttribute="top" secondItem="wui-SK-oGZ" secondAttribute="bottom" constant="8" symbolic="YES" id="CX9-LH-97x"/>
+                            <constraint firstItem="b4O-f6-MDI" firstAttribute="top" secondItem="wui-SK-oGZ" secondAttribute="bottom" constant="13" id="CX9-LH-97x"/>
                             <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="Zuf-Oo-rZx" secondAttribute="trailing" constant="22" id="Fdf-yp-3P4"/>
                             <constraint firstItem="jnC-F8-ogh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zuf-Oo-rZx" secondAttribute="leading" id="FmJ-Tn-qEW"/>
                             <constraint firstItem="wui-SK-oGZ" firstAttribute="centerX" secondItem="4e9-Pq-bVH" secondAttribute="centerX" constant="-120" id="KPX-s5-jSR"/>
@@ -317,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Oz-fi-IX5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3398" y="-321"/>
+            <point key="canvasLocation" x="3397.5999999999999" y="-321.58920539730138"/>
         </scene>
         <!--Play Podcast View Controller-->
         <scene sceneID="5an-SQ-pP8">

@@ -13,6 +13,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var hintLabel: UILabel!
     
     var searchResults = [PodcastAlbum]()
     var selectedAlbum = PodcastAlbum()
@@ -124,6 +125,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
                 print("error in itunes api helper")
             }
         }
+        hintLabel.isHidden = true
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

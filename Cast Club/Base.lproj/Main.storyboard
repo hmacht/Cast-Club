@@ -161,35 +161,46 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search Podcasts" translatesAutoresizingMaskIntoConstraints="NO" id="rqq-Dp-iOc" customClass="SearchBar" customModule="Cast_Club" customModuleProvider="target">
+                            <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search Podcasts" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqq-Dp-iOc" customClass="SearchBar" customModule="Cast_Club" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="q0G-18-ZWI"/>
                                 </constraints>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try searching for club or podcast names or keywords" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXz-7d-VtL">
+                                <rect key="frame" x="24" y="78" width="326" height="11"/>
+                                <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="12"/>
+                                <color key="textColor" red="0.63564193250000001" green="0.63463193179999999" blue="0.66667133570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96233493089675903" green="0.9630243182182312" blue="0.97264796495437622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rqq-Dp-iOc" firstAttribute="leading" secondItem="iRe-s2-9iG" secondAttribute="leading" id="6SY-ZV-jwd"/>
+                            <constraint firstItem="PXz-7d-VtL" firstAttribute="leading" secondItem="iRe-s2-9iG" secondAttribute="leading" constant="24" id="FHv-Dj-QKZ"/>
                             <constraint firstItem="ici-FL-Z9i" firstAttribute="top" secondItem="rqq-Dp-iOc" secondAttribute="bottom" constant="24" id="FxG-Es-grs"/>
                             <constraint firstItem="fuX-Cl-q09" firstAttribute="leading" secondItem="iRe-s2-9iG" secondAttribute="leading" id="HdT-yE-9Qw"/>
                             <constraint firstItem="ici-FL-Z9i" firstAttribute="leading" secondItem="iRe-s2-9iG" secondAttribute="leading" id="KcM-wB-9IJ"/>
+                            <constraint firstItem="PXz-7d-VtL" firstAttribute="top" secondItem="fuX-Cl-q09" secondAttribute="bottom" constant="15" id="NFs-te-VUc"/>
                             <constraint firstItem="rqq-Dp-iOc" firstAttribute="trailing" secondItem="iRe-s2-9iG" secondAttribute="trailing" id="TdI-u4-KcY"/>
                             <constraint firstItem="rqq-Dp-iOc" firstAttribute="top" secondItem="iRe-s2-9iG" secondAttribute="top" id="U9r-xI-LvN"/>
                             <constraint firstItem="iRe-s2-9iG" firstAttribute="trailing" secondItem="ici-FL-Z9i" secondAttribute="trailing" id="VuK-ZZ-35h"/>
                             <constraint firstItem="fuX-Cl-q09" firstAttribute="trailing" secondItem="iRe-s2-9iG" secondAttribute="trailing" id="dqE-08-IAD"/>
                             <constraint firstItem="iRe-s2-9iG" firstAttribute="bottom" secondItem="ici-FL-Z9i" secondAttribute="bottom" id="ijK-uq-Uvm"/>
+                            <constraint firstItem="iRe-s2-9iG" firstAttribute="trailing" secondItem="PXz-7d-VtL" secondAttribute="trailing" constant="25" id="ixg-Yc-22T"/>
                             <constraint firstItem="fuX-Cl-q09" firstAttribute="top" secondItem="iRe-s2-9iG" secondAttribute="top" id="qXg-a0-E84"/>
                             <constraint firstItem="ici-FL-Z9i" firstAttribute="top" secondItem="fuX-Cl-q09" secondAttribute="bottom" constant="17" id="xl9-1b-igE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iRe-s2-9iG"/>
                     </view>
                     <connections>
+                        <outlet property="hintLabel" destination="PXz-7d-VtL" id="o56-O5-OZk"/>
                         <outlet property="searchBar" destination="rqq-Dp-iOc" id="QVf-B6-TIN"/>
                         <outlet property="tableView" destination="ici-FL-Z9i" id="Ce9-Md-v9n"/>
                         <segue destination="YnJ-Ln-gEA" kind="show" identifier="toAlbumView" id="S7V-rU-xOc"/>
@@ -218,61 +229,67 @@
                                 <rect key="frame" x="0.0" y="143" width="375" height="411"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PodcastCell" rowHeight="104" id="gaw-if-jjl">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="104"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PodcastCell" rowHeight="95" id="gaw-if-jjl">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gaw-if-jjl" id="Hgw-t9-KoX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chV-dt-IZP" userLabel="TitleLabel">
-                                                    <rect key="frame" x="15" y="11" width="345" height="46"/>
+                                                    <rect key="frame" x="15" y="8" width="345" height="41"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="46" id="UdT-Me-iKd"/>
+                                                        <constraint firstAttribute="height" constant="41" id="UdT-Me-iKd"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCt-NV-HtL" userLabel="DescriptionLabel">
-                                                    <rect key="frame" x="15" y="50" width="325" height="18"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
+                                                    <rect key="frame" x="15" y="43" width="345" height="15.5"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="CCt-NV-HtL" firstAttribute="leading" secondItem="Hgw-t9-KoX" secondAttribute="leadingMargin" id="0UG-dR-AVu"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="CCt-NV-HtL" secondAttribute="trailing" constant="20" id="VnJ-Yv-04G"/>
-                                                <constraint firstItem="CCt-NV-HtL" firstAttribute="top" secondItem="chV-dt-IZP" secondAttribute="bottom" constant="-7" id="Z1V-f6-LWg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CCt-NV-HtL" secondAttribute="trailing" id="VnJ-Yv-04G"/>
+                                                <constraint firstItem="CCt-NV-HtL" firstAttribute="top" secondItem="chV-dt-IZP" secondAttribute="bottom" constant="-6" id="Z1V-f6-LWg"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="chV-dt-IZP" secondAttribute="trailing" id="c0t-ID-pee"/>
                                                 <constraint firstItem="chV-dt-IZP" firstAttribute="leading" secondItem="Hgw-t9-KoX" secondAttribute="leadingMargin" id="ozT-f7-6Jm"/>
-                                                <constraint firstItem="chV-dt-IZP" firstAttribute="top" secondItem="Hgw-t9-KoX" secondAttribute="topMargin" id="vI9-18-N1a"/>
+                                                <constraint firstItem="chV-dt-IZP" firstAttribute="top" secondItem="Hgw-t9-KoX" secondAttribute="topMargin" constant="-3" id="vI9-18-N1a"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcV-Vf-ETu">
-                                <rect key="frame" x="127" y="30" width="226" height="14"/>
-                                <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="15"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcV-Vf-ETu">
+                                <rect key="frame" x="127" y="30" width="226" height="20.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Title">
+                                        <attributes>
+                                            <font key="NSFont" size="15" name="Mont-HeavyDEMO"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHW-yB-Y2K">
-                                <rect key="frame" x="127" y="49" width="226" height="12"/>
+                                <rect key="frame" x="127" y="55.5" width="226" height="12"/>
                                 <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="13"/>
                                 <color key="textColor" red="0.76883810760000004" green="0.76821738480000001" blue="0.78823834660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="N Episodes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuf-Oo-rZx">
-                                <rect key="frame" x="127" y="65" width="226" height="10"/>
+                                <rect key="frame" x="127" y="71.5" width="226" height="10"/>
                                 <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="11"/>
                                 <color key="textColor" red="0.76883810760000004" green="0.76821738480000001" blue="0.78823834660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-F8-ogh">
-                                <rect key="frame" x="127" y="83" width="131" height="43"/>
+                                <rect key="frame" x="127" y="89.5" width="131" height="43"/>
                                 <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="11"/>
                                 <color key="tintColor" red="0.2313699722" green="0.23137080669999999" blue="0.23137262459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Subscribe" backgroundImage="Rectangle 164">

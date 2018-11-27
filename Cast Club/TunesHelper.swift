@@ -53,6 +53,7 @@ class TunesHelper {
     func parseJSON(_ json: [String : Any]) -> [PodcastAlbum] {
         var albums = [PodcastAlbum]()
         if let results: NSArray = json["results"] as? NSArray {
+            print(results)
             for item in results {
                 if let album: NSDictionary = item as! NSDictionary {
                     let newAlbum = PodcastAlbum()
@@ -73,8 +74,12 @@ class TunesHelper {
                             newAlbum.artworkUrl = artworkUrl
                         }
                     }
-                    if let artworkUrl100 = album["artworkUrl100"] as? String {
-                        newAlbum.artworkUrl100 = artworkUrl100
+                    if let artworkUrl600 = album["artworkUrl600"] as? String {
+                        newAlbum.artworkUrl100 = artworkUrl600
+                    } else {
+                        if let artworkUrl100 = album["artworkUrl100"] as? String {
+                            newAlbum.artworkUrl100 = artworkUrl100
+                        }
                     }
                     if let feedUrl = album["feedUrl"] as? String {
                         newAlbum.feedUrl = feedUrl

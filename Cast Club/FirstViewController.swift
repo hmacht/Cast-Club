@@ -9,6 +9,7 @@
 import UIKit
 
 var subscriptionAlbum = [PodcastAlbum]()
+var newSubscriptions = 0
 
 class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
@@ -20,7 +21,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         super.viewDidLoad()
         self.extendedLayoutIncludesOpaqueBars = true
         
-        self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        
         self.tabBarController?.tabBar.setValue(true, forKey: "hidesShadow")
         self.navigationItem.title = "Home"
         
@@ -50,6 +51,26 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         cell.imgView.layer.cornerRadius = 6.0
         cell.imgView.clipsToBounds = true
         cell.imgView.image = subscriptionAlbum[indexPath.row].artworkImage
+        print(newSubscriptions)
+        
+        if indexPath.row == (subscriptionAlbum.count - newSubscriptions){
+            UIView.animate(withDuration: 0.25, animations: {() -> Void in
+                cell.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
+            }, completion: {(_ finished: Bool) -> Void in
+                UIView.animate(withDuration: 0.25, animations: {() -> Void in
+                    cell.transform = CGAffineTransform(scaleX: 1, y: 1)
+                }, completion: {(_ finished: Bool) -> Void in
+                    let generator = UIImpactFeedbackGenerator(style: .light)
+                    generator.impactOccurred()
+                })
+            })
+            newSubscriptions -= 1
+        }
+        
+        if indexPath.row == (subscriptionAlbum.count - 1){
+            newSubscriptions = 0
+            print("NS = 0")
+        }
         
         return cell
     }

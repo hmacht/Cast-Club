@@ -38,21 +38,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        for subView in searchBar.subviews  {
-            for subsubView in subView.subviews  {
-                if let textField = subsubView as? UITextField {
-                    var bounds: CGRect
-                    bounds = textField.bounds
-                    bounds.size.height = 50 //(set height whatever you want)
-                    bounds.size.width = screenSize.width - 30
-                    textField.bounds = bounds
-                    textField.borderStyle = UITextField.BorderStyle.roundedRect
-                }
-            }
-        }
-    }
+    
     
 
     /*
@@ -116,6 +102,8 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
+    
+    
     // Search button clicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
@@ -123,7 +111,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
             if success {
                 if let r = results {
                     self.searchResults = r
-                    self.tableView.reloadData()
+                    self.tableView.reloadWithAnimation()
                 }
             } else {
                 print("error in itunes api helper")

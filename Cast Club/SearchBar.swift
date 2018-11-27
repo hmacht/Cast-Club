@@ -66,6 +66,8 @@ class SearchBar: UISearchBar {
         
         self.layer.borderColor = UIColor.white.cgColor;
         self.layer.borderWidth = 1;
+        
+        //self.keyboardAppearance = UIKeyboardAppearance.dark
        
         
         

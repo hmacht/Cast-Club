@@ -28,10 +28,12 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         // Set delegate for search bar
         searchBar.delegate = self
         
+        
+        
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
-        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: self, action: nil)
-        navigationItem.backBarButtonItem = backButton
+        
+        
         
         tableView.keyboardDismissMode = .onDrag
         
@@ -55,6 +57,10 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") as! UITableViewCell
         
+        
+        
+        
+        
         if let titleLabel = cell.viewWithTag(1) as? UILabel {
             titleLabel.text = searchResults[indexPath.row].title
         }
@@ -77,6 +83,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
                 }
             }
         }
+        
         
         
         return cell

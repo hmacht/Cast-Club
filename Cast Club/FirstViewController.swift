@@ -34,6 +34,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         
         let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Path 82"), style: .done, target: self, action: #selector(FirstViewController.settings))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
     }
     
     // --- Currently Everything is hard Coded for prototyping. ---

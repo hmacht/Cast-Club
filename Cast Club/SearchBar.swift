@@ -28,10 +28,13 @@ class SearchBar: UISearchBar {
                 textField.font = UIFont(name: "Mont-HeavyDEMO", size: 16)
             }
         }
+        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        
         if let textField = self.value(forKey: "searchField") as? UITextField {
             if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
                 textFieldInsideSearchBarLabel.textColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
@@ -49,8 +52,25 @@ class SearchBar: UISearchBar {
                     textField.bounds = bounds
                     textField.borderStyle = UITextField.BorderStyle.roundedRect
                 }
+                
+                
             }
         }
+        
+        
+        
+        var textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
+    
+        textFieldInsideSearchBar?.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+        
+        
+        self.layer.borderColor = UIColor.white.cgColor;
+        self.layer.borderWidth = 1;
+        
+        //self.keyboardAppearance = UIKeyboardAppearance.dark
+       
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -34,6 +34,14 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         
         let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Path 82"), style: .done, target: self, action: #selector(FirstViewController.settings))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        //let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90))
+        //tabBarController?.view.addSubview(miniController)
+        tabBarController?.tabBar.layer.zPosition = 1
+        
+        
+        
+        
+        
     }
     
     // --- Currently Everything is hard Coded for prototyping. ---

@@ -14,6 +14,12 @@ class navViewController: UINavigationController {
         super.viewDidLoad()
         self.navigationBar.setValue(true, forKey: "hidesShadow")
         
+        //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for:UIBarMetrics.default)
+        
+        let BarButtonItemAppearance = UIBarButtonItem.appearance()
+        BarButtonItemAppearance.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: .normal)
+        
+        
         /*
         let yourBackImage = UIImage(named: "Group 29")
         self.navigationBar.backIndicatorImage = yourBackImage

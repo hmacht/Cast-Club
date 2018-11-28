@@ -21,6 +21,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var selectedPodcast = Podcast()
     
+    let screenSize = UIScreen.main.bounds
+    
     
     override func viewDidLoad() {
         // Set delegates
@@ -100,12 +102,39 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedPodcast = self.podcastResults[indexPath.row]
-        self.performSegue(withIdentifier: "toPlayPodcast", sender: self)
+        //self.selectedPodcast = self.podcastResults[indexPath.row]
+        //self.performSegue(withIdentifier: "toPlayPodcast", sender: self)
+        
+        let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90), title: album.title, art: album.artworkImage!)
+        tabBarController?.view.addSubview(miniController)
     }
+    
+    // Change Hard code and put into class
+    let subscribedPopUp = UIImageView()
+    func createSubPopUp(){
+        subscribedPopUp.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
+        subscribedPopUp.center.x = self.view.center.x
+        subscribedPopUp.center.y = self.view.center.y - 130
+        subscribedPopUp.image = UIImage(named: "Group 239")
+        subscribedPopUp.alpha = 0
+        self.view.addSubview(subscribedPopUp)
+        
+        UIView.animate(withDuration: 0.5, animations: {() -> Void in
+            self.subscribedPopUp.alpha = 1
+        }, completion: {(_ finished: Bool) -> Void in
+            UIView.animate(withDuration: 0.5, delay: 1.0, animations: {
+                self.subscribedPopUp.alpha = 0
+            })
+            
+        })
+    }
+    
     @IBAction func subscribe(_ sender: Any) {
         subscriptionAlbum.append(album)
         newSubscriptions += 1
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+        createSubPopUp()
     }
     
 }

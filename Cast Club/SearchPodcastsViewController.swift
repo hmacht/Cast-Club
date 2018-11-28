@@ -13,6 +13,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var hintLabel: UILabel!
     
     var searchResults = [PodcastAlbum]()
     var selectedAlbum = PodcastAlbum()
@@ -28,10 +29,12 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         // Set delegate for search bar
         searchBar.delegate = self
         
+        
+        
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
-        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItem.Style.plain, target: self, action: nil)
-        navigationItem.backBarButtonItem = backButton
+        
+        
         
         tableView.keyboardDismissMode = .onDrag
         
@@ -54,6 +57,10 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") as! UITableViewCell
+        
+        
+        
+        
         
         if let titleLabel = cell.viewWithTag(1) as? UILabel {
             titleLabel.text = searchResults[indexPath.row].title
@@ -79,6 +86,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         
+        
         return cell
     }
     
@@ -92,6 +100,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedAlbum = self.searchResults[indexPath.row]
+        searchBar.resignFirstResponder()
         self.performSegue(withIdentifier: "toAlbumView", sender: self)
     }
     
@@ -117,6 +126,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
                 print("error in itunes api helper")
             }
         }
+        hintLabel.isHidden = true
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

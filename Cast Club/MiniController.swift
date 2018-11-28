@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MiniController: UIView {
 
@@ -20,12 +21,18 @@ class MiniController: UIView {
     
     var yposition: CGFloat
     var title: String
-    var art: UIImage
+    var art: UIImage = UIImage()
+    var podcast = Podcast()
     
-    init (frame: CGRect, yposition: CGFloat, title: String, art: UIImage) {
+    var player: AVAudioPlayer?
+    
+    init (frame: CGRect, yposition: CGFloat, artwork: UIImage?, podcast: Podcast) {
         self.yposition = yposition
-        self.title = title
-        self.art = art
+        self.title = podcast.title
+        if let img = artwork {
+            self.art = img
+        }
+        self.podcast = podcast
         super.init(frame: frame)
         // configure and add textField as subview
         self.backgroundColor = UIColor(red: 38.0/255.0, green: 38.0/255.0, blue: 38.0/255.0, alpha: 1.0)
@@ -93,6 +100,11 @@ class MiniController: UIView {
     
     @objc func play() {
         print("play/pause music")
+        if self.player?.isPlaying ?? false {
+            self.player?.pause()
+        } else {
+            self.player?.play()
+        }
     }
     
     @objc func skip() {
@@ -101,6 +113,27 @@ class MiniController: UIView {
     
     @objc func backSkip() {
         print("back skip")
+    }
+    
+    func switchToPlay(podcast: Podcast, artwork: UIImage?) {
+        self.player?.stop()
+        
+        self.podcast = podcast
+        if let img = artwork {
+            self.coverArt.image = img
+        }
+        self.podcastTitle.text = self.podcast.title
+        
+        AudioDownloadHelper.instance.getAudio(from: self.podcast.contentUrl) { (url) in
+            if let u = url {
+                if let p = try? AVAudioPlayer(contentsOf: u) {
+                    self.player = p
+                    self.player?.prepareToPlay()
+                    self.player?.volume = 1.0
+                    self.player?.play()
+                }
+            }
+        }
     }
 
 

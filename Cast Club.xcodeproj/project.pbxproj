@@ -14,6 +14,7 @@
 		21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */; };
 		21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C87D4521A87FF300F9E727 /* TunesHelper.swift */; };
 		21C87D4821A883DF00F9E727 /* PodcastAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C87D4721A883DF00F9E727 /* PodcastAlbum.swift */; };
+		21CB313A21AF53D7006677F8 /* PodcastTablBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB313921AF53D7006677F8 /* PodcastTablBarController.swift */; };
 		21D13FB621A9E7E40087F00E /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D13FB521A9E7E40087F00E /* Podcast.swift */; };
 		21D13FB821A9E8380087F00E /* FeedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D13FB721A9E8380087F00E /* FeedHelper.swift */; };
 		7D9B7A4D6109563FC3AC3D8C /* Pods_Cast_ClubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0A1B1CF8D6A51F3BB8F8C5 /* Pods_Cast_ClubUITests.framework */; };
@@ -60,6 +61,7 @@
 		21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		21C87D4521A87FF300F9E727 /* TunesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunesHelper.swift; sourceTree = "<group>"; };
 		21C87D4721A883DF00F9E727 /* PodcastAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAlbum.swift; sourceTree = "<group>"; };
+		21CB313921AF53D7006677F8 /* PodcastTablBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastTablBarController.swift; sourceTree = "<group>"; };
 		21D13FB521A9E7E40087F00E /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		21D13FB721A9E8380087F00E /* FeedHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHelper.swift; sourceTree = "<group>"; };
 		469DDBDC6BBE1707C49B41FF /* Pods-Cast Club.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast Club.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cast Club/Pods-Cast Club.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */,
 				21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */,
 				211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */,
+				21CB313921AF53D7006677F8 /* PodcastTablBarController.swift */,
 				D744775421A4BB1D00270726 /* AppDelegate.swift */,
 				D744775A21A4BB1D00270726 /* Main.storyboard */,
 				D744775D21A4BB1F00270726 /* Assets.xcassets */,
@@ -486,6 +489,7 @@
 				218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */,
 				D760166D21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift in Sources */,
 				D760166F21ACE20300CB25BB /* SearchBar+BarColor.swift in Sources */,
+				21CB313A21AF53D7006677F8 /* PodcastTablBarController.swift in Sources */,
 				21D13FB621A9E7E40087F00E /* Podcast.swift in Sources */,
 				21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */,
 			);

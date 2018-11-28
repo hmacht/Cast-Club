@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -102,11 +103,39 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //self.selectedPodcast = self.podcastResults[indexPath.row]
+        self.selectedPodcast = self.podcastResults[indexPath.row]
         //self.performSegue(withIdentifier: "toPlayPodcast", sender: self)
         
-        let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90), title: album.title, art: album.artworkImage!)
-        tabBarController?.view.addSubview(miniController)
+        if let tabController = self.tabBarController as? PodcastTablBarController {
+            // If controller already there, don't create new one
+            if tabController.audioController == nil {
+                let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90), artwork: self.album.artworkImage, podcast: self.selectedPodcast)
+                
+                tabController.audioController = miniController
+                tabController.view.addSubview(miniController)
+                
+                // Get audio
+                AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url) in
+                    if let u = url {
+                        do {
+                            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
+                            try AVAudioSession.sharedInstance().setActive(true)
+                        } catch {
+                            print(error)
+                        }
+                        
+                        if let p = try? AVAudioPlayer(contentsOf: u) {
+                            miniController.player = p
+                            miniController.player?.prepareToPlay()
+                            miniController.player?.volume = 1.0
+                            miniController.player?.play()
+                        }
+                    }
+                }
+            } else {
+                tabController.audioController?.switchToPlay(podcast: self.selectedPodcast, artwork: self.album.artworkImage)
+            }
+        }
     }
     
     // Change Hard code and put into class

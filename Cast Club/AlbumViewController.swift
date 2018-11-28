@@ -102,8 +102,11 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedPodcast = self.podcastResults[indexPath.row]
-        self.performSegue(withIdentifier: "toPlayPodcast", sender: self)
+        //self.selectedPodcast = self.podcastResults[indexPath.row]
+        //self.performSegue(withIdentifier: "toPlayPodcast", sender: self)
+        
+        let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90), title: album.title, art: album.artworkImage!)
+        tabBarController?.view.addSubview(miniController)
     }
     
     // Change Hard code and put into class

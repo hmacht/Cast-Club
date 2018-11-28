@@ -100,6 +100,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedAlbum = self.searchResults[indexPath.row]
+        searchBar.resignFirstResponder()
         self.performSegue(withIdentifier: "toAlbumView", sender: self)
     }
     

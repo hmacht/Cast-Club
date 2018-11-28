@@ -32,6 +32,7 @@
 		D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166921ACAC2700CB25BB /* navViewController.swift */; };
 		D760166D21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166C21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift */; };
 		D760166F21ACE20300CB25BB /* SearchBar+BarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166E21ACE20200CB25BB /* SearchBar+BarColor.swift */; };
+		D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		D760166921ACAC2700CB25BB /* navViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
 		D760166C21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+RelodeWithAnimation.swift"; sourceTree = "<group>"; };
 		D760166E21ACE20200CB25BB /* SearchBar+BarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+BarColor.swift"; sourceTree = "<group>"; };
+		D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniController.swift; sourceTree = "<group>"; };
 		DE091DA3C8396931DF9C4B85 /* Pods-Cast ClubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubTests/Pods-Cast ClubTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +223,7 @@
 				D760166521AC84DC00CB25BB /* SearchBar.swift */,
 				D760166921ACAC2700CB25BB /* navViewController.swift */,
 				D760166721AC9C6E00CB25BB /* CollectionViewCell.swift */,
+				D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */,
 				D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */,
 				D744775521A4BB1D00270726 /* AppDelegate.swift in Sources */,
+				D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */,
 				21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */,
 				D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */,
 				D744775721A4BB1D00270726 /* FirstViewController.swift in Sources */,

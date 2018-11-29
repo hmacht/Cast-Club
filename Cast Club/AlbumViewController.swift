@@ -34,7 +34,11 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.imgView.image = self.album.getImageData(dimensions: .hundred)
+        self.imgView.image = UIImage(named: "Group 224")
+        //self.imgView.image = self.album.getImageData(dimensions: .hundred)
+        _ = self.album.getImageData(dimensions: .hundred, completion: { (image) in
+            self.imgView.image = image
+        })
         self.imgView.layer.cornerRadius = 6.0
         self.imgView.clipsToBounds = true
         self.titleLabel.text = self.album.title

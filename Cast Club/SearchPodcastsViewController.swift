@@ -79,8 +79,15 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
             if let img = searchResults[indexPath.row].artworkImage {
                 imgView.image = img
             } else {
-                if let img = searchResults[indexPath.row].getImageData() {
-                    imgView.image = img
+                imgView.image = UIImage(named: "Group 224")
+                DispatchQueue.global(qos: .background).async {
+                    _ = self.searchResults[indexPath.row].getImageData { (image) in
+                        if let img = image {
+                            DispatchQueue.main.async {
+                                imgView.image = img
+                            }
+                        }
+                    }
                 }
             }
         }

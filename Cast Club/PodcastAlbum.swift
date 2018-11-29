@@ -32,7 +32,7 @@ class PodcastAlbum {
         self.feedUrl = feedUrl
     }
     
-    func getImageData(dimensions: ArtworkDimension = ArtworkDimension.thrity) -> UIImage? {
+    func getImageData(dimensions: ArtworkDimension = ArtworkDimension.thrity, completion: @escaping (UIImage?) -> ()) -> UIImage? {
         var aUrl = self.artworkUrl
         // To get higher resolution img
         if dimensions == ArtworkDimension.hundred {
@@ -42,14 +42,18 @@ class PodcastAlbum {
             if let data = try? Data(contentsOf: url) {
                 if let img = UIImage(data: data) {
                     self.artworkImage = img
+                    completion(img)
                     return img
                 } else {
+                    completion(nil)
                     return nil
                 }
             } else {
+                completion(nil)
                 return nil
             }
         }
+        completion(nil)
         return nil
     }
 }

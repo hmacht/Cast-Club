@@ -140,7 +140,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // Change Hard code and put into class
     let subscribedPopUp = UIImageView()
-    func createSubPopUp(){
+    func createSubPopUp() {
         subscribedPopUp.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
         subscribedPopUp.center.x = self.view.center.x
         subscribedPopUp.center.y = self.view.center.y - 130

@@ -31,6 +31,9 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.dataSource = self
         
         self.navigationItem.title = "Episodes"
+        
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +63,11 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        let tabController = self.tabBarController as? PodcastTablBarController
+        tabController?.audioController?.pushUp()
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -84,6 +92,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "PodcastCell") as! UITableViewCell
         
+        
         let podcast = podcastResults[indexPath.row]
         
         if let titleLabel = cell.viewWithTag(1) as? UILabel {
@@ -95,6 +104,10 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             descriptionLabel.text = podcast.description
         }
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+        cell.selectedBackgroundView = backgroundView
+        
         return cell
     }
     
@@ -102,13 +115,11 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return podcastResults.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 135
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedPodcast = self.podcastResults[indexPath.row]
         //self.performSegue(withIdentifier: "toPlayPodcast", sender: self)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         
         if let tabController = self.tabBarController as? PodcastTablBarController {
             // If controller already there, don't create new one
@@ -160,6 +171,33 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             })
             
         })
+    }
+    
+    var lastContentOffset: CGFloat = 0
+    
+    // this delegate is called when the scrollView (i.e your UITableView) will start scrolling
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.lastContentOffset = tableView.contentOffset.y
+        print("scrolling")
+    }
+    
+    // while scrolling this delegate is being called so you may now check which direction your scrollView is being scrolled to
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let tabController = self.tabBarController as? PodcastTablBarController
+        if (self.lastContentOffset < tableView.contentOffset.y) {
+            print("UP")
+            tabController?.audioController?.pushDown()
+        } else if (self.lastContentOffset > tableView.contentOffset.y) {
+            print("Down")
+            tabController?.audioController?.pushUp()
+        } else {
+            print("Nothing")
+        }
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let tabController = self.tabBarController as? PodcastTablBarController
+        tabController?.audioController?.pushUp()
+        print("Done Scrolling")
     }
     
     @IBAction func subscribe(_ sender: Any) {

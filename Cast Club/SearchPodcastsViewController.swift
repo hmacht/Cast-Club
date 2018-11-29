@@ -92,7 +92,9 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
             }
         }
         
-        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 240.0/255.0, alpha: 1.0)
+        cell.selectedBackgroundView = backgroundView
         
         return cell
     }
@@ -107,6 +109,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedAlbum = self.searchResults[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
         searchBar.resignFirstResponder()
         self.performSegue(withIdentifier: "toAlbumView", sender: self)
     }

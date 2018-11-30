@@ -42,7 +42,7 @@ class MiniController: UIView {
         self.layer.zPosition = 0
         self.center.x = screenSize.width/2
         
-        UIView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.frame = CGRect(x: 0, y: self.yposition, width: self.screenSize.width - 20, height: 75)
             self.center.x = self.screenSize.width/2
         })
@@ -72,12 +72,12 @@ class MiniController: UIView {
         
         playButton.frame = CGRect(x: skipButton.frame.minX - 30, y: 0, width: 30, height: 40)
         playButton.center.y = self.frame.height/2
-        playButton.setImage(UIImage(named: "Path 74"), for: .normal)
+        playButton.setImage(UIImage(named: "Group 240"), for: .normal)
         playButton.contentMode = .scaleAspectFit
         playButton.addTarget(self, action: #selector(MiniController.play), for: .touchUpInside)
         self.addSubview(playButton)
         
-        backSkipButton.frame = CGRect(x: playButton.frame.minX - 45, y: 0, width: 40, height: 30)
+        backSkipButton.frame = CGRect(x: playButton.frame.minX - 43, y: 0, width: 40, height: 30)
         backSkipButton.center.y = self.frame.height/2
         backSkipButton.setImage(UIImage(named: "Group 222"), for: .normal)
         backSkipButton.contentMode = .scaleAspectFit
@@ -102,8 +102,10 @@ class MiniController: UIView {
         print("play/pause music")
         if self.player?.isPlaying ?? false {
             self.player?.pause()
+            playButton.setImage(UIImage(named: "Path 74"), for: .normal)
         } else {
             self.player?.play()
+            playButton.setImage(UIImage(named: "Group 240"), for: .normal)
         }
     }
     
@@ -115,6 +117,8 @@ class MiniController: UIView {
         print("back skip")
     }
     
+    var isDown = false
+    
     func switchToPlay(podcast: Podcast, artwork: UIImage?) {
         self.player?.stop()
         
@@ -124,6 +128,17 @@ class MiniController: UIView {
         }
         
         self.podcastTitle.text = self.podcast.title
+        
+        coverArt.frame = CGRect(x: self.frame.height/2 - 15, y: 0, width: 30, height: 30)
+        coverArt.center.y = self.frame.height/2
+        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            self.coverArt.frame = CGRect(x: self.frame.height/2 - 25, y: 0, width: 50, height: 50)
+            self.coverArt.center.y = self.frame.height/2
+        })
+        
+        if isDown{
+            pushUp()
+        }
         
         AudioDownloadHelper.instance.getAudio(from: self.podcast.contentUrl) { (url) in
             if let u = url {
@@ -139,6 +154,22 @@ class MiniController: UIView {
                     RemoteControlsHelper.instance.setupNowPlaying(img: artwork)
                 }
             }
+        }
+    }
+    
+    func pushDown(){
+        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            self.transform = CGAffineTransform(translationX: 0, y: 100)
+        })
+        isDown = true
+    }
+    
+    func pushUp(){
+        if isDown{
+            UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.transform = CGAffineTransform(translationX: 0, y: 5)
+            })
+            isDown = false
         }
     }
 

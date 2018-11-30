@@ -124,7 +124,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let tabController = self.tabBarController as? PodcastTablBarController {
             // If controller already there, don't create new one
             if tabController.audioController == nil {
-                let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90), artwork: self.album.artworkImage, podcast: self.selectedPodcast)
+                let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90), artwork: self.album.artworkImage, podcast: self.selectedPodcast, podcastSlider: slider(frame: CGRect.zero))
                 
                 tabController.audioController = miniController
                 tabController.view.addSubview(miniController)

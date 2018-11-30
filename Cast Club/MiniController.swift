@@ -18,21 +18,24 @@ class MiniController: UIView {
     let playButton = UIButton()
     let skipButton = UIButton()
     let backSkipButton = UIButton()
+    let slider = UISlider()
     
     var yposition: CGFloat
     var title: String
     var art: UIImage = UIImage()
     var podcast = Podcast()
+    var podcastSlider: UISlider
     
     var player: AVAudioPlayer?
     
-    init (frame: CGRect, yposition: CGFloat, artwork: UIImage?, podcast: Podcast) {
+    init (frame: CGRect, yposition: CGFloat, artwork: UIImage?, podcast: Podcast, podcastSlider: UISlider) {
         self.yposition = yposition
         self.title = podcast.title
         if let img = artwork {
             self.art = img
         }
         self.podcast = podcast
+        self.podcastSlider = podcastSlider
         super.init(frame: frame)
         // configure and add textField as subview
         self.backgroundColor = UIColor(red: 38.0/255.0, green: 38.0/255.0, blue: 38.0/255.0, alpha: 1.0)
@@ -41,6 +44,9 @@ class MiniController: UIView {
         self.clipsToBounds = true
         self.layer.zPosition = 0
         self.center.x = screenSize.width/2
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(MiniController.expand))
+        self.addGestureRecognizer(gesture)
         
         UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.frame = CGRect(x: 0, y: self.yposition, width: self.screenSize.width - 20, height: 75)
@@ -166,6 +172,47 @@ class MiniController: UIView {
             isDown = false
         }
     }
+    
+    func expandView(){
+        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            self.frame.size = CGSize(width: self.frame.width, height: self.frame.height * 3)
+            self.transform = CGAffineTransform(translationX: 0, y: -150)
+            //self.playButton.setImage(UIImage(named: "Large Play"), for: .normal)
+            self.playButton.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.playButton.center = CGPoint(x: self.center.x - self.playButton.frame.width/4, y: self.frame.height - 45)
+            
+            //self.skipButton.setImage(UIImage(named: "Large forward"), for: .normal)
+            self.skipButton.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.skipButton.center = CGPoint(x: (self.center.x - self.playButton.frame.width/4) + self.frame.width/3, y: self.frame.height - 45)
+            
+            //self.backSkipButton.setImage(UIImage(named: "Large Back"), for: .normal)
+            self.backSkipButton.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.backSkipButton.center = CGPoint(x: (self.center.x - self.playButton.frame.width/4) - self.frame.width/3, y: self.frame.height - 45)
+            
+            self.coverArt.frame = CGRect(x: self.frame.height/4 - 35, y: 0, width: 70, height: 70)
+            self.coverArt.center.y = self.frame.height/4
+            
+            self.podcastTitle.frame = CGRect(x: self.coverArt.frame.maxX + 10, y: 0, width: self.frame.width/2.5, height: 40)
+            self.podcastTitle.center.y = self.frame.height/4
+    
+            
+        })
+        
+        
+        
+        podcastSlider.center.y = playButton.frame.minX - 30
+        podcastSlider.center.x = self.frame.width/2
+        self.addSubview(podcastSlider)
+       
+    }
+    
+    
+    
+    @objc func expand(_ sender:UITapGestureRecognizer){
+        // do other task
+        expandView()
+    }
+    
 
 
 }

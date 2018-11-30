@@ -133,6 +133,10 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                             miniController.player?.prepareToPlay()
                             miniController.player?.volume = 1.0
                             miniController.player?.play()
+                            RemoteControlsHelper.instance.currentPodcast = self.selectedPodcast
+                            RemoteControlsHelper.instance.player = p
+                            RemoteControlsHelper.instance.setupRemoteTransportControls()
+                            RemoteControlsHelper.instance.setupNowPlaying(img: self.album.artworkImage)
                         }
                     }
                 }

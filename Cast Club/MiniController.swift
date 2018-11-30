@@ -122,6 +122,7 @@ class MiniController: UIView {
         if let img = artwork {
             self.coverArt.image = img
         }
+        
         self.podcastTitle.text = self.podcast.title
         
         AudioDownloadHelper.instance.getAudio(from: self.podcast.contentUrl) { (url) in
@@ -131,6 +132,11 @@ class MiniController: UIView {
                     self.player?.prepareToPlay()
                     self.player?.volume = 1.0
                     self.player?.play()
+                    
+                    RemoteControlsHelper.instance.currentPodcast = self.podcast
+                    RemoteControlsHelper.instance.player = p
+                    RemoteControlsHelper.instance.setupRemoteTransportControls()
+                    RemoteControlsHelper.instance.setupNowPlaying(img: artwork)
                 }
             }
         }

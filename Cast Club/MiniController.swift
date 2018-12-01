@@ -135,6 +135,7 @@ class MiniController: UIView {
         if let img = artwork {
             self.coverArt.image = img
         }
+        
         self.podcastTitle.text = self.podcast.title
         
         if hasExpanded{
@@ -169,6 +170,13 @@ class MiniController: UIView {
                     self.player?.prepareToPlay()
                     self.player?.volume = 1.0
                     self.player?.play()
+                    
+                    DispatchQueue.main.async {
+                        RemoteControlsHelper.instance.currentPodcast = self.podcast
+                        RemoteControlsHelper.instance.player = p
+                        RemoteControlsHelper.instance.setupRemoteTransportControls()
+                        RemoteControlsHelper.instance.setupNowPlaying(img: artwork)
+                    }
                 }
             }
         }

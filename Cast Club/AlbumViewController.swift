@@ -65,7 +65,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillDisappear(_ animated: Bool) {
         let tabController = self.tabBarController as? PodcastTablBarController
-        tabController?.audioController?.pushUp()
+        tabController?.audioController?.pushDown()
     }
     
 
@@ -124,7 +124,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let tabController = self.tabBarController as? PodcastTablBarController {
             // If controller already there, don't create new one
             if tabController.audioController == nil {
-                let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90), artwork: self.album.artworkImage, podcast: self.selectedPodcast)
+                let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90), artwork: self.album.artworkImage, podcast: self.selectedPodcast, podcastSlider: slider(frame: CGRect.zero))
                 
                 tabController.audioController = miniController
                 tabController.view.addSubview(miniController)
@@ -194,14 +194,14 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tabController?.audioController?.pushDown()
         } else if (self.lastContentOffset > tableView.contentOffset.y) {
             print("Down")
-            tabController?.audioController?.pushUp()
+            //tabController?.audioController?.pushUp()
         } else {
             print("Nothing")
         }
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let tabController = self.tabBarController as? PodcastTablBarController
-        tabController?.audioController?.pushUp()
+        //tabController?.audioController?.pushUp()
         print("Done Scrolling")
     }
     

@@ -40,9 +40,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         
         
         
-        
-        
-        
     }
     
     // --- Currently Everything is hard Coded for prototyping. ---

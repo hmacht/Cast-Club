@@ -26,6 +26,8 @@ class MiniController: UIView {
     var podcast = Podcast()
     var podcastSlider: UISlider
     
+    var hasExpanded = false
+    
     var player: AVAudioPlayer?
     
     init (frame: CGRect, yposition: CGFloat, artwork: UIImage?, podcast: Podcast, podcastSlider: UISlider) {
@@ -90,6 +92,7 @@ class MiniController: UIView {
         backSkipButton.addTarget(self, action: #selector(MiniController.backSkip), for: .touchUpInside)
         self.addSubview(backSkipButton)
         
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -134,16 +137,30 @@ class MiniController: UIView {
         }
         self.podcastTitle.text = self.podcast.title
         
-        coverArt.frame = CGRect(x: self.frame.height/2 - 15, y: 0, width: 30, height: 30)
-        coverArt.center.y = self.frame.height/2
-        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-            self.coverArt.frame = CGRect(x: self.frame.height/2 - 25, y: 0, width: 50, height: 50)
-            self.coverArt.center.y = self.frame.height/2
-        })
-        
-        if isDown{
-            pushUp()
+        if hasExpanded{
+            self.coverArt.frame = CGRect(x: self.frame.height/4 - 25, y: 0, width: 50, height: 50)
+            self.coverArt.center.y = self.frame.height/4
+            UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.coverArt.frame = CGRect(x: self.frame.height/4 - 35, y: 0, width: 70, height: 70)
+                self.coverArt.center.y = self.frame.height/4
+            })
+            
+        } else{
+            coverArt.frame = CGRect(x: self.frame.height/2 - 15, y: 0, width: 30, height: 30)
+            coverArt.center.y = self.frame.height/2
+            UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.coverArt.frame = CGRect(x: self.frame.height/2 - 25, y: 0, width: 50, height: 50)
+                self.coverArt.center.y = self.frame.height/2
+            })
+            /*
+            if isDown{
+                pushUp()
+            }
+            */
         }
+        
+        
+        
         
         AudioDownloadHelper.instance.getAudio(from: self.podcast.contentUrl) { (url) in
             if let u = url {
@@ -159,7 +176,12 @@ class MiniController: UIView {
     
     func pushDown(){
         UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-            self.transform = CGAffineTransform(translationX: 0, y: 100)
+            //self.transform = CGAffineTransform(translationX: 0, y: 100)
+            if self.hasExpanded{
+                self.shrinkView()
+                self.hasExpanded = false
+            }
+            
         })
         isDown = true
     }
@@ -194,23 +216,57 @@ class MiniController: UIView {
             
             self.podcastTitle.frame = CGRect(x: self.coverArt.frame.maxX + 10, y: 0, width: self.frame.width/2.5, height: 40)
             self.podcastTitle.center.y = self.frame.height/4
-    
+            
+            
+            
             
         })
-        
-        
         
         podcastSlider.center.y = playButton.frame.minX - 30
         podcastSlider.center.x = self.frame.width/2
         self.addSubview(podcastSlider)
        
     }
+    func shrinkView(){
+        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            self.frame.size = CGSize(width: self.screenSize.width - 20, height: 70)
+            self.transform = CGAffineTransform(translationX: 0, y: 10)
+            
+            self.skipButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            self.skipButton.frame = CGRect(x: self.frame.width - 50, y: 0, width: 40, height: 30)
+            self.skipButton.center.y = self.frame.height/2
+            
+            self.playButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            self.playButton.frame = CGRect(x: self.skipButton.frame.minX - 30, y: 0, width: 30, height: 40)
+            self.playButton.center.y = self.frame.height/2
+            
+            self.backSkipButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            self.backSkipButton.frame = CGRect(x: self.playButton.frame.minX - 43, y: 0, width: 40, height: 30)
+            self.backSkipButton.center.y = self.frame.height/2
+            
+            self.coverArt.frame = CGRect(x: self.frame.height/2 - 25, y: 0, width: 50, height: 50)
+            self.coverArt.center.y = self.frame.height/2
+            
+            self.podcastTitle.frame = CGRect(x: self.coverArt.frame.maxX + 10, y: 0, width: self.frame.width/3, height: 40)
+            self.podcastTitle.center.y = self.frame.height/2
+        })
+
+        podcastSlider.removeFromSuperview()
+        
+    }
     
     
     
     @objc func expand(_ sender:UITapGestureRecognizer){
         // do other task
-        expandView()
+        if hasExpanded == false{
+            expandView()
+            hasExpanded = true
+        } else{
+            shrinkView()
+            hasExpanded = false
+        }
+        
     }
     
 

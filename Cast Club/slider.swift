@@ -26,8 +26,6 @@ class slider: UISlider {
         self.maximumTrackTintColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
         self.thumbTintColor = .white
         
-        
-        
         self.maximumValue = 100
         self.minimumValue = 0
         self.setValue(50, animated: false)

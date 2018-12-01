@@ -65,7 +65,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillDisappear(_ animated: Bool) {
         let tabController = self.tabBarController as? PodcastTablBarController
-        tabController?.audioController?.pushUp()
+        tabController?.audioController?.pushDown()
     }
     
 
@@ -189,14 +189,14 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tabController?.audioController?.pushDown()
         } else if (self.lastContentOffset > tableView.contentOffset.y) {
             print("Down")
-            tabController?.audioController?.pushUp()
+            //tabController?.audioController?.pushUp()
         } else {
             print("Nothing")
         }
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let tabController = self.tabBarController as? PodcastTablBarController
-        tabController?.audioController?.pushUp()
+        //tabController?.audioController?.pushUp()
         print("Done Scrolling")
     }
     

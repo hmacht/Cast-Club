@@ -171,10 +171,12 @@ class MiniController: UIView {
                     self.player?.volume = 1.0
                     self.player?.play()
                     
-                    RemoteControlsHelper.instance.currentPodcast = self.podcast
-                    RemoteControlsHelper.instance.player = p
-                    RemoteControlsHelper.instance.setupRemoteTransportControls()
-                    RemoteControlsHelper.instance.setupNowPlaying(img: artwork)
+                    DispatchQueue.main.async {
+                        RemoteControlsHelper.instance.currentPodcast = self.podcast
+                        RemoteControlsHelper.instance.player = p
+                        RemoteControlsHelper.instance.setupRemoteTransportControls()
+                        RemoteControlsHelper.instance.setupNowPlaying(img: artwork)
+                    }
                 }
             }
         }

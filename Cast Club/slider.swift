@@ -13,6 +13,7 @@ class slider: UISlider {
     @IBInspectable var trackHeight: CGFloat = 15
     let screenSize = UIScreen.main.bounds
     
+    
     override init (frame: CGRect) {
         super.init(frame: frame)
         
@@ -35,6 +36,7 @@ class slider: UISlider {
         let image: UIImage? = UIImage(named: "Ellipse 75")
         self.setThumbImage(image, for: .normal)
         self.setThumbImage(image, for: .highlighted)
+    
     }
     
     required init?(coder aDecoder: NSCoder) {

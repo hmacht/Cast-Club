@@ -172,6 +172,8 @@ class MiniController: UIView {
                 }
             }
         }
+        
+        
     }
     
     func pushDown(){
@@ -198,7 +200,7 @@ class MiniController: UIView {
     func expandView(){
         UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.frame.size = CGSize(width: self.frame.width, height: self.frame.height * 3)
-            self.transform = CGAffineTransform(translationX: 0, y: -150)
+            self.transform = CGAffineTransform(translationX: 0, y: -140)
             //self.playButton.setImage(UIImage(named: "Large Play"), for: .normal)
             self.playButton.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.playButton.center = CGPoint(x: self.center.x - self.playButton.frame.width/4, y: self.frame.height - 45)
@@ -218,8 +220,6 @@ class MiniController: UIView {
             self.podcastTitle.center.y = self.frame.height/4
             
             
-            
-            
         })
         
         podcastSlider.center.y = playButton.frame.minX - 30
@@ -230,7 +230,7 @@ class MiniController: UIView {
     func shrinkView(){
         UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.frame.size = CGSize(width: self.screenSize.width - 20, height: 70)
-            self.transform = CGAffineTransform(translationX: 0, y: 10)
+            self.transform = CGAffineTransform(translationX: 0, y: 5)
             
             self.skipButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             self.skipButton.frame = CGRect(x: self.frame.width - 50, y: 0, width: 40, height: 30)

@@ -135,6 +135,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         do {
                             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
                             try AVAudioSession.sharedInstance().setActive(true)
+                            UIApplication.shared.beginReceivingRemoteControlEvents()
                         } catch {
                             print(error)
                         }

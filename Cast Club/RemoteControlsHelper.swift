@@ -20,8 +20,14 @@ class RemoteControlsHelper {
         // Get the shared MPRemoteCommandCenter
         let commandCenter = MPRemoteCommandCenter.shared()
         
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget(self, action: #selector(RemoteControlsHelper.toggleAudio))
+        
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget(self, action: #selector(RemoteControlsHelper.toggleAudio))
+        
         // Add handler for Play Command
-        commandCenter.playCommand.addTarget { [unowned self] event in
+        /*commandCenter.playCommand.addTarget { [unowned self] event in
             if self.player.rate == 0.0 {
                 self.player.play()
                 return .success
@@ -36,7 +42,7 @@ class RemoteControlsHelper {
                 return .success
             }
             return .commandFailed
-        }
+        }*/
     }
     
     func setupNowPlaying(img: UIImage?) {
@@ -60,4 +66,11 @@ class RemoteControlsHelper {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
     
+    @objc func toggleAudio() {
+        if self.player.isPlaying {
+            self.player.pause()
+        } else {
+            self.player.play()
+        }
+    }
 }

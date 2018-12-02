@@ -188,14 +188,18 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.lastContentOffset = tableView.contentOffset.y
         print("scrolling")
+        let tabController = self.tabBarController as? PodcastTablBarController
+        tabController?.audioController?.pushDown()
     }
+    
+    /*
     
     // while scrolling this delegate is being called so you may now check which direction your scrollView is being scrolled to
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let tabController = self.tabBarController as? PodcastTablBarController
         if (self.lastContentOffset < tableView.contentOffset.y) {
             print("UP")
-            tabController?.audioController?.pushDown()
+            //tabController?.audioController?.pushDown()
         } else if (self.lastContentOffset > tableView.contentOffset.y) {
             print("Down")
             //tabController?.audioController?.pushUp()
@@ -208,6 +212,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //tabController?.audioController?.pushUp()
         print("Done Scrolling")
     }
+ */
     
     @IBAction func subscribe(_ sender: Any) {
         subscriptionAlbum.append(album)

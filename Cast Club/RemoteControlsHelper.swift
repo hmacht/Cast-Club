@@ -15,6 +15,8 @@ class RemoteControlsHelper {
     
     var currentPodcast = Podcast()
     var player = AVAudioPlayer()
+    var image = UIImage()
+    
     
     func setupRemoteTransportControls() {
         // Get the shared MPRemoteCommandCenter
@@ -23,17 +25,30 @@ class RemoteControlsHelper {
         
         commandCenter.playCommand.isEnabled = true
         commandCenter.pauseCommand.isEnabled = true
+        commandCenter.changePlaybackPositionCommand.isEnabled = true
         
         // Add handler for Play Command
         commandCenter.playCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            self.setupNowPlaying(img: self.image)
             self.player.play()
             return .success
         }
         
         // Add handler for Pause Command
         commandCenter.pauseCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            self.setupNowPlaying(img: self.image)
             self.player.pause()
             return .success
+        }
+        
+        commandCenter.changePlaybackPositionCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            
+            if let e = event as? MPChangePlaybackPositionCommandEvent {
+                self.player.currentTime = e.positionTime
+                self.setupNowPlaying(img: self.image)
+                return .success
+            }
+            return .commandFailed
         }
     }
     
@@ -42,9 +57,9 @@ class RemoteControlsHelper {
         var nowPlayingInfo = [String : Any]()
         nowPlayingInfo[MPMediaItemPropertyTitle] = self.currentPodcast.title
         nowPlayingInfo[MPMediaItemPropertyArtist] = self.currentPodcast.author
-        print(self.currentPodcast.title)
         
         if let image = img {
+            self.image = image
             nowPlayingInfo[MPMediaItemPropertyArtwork] =
                 MPMediaItemArtwork(boundsSize: image.size) { size in
                     return image

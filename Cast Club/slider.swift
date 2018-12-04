@@ -7,25 +7,31 @@
 //
 
 import UIKit
+import AVFoundation
 
 class slider: UISlider {
 
     @IBInspectable var trackHeight: CGFloat = 15
     let screenSize = UIScreen.main.bounds
     
+    var miniControler: MiniController?
+    
     
     override init (frame: CGRect) {
+        
+       
         super.init(frame: frame)
         
         
         
         let sliderWidth: CGFloat = screenSize.width - 55
         self.frame = CGRect(x: screenSize.width/2 - sliderWidth/2, y: 10, width: sliderWidth, height: 35)
-        //self.center = self.center
+        
         
         self.minimumTrackTintColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
         self.maximumTrackTintColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
         self.thumbTintColor = .white
+        self.isContinuous = false
         
         self.maximumValue = 100
         self.minimumValue = 0
@@ -49,6 +55,8 @@ class slider: UISlider {
     }
     @objc func changeVlaue(_ sender: UISlider) {
         print("value is" , Int(sender.value));
+        miniControler?.player?.currentTime = TimeInterval(exactly: Int(sender.value))!
+        print(value)
     }
 
 }

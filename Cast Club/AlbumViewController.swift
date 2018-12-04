@@ -70,7 +70,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
 
-    /*
+    /*AudioDownloadHelper
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -91,9 +91,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "PodcastCell") as! UITableViewCell
-        
-        
         let podcast = podcastResults[indexPath.row]
         
         if let titleLabel = cell.viewWithTag(1) as? UILabel {
@@ -125,10 +124,17 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let tabController = self.tabBarController as? PodcastTablBarController {
             // If controller already there, don't create new one
             if tabController.audioController == nil {
-                let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90), artwork: self.album.artworkImage, podcast: self.selectedPodcast, podcastSlider: slider(frame: CGRect.zero))
+                let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90), artwork: self.album.artworkImage, podcast: self.selectedPodcast)
                 
                 tabController.audioController = miniController
                 tabController.view.addSubview(miniController)
+                
+                let podcastSlider = slider(frame: CGRect.zero)
+                miniController.podSlider = podcastSlider
+                
+                podcastSlider.miniControler = miniController
+                
+                //miniController.addSubview(podcastSlider)
                 
                 // Get audio
                 AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url) in

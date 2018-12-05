@@ -24,20 +24,21 @@ class MiniController: UIView {
     var title: String
     var art: UIImage = UIImage()
     var podcast = Podcast()
-    var podcastSlider: UISlider
+    //var podcastSlider: UISlider
+    var podSlider: slider?
     
     var hasExpanded = false
     
     var player: AVAudioPlayer?
     
-    init (frame: CGRect, yposition: CGFloat, artwork: UIImage?, podcast: Podcast, podcastSlider: UISlider) {
+    init (frame: CGRect, yposition: CGFloat, artwork: UIImage?, podcast: Podcast) {
         self.yposition = yposition
         self.title = podcast.title
         if let img = artwork {
             self.art = img
         }
         self.podcast = podcast
-        self.podcastSlider = podcastSlider
+        //self.podcastSlider = podcastSlider
         super.init(frame: frame)
         // configure and add textField as subview
         self.backgroundColor = UIColor(red: 38.0/255.0, green: 38.0/255.0, blue: 38.0/255.0, alpha: 1.0)
@@ -49,6 +50,7 @@ class MiniController: UIView {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(MiniController.expand))
         self.addGestureRecognizer(gesture)
+        
         
         UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.frame = CGRect(x: 0, y: self.yposition, width: self.screenSize.width - 20, height: 75)
@@ -92,7 +94,7 @@ class MiniController: UIView {
         backSkipButton.addTarget(self, action: #selector(MiniController.backSkip), for: .touchUpInside)
         self.addSubview(backSkipButton)
         
-        
+        adjustSlider()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -136,7 +138,11 @@ class MiniController: UIView {
             self.coverArt.image = img
         }
         
+        adjustSlider()
+        
         self.podcastTitle.text = self.podcast.title
+        
+        playButton.setImage(UIImage(named: "Group 240"), for: .normal)
         
         if hasExpanded{
             self.coverArt.frame = CGRect(x: self.frame.height/4 - 25, y: 0, width: 50, height: 50)
@@ -184,6 +190,20 @@ class MiniController: UIView {
         
     }
     
+    
+    func adjustSlider(){
+        /*
+        if let podcastLength = player?.duration{
+            slider.maximumValue = Float(podcastLength)
+            print("---\(slider.maximumValue)")
+        }
+ */
+        slider.maximumValue = 300
+        print("---\(slider.maximumValue)")
+        
+    }
+ 
+    
     func pushDown(){
         UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             //self.transform = CGAffineTransform(translationX: 0, y: 100)
@@ -230,9 +250,12 @@ class MiniController: UIView {
             
         })
         
-        podcastSlider.center.y = playButton.frame.minX - 30
-        podcastSlider.center.x = self.frame.width/2
-        self.addSubview(podcastSlider)
+        //podcastSlider.center.y = playButton.frame.minX - 30
+        //podcastSlider.center.x = self.frame.width/2
+        //self.addSubview(podcastSlider)
+        
+        podSlider?.center = CGPoint(x: self.frame.width/2, y: playButton.frame.minX - 30)
+        self.addSubview(podSlider!)
        
     }
     func shrinkView(){
@@ -259,7 +282,8 @@ class MiniController: UIView {
             self.podcastTitle.center.y = self.frame.height/2
         })
 
-        podcastSlider.removeFromSuperview()
+        //podcastSlider.removeFromSuperview()
+        
         
     }
     

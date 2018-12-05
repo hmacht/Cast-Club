@@ -116,8 +116,9 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Set the selected podcast
         self.selectedPodcast = self.podcastResults[indexPath.row]
-        //self.performSegue(withIdentifier: "toPlayPodcast", sender: self)
         
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -137,27 +138,29 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 //miniController.addSubview(podcastSlider)
                 
                 // Get audio
-                AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url) in
-                    if let u = url {
-                        do {
-                            //try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
-                            try AVAudioSession.sharedInstance().setCategory(.playback, mode: AVAudioSession.Mode.default, options: .defaultToSpeaker)
-                            try AVAudioSession.sharedInstance().setActive(true)
-                        } catch {
-                            print("Error", error)
-                        }
-                        
-                        if let p = try? AVAudioPlayer(contentsOf: u) {
-                            miniController.player = p
-                            miniController.player?.prepareToPlay()
-                            miniController.player?.volume = 1.0
-                            miniController.player?.play()
+                AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url, initialUrl) in
+                    if initialUrl == miniController.podcast.contentUrl {
+                        if let u = url {
+                            do {
+                                //try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
+                                try AVAudioSession.sharedInstance().setCategory(.playback, mode: AVAudioSession.Mode.default, options: .defaultToSpeaker)
+                                try AVAudioSession.sharedInstance().setActive(true)
+                            } catch {
+                                print("Error", error)
+                            }
                             
-                            DispatchQueue.main.async {
-                                RemoteControlsHelper.instance.currentPodcast = self.selectedPodcast
-                                RemoteControlsHelper.instance.player = p
-                                RemoteControlsHelper.instance.setupRemoteTransportControls()
-                                RemoteControlsHelper.instance.setupNowPlaying(img: self.album.artworkImage)
+                            if let p = try? AVAudioPlayer(contentsOf: u) {
+                                miniController.player = p
+                                miniController.player?.prepareToPlay()
+                                miniController.player?.volume = 1.0
+                                miniController.player?.play()
+                                
+                                DispatchQueue.main.async {
+                                    RemoteControlsHelper.instance.currentPodcast = self.selectedPodcast
+                                    RemoteControlsHelper.instance.player = p
+                                    RemoteControlsHelper.instance.setupRemoteTransportControls()
+                                    RemoteControlsHelper.instance.setupNowPlaying(img: self.album.artworkImage)
+                                }
                             }
                         }
                     }
@@ -193,7 +196,6 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // this delegate is called when the scrollView (i.e your UITableView) will start scrolling
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.lastContentOffset = tableView.contentOffset.y
-        print("scrolling")
         let tabController = self.tabBarController as? PodcastTablBarController
         tabController?.audioController?.pushDown()
     }

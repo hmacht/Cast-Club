@@ -13,16 +13,16 @@ class AudioDownloadHelper {
     
     static let instance = AudioDownloadHelper()
     
-    func getAudio(from url: String, completion: @escaping (URL?) -> ()) {
+    func getAudio(from url: String, completion: @escaping (URL?, String) -> ()) {
         if let u = URL(string: url) {
             var downloadTask: URLSessionDownloadTask = URLSessionDownloadTask()
             downloadTask = URLSession.shared.downloadTask(with: u, completionHandler: { (link, response, error) in
-                completion(link)
+                completion(link, url)
             })
             downloadTask.resume()
         } else {
             print("No url")
-            completion(nil)
+            completion(nil, url)
         }
     }
 }

@@ -17,12 +17,12 @@ class slider: UISlider {
     var miniControler: MiniController?
     
     
+    
+    
     override init (frame: CGRect) {
-        
-       
         super.init(frame: frame)
         
-        
+        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(slider.updateSlider), userInfo: nil, repeats: true)
         
         let sliderWidth: CGFloat = screenSize.width - 55
         self.frame = CGRect(x: screenSize.width/2 - sliderWidth/2, y: 10, width: sliderWidth, height: 35)
@@ -32,6 +32,7 @@ class slider: UISlider {
         self.maximumTrackTintColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
         self.thumbTintColor = .white
         self.isContinuous = false
+        
         
         self.maximumValue = 100
         self.minimumValue = 0
@@ -55,8 +56,20 @@ class slider: UISlider {
     }
     @objc func changeVlaue(_ sender: UISlider) {
         print("value is" , Int(sender.value));
+        miniControler?.player?.stop()
         miniControler?.player?.currentTime = TimeInterval(exactly: Int(sender.value))!
+        miniControler?.player?.prepareToPlay()
+        miniControler?.player?.play()
         print(value)
     }
-
+    
+    @objc func updateSlider() {
+        if let minCon = miniControler{
+            if let podVal = minCon.player?.currentTime{
+                self.value = Float(podVal)
+            }
+        }
+    }
 }
+
+

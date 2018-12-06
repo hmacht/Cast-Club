@@ -192,15 +192,13 @@ class MiniController: UIView {
     
     
     func adjustSlider(){
-        /*
-        if let podcastLength = player?.duration{
-            slider.maximumValue = Float(podcastLength)
-            print("---\(slider.maximumValue)")
-        }
- */
-        slider.maximumValue = 300
-        print("---\(slider.maximumValue)")
         
+        if let podcastLength = player?.duration{
+            podSlider!.maximumValue = Float(podcastLength)
+            print("---\(podSlider!.maximumValue)")
+        }
+        //slider.maximumValue = 300
+        //print("---\(slider.maximumValue)")
     }
  
     

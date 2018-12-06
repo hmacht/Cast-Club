@@ -55,11 +55,10 @@ class slider: UISlider {
         return CGRect(origin: bounds.origin, size: CGSize(width: bounds.width, height: trackHeight))
     }
     @objc func changeVlaue(_ sender: UISlider) {
-        print("value is" , Int(sender.value));
-        miniControler?.player?.stop()
-        miniControler?.player?.currentTime = TimeInterval(exactly: Int(sender.value))!
-        miniControler?.player?.prepareToPlay()
-        miniControler?.player?.play()
+        print("value is" , Int(sender.value))
+        if let val = TimeInterval(exactly: Int(sender.value)) {
+            miniControler?.player?.currentTime = val
+        }
         print(value)
     }
     

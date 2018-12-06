@@ -169,7 +169,7 @@ class MiniController: UIView {
         
         
         
-        AudioDownloadHelper.instance.getAudio(from: self.podcast.contentUrl) { (url) in
+        AudioDownloadHelper.instance.getAudio(from: self.podcast.contentUrl) { (url, initialUrl) in
             if let u = url {
                 if let p = try? AVAudioPlayer(contentsOf: u) {
                     self.player = p

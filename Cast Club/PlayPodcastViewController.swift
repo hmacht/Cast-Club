@@ -33,7 +33,7 @@ class PlayPodcastViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         // Get audio and set up player
-        AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url) in
+        AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url, initialUrl) in
             if let u = url {
                 do {
                     try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])

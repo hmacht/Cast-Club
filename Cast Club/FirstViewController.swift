@@ -32,7 +32,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 135"), style: .done, target: self, action: #selector(FirstViewController.search))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Path 82"), style: .done, target: self, action: #selector(FirstViewController.settings))
+        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 257"), style: .done, target: self, action: #selector(FirstViewController.settings))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         //let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90))
         //tabBarController?.view.addSubview(miniController)
@@ -94,7 +94,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     }
     
     @objc func settings() {
-        print("Changing settings")
+        print("Playlist")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

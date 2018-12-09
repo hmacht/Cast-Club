@@ -25,6 +25,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let screenSize = UIScreen.main.bounds
     
+    var activityIndicator = UIActivityIndicatorView()
+    
     
     override func viewDidLoad() {
         // Set delegates
@@ -35,6 +37,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
+        
+        self.createActivityIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +55,12 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
         FeedHelper.instance.readFeed(url: album.feedUrl) { (podcasts) in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+            }
             if let podcastList = podcasts {
                 self.podcastResults = podcastList
                 DispatchQueue.main.async {
@@ -61,6 +70,14 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("Cant read podcasts")
             }
         }
+    }
+    
+    func createActivityIndicator() {
+        self.activityIndicator = UIActivityIndicatorView(style: .gray)
+        self.activityIndicator.frame = CGRect(x: self.view.frame.width/2 - 20, y: self.view.frame.height/2 - 20, width: 40, height: 40)
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.isHidden = true
+        self.view.addSubview(self.activityIndicator)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -137,7 +154,11 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 //miniController.addSubview(podcastSlider)
                 
                 // Get audio
+                miniController.showActivity()
                 AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url, initialUrl) in
+                    DispatchQueue.main.async {
+                        miniController.stopActivity()
+                    }
                     if initialUrl == miniController.podcast.contentUrl {
                         if let u = url {
                             do {

@@ -17,6 +17,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     
     var searchResults = [PodcastAlbum]()
     var selectedAlbum = PodcastAlbum()
+    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,25 +35,20 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
         
-        
-        
         tableView.keyboardDismissMode = .onDrag
         
+        self.createActivityIndicator()
         
     }
     
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func createActivityIndicator() {
+        self.activityIndicator = UIActivityIndicatorView(style: .gray)
+        self.activityIndicator.frame = CGRect(x: self.view.frame.width/2 - 20, y: self.view.frame.height/2 - 20, width: 40, height: 40)
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.isHidden = true
+        self.view.addSubview(self.activityIndicator)
     }
-    */
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -126,7 +122,15 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     // Search button clicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
+        
+        // Show loading
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+        
         TunesHelper.instance.searchiTunes(term: searchBar.text!) { (success, results) in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+            }
             if success {
                 if let r = results {
                     self.searchResults = r

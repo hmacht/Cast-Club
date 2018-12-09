@@ -19,6 +19,7 @@ class MiniController: UIView {
     let skipButton = UIButton()
     let backSkipButton = UIButton()
     let slider = UISlider()
+    var activityIndicator = UIActivityIndicatorView()
     
     var yposition: CGFloat
     var title: String
@@ -28,6 +29,7 @@ class MiniController: UIView {
     var podSlider: slider?
     
     var hasExpanded = false
+    var isDown = false
     
     var player: AVAudioPlayer?
     
@@ -94,6 +96,12 @@ class MiniController: UIView {
         backSkipButton.addTarget(self, action: #selector(MiniController.backSkip), for: .touchUpInside)
         self.addSubview(backSkipButton)
         
+        self.activityIndicator = UIActivityIndicatorView(style: .white)
+        self.activityIndicator.frame = self.playButton.frame
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.isHidden = true
+        self.addSubview(self.activityIndicator)
+        
         adjustSlider()
     }
     
@@ -110,28 +118,48 @@ class MiniController: UIView {
    
     
     @objc func play() {
-        print("play/pause music")
-        if self.player?.isPlaying ?? false {
-            self.player?.pause()
-            playButton.setImage(UIImage(named: "Path 74"), for: .normal)
-        } else {
-            self.player?.play()
-            playButton.setImage(UIImage(named: "Group 240"), for: .normal)
+        if !self.activityIndicator.isAnimating {
+            if self.player?.isPlaying ?? false {
+                self.player?.pause()
+                playButton.setImage(UIImage(named: "Path 74"), for: .normal)
+            } else {
+                self.player?.play()
+                playButton.setImage(UIImage(named: "Group 240"), for: .normal)
+            }
         }
     }
     
+    func showActivity() {
+        self.shrinkView()
+        self.hasExpanded = false
+        self.playButton.isHidden = true
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+    }
+    
+    func stopActivity() {
+        self.activityIndicator.stopAnimating()
+        self.playButton.isHidden = false
+    }
+    
     @objc func skip() {
-        print("skip")
+        if !self.activityIndicator.isAnimating {
+            print("skip")
+        }
     }
     
     @objc func backSkip() {
-        print("back skip")
+        if !self.activityIndicator.isAnimating {
+            print("back skip")
+        }
     }
     
-    var isDown = false
     
     func switchToPlay(podcast: Podcast, artwork: UIImage?) {
         self.player?.stop()
+        
+        // Show loading
+        self.showActivity()
         
         self.podcast = podcast
         if let img = artwork {
@@ -170,6 +198,9 @@ class MiniController: UIView {
         
         
         AudioDownloadHelper.instance.getAudio(from: self.podcast.contentUrl) { (url, initialUrl) in
+            DispatchQueue.main.async {
+                self.stopActivity()
+            }
             if let u = url {
                 if let p = try? AVAudioPlayer(contentsOf: u) {
                     self.player = p
@@ -288,15 +319,16 @@ class MiniController: UIView {
     
     
     @objc func expand(_ sender:UITapGestureRecognizer){
-        // do other task
-        if hasExpanded == false{
-            expandView()
-            hasExpanded = true
-        } else{
-            shrinkView()
-            hasExpanded = false
+        // If loading dont change
+        if !self.activityIndicator.isAnimating {
+            if hasExpanded == false{
+                expandView()
+                hasExpanded = true
+            } else{
+                shrinkView()
+                hasExpanded = false
+            }
         }
-        
     }
     
 

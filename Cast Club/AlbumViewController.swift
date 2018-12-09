@@ -51,12 +51,11 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         FeedHelper.instance.readFeed(url: album.feedUrl) { (podcasts) in
             if let podcastList = podcasts {
                 self.podcastResults = podcastList
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    self.tableView.reloadWithAnimation()
                 }
             } else {
                 print("Cant read podcasts")
@@ -101,7 +100,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         if let descriptionLabel = cell.viewWithTag(2) as? UILabel {
             descriptionLabel.numberOfLines = 50
-            descriptionLabel.text = podcast.description
+            descriptionLabel.text = podcast.description.deleteHTMLTags(tags: ["p", "a", "br"])
         }
         
         let backgroundView = UIView()

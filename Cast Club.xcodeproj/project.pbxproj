@@ -34,6 +34,7 @@
 		D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166921ACAC2700CB25BB /* navViewController.swift */; };
 		D760166D21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166C21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift */; };
 		D760166F21ACE20300CB25BB /* SearchBar+BarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166E21ACE20200CB25BB /* SearchBar+BarColor.swift */; };
+		D767DF3B21B8D2890027DA85 /* String+RemoveHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = D767DF3A21B8D2890027DA85 /* String+RemoveHTML.swift */; };
 		D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */; };
 		D7F365D321B0D352007F2CD9 /* slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F365D221B0D352007F2CD9 /* slider.swift */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		D760166921ACAC2700CB25BB /* navViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
 		D760166C21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+RelodeWithAnimation.swift"; sourceTree = "<group>"; };
 		D760166E21ACE20200CB25BB /* SearchBar+BarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+BarColor.swift"; sourceTree = "<group>"; };
+		D767DF3A21B8D2890027DA85 /* String+RemoveHTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RemoveHTML.swift"; sourceTree = "<group>"; };
 		D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniController.swift; sourceTree = "<group>"; };
 		D7F365D221B0D352007F2CD9 /* slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slider.swift; sourceTree = "<group>"; };
 		DE091DA3C8396931DF9C4B85 /* Pods-Cast ClubTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubTests/Pods-Cast ClubTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			children = (
 				D760166C21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift */,
 				D760166E21ACE20200CB25BB /* SearchBar+BarColor.swift */,
+				D767DF3A21B8D2890027DA85 /* String+RemoveHTML.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				D744775721A4BB1D00270726 /* FirstViewController.swift in Sources */,
 				D7F365D321B0D352007F2CD9 /* slider.swift in Sources */,
 				D760166621AC84DC00CB25BB /* SearchBar.swift in Sources */,
+				D767DF3B21B8D2890027DA85 /* String+RemoveHTML.swift in Sources */,
 				21D13FB821A9E8380087F00E /* FeedHelper.swift in Sources */,
 				211BDD7721A9F1560025A132 /* PlayPodcastViewController.swift in Sources */,
 				D760166821AC9C6E00CB25BB /* CollectionViewCell.swift in Sources */,
@@ -676,7 +680,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SWYGWFGR5M;
+				DEVELOPMENT_TEAM = 9832H7K9P2;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -696,7 +700,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SWYGWFGR5M;
+				DEVELOPMENT_TEAM = 9832H7K9P2;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

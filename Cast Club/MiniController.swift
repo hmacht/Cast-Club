@@ -31,6 +31,9 @@ class MiniController: UIView {
     
     var player: AVAudioPlayer?
     
+    // Whether or not the user is updating slider
+    var touchingSlider = false
+    
     init (frame: CGRect, yposition: CGFloat, artwork: UIImage?, podcast: Podcast) {
         self.yposition = yposition
         self.title = podcast.title
@@ -95,6 +98,14 @@ class MiniController: UIView {
         self.addSubview(backSkipButton)
         
         adjustSlider()
+        
+        self.podSlider?.addTarget(self, action: #selector(MiniController.changeVlaue), for: .valueChanged)
+        
+        // Timer to keep slider updated
+        let time = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (t) in
+            self.updateSlider()
+        }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -190,6 +201,17 @@ class MiniController: UIView {
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.touchingSlider = true
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.touchingSlider = false
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.touchingSlider = false
+    }
     
     func adjustSlider(){
         
@@ -299,6 +321,23 @@ class MiniController: UIView {
         
     }
     
+    @objc func changeVlaue(_ sender: UISlider) {
+        print("value is" , Int(sender.value))
+        self.touchingSlider = true
+        if let val = TimeInterval(exactly: Int(sender.value)) {
+            self.player?.currentTime = val
+        }
+    }
+    
+    func updateSlider() {
+        if !touchingSlider {
+            if let time = self.player?.currentTime {
+                if let dur = self.player?.duration {
+                    self.podSlider?.setValue(Float(time/dur), animated: true)
+                }
+            }
+        }
+    }
 
 
 }

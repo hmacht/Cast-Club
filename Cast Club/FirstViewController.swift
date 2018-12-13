@@ -29,6 +29,9 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
         
+        //self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "Group 29")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -20))
+        //self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "Group 29")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal).withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -20))
+        
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 135"), style: .done, target: self, action: #selector(FirstViewController.search))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         

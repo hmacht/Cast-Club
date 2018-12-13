@@ -70,6 +70,7 @@ class SearchBar: UISearchBar {
         //self.keyboardAppearance = UIKeyboardAppearance.dark
        
         
+        self.setImage(UIImage(named: "Group 135-1"), for: .search, state: .normal)
         
     }
     

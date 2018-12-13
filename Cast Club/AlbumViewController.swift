@@ -132,8 +132,6 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 let podcastSlider = slider(frame: CGRect.zero)
                 miniController.podSlider = podcastSlider
                 
-                podcastSlider.miniControler = miniController
-                
                 //miniController.addSubview(podcastSlider)
                 
                 // Get audio

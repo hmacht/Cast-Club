@@ -14,15 +14,8 @@ class slider: UISlider {
     @IBInspectable var trackHeight: CGFloat = 15
     let screenSize = UIScreen.main.bounds
     
-    var miniControler: MiniController?
-    
-    
-    
-    
     override init (frame: CGRect) {
         super.init(frame: frame)
-        
-        var timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(slider.updateSlider), userInfo: nil, repeats: true)
         
         let sliderWidth: CGFloat = screenSize.width - 55
         self.frame = CGRect(x: screenSize.width/2 - sliderWidth/2, y: 10, width: sliderWidth, height: 35)
@@ -34,16 +27,15 @@ class slider: UISlider {
         self.isContinuous = false
         
         
-        self.maximumValue = 100
+        self.maximumValue = 1
         self.minimumValue = 0
-        self.setValue(50, animated: false)
+        self.setValue(0, animated: false)
         
-        self.addTarget(self, action: #selector(slider.changeVlaue), for: .valueChanged)
+        
         
         let image: UIImage? = UIImage(named: "Ellipse 75")
         self.setThumbImage(image, for: .normal)
         self.setThumbImage(image, for: .highlighted)
-    
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,21 +46,7 @@ class slider: UISlider {
         //set your bounds here
         return CGRect(origin: bounds.origin, size: CGSize(width: bounds.width, height: trackHeight))
     }
-    @objc func changeVlaue(_ sender: UISlider) {
-        print("value is" , Int(sender.value))
-        if let val = TimeInterval(exactly: Int(sender.value)) {
-            miniControler?.player?.currentTime = val
-        }
-        print(value)
-    }
     
-    @objc func updateSlider() {
-        if let minCon = miniControler{
-            if let podVal = minCon.player?.currentTime{
-                self.value = Float(podVal)
-            }
-        }
-    }
 }
 
 

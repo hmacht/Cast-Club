@@ -57,6 +57,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
+        print("Feed", album.feedUrl)
         FeedHelper.instance.readFeed(url: album.feedUrl) { (podcasts) in
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
@@ -148,6 +149,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 let podcastSlider = slider(frame: CGRect.zero)
                 miniController.podSlider = podcastSlider
+                miniController.setUpSlider()
                 
                 //miniController.addSubview(podcastSlider)
                 

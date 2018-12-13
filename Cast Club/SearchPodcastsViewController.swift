@@ -122,7 +122,8 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     // Search button clicked
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
-        
+        self.searchResults = []
+        self.tableView.reloadData()
         // Show loading
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()

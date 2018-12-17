@@ -12,10 +12,10 @@ import MediaPlayer
 
 class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var artistLabel: UILabel!
-    @IBOutlet weak var numEpisodesLabel: UILabel!
+    //@IBOutlet weak var imgView: UIImageView!
+    //@IBOutlet weak var titleLabel: UILabel!
+    //@IBOutlet weak var artistLabel: UILabel!
+    //@IBOutlet weak var numEpisodesLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     var album = PodcastAlbum()
@@ -42,6 +42,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        /*
         self.imgView.image = UIImage(named: "Group 224")
         //self.imgView.image = self.album.getImageData(dimensions: .hundred)
         _ = self.album.getImageData(dimensions: .hundred, completion: { (image) in
@@ -52,6 +53,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.titleLabel.text = self.album.title
         self.artistLabel.text = self.album.artistName
         self.numEpisodesLabel.text = String(self.album.numEpisodes) + " Episodes"
+        */
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,35 +109,81 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "PodcastCell") as! UITableViewCell
-        let podcast = podcastResults[indexPath.row]
-        
-        if let titleLabel = cell.viewWithTag(1) as? UILabel {
-            //titleLabel.text = String(indexPath.row + 1) + ". " + podcast.title
-            titleLabel.text = podcast.title
+        if indexPath.row == 0 {
+            print("Show First Cell")
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: "cellHeader") as! TableViewCell
+            
+            
+            headerCell.imgView.image = UIImage(named: "Group 224")
+            //self.imgView.image = self.album.getImageData(dimensions: .hundred)
+            _ = self.album.getImageData(dimensions: .hundred, completion: { (image) in
+                headerCell.imgView.image = image
+            })
+            headerCell.imgView.layer.cornerRadius = 6.0
+            headerCell.imgView.clipsToBounds = true
+            headerCell.titleLabel.text = self.album.title
+            headerCell.artistLabel.text = self.album.artistName
+            headerCell.numEpisodesLabel.text = String(self.album.numEpisodes) + " Episodes"
+            
+            headerCell.selectionStyle = .none
+            
+            
+            
+            
+            return headerCell
+            
+        } else {
+            
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "PodcastCell") as! UITableViewCell
+            let podcast = podcastResults[indexPath.row - 1]
+            
+            if let titleLabel = cell.viewWithTag(1) as? UILabel {
+                //titleLabel.text = String(indexPath.row + 1) + ". " + podcast.title
+                titleLabel.text = podcast.title
+            }
+            if let descriptionLabel = cell.viewWithTag(2) as? UILabel {
+                descriptionLabel.numberOfLines = 50
+                let trimmedDescription = podcast.description.trimmingCharacters(in: .whitespacesAndNewlines)
+                descriptionLabel.text = trimmedDescription.deleteHTMLTags(tags: ["p", "a", "br", "em"])
+            }
+            
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            cell.selectedBackgroundView = backgroundView
+            
+            return cell
         }
-        if let descriptionLabel = cell.viewWithTag(2) as? UILabel {
-            descriptionLabel.numberOfLines = 50
-            descriptionLabel.text = podcast.description.deleteHTMLTags(tags: ["p", "a", "br"])
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.row == 0{
+            return nil
+        } else {
+            return indexPath
         }
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
-        cell.selectedBackgroundView = backgroundView
-        
-        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0{
+            return 150.0
+        } else {
+            return UITableView.automaticDimension
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return podcastResults.count
+        // add 1 because of header
+        return podcastResults.count + 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Set the selected podcast
-        self.selectedPodcast = self.podcastResults[indexPath.row]
+        self.selectedPodcast = self.podcastResults[indexPath.row - 1]
         
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -248,6 +296,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
         createSubPopUp()
+        
+        
     }
     
 }

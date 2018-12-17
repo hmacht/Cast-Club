@@ -156,12 +156,27 @@ class MiniController: UIView {
     @objc func skip() {
         if !self.activityIndicator.isAnimating {
             print("skip")
+            if let dur = self.player?.duration{
+                if let cur = self.player?.currentTime{
+                    print(Int(cur))
+                    print(Int(dur))
+                    if Int(cur) < Int(dur){
+                        self.player?.currentTime += 15
+                    }
+                }
+            }
         }
     }
     
     @objc func backSkip() {
         if !self.activityIndicator.isAnimating {
             print("back skip")
+            if let cur = self.player?.currentTime{
+                if Int(cur) > 15{
+                    self.player?.currentTime -= 15
+                }
+            }
+            
         }
     }
     

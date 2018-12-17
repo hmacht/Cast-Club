@@ -1,21 +1,20 @@
 //
-//  UITableView+RelodeWithAnimation.swift
+//  UITableView+reloadSearch.swift
 //  Cast Club
 //
-//  Created by Henry Macht on 11/26/18.
+//  Created by Henry Macht on 12/16/18.
 //  Copyright © 2018 Henry Macht. All rights reserved.
 //
 
 import UIKit
 
 extension UITableView {
-    func reloadWithAnimation() {
+    func reloadSearchWithAnimation() {
         self.reloadData()
         
         
         let tableViewHeight = self.bounds.size.height
         var cells = self.visibleCells
-        cells.remove(at: 0)
         var delayCounter = 0
         for cell in cells {
             cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight/2)

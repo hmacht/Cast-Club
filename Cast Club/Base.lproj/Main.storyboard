@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
         <!--First View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="Cast_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,7 +46,7 @@
                                     <inset key="sectionInset" minX="15" minY="15" maxX="15" maxY="80"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="X2H-ta-44p" customClass="CollectionViewCell" customModule="Cast_Club" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="X2H-ta-44p" customClass="CollectionViewCell" customModule="Pod_Talk" customModuleProvider="target">
                                         <rect key="frame" x="15" y="15" width="105" height="105"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -102,7 +102,7 @@
         <!--Search Podcasts View Controller-->
         <scene sceneID="hep-Va-jI4">
             <objects>
-                <viewController id="GMk-vi-Sml" customClass="SearchPodcastsViewController" customModule="Cast_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GMk-vi-Sml" customClass="SearchPodcastsViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nO4-p2-EDV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,7 +161,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search Podcasts" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqq-Dp-iOc" customClass="SearchBar" customModule="Cast_Club" customModuleProvider="target">
+                            <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search Podcasts" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqq-Dp-iOc" customClass="SearchBar" customModule="Pod_Talk" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="q0G-18-ZWI"/>
@@ -213,40 +213,97 @@
         <!--Album View Controller-->
         <scene sceneID="sib-pj-XIO">
             <objects>
-                <viewController id="YnJ-Ln-gEA" customClass="AlbumViewController" customModule="Cast_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YnJ-Ln-gEA" customClass="AlbumViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4e9-Pq-bVH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wui-SK-oGZ">
-                                <rect key="frame" x="15.5" y="16" width="114" height="114"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="114" id="5F3-Ug-fYF"/>
-                                    <constraint firstAttribute="height" constant="114" id="OSh-kq-MfA"/>
-                                </constraints>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b4O-f6-MDI">
-                                <rect key="frame" x="0.0" y="143" width="375" height="411"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PodcastCell" rowHeight="114" id="gaw-if-jjl">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="114"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellHeader" rowHeight="143" id="gaw-if-jjl" customClass="TableViewCell" customModule="Pod_Talk" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="143"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gaw-if-jjl" id="Hgw-t9-KoX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wui-SK-oGZ">
+                                                    <rect key="frame" x="15.5" y="14.5" width="114" height="114"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="114" id="5F3-Ug-fYF"/>
+                                                        <constraint firstAttribute="height" constant="114" id="OSh-kq-MfA"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-F8-ogh">
+                                                    <rect key="frame" x="137.5" y="85.5" width="131" height="43"/>
+                                                    <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="11"/>
+                                                    <color key="tintColor" red="0.2313699722" green="0.23137080669999999" blue="0.23137262459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <state key="normal" title="Subscribe" backgroundImage="Rectangle 164">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="subscribe:" destination="YnJ-Ln-gEA" eventType="touchUpInside" id="HVj-dB-Ifj"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHW-yB-Y2K">
+                                                    <rect key="frame" x="137.5" y="47" width="38" height="12"/>
+                                                    <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="13"/>
+                                                    <color key="textColor" red="0.76883810760000004" green="0.76821738480000001" blue="0.78823834660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="N Episodes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuf-Oo-rZx">
+                                                    <rect key="frame" x="137.5" y="67" width="62" height="10"/>
+                                                    <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="11"/>
+                                                    <color key="textColor" red="0.76883810760000004" green="0.76821738480000001" blue="0.78823834660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcV-Vf-ETu">
+                                                    <rect key="frame" x="137.5" y="25.5" width="35" height="13.5"/>
+                                                    <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wui-SK-oGZ" firstAttribute="bottom" secondItem="jnC-F8-ogh" secondAttribute="bottom" id="A94-hI-93u"/>
+                                                <constraint firstItem="Zuf-Oo-rZx" firstAttribute="top" secondItem="zHW-yB-Y2K" secondAttribute="bottom" constant="8" symbolic="YES" id="U3y-pJ-UyL"/>
+                                                <constraint firstItem="zHW-yB-Y2K" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="8" symbolic="YES" id="Yrf-ji-R3T"/>
+                                                <constraint firstItem="zHW-yB-Y2K" firstAttribute="top" secondItem="rcV-Vf-ETu" secondAttribute="bottom" constant="8" symbolic="YES" id="cMZ-cV-3ex"/>
+                                                <constraint firstItem="zHW-yB-Y2K" firstAttribute="top" secondItem="Hgw-t9-KoX" secondAttribute="top" constant="47" id="cpG-9p-VIz"/>
+                                                <constraint firstItem="rcV-Vf-ETu" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="8" symbolic="YES" id="iL6-Gv-PjM"/>
+                                                <constraint firstItem="wui-SK-oGZ" firstAttribute="centerY" secondItem="Hgw-t9-KoX" secondAttribute="centerY" id="iZH-7l-wQs"/>
+                                                <constraint firstItem="wui-SK-oGZ" firstAttribute="centerX" secondItem="Hgw-t9-KoX" secondAttribute="centerX" constant="-115" id="lR9-P4-GG3"/>
+                                                <constraint firstItem="jnC-F8-ogh" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="8" symbolic="YES" id="vsn-s8-85A"/>
+                                                <constraint firstItem="Zuf-Oo-rZx" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="8" symbolic="YES" id="yKJ-yn-onu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="artistLabel" destination="zHW-yB-Y2K" id="OTC-Sh-WOX"/>
+                                            <outlet property="imgView" destination="wui-SK-oGZ" id="GqG-cN-Sb6"/>
+                                            <outlet property="numEpisodesLabel" destination="Zuf-Oo-rZx" id="57n-D0-tBC"/>
+                                            <outlet property="titleLabel" destination="rcV-Vf-ETu" id="kzY-J6-3PY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PodcastCell" rowHeight="114" id="k7i-7p-oFH">
+                                        <rect key="frame" x="0.0" y="171" width="375" height="114"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k7i-7p-oFH" id="yO9-w3-wZk">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCt-NV-HtL" userLabel="DescriptionLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4n-bP-v7h" userLabel="DescriptionLabel">
                                                     <rect key="frame" x="15" y="38" width="345" height="65.5"/>
                                                     <string key="text">Description.  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dol</string>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chV-dt-IZP" userLabel="TitleLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tew-v2-1QW" userLabel="TitleLabel">
                                                     <rect key="frame" x="15" y="11" width="345" height="29"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="29" id="UdT-Me-iKd"/>
+                                                        <constraint firstAttribute="height" constant="29" id="4D0-jS-0WJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -254,80 +311,34 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="CCt-NV-HtL" firstAttribute="leading" secondItem="Hgw-t9-KoX" secondAttribute="leadingMargin" id="0UG-dR-AVu"/>
-                                                <constraint firstAttribute="bottom" secondItem="CCt-NV-HtL" secondAttribute="bottom" constant="10.5" id="6iO-8B-Z7x"/>
-                                                <constraint firstItem="CCt-NV-HtL" firstAttribute="top" secondItem="Hgw-t9-KoX" secondAttribute="top" constant="38" id="GI9-3j-Heb"/>
-                                                <constraint firstAttribute="trailing" secondItem="CCt-NV-HtL" secondAttribute="trailing" constant="15" id="OFz-qn-TVD"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="CCt-NV-HtL" secondAttribute="trailing" id="VnJ-Yv-04G"/>
-                                                <constraint firstItem="CCt-NV-HtL" firstAttribute="top" secondItem="chV-dt-IZP" secondAttribute="bottom" constant="-2" id="Z1V-f6-LWg"/>
-                                                <constraint firstItem="CCt-NV-HtL" firstAttribute="leading" secondItem="Hgw-t9-KoX" secondAttribute="leading" constant="15" id="bfF-vc-W4m"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="chV-dt-IZP" secondAttribute="trailing" id="c0t-ID-pee"/>
-                                                <constraint firstItem="chV-dt-IZP" firstAttribute="leading" secondItem="Hgw-t9-KoX" secondAttribute="leadingMargin" id="ozT-f7-6Jm"/>
-                                                <constraint firstItem="chV-dt-IZP" firstAttribute="top" secondItem="Hgw-t9-KoX" secondAttribute="topMargin" id="vI9-18-N1a"/>
+                                                <constraint firstItem="Tew-v2-1QW" firstAttribute="top" secondItem="yO9-w3-wZk" secondAttribute="topMargin" id="6Po-kc-YCc"/>
+                                                <constraint firstItem="f4n-bP-v7h" firstAttribute="top" secondItem="yO9-w3-wZk" secondAttribute="top" constant="38" id="M13-i7-SNi"/>
+                                                <constraint firstItem="f4n-bP-v7h" firstAttribute="leading" secondItem="yO9-w3-wZk" secondAttribute="leadingMargin" id="V6D-Ju-xtk"/>
+                                                <constraint firstAttribute="trailing" secondItem="f4n-bP-v7h" secondAttribute="trailing" constant="15" id="cxM-Sf-PqJ"/>
+                                                <constraint firstItem="f4n-bP-v7h" firstAttribute="leading" secondItem="yO9-w3-wZk" secondAttribute="leading" constant="15" id="hPM-0N-sHm"/>
+                                                <constraint firstItem="f4n-bP-v7h" firstAttribute="top" secondItem="Tew-v2-1QW" secondAttribute="bottom" constant="-2" id="hj6-db-wru"/>
+                                                <constraint firstItem="Tew-v2-1QW" firstAttribute="leading" secondItem="yO9-w3-wZk" secondAttribute="leadingMargin" id="rv7-Oi-iM6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Tew-v2-1QW" secondAttribute="trailing" id="sqq-8C-vzu"/>
+                                                <constraint firstAttribute="bottom" secondItem="f4n-bP-v7h" secondAttribute="bottom" constant="10.5" id="v1W-fH-kZH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="f4n-bP-v7h" secondAttribute="trailing" id="ztg-Po-NUT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcV-Vf-ETu">
-                                <rect key="frame" x="139.5" y="25" width="223.5" height="13.5"/>
-                                <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHW-yB-Y2K">
-                                <rect key="frame" x="139.5" y="43.5" width="223.5" height="12"/>
-                                <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="13"/>
-                                <color key="textColor" red="0.76883810760000004" green="0.76821738480000001" blue="0.78823834660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="N Episodes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuf-Oo-rZx">
-                                <rect key="frame" x="139.5" y="60.5" width="223.5" height="10"/>
-                                <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="11"/>
-                                <color key="textColor" red="0.76883810760000004" green="0.76821738480000001" blue="0.78823834660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-F8-ogh">
-                                <rect key="frame" x="137.5" y="78.5" width="130.5" height="43"/>
-                                <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="11"/>
-                                <color key="tintColor" red="0.2313699722" green="0.23137080669999999" blue="0.23137262459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Subscribe" backgroundImage="Rectangle 164">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="subscribe:" destination="YnJ-Ln-gEA" eventType="touchUpInside" id="HVj-dB-Ifj"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jnC-F8-ogh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="8" symbolic="YES" id="0ej-aa-eid"/>
-                            <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="zHW-yB-Y2K" secondAttribute="trailing" constant="12" id="2Xf-vq-QAf"/>
-                            <constraint firstItem="rcV-Vf-ETu" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="10" id="5Xd-MQ-YMp"/>
-                            <constraint firstItem="zHW-yB-Y2K" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="10" id="7E0-jy-JZ1"/>
-                            <constraint firstItem="zHW-yB-Y2K" firstAttribute="top" secondItem="rcV-Vf-ETu" secondAttribute="bottom" constant="5" id="AZy-Fr-nGV"/>
-                            <constraint firstItem="Zuf-Oo-rZx" firstAttribute="top" secondItem="zHW-yB-Y2K" secondAttribute="bottom" constant="5" id="BFE-dy-pwv"/>
-                            <constraint firstItem="b4O-f6-MDI" firstAttribute="top" secondItem="wui-SK-oGZ" secondAttribute="bottom" constant="13" id="CX9-LH-97x"/>
-                            <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="Zuf-Oo-rZx" secondAttribute="trailing" constant="12" id="Fdf-yp-3P4"/>
-                            <constraint firstItem="wui-SK-oGZ" firstAttribute="centerX" secondItem="4e9-Pq-bVH" secondAttribute="centerX" constant="-115" id="KPX-s5-jSR"/>
-                            <constraint firstItem="wui-SK-oGZ" firstAttribute="top" secondItem="XC5-Ub-DX1" secondAttribute="top" constant="16" id="VNx-9t-1RO"/>
-                            <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="jnC-F8-ogh" secondAttribute="trailing" constant="107" id="mOi-MY-GN0"/>
-                            <constraint firstItem="Zuf-Oo-rZx" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="10" id="pLn-gQ-ThM"/>
                             <constraint firstItem="XC5-Ub-DX1" firstAttribute="bottom" secondItem="b4O-f6-MDI" secondAttribute="bottom" id="r9d-3B-Ic3"/>
                             <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="b4O-f6-MDI" secondAttribute="trailing" id="rNk-rv-aTg"/>
-                            <constraint firstItem="rcV-Vf-ETu" firstAttribute="top" secondItem="XC5-Ub-DX1" secondAttribute="top" constant="25" id="v3p-xi-Hxd"/>
-                            <constraint firstItem="XC5-Ub-DX1" firstAttribute="trailing" secondItem="rcV-Vf-ETu" secondAttribute="trailing" constant="12" id="wu3-6t-N3H"/>
+                            <constraint firstItem="b4O-f6-MDI" firstAttribute="top" secondItem="XC5-Ub-DX1" secondAttribute="top" id="rSB-7U-Bgd"/>
                             <constraint firstItem="b4O-f6-MDI" firstAttribute="leading" secondItem="XC5-Ub-DX1" secondAttribute="leading" id="xeI-Uh-R5y"/>
-                            <constraint firstItem="jnC-F8-ogh" firstAttribute="top" secondItem="Zuf-Oo-rZx" secondAttribute="bottom" constant="8" symbolic="YES" id="yH5-er-fIv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XC5-Ub-DX1"/>
                     </view>
                     <connections>
-                        <outlet property="artistLabel" destination="zHW-yB-Y2K" id="XpC-DX-d6N"/>
-                        <outlet property="imgView" destination="wui-SK-oGZ" id="hO5-SK-ERh"/>
-                        <outlet property="numEpisodesLabel" destination="Zuf-Oo-rZx" id="rhB-jF-ZbW"/>
                         <outlet property="tableView" destination="b4O-f6-MDI" id="X6O-ip-5y4"/>
-                        <outlet property="titleLabel" destination="rcV-Vf-ETu" id="Z9v-q5-jNR"/>
                         <segue destination="XQ6-BT-cKu" kind="show" identifier="toPlayPodcast" id="rP3-DF-Dan"/>
                     </connections>
                 </viewController>
@@ -338,7 +349,7 @@
         <!--Play Podcast View Controller-->
         <scene sceneID="5an-SQ-pP8">
             <objects>
-                <viewController id="XQ6-BT-cKu" customClass="PlayPodcastViewController" customModule="Cast_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XQ6-BT-cKu" customClass="PlayPodcastViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mit-i6-avI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -425,7 +436,7 @@
         <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Cast_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -478,7 +489,7 @@
         <!--Podcast Tabl Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" customClass="PodcastTablBarController" customModule="Cast_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" customClass="PodcastTablBarController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -499,7 +510,7 @@
         <!--Nav View Controller-->
         <scene sceneID="9F1-zQ-Fc3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wHO-qR-UOp" customClass="navViewController" customModule="Cast_Club" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wHO-qR-UOp" customClass="navViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Grid-L" selectedImage="Grid-D" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="aas-Rn-8OL">

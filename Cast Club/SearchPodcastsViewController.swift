@@ -128,6 +128,8 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
         
+        var errorPopUp: ErrorPopUp?
+        
         TunesHelper.instance.searchiTunes(term: searchBar.text!) { (success, results) in
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
@@ -135,13 +137,28 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
             if success {
                 if let r = results {
                     self.searchResults = r
-                    self.tableView.reloadWithAnimation()
+                    self.tableView.reloadSearchWithAnimation()
+                    
+                    if self.searchResults.count == 0{
+                        print("No Results")
+                        errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 100, width: self.screenSize.width, height: 200), headerText: "No Results", bodyText: "The term you entered does not match anything we know. Try searching again with a different keyword or check your spelling.")
+                        if let errorView = errorPopUp{
+                            self.view.addSubview(errorView)
+                        }
+                    }else{
+                        print("Results ---")
+                        errorPopUp?.removeFromSuperview()
+                    }
                 }
             } else {
                 print("error in itunes api helper")
             }
         }
         hintLabel.isHidden = true
+        
+        
+        
+        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

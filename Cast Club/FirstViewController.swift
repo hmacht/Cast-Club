@@ -15,6 +15,8 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     
     let screenSize = UIScreen.main.bounds
     var homeSelection = PodcastAlbum()
+    var discovewrBtn = UIButton()
+    var errorPopUp: ErrorPopUp?
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     override func viewDidLoad() {
@@ -42,12 +44,33 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         tabBarController?.tabBar.layer.zPosition = 1
         
         
+        errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: screenSize.height/2 - 55, width: screenSize.width, height: 200), headerText: "Hello Henry", bodyText: "Podcast that you subscribe to will show up here. You can search for a podcast or use the discover tab to browse. Don’t forget to join a club and enjoy!!")
+        
+        if let errorView = errorPopUp{
+            self.view.addSubview(errorView)
+            
+            discovewrBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+            discovewrBtn.center = CGPoint(x: screenSize.width/2, y: errorView.frame.maxY - 50)
+            discovewrBtn.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+            discovewrBtn.layer.cornerRadius = 20
+            discovewrBtn.titleLabel?.font = UIFont(name: "Mont-HeavyDEMO", size: 12)
+            discovewrBtn.setTitle("Discover", for: .normal)
+            discovewrBtn.addTarget(self, action: #selector(FirstViewController.discover), for: .touchUpInside)
+            self.view.addSubview(discovewrBtn)
+        }
+        
         
     }
+    
+    
     
     // --- Currently Everything is hard Coded for prototyping. ---
     override func viewDidAppear(_ animated: Bool) {
         myCollectionView.reloadData()
+        if subscriptionAlbum.count != 0{
+            errorPopUp?.removeFromSuperview()
+            discovewrBtn.removeFromSuperview()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -56,6 +79,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
+        
         
         cell.imgView.layer.cornerRadius = 6.0
         cell.imgView.clipsToBounds = true
@@ -98,6 +122,11 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     
     @objc func settings() {
         print("Playlist")
+    }
+    
+    @objc func discover() {
+        //print("discover")
+        tabBarController?.selectedIndex = 1
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

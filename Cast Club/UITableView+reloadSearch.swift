@@ -21,7 +21,7 @@ extension UITableView {
             cell.alpha = 0
         }
         for cell in cells {
-            UIView.animate(withDuration: 0.5, delay: 0.08 * Double(delayCounter), options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.4, delay: 0.08 * Double(delayCounter), options: .curveEaseInOut, animations: {
                 cell.transform = CGAffineTransform.identity
                 cell.alpha = 1
             }, completion: nil)

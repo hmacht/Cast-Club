@@ -54,7 +54,7 @@ class MiniController: UIView {
         self.addGestureRecognizer(gesture)
         
         
-        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.45, delay: 0.1, usingSpringWithDamping: 0.65, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.frame = CGRect(x: 0, y: self.yposition, width: self.screenSize.width - 20, height: 75)
             self.center.x = self.screenSize.width/2
         })
@@ -201,7 +201,7 @@ class MiniController: UIView {
         if hasExpanded{
             self.coverArt.frame = CGRect(x: self.frame.height/4 - 25, y: 0, width: 50, height: 50)
             self.coverArt.center.y = self.frame.height/4
-            UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.4, delay: 0.1, usingSpringWithDamping: 0.55, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.coverArt.frame = CGRect(x: self.frame.height/4 - 35, y: 0, width: 70, height: 70)
                 self.coverArt.center.y = self.frame.height/4
             })
@@ -209,7 +209,7 @@ class MiniController: UIView {
         } else{
             coverArt.frame = CGRect(x: self.frame.height/2 - 15, y: 0, width: 30, height: 30)
             coverArt.center.y = self.frame.height/2
-            UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.4, delay: 0.1, usingSpringWithDamping: 0.55, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.coverArt.frame = CGRect(x: self.frame.height/2 - 25, y: 0, width: 50, height: 50)
                 self.coverArt.center.y = self.frame.height/2
             })
@@ -259,7 +259,7 @@ class MiniController: UIView {
  
     
     func pushDown(){
-        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.35, delay: 0.1, usingSpringWithDamping: 0.58, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             //self.transform = CGAffineTransform(translationX: 0, y: 100)
             if self.hasExpanded{
                 self.shrinkView()
@@ -272,7 +272,7 @@ class MiniController: UIView {
     
     func pushUp(){
         if isDown{
-            UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.35, delay: 0.1, usingSpringWithDamping: 0.58, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.transform = CGAffineTransform(translationX: 0, y: 5)
             })
             isDown = false
@@ -280,7 +280,7 @@ class MiniController: UIView {
     }
     
     func expandView(){
-        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.35, delay: 0.1, usingSpringWithDamping: 0.58, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.frame.size = CGSize(width: self.frame.width, height: self.frame.height * 3)
             self.transform = CGAffineTransform(translationX: 0, y: -140)
             //self.playButton.setImage(UIImage(named: "Large Play"), for: .normal)
@@ -313,7 +313,7 @@ class MiniController: UIView {
        
     }
     func shrinkView(){
-        UIView.animate(withDuration: 0.5, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.35, delay: 0.1, usingSpringWithDamping: 0.58, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.frame.size = CGSize(width: self.screenSize.width - 20, height: 70)
             self.transform = CGAffineTransform(translationX: 0, y: 5)
             

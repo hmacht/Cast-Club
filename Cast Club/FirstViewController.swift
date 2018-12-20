@@ -59,7 +59,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             self.view.addSubview(discovewrBtn)
         }
         
-        
     }
     
     

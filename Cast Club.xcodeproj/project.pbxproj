@@ -11,6 +11,7 @@
 		211BDD7721A9F1560025A132 /* PlayPodcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */; };
 		213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */; };
 		2163563D21D1350300EF63C8 /* CloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163563C21D1350300EF63C8 /* CloudKitHelper.swift */; };
+		2163563F21D1558C00EF63C8 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163563E21D1558C00EF63C8 /* Club.swift */; };
 		218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */; };
 		21AEF18021B095DA000DDA49 /* RemoteControlsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AEF17F21B095DA000DDA49 /* RemoteControlsHelper.swift */; };
 		21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */; };
@@ -66,6 +67,7 @@
 		211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPodcastViewController.swift; sourceTree = "<group>"; };
 		213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDownloadHelper.swift; sourceTree = "<group>"; };
 		2163563C21D1350300EF63C8 /* CloudKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitHelper.swift; sourceTree = "<group>"; };
+		2163563E21D1558C00EF63C8 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPodcastsViewController.swift; sourceTree = "<group>"; };
 		21AEF17F21B095DA000DDA49 /* RemoteControlsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControlsHelper.swift; sourceTree = "<group>"; };
 		21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */,
 				21AEF17F21B095DA000DDA49 /* RemoteControlsHelper.swift */,
 				2163563C21D1350300EF63C8 /* CloudKitHelper.swift */,
+				2163563E21D1558C00EF63C8 /* Club.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */,
 				D744775721A4BB1D00270726 /* FirstViewController.swift in Sources */,
 				D7F365D321B0D352007F2CD9 /* slider.swift in Sources */,
+				2163563F21D1558C00EF63C8 /* Club.swift in Sources */,
 				D760166621AC84DC00CB25BB /* SearchBar.swift in Sources */,
 				D767DF3B21B8D2890027DA85 /* String+RemoveHTML.swift in Sources */,
 				21D13FB821A9E8380087F00E /* FeedHelper.swift in Sources */,
@@ -716,7 +720,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -737,7 +741,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

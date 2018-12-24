@@ -198,8 +198,6 @@ class MiniController: UIView {
             self.coverArt.image = img
         }
         
-        //adjustSlider()
-        
         self.podcastTitle.text = self.podcast.title
         
         playButton.setImage(UIImage(named: "Group 240"), for: .normal)

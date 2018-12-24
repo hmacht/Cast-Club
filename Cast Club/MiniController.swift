@@ -123,7 +123,7 @@ class MiniController: UIView {
         //self.podSlider?.addTarget(self, action: #selector(MiniController.beginTouchingSlider), for: .touchDown)
         
         // Timer to keep slider updated
-        let time = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (t) in
+        let time = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (t) in
             self.updateSlider()
         }
     }
@@ -158,11 +158,12 @@ class MiniController: UIView {
             print("skip")
             if let dur = self.player?.duration{
                 if let cur = self.player?.currentTime{
-                    print(Int(cur))
-                    print(Int(dur))
-                    if Int(cur) < Int(dur){
+                    if Int(cur) < Int(dur) - 15 {
                         self.player?.currentTime += 15
+                    } else {
+                        self.player?.currentTime = dur
                     }
+                    self.podSlider?.setValue(Float(cur / dur), animated: true)
                 }
             }
         }
@@ -172,8 +173,13 @@ class MiniController: UIView {
         if !self.activityIndicator.isAnimating {
             print("back skip")
             if let cur = self.player?.currentTime{
-                if Int(cur) > 15{
+                if Int(cur) > 15 {
                     self.player?.currentTime -= 15
+                } else {
+                    self.player?.currentTime = 0
+                }
+                if let dur = self.player?.duration {
+                    self.podSlider?.setValue(Float(cur / dur), animated: true)
                 }
             }
             
@@ -250,7 +256,7 @@ class MiniController: UIView {
     func adjustSlider() {
         
         if let podcastLength = player?.duration{
-            podSlider!.maximumValue = Float(podcastLength)
+            podSlider?.maximumValue = Float(podcastLength)
             print("---\(podSlider!.maximumValue)")
         }
         //slider.maximumValue = 300

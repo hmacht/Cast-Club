@@ -10,6 +10,7 @@
 		127AD3A5EE784F7684203773 /* Pods_Cast_ClubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF7D563C98ACDE4735780BC /* Pods_Cast_ClubTests.framework */; };
 		211BDD7721A9F1560025A132 /* PlayPodcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */; };
 		213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */; };
+		2163563D21D1350300EF63C8 /* CloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163563C21D1350300EF63C8 /* CloudKitHelper.swift */; };
 		218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */; };
 		21AEF18021B095DA000DDA49 /* RemoteControlsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AEF17F21B095DA000DDA49 /* RemoteControlsHelper.swift */; };
 		21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */; };
@@ -64,6 +65,7 @@
 		132A83E24B1AA60FADB60849 /* Pods-Cast ClubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubTests/Pods-Cast ClubTests.release.xcconfig"; sourceTree = "<group>"; };
 		211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPodcastViewController.swift; sourceTree = "<group>"; };
 		213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDownloadHelper.swift; sourceTree = "<group>"; };
+		2163563C21D1350300EF63C8 /* CloudKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitHelper.swift; sourceTree = "<group>"; };
 		218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPodcastsViewController.swift; sourceTree = "<group>"; };
 		21AEF17F21B095DA000DDA49 /* RemoteControlsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControlsHelper.swift; sourceTree = "<group>"; };
 		21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				21D13FB721A9E8380087F00E /* FeedHelper.swift */,
 				213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */,
 				21AEF17F21B095DA000DDA49 /* RemoteControlsHelper.swift */,
+				2163563C21D1350300EF63C8 /* CloudKitHelper.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */,
 				D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */,
 				D77D9D2321C7576200010AFC /* UITableView+reloadSearch.swift in Sources */,
+				2163563D21D1350300EF63C8 /* CloudKitHelper.swift in Sources */,
 				D744775521A4BB1D00270726 /* AppDelegate.swift in Sources */,
 				D7388BA521C6F5AE00C6869D /* ErrorPopUp.swift in Sources */,
 				D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */,
@@ -712,7 +716,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -733,7 +737,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

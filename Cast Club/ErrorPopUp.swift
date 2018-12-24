@@ -47,9 +47,7 @@ class ErrorPopUp: UIView {
         bodyLabel.textColor = UIColor(red: 196.0/255.0, green: 196.0/255.0, blue: 201.0/255.0, alpha: 1.0)
         self.addSubview(bodyLabel)
         
-        print("Added")
     }
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

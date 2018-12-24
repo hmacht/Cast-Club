@@ -59,6 +59,14 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             self.view.addSubview(discovewrBtn)
         }
         
+        CloudKitHelper.instance.searchClubsWithName(name: "Tobys Club") { (records) in
+            print("gaddu")
+            if let recs = records {
+                for r in recs {
+                    print(r["name"])
+                }
+            }
+        }
     }
     
     

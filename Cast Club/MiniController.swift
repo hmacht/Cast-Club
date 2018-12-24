@@ -123,7 +123,7 @@ class MiniController: UIView {
         //self.podSlider?.addTarget(self, action: #selector(MiniController.beginTouchingSlider), for: .touchDown)
         
         // Timer to keep slider updated
-        let time = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (t) in
+        let _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (t) in
             self.updateSlider()
         }
     }
@@ -198,7 +198,7 @@ class MiniController: UIView {
             self.coverArt.image = img
         }
         
-        adjustSlider()
+        //adjustSlider()
         
         self.podcastTitle.text = self.podcast.title
         

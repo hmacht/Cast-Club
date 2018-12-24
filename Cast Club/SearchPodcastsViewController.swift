@@ -18,6 +18,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     var searchResults = [PodcastAlbum]()
     var selectedAlbum = PodcastAlbum()
     var activityIndicator = UIActivityIndicatorView()
+    var errorPopUp = ErrorPopUp(frame: CGRect(), headerText: "", bodyText: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,7 +129,6 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
         
-        var errorPopUp: ErrorPopUp?
         
         TunesHelper.instance.searchiTunes(term: searchBar.text!) { (success, results) in
             DispatchQueue.main.async {
@@ -141,13 +141,11 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
                     
                     if self.searchResults.count == 0{
                         print("No Results")
-                        errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 100, width: self.screenSize.width, height: 200), headerText: "No Results", bodyText: "The term you entered does not match anything we know. Try searching again with a different keyword or check your spelling.")
-                        if let errorView = errorPopUp{
-                            self.view.addSubview(errorView)
-                        }
+                        self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 100, width: self.screenSize.width, height: 200), headerText: "No Results", bodyText: "The term you entered does not match anything we know. Try searching again with a different keyword or check your spelling.")
+                        self.view.addSubview(self.errorPopUp)
+                        
                     }else{
-                        print("Results ---")
-                        errorPopUp?.removeFromSuperview()
+                        self.errorPopUp.removeFromSuperview()
                     }
                 }
             } else {

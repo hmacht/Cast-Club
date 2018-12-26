@@ -12,7 +12,6 @@ import CloudKit
 class CloudKitHelper {
     
     static let instance = CloudKitHelper()
-    let containter = CKContainer.default()
     let publicDB = CKContainer.default().publicCloudDatabase
     let ClubType = "Club"
     
@@ -54,6 +53,25 @@ class CloudKitHelper {
             }
         }
     }
+    
+    func writeClub(name: String, img: UIImage, completion: @escaping (Error?) -> ()) {
+        let record = CKRecord(recordType: ClubType)
+        record["numFollowers"] = 0
+        record["name"] = name
+        
+        // Save image
+        let url = ImageHelper.saveToDisk(image: img)
+        let asset = CKAsset(fileURL: url)
+        record["coverPhoto"] = asset
+        
+        // TODO - find way to do random id
+        record["messageBoardId"] = "someMBID"
+        
+        
+        publicDB.save(record) { (record, error) in
+            completion(error)
+        }
+    }
 }
 
 extension URL {
@@ -63,5 +81,22 @@ extension URL {
         }
         
         return nil
+    }
+}
+
+struct ImageHelper {
+    static func saveToDisk(image: UIImage, compression: CGFloat = 1.0) -> URL {
+        var fileURL = FileManager.default.temporaryDirectory
+        let filename = UUID().uuidString
+        fileURL.appendPathComponent(filename)
+        let data = image.jpegData(compressionQuality: compression)
+        if let d = data {
+            do {
+                try d.write(to: fileURL)
+            } catch {
+                print("erorr writting url")
+            }
+        }
+        return fileURL
     }
 }

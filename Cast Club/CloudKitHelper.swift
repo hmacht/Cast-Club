@@ -18,6 +18,9 @@ class CloudKitHelper {
     
     func searchClubsWithName(_ name: String, completion: @escaping ([Club]?) -> ()) {
         let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "name BEGINSWITH %@", name))
+        // Should add:
+        // CKQueryOperation(query: query).desiredKeys = [blah blah blah without the image]
+        // TO make faster then load in the image
         self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
             print("gaddi")
             if let e = error {

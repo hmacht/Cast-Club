@@ -13,7 +13,9 @@ class CloudKitHelper {
     
     static let instance = CloudKitHelper()
     let publicDB = CKContainer.default().publicCloudDatabase
+    let privateDB = CKContainer.default().privateCloudDatabase
     let ClubType = "Club"
+    let AlbumType = "Album"
     
     func searchClubsWithName(_ name: String, completion: @escaping ([Club]?) -> ()) {
         let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "name BEGINSWITH %@", name))
@@ -70,6 +72,55 @@ class CloudKitHelper {
         
         publicDB.save(record) { (record, error) in
             completion(error)
+        }
+    }
+    
+    func saveAlbumToPrivate(_ album: PodcastAlbum, completion: @escaping (Error?) -> ()) {
+        // Create record for album
+        let record = CKRecord(recordType: AlbumType)
+        record["title"] = album.title
+        record["artistName"] = album.artistName
+        record["feedUrl"] = album.feedUrl
+        record["numEpisodes"] = album.numEpisodes
+        record["artworkUrl"] = album.artworkUrl100
+        
+        // Save it
+        privateDB.save(record) { (record, error) in
+            completion(error)
+        }
+    }
+    
+    func getAlbums(completion: @escaping ([PodcastAlbum], Error?) -> ()) {
+        // Get all albums from private data base
+        let query = CKQuery(recordType: AlbumType, predicate: NSPredicate(value: true))
+        self.privateDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let recs = records {
+                var results = [PodcastAlbum]()
+                // Create new PodcastAlbum instance for each record returned
+                for r in recs {
+                    let album = PodcastAlbum()
+                    if let title = r["title"] as? String {
+                        print(title)
+                        album.title = title
+                    }
+                    if let artistName = r["artistName"] as? String {
+                        album.artistName = artistName
+                    }
+                    if let numEpisodes = r["numEpisodes"] as? Int {
+                        album.numEpisodes = numEpisodes
+                    }
+                    if let feedUrl = r["feedUrl"] as? String {
+                        album.feedUrl = feedUrl
+                    }
+                    if let artworkUrl = r["artworkUrl"] as? String {
+                        album.artworkUrl100 = artworkUrl
+                    }
+                    results.append(album)
+                }
+                completion(results, error)
+            } else {
+                completion([PodcastAlbum](), error)
+            }
         }
     }
 }

@@ -291,6 +291,15 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
  */
     
     @IBAction func subscribe(_ sender: Any) {
+        
+        CloudKitHelper.instance.saveAlbumToPrivate(self.album) { (error) in
+            if let e = error {
+                print(e)
+            } else {
+                print("Done saving")
+            }
+        }
+        
         subscriptionAlbum.append(album)
         newSubscriptions += 1
         let generator = UIImpactFeedbackGenerator(style: .light)

@@ -14,8 +14,11 @@ class CloudKitHelper {
     static let instance = CloudKitHelper()
     let publicDB = CKContainer.default().publicCloudDatabase
     let privateDB = CKContainer.default().privateCloudDatabase
+    
+    // Types of records
     let ClubType = "Club"
     let AlbumType = "Album"
+    let MessageType = "Message"
     
     func searchClubsWithName(_ name: String, completion: @escaping ([Club]?) -> ()) {
         let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "name BEGINSWITH %@", name))
@@ -23,7 +26,6 @@ class CloudKitHelper {
         // CKQueryOperation(query: query).desiredKeys = [blah blah blah without the image]
         // TO make faster then load in the image
         self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
-            print("gaddi")
             if let e = error {
                 print(e)
                 completion(nil)
@@ -120,6 +122,52 @@ class CloudKitHelper {
                 completion(results, error)
             } else {
                 completion([PodcastAlbum](), error)
+            }
+        }
+    }
+    
+    func writeMessage(_ message: Message, completion: @escaping (Error?) -> ()) {
+        let record = CKRecord(recordType: MessageType)
+        record["clubId"] = message.clubId
+        record["flags"] = message.flags
+        record["fromUser"] = message.fromUser
+        record["numLikes"] = message.numLikes
+        record["text"] = message.text
+        
+        publicDB.save(record) { (record, error) in
+            completion(error)
+        }
+    }
+    
+    func getMessagesForClub(_ clubId: String, completion: @escaping ([Message], Error?) -> ()) {
+        let query = CKQuery(recordType: MessageType, predicate: NSPredicate(format: "clubId = %@", clubId))
+        
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let recs = records {
+                var results = [Message]()
+                
+                for r in recs {
+                    var message = Message()
+                    if let text = r["text"] as? String {
+                        message.text = text
+                    }
+                    if let clubId = r["clubId"] as? String {
+                        message.clubId = clubId
+                    }
+                    if let flags = r["flags"] as? Int {
+                        message.flags = flags
+                    }
+                    if let numLikes = r["numLikes"] as? Int {
+                        message.numLikes = numLikes
+                    }
+                    if let fromUser = r["fromYser"] as? String {
+                        message.fromUser = fromUser
+                    }
+                    results.append(message)
+                }
+                completion(results, error)
+            } else {
+                completion([Message](), error)
             }
         }
     }

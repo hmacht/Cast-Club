@@ -160,7 +160,7 @@ class CloudKitHelper {
                     if let numLikes = r["numLikes"] as? Int {
                         message.numLikes = numLikes
                     }
-                    if let fromUser = r["fromYser"] as? String {
+                    if let fromUser = r["fromUser"] as? String {
                         message.fromUser = fromUser
                     }
                     results.append(message)

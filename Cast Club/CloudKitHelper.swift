@@ -13,7 +13,12 @@ class CloudKitHelper {
     
     static let instance = CloudKitHelper()
     let publicDB = CKContainer.default().publicCloudDatabase
+    let privateDB = CKContainer.default().privateCloudDatabase
+    
+    // Types of records
     let ClubType = "Club"
+    let AlbumType = "Album"
+    let MessageType = "Message"
     
     func searchClubsWithName(_ name: String, completion: @escaping ([Club]?) -> ()) {
         let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "name BEGINSWITH %@", name))
@@ -21,7 +26,6 @@ class CloudKitHelper {
         // CKQueryOperation(query: query).desiredKeys = [blah blah blah without the image]
         // TO make faster then load in the image
         self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
-            print("gaddi")
             if let e = error {
                 print(e)
                 completion(nil)
@@ -70,6 +74,101 @@ class CloudKitHelper {
         
         publicDB.save(record) { (record, error) in
             completion(error)
+        }
+    }
+    
+    func saveAlbumToPrivate(_ album: PodcastAlbum, completion: @escaping (Error?) -> ()) {
+        // Create record for album
+        let record = CKRecord(recordType: AlbumType)
+        record["title"] = album.title
+        record["artistName"] = album.artistName
+        record["feedUrl"] = album.feedUrl
+        record["numEpisodes"] = album.numEpisodes
+        record["artworkUrl"] = album.artworkUrl100
+        
+        // Save it
+        privateDB.save(record) { (record, error) in
+            completion(error)
+        }
+    }
+    
+    func getAlbums(completion: @escaping ([PodcastAlbum], Error?) -> ()) {
+        // Get all albums from private data base
+        let query = CKQuery(recordType: AlbumType, predicate: NSPredicate(value: true))
+        self.privateDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let recs = records {
+                var results = [PodcastAlbum]()
+                // Create new PodcastAlbum instance for each record returned
+                for r in recs {
+                    let album = PodcastAlbum()
+                    if let title = r["title"] as? String {
+                        print(title)
+                        album.title = title
+                    }
+                    if let artistName = r["artistName"] as? String {
+                        album.artistName = artistName
+                    }
+                    if let numEpisodes = r["numEpisodes"] as? Int {
+                        album.numEpisodes = numEpisodes
+                    }
+                    if let feedUrl = r["feedUrl"] as? String {
+                        album.feedUrl = feedUrl
+                    }
+                    if let artworkUrl = r["artworkUrl"] as? String {
+                        album.artworkUrl100 = artworkUrl
+                    }
+                    results.append(album)
+                }
+                completion(results, error)
+            } else {
+                completion([PodcastAlbum](), error)
+            }
+        }
+    }
+    
+    func writeMessage(_ message: Message, completion: @escaping (Error?) -> ()) {
+        let record = CKRecord(recordType: MessageType)
+        record["clubId"] = message.clubId
+        record["flags"] = message.flags
+        record["fromUser"] = message.fromUser
+        record["numLikes"] = message.numLikes
+        record["text"] = message.text
+        
+        publicDB.save(record) { (record, error) in
+            completion(error)
+        }
+    }
+    
+    func getMessagesForClub(_ clubId: String, completion: @escaping ([Message], Error?) -> ()) {
+        let query = CKQuery(recordType: MessageType, predicate: NSPredicate(format: "clubId = %@", clubId))
+        
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let recs = records {
+                var results = [Message]()
+                
+                for r in recs {
+                    var message = Message()
+                    if let text = r["text"] as? String {
+                        message.text = text
+                    }
+                    if let clubId = r["clubId"] as? String {
+                        message.clubId = clubId
+                    }
+                    if let flags = r["flags"] as? Int {
+                        message.flags = flags
+                    }
+                    if let numLikes = r["numLikes"] as? Int {
+                        message.numLikes = numLikes
+                    }
+                    if let fromUser = r["fromUser"] as? String {
+                        message.fromUser = fromUser
+                    }
+                    results.append(message)
+                }
+                completion(results, error)
+            } else {
+                completion([Message](), error)
+            }
         }
     }
 }

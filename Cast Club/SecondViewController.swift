@@ -45,7 +45,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             followersLabel.text = "\(club.numFollowers) followers"
         }
         
-        /*if let imgView = cell.viewWithTag(3) as? UIImageView {
+        if let imgView = cell.viewWithTag(3) as? UIImageView {
             imgView.image = UIImage(named: "Group 224")
             DispatchQueue.global(qos: .background).async {
                 if let img = club.imgUrl?.image() {
@@ -54,7 +54,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                 }
             }
-        }*/
+        }
         
         return cell
     }

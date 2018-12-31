@@ -102,7 +102,6 @@ class CloudKitHelper {
                 for r in recs {
                     let album = PodcastAlbum()
                     if let title = r["title"] as? String {
-                        print(title)
                         album.title = title
                     }
                     if let artistName = r["artistName"] as? String {

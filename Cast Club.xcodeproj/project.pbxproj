@@ -33,6 +33,8 @@
 		D744776121A4BB1F00270726 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D744775F21A4BB1F00270726 /* LaunchScreen.storyboard */; };
 		D744776C21A4BB1F00270726 /* Cast_ClubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744776B21A4BB1F00270726 /* Cast_ClubTests.swift */; };
 		D744777721A4BB1F00270726 /* Cast_ClubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744777621A4BB1F00270726 /* Cast_ClubUITests.swift */; };
+		D752495021D982110066C5D9 /* ClubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752494F21D982110066C5D9 /* ClubVC.swift */; };
+		D752495221D98E930066C5D9 /* ClubTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752495121D98E930066C5D9 /* ClubTableViewCell.swift */; };
 		D760166621AC84DC00CB25BB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166521AC84DC00CB25BB /* SearchBar.swift */; };
 		D760166821AC9C6E00CB25BB /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166721AC9C6E00CB25BB /* CollectionViewCell.swift */; };
 		D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166921ACAC2700CB25BB /* navViewController.swift */; };
@@ -101,6 +103,8 @@
 		D744777221A4BB1F00270726 /* Cast ClubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cast ClubUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D744777621A4BB1F00270726 /* Cast_ClubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast_ClubUITests.swift; sourceTree = "<group>"; };
 		D744777821A4BB1F00270726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D752494F21D982110066C5D9 /* ClubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubVC.swift; sourceTree = "<group>"; };
+		D752495121D98E930066C5D9 /* ClubTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubTableViewCell.swift; sourceTree = "<group>"; };
 		D760166521AC84DC00CB25BB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		D760166721AC9C6E00CB25BB /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		D760166921ACAC2700CB25BB /* navViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 				21C87D4421A87FD000F9E727 /* Model */,
 				D744775621A4BB1D00270726 /* FirstViewController.swift */,
 				D744775821A4BB1D00270726 /* SecondViewController.swift */,
+				D752494F21D982110066C5D9 /* ClubVC.swift */,
 				218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */,
 				21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */,
 				211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */,
@@ -258,6 +263,7 @@
 				D7F365D221B0D352007F2CD9 /* slider.swift */,
 				D7388BA421C6F5AE00C6869D /* ErrorPopUp.swift */,
 				D77D9D2021C7459400010AFC /* TableViewCell.swift */,
+				D752495121D98E930066C5D9 /* ClubTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -517,12 +523,14 @@
 				D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */,
 				D77D9D2321C7576200010AFC /* UITableView+reloadSearch.swift in Sources */,
 				2163563D21D1350300EF63C8 /* CloudKitHelper.swift in Sources */,
+				D752495221D98E930066C5D9 /* ClubTableViewCell.swift in Sources */,
 				D744775521A4BB1D00270726 /* AppDelegate.swift in Sources */,
 				D7388BA521C6F5AE00C6869D /* ErrorPopUp.swift in Sources */,
 				D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */,
 				21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */,
 				D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */,
 				D744775721A4BB1D00270726 /* FirstViewController.swift in Sources */,
+				D752495021D982110066C5D9 /* ClubVC.swift in Sources */,
 				D7F365D321B0D352007F2CD9 /* slider.swift in Sources */,
 				2163563F21D1558C00EF63C8 /* Club.swift in Sources */,
 				D760166621AC84DC00CB25BB /* SearchBar.swift in Sources */,
@@ -717,14 +725,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Club/Pod Talk.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LCX682S6EY;
+				DEVELOPMENT_TEAM = 9832H7K9P2;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -738,14 +746,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Club/Pod Talk.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LCX682S6EY;
+				DEVELOPMENT_TEAM = 9832H7K9P2;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

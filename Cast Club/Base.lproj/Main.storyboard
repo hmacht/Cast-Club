@@ -504,11 +504,45 @@
                     <navigationItem key="navigationItem" id="XA6-1F-Ifh"/>
                     <connections>
                         <outlet property="clubTabelView" destination="3k0-Cs-HG5" id="oJ5-7e-Wcr"/>
+                        <segue destination="Zbf-qH-Wtx" kind="show" identifier="create" id="oCs-JR-Erb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgu-be-mk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1688.8" y="1069.1154422788607"/>
+        </scene>
+        <!--Club CreationVC-->
+        <scene sceneID="gzV-eS-BZk">
+            <objects>
+                <viewController id="Zbf-qH-Wtx" customClass="ClubCreationVC" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OaH-PV-uxf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="7Sw-Xr-HLe"/>
+                    </view>
+                    <connections>
+                        <segue destination="f4P-Q0-ptK" kind="show" identifier="lastStep" id="uGP-3G-T0P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="54a-ZN-l8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2570" y="1069"/>
+        </scene>
+        <!--Last StepVC-->
+        <scene sceneID="AjW-ow-ysQ">
+            <objects>
+                <viewController id="f4P-Q0-ptK" customClass="LastStepVC" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jNm-qc-Lfu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JmH-g0-8Ks"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zje-CS-F45" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3398" y="1069"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">

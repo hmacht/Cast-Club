@@ -43,6 +43,9 @@
 		D767DF3B21B8D2890027DA85 /* String+RemoveHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = D767DF3A21B8D2890027DA85 /* String+RemoveHTML.swift */; };
 		D77D9D2121C7459400010AFC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77D9D2021C7459400010AFC /* TableViewCell.swift */; };
 		D77D9D2321C7576200010AFC /* UITableView+reloadSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77D9D2221C7576200010AFC /* UITableView+reloadSearch.swift */; };
+		D7A20DC221DA884B00304D86 /* ClubCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */; };
+		D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */; };
+		D7A20DC621DAAD2000304D86 /* LastStepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC521DAAD2000304D86 /* LastStepVC.swift */; };
 		D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */; };
 		D7F365D321B0D352007F2CD9 /* slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F365D221B0D352007F2CD9 /* slider.swift */; };
 		D7F4A59D21CBEE9A006626FB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F4A59C21CBEE9A006626FB /* CloudKit.framework */; };
@@ -113,6 +116,9 @@
 		D767DF3A21B8D2890027DA85 /* String+RemoveHTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RemoveHTML.swift"; sourceTree = "<group>"; };
 		D77D9D2021C7459400010AFC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		D77D9D2221C7576200010AFC /* UITableView+reloadSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+reloadSearch.swift"; sourceTree = "<group>"; };
+		D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCreationVC.swift; sourceTree = "<group>"; };
+		D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFeild+LineColor.swift"; sourceTree = "<group>"; };
+		D7A20DC521DAAD2000304D86 /* LastStepVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepVC.swift; sourceTree = "<group>"; };
 		D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniController.swift; sourceTree = "<group>"; };
 		D7F365D221B0D352007F2CD9 /* slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slider.swift; sourceTree = "<group>"; };
 		D7F4A59B21CBEE97006626FB /* Pod Talk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pod Talk.entitlements"; sourceTree = "<group>"; };
@@ -221,6 +227,8 @@
 				D744775621A4BB1D00270726 /* FirstViewController.swift */,
 				D744775821A4BB1D00270726 /* SecondViewController.swift */,
 				D752494F21D982110066C5D9 /* ClubVC.swift */,
+				D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */,
+				D7A20DC521DAAD2000304D86 /* LastStepVC.swift */,
 				218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */,
 				21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */,
 				211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */,
@@ -275,6 +283,7 @@
 				D760166E21ACE20200CB25BB /* SearchBar+BarColor.swift */,
 				D767DF3A21B8D2890027DA85 /* String+RemoveHTML.swift */,
 				D77D9D2221C7576200010AFC /* UITableView+reloadSearch.swift */,
+				D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -521,6 +530,7 @@
 			files = (
 				213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */,
 				D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */,
+				D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */,
 				D77D9D2321C7576200010AFC /* UITableView+reloadSearch.swift in Sources */,
 				2163563D21D1350300EF63C8 /* CloudKitHelper.swift in Sources */,
 				D752495221D98E930066C5D9 /* ClubTableViewCell.swift in Sources */,
@@ -530,6 +540,7 @@
 				21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */,
 				D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */,
 				D744775721A4BB1D00270726 /* FirstViewController.swift in Sources */,
+				D7A20DC221DA884B00304D86 /* ClubCreationVC.swift in Sources */,
 				D752495021D982110066C5D9 /* ClubVC.swift in Sources */,
 				D7F365D321B0D352007F2CD9 /* slider.swift in Sources */,
 				2163563F21D1558C00EF63C8 /* Club.swift in Sources */,
@@ -537,6 +548,7 @@
 				D767DF3B21B8D2890027DA85 /* String+RemoveHTML.swift in Sources */,
 				21D13FB821A9E8380087F00E /* FeedHelper.swift in Sources */,
 				211BDD7721A9F1560025A132 /* PlayPodcastViewController.swift in Sources */,
+				D7A20DC621DAAD2000304D86 /* LastStepVC.swift in Sources */,
 				D760166821AC9C6E00CB25BB /* CollectionViewCell.swift in Sources */,
 				21C87D4821A883DF00F9E727 /* PodcastAlbum.swift in Sources */,
 				218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */,

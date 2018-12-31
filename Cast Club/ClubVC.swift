@@ -10,7 +10,6 @@ import UIKit
 
 class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-
     @IBOutlet weak var clubTabelView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +18,8 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.clubTabelView.dataSource = self
         
         clubTabelView.tableFooterView = UIView()
+        clubTabelView.layoutMargins = UIEdgeInsets.zero
+        clubTabelView.separatorInset = UIEdgeInsets.zero
         
         self.clubTabelView.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
         
@@ -58,6 +59,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 240.0/255.0, alpha: 1.0)
         myCell.selectedBackgroundView = backgroundView
+        myCell.layoutMargins = UIEdgeInsets.zero
         
         return myCell
         
@@ -83,6 +85,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func add() {
         print("add something")
+        self.performSegue(withIdentifier: "create", sender: self)
     }
     
 

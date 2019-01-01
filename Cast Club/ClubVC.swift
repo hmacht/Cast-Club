@@ -18,10 +18,10 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.clubTabelView.dataSource = self
         
         clubTabelView.tableFooterView = UIView()
-        clubTabelView.layoutMargins = UIEdgeInsets.zero
-        clubTabelView.separatorInset = UIEdgeInsets.zero
+        //clubTabelView.layoutMargins = UIEdgeInsets.zero
+        //clubTabelView.separatorInset = UIEdgeInsets.zero
         
-        self.clubTabelView.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+        self.clubTabelView.backgroundColor = UIColor(red: 246.0/255.0, green: 246.0/255.0, blue: 250.0/255.0, alpha: 1.0)
         
         //self.view.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
 
@@ -37,29 +37,36 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
+    
+    // Test Material
+    var images = [UIImage(named: "Group 439"), UIImage(named: "images-3"), UIImage(named: "images-1"), UIImage(named: "Unknown-1")]
+    var header = ["Club Name", "The longest Club Name", "Short", "Long Name"]
+    var responces = ["Responce", "Hi", "This is the last thing that someone said in the chat", "Long Responce"]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let myCell = self.clubTabelView.dequeueReusableCell(withIdentifier: "ClubCell", for:indexPath) as! ClubTableViewCell
-        myCell.clubIMG.image = UIImage(named: "Group 439")
-        myCell.clubIMG.layer.cornerRadius = 30.0
+        myCell.clubIMG.image = images[indexPath.row]
+        myCell.clubIMG.layer.cornerRadius = 25.0
         myCell.clubIMG.clipsToBounds = true
-        myCell.clubName.text = "Club Name"
+        myCell.clubName.text = header[indexPath.row]
         myCell.clubName.font = UIFont(name: "Avenir-Black", size: 16)
-        myCell.lastResponce.text = "This is the last thing that someone said"
-        myCell.lastResponce.textColor = UIColor(red: 206.0/255.0, green: 206.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-        myCell.lastResponce.font = UIFont(name: "Avenir-Heavy", size: 15)
+        myCell.lastResponce.text = responces[indexPath.row]
+        myCell.lastResponce.textColor = UIColor(red: 70.0/255.0, green: 70.0/255.0, blue: 70.0/255.0, alpha: 1.0)
+        myCell.lastResponce.font = UIFont(name: "Avenir-Medium", size: 15)
         myCell.timeStamp.text = "1h"
-        myCell.timeStamp.textColor = UIColor(red: 206.0/255.0, green: 206.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-        myCell.timeStamp.font = UIFont(name: "Avenir-Heavy", size: 16)
+        myCell.timeStamp.textColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        myCell.timeStamp.font = UIFont(name: "Avenir-Medium", size: 15)
+        
+        
  
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 240.0/255.0, alpha: 1.0)
         myCell.selectedBackgroundView = backgroundView
-        myCell.layoutMargins = UIEdgeInsets.zero
+        //myCell.layoutMargins = UIEdgeInsets.zero
         
         return myCell
         

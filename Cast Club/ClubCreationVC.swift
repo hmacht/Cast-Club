@@ -24,11 +24,6 @@ class ClubCreationVC: UIViewController {
         createHeader()
         addDoneButtonOnKeyboard()
         
-        
- 
-        
-        
-        
     }
     override func viewDidAppear(_ animated: Bool) {
         

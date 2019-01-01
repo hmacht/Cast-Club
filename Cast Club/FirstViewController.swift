@@ -59,6 +59,20 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             self.view.addSubview(discovewrBtn)
         }
         
+        // Get user subscriptions
+        CloudKitHelper.instance.getAlbums { (albums, error) in
+            if let e = error {
+                print(e)
+            } else if albums.count > 0 {
+                subscriptionAlbum = albums
+                DispatchQueue.main.async {
+                    self.errorPopUp?.removeFromSuperview()
+                    self.discovewrBtn.removeFromSuperview()
+                    self.myCollectionView.reloadData()
+                }
+            }
+        }
+        
     }
     
     
@@ -82,8 +96,23 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         
         cell.imgView.layer.cornerRadius = 6.0
         cell.imgView.clipsToBounds = true
-        cell.imgView.image = subscriptionAlbum[indexPath.row].artworkImage
-        print(newSubscriptions)
+        
+        if let img = subscriptionAlbum[indexPath.row].artworkImage {
+            // We already have an img
+            cell.imgView.image = img
+        } else {
+            // We do not have the image yet, download it
+            cell.imgView.image = UIImage(named: "Group 224")
+            DispatchQueue.global(qos: .background).async {
+                _ = subscriptionAlbum[indexPath.row].getImageData(dimensions: .hundred, completion: { (image) in
+                    if let img = image {
+                        DispatchQueue.main.async {
+                            cell.imgView.image = img
+                        }
+                    }
+                })
+            }
+        }
         
         if indexPath.row == (subscriptionAlbum.count - newSubscriptions){
             UIView.animate(withDuration: 0.25, animations: {() -> Void in

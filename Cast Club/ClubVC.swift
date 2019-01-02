@@ -41,7 +41,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     // Test Material
-    var images = [UIImage(named: "Group 439"), UIImage(named: "images-3"), UIImage(named: "images-1"), UIImage(named: "Unknown-1")]
+    var images = [UIImage(named: "Group 439"), UIImage(named: "images-2"), UIImage(named: "images-1"), UIImage(named: "Unknown-1")]
     var header = ["Club Name", "The longest Club Name", "Short", "Long Name"]
     var responces = ["Responce", "Hi", "This is the last thing that someone said in the chat", "Long Responce"]
     

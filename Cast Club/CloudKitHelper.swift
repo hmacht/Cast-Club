@@ -116,12 +116,20 @@ class CloudKitHelper {
                     if let artworkUrl = r["artworkUrl"] as? String {
                         album.artworkUrl100 = artworkUrl
                     }
+                    album.recordId = r.recordID
                     results.append(album)
                 }
                 completion(results, error)
             } else {
                 completion([PodcastAlbum](), error)
             }
+        }
+    }
+    
+    func unsubsribe(from album: PodcastAlbum, completion: @escaping (Error?) -> ()) {
+        // Delete the album from the users database
+        self.privateDB.delete(withRecordID: album.recordId) { (id, error) in
+            completion(error)
         }
     }
     

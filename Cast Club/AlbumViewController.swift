@@ -26,7 +26,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let screenSize = UIScreen.main.bounds
     
     var activityIndicator = UIActivityIndicatorView()
-    var subscribeButton = UIButton()
+    var subscribeButton = SubscribeButton()
     
     
     override func viewDidLoad() {
@@ -41,17 +41,6 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.createActivityIndicator()
         
-        if let b = self.view.viewWithTag(1) as? UIButton {
-            self.subscribeButton = b
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        if subscriptionAlbum.contains(where: {$0.title == self.album.title && $0.artistName == self.album.artistName && $0.feedUrl == self.album.feedUrl}) {
-            // We are already subscribed
-            self.subscribeButton.imageView?.image = UIImage(named: "Group 237")
-            self.subscribeButton.titleLabel?.text = ""
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,7 +101,6 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            print("Show First Cell")
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "cellHeader") as! TableViewCell
             
             
@@ -130,7 +118,17 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             headerCell.selectionStyle = .none
             
             
-            
+            if let b = headerCell.viewWithTag(1) as? SubscribeButton {
+                self.subscribeButton = b
+                print("in here")
+                if subscriptionAlbum.contains(where: {$0.title == self.album.title && $0.artistName == self.album.artistName && $0.feedUrl == self.album.feedUrl}) {
+                    // We are already subscribed
+                    print("already subscribed")
+                    self.subscribeButton.setTextUnsubscribe()
+                } else {
+                    self.subscribeButton.setTextSubscribe()
+                }
+            }
             
             return headerCell
             
@@ -291,7 +289,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func subscribe(_ sender: Any) {
         
         var alreadySubscribed = false
-        for a in subscriptionAlbum {
+        for i in 0...subscriptionAlbum.count - 1 {
+            let a = subscriptionAlbum[i]
             // We are already subscribed to this album
             // So we must unsubscribe
             if a.title == self.album.title && a.artistName == self.album.artistName && a.feedUrl == self.album.feedUrl {
@@ -300,11 +299,11 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     if let e = error {
                         print(e)
                     } else {
+                        subscriptionAlbum.remove(at: i)
                         // TODO - add some sort of ui feedback
                         print("Done unsubscribing")
                         DispatchQueue.main.async {
-                            self.subscribeButton.imageView?.image = UIImage(named: "Rectangle 164")
-                            self.subscribeButton.titleLabel?.text = "Subscribe"
+                            self.subscribeButton.setTextSubscribe()
                         }
                     }
                 }
@@ -330,8 +329,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
         createSubPopUp()
-        self.subscribeButton.imageView?.image = UIImage(named: "Group 237")
-        self.subscribeButton.titleLabel?.text = ""
+        self.subscribeButton.setTextUnsubscribe()
         
     }
     

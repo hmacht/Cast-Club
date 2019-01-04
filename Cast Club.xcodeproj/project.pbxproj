@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		127AD3A5EE784F7684203773 /* Pods_Cast_ClubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF7D563C98ACDE4735780BC /* Pods_Cast_ClubTests.framework */; };
 		211BDD7721A9F1560025A132 /* PlayPodcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */; };
+		212C621E21DEE8E5002B6AF9 /* SubscribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212C621D21DEE8E4002B6AF9 /* SubscribeButton.swift */; };
 		213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */; };
 		2163563D21D1350300EF63C8 /* CloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163563C21D1350300EF63C8 /* CloudKitHelper.swift */; };
 		2163563F21D1558C00EF63C8 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163563E21D1558C00EF63C8 /* Club.swift */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		132A83E24B1AA60FADB60849 /* Pods-Cast ClubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubTests/Pods-Cast ClubTests.release.xcconfig"; sourceTree = "<group>"; };
 		211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPodcastViewController.swift; sourceTree = "<group>"; };
+		212C621D21DEE8E4002B6AF9 /* SubscribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeButton.swift; sourceTree = "<group>"; };
 		213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDownloadHelper.swift; sourceTree = "<group>"; };
 		2163563C21D1350300EF63C8 /* CloudKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitHelper.swift; sourceTree = "<group>"; };
 		2163563E21D1558C00EF63C8 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				D7388BA421C6F5AE00C6869D /* ErrorPopUp.swift */,
 				D77D9D2021C7459400010AFC /* TableViewCell.swift */,
 				D752495121D98E930066C5D9 /* ClubTableViewCell.swift */,
+				212C621D21DEE8E4002B6AF9 /* SubscribeButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212C621E21DEE8E5002B6AF9 /* SubscribeButton.swift in Sources */,
 				213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */,
 				D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */,
 				D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */,

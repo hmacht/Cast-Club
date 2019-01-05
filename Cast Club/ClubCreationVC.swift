@@ -69,6 +69,18 @@ class ClubCreationVC: UIViewController {
         self.view.addSubview(header)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is LastStepVC
+        {
+            let vc = segue.destination as? LastStepVC
+            if let input = clubNameInput.text {
+                vc?.clubeName = input
+            }
+            
+        }
+    }
+    
     @objc func done() {
         print("Done")
         self.performSegue(withIdentifier: "lastStep", sender: self)

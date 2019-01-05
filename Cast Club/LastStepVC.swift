@@ -17,8 +17,11 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     let screenSize = UIScreen.main.bounds
     var catagoryInput = UITextField()
     var profileImageView = UIImageView()
+    var xVal = CGFloat()
+    var inviteButton = UIButton()
+    var clubeName = String()
     
-    let catagories = ["Everything", "News", "Comedy", "Arts", "Business", "Education", "Games & Hobbies", "Health", "Kids", "Music", "Science", "Sports", "TV & Film", "Technology"]
+    let catagories = [" ", "Everything", "News", "Comedy", "Arts", "Business", "Education", "Games & Hobbies", "Health", "Kids", "Music", "Science", "Sports", "TV & Film", "Technology"]
     
     var buttons = [UIButton]()
 
@@ -27,14 +30,16 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         
         buttons = []
         createTextBoxe()
+        xVal = catagoryInput.frame.minX
         createHeader()
         createSubHeader(text: "Category", add: 45)
         createSubHeader(text: "Privacy", add: 120)
-        createButton(title: "Public", Action: #selector(publicAction), Frame: CGRect(x: catagoryInput.frame.minX, y: catagoryInput.frame.maxY + 35, width: 140, height: 40))
-        createButton(title: "Private", Action: #selector(privateAction), Frame: CGRect(x: catagoryInput.frame.minX + 160, y: catagoryInput.frame.maxY + 35, width: 140, height: 40))
+        createButton(title: "Public", Action: #selector(publicAction), Frame: CGRect(x: xVal, y: catagoryInput.frame.maxY + 35, width: 140, height: 40))
+        createButton(title: "Private", Action: #selector(privateAction), Frame: CGRect(x: xVal + 160, y: catagoryInput.frame.maxY + 35, width: 140, height: 40))
         createSubHeader(text: "Clubs Profile Image", add: 195)
-        createImageSelectors(frameX: Int(catagoryInput.frame.minX), imgName: "Group 464", Action: #selector(accessCamera))
-        createImageSelectors(frameX: Int(catagoryInput.frame.minX + 75), imgName: "Group 465", Action: #selector(accessPhotoLib))
+        createImageSelectors(frameX: Int(xVal), imgName: "Group 464", Action: #selector(accessCamera))
+        createImageSelectors(frameX: Int(xVal + 75), imgName: "Group 465", Action: #selector(accessPhotoLib))
+        createSubHeader(text: "Invite", add: 290)
         
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -43,12 +48,15 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         addDoneButtonOnKeyboard()
         
         createProfileImage()
+        createInviteButton()
+        
+        createCreateButton()
 
         // Do any additional setup after loading the view.
     }
     
     func createHeader(){
-        header = UILabel(frame: CGRect(x: catagoryInput.frame.minX, y: screenSize.height/10, width: 300, height: 30))
+        header = UILabel(frame: CGRect(x: xVal, y: screenSize.height/10, width: 300, height: 30))
         header.textAlignment = .left
         header.font = UIFont(name: "Mont-HeavyDEMO", size: 27)
         header.text = "One Last thing"
@@ -56,7 +64,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     func createSubHeader(text: String, add: CGFloat){
-        sub = UILabel(frame: CGRect(x: catagoryInput.frame.minX, y: screenSize.height/10 + add, width: 200, height: 30))
+        sub = UILabel(frame: CGRect(x: xVal, y: screenSize.height/10 + add, width: 200, height: 30))
         
         sub.textAlignment = .left
         sub.textColor = UIColor(red: 196.0/255.0, green: 196.0/255.0, blue: 201.0/255.0, alpha: 1.0)
@@ -97,7 +105,18 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         buttons.append(button)
     }
     
-    
+    func createCreateButton(){
+        let button = UIButton(frame: CGRect(x: xVal, y: inviteButton.frame.maxY + 75, width: 300, height: 50))
+        button.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+        button.setTitle("Create", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Mont-HeavyDEMO", size: 14)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 5.0
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(LastStepVC.create), for: .touchUpInside)
+        self.view.addSubview(button)
+        buttons.append(button)
+    }
     
     func addDoneButtonOnKeyboard() {
         let button: UIButton = UIButton(type: UIButton.ButtonType.custom) as! UIButton
@@ -134,11 +153,22 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     
     func createProfileImage(){
         profileImageView = UIImageView(image: UIImage(named: "Group 466"))
-        profileImageView.frame = CGRect(x: Int(catagoryInput.frame.minX + 150), y: Int(buttons[0].frame.maxY + 35), width: 65, height: 65)
+        profileImageView.frame = CGRect(x: Int(xVal + 150), y: Int(buttons[0].frame.maxY + 35), width: 65, height: 65)
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
         profileImageView.layer.cornerRadius = 32.5
         self.view.addSubview(profileImageView)
+    }
+    
+    func createInviteButton(){
+        let image = UIImage(named: "Group 444")
+        inviteButton = UIButton(frame: CGRect(x: Int(xVal), y: Int(profileImageView.frame.maxY + 30), width: 65, height: 65))
+        //button.backgroundColor = UIColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0)
+        inviteButton.layer.masksToBounds = true
+        inviteButton.layer.cornerRadius = 32.5
+        inviteButton.setImage(image, for: .normal)
+        inviteButton.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
+        self.view.addSubview(inviteButton)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -191,6 +221,28 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         print("Done")
         self.view.endEditing(true)
         
+        
+    }
+    
+    @objc func create() {
+        print("Create")
+        
+        //CloudKitHelper.instance.writeClub(name: clubeName, img: profileImageView.image!, completion: (Error?) -> ())
+        
+        
+        CloudKitHelper.instance.writeClub(name: clubeName, img: profileImageView.image!) { (error) in
+            if let e = error {
+                print(e)
+            } else {
+                print("Good")
+            }
+        }
+        
+        self.performSegue(withIdentifier: "doneWithCreation", sender: self)
+ 
+       
+        
+        
     }
     
     @objc func publicAction(sender: UIButton!) {
@@ -213,6 +265,10 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         print("Lib")
         requestAccess()
         photoLibrary()
+    }
+    
+    @objc func addFriend(sender: UIButton!) {
+        print("add")
     }
     
     func requestAccess(){

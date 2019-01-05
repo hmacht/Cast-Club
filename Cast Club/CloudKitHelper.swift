@@ -21,7 +21,7 @@ class CloudKitHelper {
     let MessageType = "Message"
     
     func searchClubsWithName(_ name: String, completion: @escaping ([Club]?) -> ()) {
-        let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "name BEGINSWITH %@", name))
+        let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "name BEGINSWITH %@ AND isPublic = 1", name))
         // Should add:
         // CKQueryOperation(query: query).desiredKeys = [blah blah blah without the image]
         // TO make faster then load in the image
@@ -44,8 +44,13 @@ class CloudKitHelper {
                         if let id = r["recordName"] as? String {
                             c.id = id
                         }
-                        if let messageId = r["messageBoardId"] as? String {
-                            c.messageBoardId = messageId
+                        if let category = r["category"] as? String {
+                            if let cat = ClubCategory(rawValue: category) {
+                                c.category = cat
+                                print(c.category.rawValue)
+                            } else {
+                                c.category = ClubCategory.none
+                            }
                         }
                         if let asset = r["coverPhoto"] as? CKAsset {
                             c.imgUrl = asset.fileURL
@@ -58,18 +63,23 @@ class CloudKitHelper {
         }
     }
     
-    func writeClub(name: String, img: UIImage, completion: @escaping (Error?) -> ()) {
+    func writeClub(name: String, img: UIImage, isPublic: Bool, category: ClubCategory, completion: @escaping (Error?) -> ()) {
         let record = CKRecord(recordType: ClubType)
         record["numFollowers"] = 0
         record["name"] = name
+        
+        if isPublic {
+            record["isPublic"] = 1
+        } else {
+            record["isPublic"] = 0
+        }
+        record["category"] = category.rawValue
         
         // Save image
         let url = ImageHelper.saveToDisk(image: img)
         let asset = CKAsset(fileURL: url)
         record["coverPhoto"] = asset
         
-        // TODO - find way to do random id
-        record["messageBoardId"] = "someMBID"
         
         
         publicDB.save(record) { (record, error) in

@@ -236,11 +236,11 @@
                                                         <constraint firstAttribute="height" constant="114" id="OSh-kq-MfA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-F8-ogh">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-F8-ogh" customClass="SubscribeButton" customModule="Pod_Talk" customModuleProvider="target">
                                                     <rect key="frame" x="137.5" y="85.5" width="131" height="43"/>
                                                     <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="11"/>
                                                     <color key="tintColor" red="0.2313699722" green="0.23137080669999999" blue="0.23137262459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <state key="normal" title="Subscribe" backgroundImage="Rectangle 164">
+                                                    <state key="normal" title="            " backgroundImage="Rectangle 164">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>

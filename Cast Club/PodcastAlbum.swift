@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CloudKit
 
 enum ArtworkDimension {
     case thrity, hundred
@@ -22,6 +23,7 @@ class PodcastAlbum {
     var artworkUrl100 = ""
     var feedUrl = ""
     var artworkImage: UIImage?
+    var recordId = CKRecord.ID()
     
     convenience init(artist: String, title: String, numEpisodes: Int, url: String, feedUrl: String) {
         self.init()

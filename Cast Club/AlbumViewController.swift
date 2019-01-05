@@ -26,6 +26,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let screenSize = UIScreen.main.bounds
     
     var activityIndicator = UIActivityIndicatorView()
+    var subscribeButton = SubscribeButton()
     
     
     override func viewDidLoad() {
@@ -39,21 +40,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.rowHeight = UITableView.automaticDimension
         
         self.createActivityIndicator()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        /*
-        self.imgView.image = UIImage(named: "Group 224")
-        //self.imgView.image = self.album.getImageData(dimensions: .hundred)
-        _ = self.album.getImageData(dimensions: .hundred, completion: { (image) in
-            self.imgView.image = image
-        })
-        self.imgView.layer.cornerRadius = 6.0
-        self.imgView.clipsToBounds = true
-        self.titleLabel.text = self.album.title
-        self.artistLabel.text = self.album.artistName
-        self.numEpisodesLabel.text = String(self.album.numEpisodes) + " Episodes"
-        */
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -114,7 +101,6 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            print("Show First Cell")
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "cellHeader") as! TableViewCell
             
             
@@ -132,7 +118,17 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             headerCell.selectionStyle = .none
             
             
-            
+            if let b = headerCell.viewWithTag(1) as? SubscribeButton {
+                self.subscribeButton = b
+                print("in here")
+                if subscriptionAlbum.contains(where: {$0.title == self.album.title && $0.artistName == self.album.artistName && $0.feedUrl == self.album.feedUrl}) {
+                    // We are already subscribed
+                    print("already subscribed")
+                    self.subscribeButton.setTextUnsubscribe()
+                } else {
+                    self.subscribeButton.setTextSubscribe()
+                }
+            }
             
             return headerCell
             
@@ -292,6 +288,34 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func subscribe(_ sender: Any) {
         
+        var alreadySubscribed = false
+        for i in 0...subscriptionAlbum.count - 1 {
+            let a = subscriptionAlbum[i]
+            // We are already subscribed to this album
+            // So we must unsubscribe
+            if a.title == self.album.title && a.artistName == self.album.artistName && a.feedUrl == self.album.feedUrl {
+                alreadySubscribed = true
+                CloudKitHelper.instance.unsubsribe(from: a) { (error) in
+                    if let e = error {
+                        print(e)
+                    } else {
+                        subscriptionAlbum.remove(at: i)
+                        // TODO - add some sort of ui feedback
+                        print("Done unsubscribing")
+                        DispatchQueue.main.async {
+                            self.subscribeButton.setTextSubscribe()
+                        }
+                    }
+                }
+                break
+            }
+        }
+        
+        // Dont subcribe again if already subscribed
+        if alreadySubscribed {
+            return
+        }
+        // We are not subscribed to this yet
         CloudKitHelper.instance.saveAlbumToPrivate(self.album) { (error) in
             if let e = error {
                 print(e)
@@ -299,13 +323,13 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("Done saving")
             }
         }
-        
+            
         subscriptionAlbum.append(album)
         newSubscriptions += 1
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
         createSubPopUp()
-        
+        self.subscribeButton.setTextUnsubscribe()
         
     }
     

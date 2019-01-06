@@ -20,6 +20,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     var xVal = CGFloat()
     var inviteButton = UIButton()
     var clubeName = String()
+    var createButton = UIButton()
     
     let catagories = [" ", "Everything", "News", "Comedy", "Arts", "Business", "Education", "Games & Hobbies", "Health", "Kids", "Music", "Science", "Sports", "TV & Film", "Technology"]
     
@@ -106,16 +107,16 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     func createCreateButton(){
-        let button = UIButton(frame: CGRect(x: xVal, y: inviteButton.frame.maxY + 75, width: 300, height: 50))
-        button.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
-        button.setTitle("Create", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Mont-HeavyDEMO", size: 14)
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 5.0
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(LastStepVC.create), for: .touchUpInside)
-        self.view.addSubview(button)
-        buttons.append(button)
+        createButton = UIButton(frame: CGRect(x: xVal, y: inviteButton.frame.maxY + 75, width: 300, height: 50))
+        createButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+        createButton.setTitle("Create", for: .normal)
+        createButton.titleLabel?.font = UIFont(name: "Mont-HeavyDEMO", size: 14)
+        createButton.layer.masksToBounds = true
+        createButton.layer.cornerRadius = 5.0
+        createButton.setTitleColor(.white, for: .normal)
+        createButton.addTarget(self, action: #selector(LastStepVC.create), for: .touchUpInside)
+        self.view.addSubview(createButton)
+        //buttons.append(createButton)
     }
     
     func addDoneButtonOnKeyboard() {
@@ -235,8 +236,12 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
                 print(e)
             } else {
                 print("Good")
+                self.createButton.setTitle("", for: .normal)
+                var checkAnimation = DoneView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+                checkAnimation.center = CGPoint(x: self.view.center.x, y: self.createButton.frame.midX)
             }
         }
+ 
         
         self.performSegue(withIdentifier: "doneWithCreation", sender: self)
  

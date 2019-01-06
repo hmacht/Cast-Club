@@ -24,6 +24,7 @@
 		21D13FB821A9E8380087F00E /* FeedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D13FB721A9E8380087F00E /* FeedHelper.swift */; };
 		7D9B7A4D6109563FC3AC3D8C /* Pods_Cast_ClubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0A1B1CF8D6A51F3BB8F8C5 /* Pods_Cast_ClubUITests.framework */; };
 		CC7EB3C19D306844332EB570 /* Pods_Cast_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87DFBC75432441FC2D0D22D3 /* Pods_Cast_Club.framework */; };
+		D715DAB921E27E6800C53708 /* DoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D715DAB821E27E6800C53708 /* DoneView.swift */; };
 		D7380BB821A62E21003D19F8 /* Mont-HeavyDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */; };
 		D7388BA521C6F5AE00C6869D /* ErrorPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7388BA421C6F5AE00C6869D /* ErrorPopUp.swift */; };
 		D744775521A4BB1D00270726 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744775421A4BB1D00270726 /* AppDelegate.swift */; };
@@ -92,6 +93,7 @@
 		BCF7D563C98ACDE4735780BC /* Pods_Cast_ClubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cast_ClubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0A1B1CF8D6A51F3BB8F8C5 /* Pods_Cast_ClubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cast_ClubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD19E3BB63A300D4CAAC00A6 /* Pods-Cast ClubUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubUITests/Pods-Cast ClubUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D715DAB821E27E6800C53708 /* DoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneView.swift; sourceTree = "<group>"; };
 		D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mont-HeavyDEMO.otf"; sourceTree = "<group>"; };
 		D7388BA421C6F5AE00C6869D /* ErrorPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPopUp.swift; sourceTree = "<group>"; };
 		D744775121A4BB1D00270726 /* Pod Talk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pod Talk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +199,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D715DAB721E27E5700C53708 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				D715DAB821E27E6800C53708 /* DoneView.swift */,
+			);
+			name = Animations;
+			sourceTree = "<group>";
+		};
 		D744774821A4BB1D00270726 = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +234,7 @@
 			children = (
 				D7F4A59B21CBEE97006626FB /* Pod Talk.entitlements */,
 				D760166B21ACC1F500CB25BB /* Extensions */,
+				D715DAB721E27E5700C53708 /* Animations */,
 				D760166421AC84BD00CB25BB /* View */,
 				21C87D4421A87FD000F9E727 /* Model */,
 				D744775621A4BB1D00270726 /* FirstViewController.swift */,
@@ -563,6 +574,7 @@
 				21CB313A21AF53D7006677F8 /* PodcastTablBarController.swift in Sources */,
 				21D13FB621A9E7E40087F00E /* Podcast.swift in Sources */,
 				21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */,
+				D715DAB921E27E6800C53708 /* DoneView.swift in Sources */,
 				D77D9D2121C7459400010AFC /* TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

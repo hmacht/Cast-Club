@@ -22,6 +22,9 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     var clubeName = String()
     var createButton = UIButton()
     
+    var selectedCategory = ClubCategory.none
+    var isPublic = true
+    
     let catagories = [" ", "Everything", "News", "Comedy", "Arts", "Business", "Education", "Games & Hobbies", "Health", "Kids", "Music", "Science", "Sports", "TV & Film", "Technology"]
     
     var buttons = [UIButton]()
@@ -77,7 +80,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     func createTextBoxe(){
         catagoryInput = UITextField(frame: CGRect(x: 0, y: screenSize.height/10 + 75, width: 300, height: 40))
         catagoryInput.center.x = screenSize.width/2
-        catagoryInput.attributedPlaceholder = NSAttributedString(string: "Select a categorie",
+        catagoryInput.attributedPlaceholder = NSAttributedString(string: "Select a category",
                                                                attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)])
         catagoryInput.font = UIFont(name: "Mont-HeavyDEMO", size: 14)
         catagoryInput.textColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
@@ -139,6 +142,11 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         buttons[index].backgroundColor = UIColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0)
         buttons[index].setTitleColor(UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0), for: .normal)
         
+        if Sender.titleLabel?.text == "Public" {
+            self.isPublic = true
+        } else {
+            self.isPublic = false
+        }
     }
     
     func createImageSelectors(frameX: Int, imgName: String, Action: Selector){
@@ -190,6 +198,10 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     // the selected option.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         catagoryInput.text = catagories[row]
+        
+        if let category = ClubCategory(rawValue: catagories[row]) {
+            self.selectedCategory = category
+        }
     }
     
     func camera() {
@@ -228,18 +240,19 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     @objc func create() {
         print("Create")
         
-        //CloudKitHelper.instance.writeClub(name: clubeName, img: profileImageView.image!, completion: (Error?) -> ())
-        
-        
-        CloudKitHelper.instance.writeClub(name: clubeName, img: profileImageView.image!) { (error) in
-            if let e = error {
-                print(e)
-            } else {
-                print("Good")
-                self.createButton.setTitle("", for: .normal)
-                var checkAnimation = DoneView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-                checkAnimation.center = CGPoint(x: self.view.center.x, y: self.createButton.frame.midX)
+        if let img = profileImageView.image {
+            CloudKitHelper.instance.writeClub(name: clubeName, img: img, isPublic: self.isPublic, category: self.selectedCategory) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    print("Good")
+                }
             }
+        
+            self.performSegue(withIdentifier: "doneWithCreation", sender: self)
+        
+        } else {
+            print("Error with image")
         }
  
         
@@ -289,18 +302,5 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         //Photos
         
     }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

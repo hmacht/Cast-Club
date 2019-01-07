@@ -73,6 +73,13 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             }
         }
         
+        // TODO - very important to handle this if can't "authenticate" user
+        CloudKitHelper.instance.setCurrentUserId { (error) in
+            if let e = error {
+                print(e)
+            }
+        }
+        
         
     }
     
@@ -131,7 +138,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         
         if indexPath.row == (subscriptionAlbum.count - 1){
             newSubscriptions = 0
-            print("NS = 0")
         }
         
         return cell

@@ -89,9 +89,9 @@ class CloudKitHelper {
         }
     }
     
-    /*
+    
     func getClubIdsForCurrentUser(completion: @escaping ([String], Error?) -> ()) {
-        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", CloudKitHelper.instance.userId))
+        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
         
         self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let recs = records {
@@ -112,7 +112,7 @@ class CloudKitHelper {
     
     func subscribeToClub(id: CKRecord.ID, completion: @escaping (Error?) -> ()) {
         
-        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", CloudKitHelper.instance.userId))
+        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
         
         // Get the ClubHolder for user
         self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
@@ -121,7 +121,9 @@ class CloudKitHelper {
                     var clubHolder = firstRec
                     if let ids = firstRec["clubIds"] as? [String] {
                         var userIds = ids
-                        userIds.append(id.recordName)
+                        if !userIds.contains(id.recordName) {
+                            userIds.append(id.recordName)
+                        }
                         // Update the clubholder
                         clubHolder["clubIds"] = userIds
                         self.publicDB.save(clubHolder, completionHandler: { (_, e) in
@@ -131,7 +133,13 @@ class CloudKitHelper {
                         completion(error)
                     }
                 } else {
-                    completion(error)
+                    let record = CKRecord(recordType: self.ClubHolderType)
+                    record["fromUser"] = self.userId.recordName
+                    record["clubIds"] = [id.recordName]
+                    print("Saving new record")
+                    self.publicDB.save(record, completionHandler: { (_, error) in
+                        completion(error)
+                    })
                 }
             } else {
                 completion(error)
@@ -143,13 +151,13 @@ class CloudKitHelper {
         CKContainer.default().fetchUserRecordID { (id, error) in
             if let idenctification = id {
                 print("The ID", id)
-                CloudKitHelper.instance.userId = idenctification
+                self.userId = idenctification
             } else {
                 print("NO ID")
             }
             completion(error)
         }
-    }*/
+    }
     
     func saveAlbumToPrivate(_ album: PodcastAlbum, completion: @escaping (Error?) -> ()) {
         // Create record for album

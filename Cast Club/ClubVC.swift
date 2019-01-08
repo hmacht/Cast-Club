@@ -11,6 +11,9 @@ import UIKit
 class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var clubTabelView: UITableView!
+    
+    var userIds = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +37,20 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 257"), style: .done, target: self, action: #selector(ClubVC.playlist))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        CloudKitHelper.instance.getClubIdsForCurrentUser { (ids, error) in
+            if let e = error {
+                print(e)
+            } else {
+                self.userIds = ids
+                print("Got ids", self.userIds)
+                for id in self.userIds {
+                    CloudKitHelper.instance.getClub(with: id, completion: { (club, error) in
+                        print(club.name)
+                    })
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

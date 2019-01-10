@@ -44,17 +44,16 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } else {
                 self.userIds = ids
                 print("Got ids", self.userIds)
-                for id in self.userIds {
-                    CloudKitHelper.instance.getClub(with: id, completion: { (club, error) in
-                        print(club.name)
-                    })
+                
+                DispatchQueue.main.async {
+                    self.clubTabelView.reloadData()
                 }
             }
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 4 + self.userIds.count
     }
     
     // Test Material
@@ -63,27 +62,21 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var responces = ["Responce", "Hi", "This is the last thing that someone said in the chat", "Long Responce"]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let myCell = self.clubTabelView.dequeueReusableCell(withIdentifier: "ClubCell", for:indexPath) as! ClubTableViewCell
-        myCell.clubIMG.image = images[indexPath.row]
-        myCell.clubIMG.layer.cornerRadius = 25.0
-        myCell.clubIMG.clipsToBounds = true
-        myCell.clubName.text = header[indexPath.row]
-        myCell.clubName.font = UIFont(name: "Avenir-Black", size: 16)
-        myCell.lastResponce.text = responces[indexPath.row]
-        myCell.lastResponce.textColor = UIColor(red: 70.0/255.0, green: 70.0/255.0, blue: 70.0/255.0, alpha: 1.0)
-        myCell.lastResponce.font = UIFont(name: "Avenir-Medium", size: 15)
-        myCell.timeStamp.text = "1h"
-        myCell.timeStamp.textColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        myCell.timeStamp.font = UIFont(name: "Avenir-Medium", size: 15)
         
-        
- 
-        
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 240.0/255.0, alpha: 1.0)
-        myCell.selectedBackgroundView = backgroundView
-        //myCell.layoutMargins = UIEdgeInsets.zero
+        if indexPath.row < 4 {
+            myCell.clubIMG.image = images[indexPath.row]
+            myCell.clubName.text = header[indexPath.row]
+            myCell.lastResponce.text = responces[indexPath.row]
+        } else {
+            /loudKitHelper.instance.getClub(with: self.userIds[indexPath.row - 4 ]) { (club, error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    // TODO - set the values of the cell
+                }
+            }
+        }
         
         return myCell
         

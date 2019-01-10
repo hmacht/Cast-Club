@@ -186,6 +186,23 @@ class CloudKitHelper {
         }
     }
     
+    func getClubQuickly(id: String, completion: @escaping (Club, Error?) -> ()) {
+        //let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "recordName BEGINSWITH %@", id))
+        //let operation = CKQueryOperation(query: query)
+        let operation = CKFetchRecordsOperation(recordIDs: [CKRecord.ID(recordName: id)])
+        operation.qualityOfService = .userInteractive
+        let time = Date.timeIntervalSinceReferenceDate
+        operation.perRecordCompletionBlock = { record, _, error in
+            if let rec = record {
+                print(rec["name"], Date.timeIntervalSinceReferenceDate - time)
+            }
+        }
+        
+        publicDB.add(operation)
+        
+        completion(Club(), nil)
+    }
+    
     // Get the user's id
     func setCurrentUserId(completion: @escaping (Error?) -> ()) {
         CKContainer.default().fetchUserRecordID { (id, error) in

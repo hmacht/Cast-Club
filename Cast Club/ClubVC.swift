@@ -69,7 +69,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             myCell.clubName.text = header[indexPath.row]
             myCell.lastResponce.text = responces[indexPath.row]
         } else {
-            /loudKitHelper.instance.getClub(with: self.userIds[indexPath.row - 4 ]) { (club, error) in
+            CloudKitHelper.instance.getClub(with: self.userIds[indexPath.row - 4 ]) { (club, error) in
                 if let e = error {
                     print(e)
                 } else {

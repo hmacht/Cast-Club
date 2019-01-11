@@ -652,7 +652,7 @@
                                         <connections>
                                             <outlet property="catagoryLabel" destination="kFI-Oo-iGB" id="uDE-P7-AMe"/>
                                             <outlet property="clubIMG" destination="4Te-Pe-M8V" id="D04-H1-6bX"/>
-                                            <outlet property="clubName" destination="8wb-Lj-U2n" id="AhG-ey-M59"/>
+                                            <outlet property="clubName" destination="8wb-Lj-U2n" id="NPl-rO-5Bx"/>
                                             <outlet property="timeStamp" destination="ocG-dt-y5Y" id="FpH-Ia-gYH"/>
                                         </connections>
                                     </tableViewCell>
@@ -907,6 +907,7 @@
         <image name="Rectangle 164" width="131" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="oCs-JR-Erb"/>
         <segue reference="vx5-G8-YPP"/>
         <segue reference="S7V-rU-xOc"/>
     </inferredMetricsTieBreakers>

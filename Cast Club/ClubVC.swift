@@ -85,7 +85,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if indexPath.row < 4 {
             myCell.clubIMG.image = images[indexPath.row]
             myCell.clubName.text = header[indexPath.row]
-            myCell.lastResponce.text = responces[indexPath.row]
+            //myCell.lastResponce.text = responces[indexPath.row]
         } else {
             CloudKitHelper.instance.getClub(with: self.userIds[indexPath.row - 4 ]) { (club, error) in
                 if let e = error {

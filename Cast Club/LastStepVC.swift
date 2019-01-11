@@ -240,6 +240,8 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     @objc func create() {
         print("Create")
         
+        
+        
         if let img = profileImageView.image {
             CloudKitHelper.instance.writeClub(name: clubeName, img: img, isPublic: self.isPublic, category: self.selectedCategory) { (error) in
                 if let e = error {
@@ -254,6 +256,14 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         } else {
             print("Error with image")
         }
+ 
+        
+        //self.view.backgroundColor = .black
+        
+        //createButton.setTitle("", for: .normal)
+        //var checkAnimation = DoneView(frame: CGRect(x: 0, y: 0, width: 400, height: 400))
+        //checkAnimation.center = CGPoint(x: 200, y: 550)
+        //self.view.addSubview(checkAnimation)
  
         
         self.performSegue(withIdentifier: "doneWithCreation", sender: self)

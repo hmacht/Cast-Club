@@ -10,7 +10,7 @@ import UIKit
 
 class ClubTableViewCell: UITableViewCell {
     @IBOutlet weak var clubIMG: UIImageView!
-    @IBOutlet weak var clubName: UILabel!
-    @IBOutlet weak var lastResponce: UILabel!
+    @IBOutlet weak var catagoryLabel: UILabel!
     @IBOutlet weak var timeStamp: UILabel!
+    @IBOutlet weak var clubName: UILabel!
 }

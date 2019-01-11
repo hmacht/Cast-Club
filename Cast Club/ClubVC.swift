@@ -41,22 +41,25 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     // Test Material
-    var images = [UIImage(named: "Group 439"), UIImage(named: "images-2"), UIImage(named: "images-1"), UIImage(named: "Unknown-1")]
+    var images = [UIImage(named: "Group 439"), UIImage(named: "img1"), UIImage(named: "img3"), UIImage(named: "img2")]
     var header = ["Club Name", "The longest Club Name", "Short", "Long Name"]
-    var responces = ["Responce", "Hi", "This is the last thing that someone said in the chat", "Long Responce"]
+    var responces = ["News", "Everything", "Kids", "Science"]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         
         let myCell = self.clubTabelView.dequeueReusableCell(withIdentifier: "ClubCell", for:indexPath) as! ClubTableViewCell
         myCell.clubIMG.image = images[indexPath.row]
         myCell.clubIMG.layer.cornerRadius = 25.0
         myCell.clubIMG.clipsToBounds = true
         myCell.clubName.text = header[indexPath.row]
-        myCell.clubName.font = UIFont(name: "Avenir-Black", size: 16)
-        myCell.lastResponce.text = responces[indexPath.row]
-        myCell.lastResponce.textColor = UIColor(red: 70.0/255.0, green: 70.0/255.0, blue: 70.0/255.0, alpha: 1.0)
-        myCell.lastResponce.font = UIFont(name: "Avenir-Medium", size: 15)
-        myCell.timeStamp.text = "1h"
+        myCell.clubName.font = UIFont(name: "Mont-HeavyDEMO", size: 16)
+        myCell.clubName.textColor = UIColor(red: 65.0/255.0, green: 65.0/255.0, blue: 65.0/255.0, alpha: 1.0)
+        myCell.catagoryLabel.text = responces[indexPath.row]
+        myCell.catagoryLabel.textColor = UIColor(red: 65.0/255.0, green: 65.0/255.0, blue: 65.0/255.0, alpha: 1.0)
+        myCell.catagoryLabel.font = UIFont(name: "Avenir-Heavy", size: 12)
+        myCell.timeStamp.text = ""
         myCell.timeStamp.textColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         myCell.timeStamp.font = UIFont(name: "Avenir-Medium", size: 15)
         
@@ -64,7 +67,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
         
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 240.0/255.0, alpha: 1.0)
+        backgroundView.backgroundColor = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 252.0/255.0, alpha: 1.0)
         myCell.selectedBackgroundView = backgroundView
         //myCell.layoutMargins = UIEdgeInsets.zero
         
@@ -77,6 +80,8 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         print(indexPath)
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        self.performSegue(withIdentifier: "toChat", sender: self)
         
     }
     

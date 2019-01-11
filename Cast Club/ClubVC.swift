@@ -11,6 +11,9 @@ import UIKit
 class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var clubTabelView: UITableView!
+    
+    var userIds = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,10 +37,23 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 257"), style: .done, target: self, action: #selector(ClubVC.playlist))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        CloudKitHelper.instance.getClubIdsForCurrentUser { (ids, error) in
+            if let e = error {
+                print(e)
+            } else {
+                self.userIds = ids
+                print("Got ids", self.userIds)
+                
+                DispatchQueue.main.async {
+                    self.clubTabelView.reloadData()
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 4 + self.userIds.count
     }
     
     // Test Material
@@ -66,10 +82,19 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
  
         
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 252.0/255.0, alpha: 1.0)
-        myCell.selectedBackgroundView = backgroundView
-        //myCell.layoutMargins = UIEdgeInsets.zero
+        if indexPath.row < 4 {
+            myCell.clubIMG.image = images[indexPath.row]
+            myCell.clubName.text = header[indexPath.row]
+            myCell.lastResponce.text = responces[indexPath.row]
+        } else {
+            CloudKitHelper.instance.getClub(with: self.userIds[indexPath.row - 4 ]) { (club, error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    // TODO - set the values of the cell
+                }
+            }
+        }
         
         return myCell
         

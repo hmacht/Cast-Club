@@ -15,11 +15,15 @@ class CloudKitHelper {
     let publicDB = CKContainer.default().publicCloudDatabase
     let privateDB = CKContainer.default().privateCloudDatabase
     
+    var userId = CKRecord.ID()
+    
     // Types of records
     let ClubType = "Club"
     let AlbumType = "Album"
     let MessageType = "Message"
+    let ClubHolderType = "ClubHolder"
     
+    // Club stuff
     func searchClubsWithName(_ name: String, completion: @escaping ([Club]?) -> ()) {
         let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "name BEGINSWITH %@ AND isPublic = 1", name))
         // Should add:
@@ -47,7 +51,6 @@ class CloudKitHelper {
                         if let category = r["category"] as? String {
                             if let cat = ClubCategory(rawValue: category) {
                                 c.category = cat
-                                print(c.category.rawValue)
                             } else {
                                 c.category = ClubCategory.none
                             }
@@ -87,6 +90,133 @@ class CloudKitHelper {
         }
     }
     
+    
+    func getClubIdsForCurrentUser(completion: @escaping ([String], Error?) -> ()) {
+        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
+        
+        self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let recs = records {
+                if let firstRec = recs.first {
+                    if let clubIds = firstRec["clubIds"] as? [String] {
+                        completion(clubIds, error)
+                    } else {
+                        completion([String](), error)
+                    }
+                } else {
+                    completion([String](), error)
+                }
+            } else {
+                completion([String](), error)
+            }
+        }
+    }
+    
+    func subscribeToClub(id: CKRecord.ID, completion: @escaping (Error?) -> ()) {
+        
+        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
+        
+        // Get the ClubHolder for user
+        self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let recs = records {
+                if let firstRec = recs.first {
+                    var clubHolder = firstRec
+                    if let ids = firstRec["clubIds"] as? [String] {
+                        var userIds = ids
+                        if !userIds.contains(id.recordName) {
+                            userIds.append(id.recordName)
+                        }
+                        // Update the clubholder
+                        clubHolder["clubIds"] = userIds
+                        self.publicDB.save(clubHolder, completionHandler: { (_, e) in
+                            completion(e)
+                        })
+                    } else {
+                        completion(error)
+                    }
+                } else {
+                    let record = CKRecord(recordType: self.ClubHolderType)
+                    record["fromUser"] = self.userId.recordName
+                    record["clubIds"] = [id.recordName]
+                    print("Saving new record")
+                    self.publicDB.save(record, completionHandler: { (_, error) in
+                        completion(error)
+                    })
+                }
+            } else {
+                completion(error)
+            }
+        }
+    }
+    
+    func getClub(with id: String, completion: @escaping (Club, Error?) -> ()) {
+        
+        let startTime = Date.timeIntervalSinceReferenceDate
+        self.publicDB.fetch(withRecordID: CKRecord.ID(recordName: id)) { (record, error) in
+            if let r = record {
+                print("1)", Date.timeIntervalSinceReferenceDate - startTime)
+                let c = Club()
+                // Get data from club
+                if let n = r["name"] as? String {
+                    c.name = n
+                }
+                if let f = r["numFollowers"] as? Int {
+                    c.numFollowers = f
+                }
+                if let id = r["recordName"] as? String {
+                    c.id = id
+                }
+                if let category = r["category"] as? String {
+                    if let cat = ClubCategory(rawValue: category) {
+                        c.category = cat
+                    } else {
+                        c.category = ClubCategory.none
+                    }
+                }
+                if let asset = r["coverPhoto"] as? CKAsset {
+                    c.imgUrl = asset.fileURL
+                    print("2)", Date.timeIntervalSinceReferenceDate - startTime)
+                    if let img = c.imgUrl?.image() {
+                        print("3)", Date.timeIntervalSinceReferenceDate - startTime)
+                        c.coverImage = img
+                    }
+                }
+                completion(c, error)
+            }
+            completion(Club(), error)
+        }
+    }
+    
+    func getClubQuickly(id: String, completion: @escaping (Club, Error?) -> ()) {
+        //let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "recordName BEGINSWITH %@", id))
+        //let operation = CKQueryOperation(query: query)
+        let operation = CKFetchRecordsOperation(recordIDs: [CKRecord.ID(recordName: id)])
+        operation.qualityOfService = .userInteractive
+        let time = Date.timeIntervalSinceReferenceDate
+        operation.perRecordCompletionBlock = { record, _, error in
+            if let rec = record {
+                print(rec["name"], Date.timeIntervalSinceReferenceDate - time)
+            }
+        }
+        
+        publicDB.add(operation)
+        
+        completion(Club(), nil)
+    }
+    
+    // Get the user's id
+    func setCurrentUserId(completion: @escaping (Error?) -> ()) {
+        CKContainer.default().fetchUserRecordID { (id, error) in
+            if let idenctification = id {
+                print("The ID", id)
+                self.userId = idenctification
+            } else {
+                print("NO ID")
+            }
+            completion(error)
+        }
+    }
+    
+    // Album stuff
     func saveAlbumToPrivate(_ album: PodcastAlbum, completion: @escaping (Error?) -> ()) {
         // Create record for album
         let record = CKRecord(recordType: AlbumType)
@@ -143,6 +273,7 @@ class CloudKitHelper {
         }
     }
     
+    // Message stuff
     func writeMessage(_ message: Message, completion: @escaping (Error?) -> ()) {
         let record = CKRecord(recordType: MessageType)
         record["clubId"] = message.clubId

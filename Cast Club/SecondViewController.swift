@@ -96,12 +96,19 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         cell.catagoryButton.setTitle(testList[indexPath.row], for: .normal)
-        cell.catagoryButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
-        cell.catagoryButton.titleLabel?.textColor = .white
+        
         cell.catagoryButton.clipsToBounds = true
         cell.catagoryButton.layer.cornerRadius = 17.5
         
         cell.catagoryButton.titleLabel?.font = UIFont(name: "Avenir-Black", size: 13)
+        
+        if indexPath.row == 0 {
+            cell.catagoryButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+            cell.catagoryButton.setTitleColor(.white, for: .normal)
+        } else {
+            cell.catagoryButton.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), for: .normal)
+            cell.catagoryButton.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+        }
         
         
         

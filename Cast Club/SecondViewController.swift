@@ -8,13 +8,18 @@
 
 import UIKit
 
-class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var results = [Club]()
     var activityIndicator = UIActivityIndicatorView()
+    var viewDidLayoutSubviewsForTheFirstTime = true
+    let screenSize = UIScreen.main.bounds
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +30,88 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        
         // Create the activity indicator
         self.activityIndicator = UIActivityIndicatorView(style: .gray)
         self.activityIndicator.frame = CGRect(x: self.view.frame.width/2 - 20, y: self.view.frame.height/2 - 20, width: 40, height: 40)
         self.activityIndicator.hidesWhenStopped = true
         self.activityIndicator.isHidden = true
         self.view.addSubview(self.activityIndicator)
+        
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.keyboardDismissMode = .onDrag
+        
+    
+        // Need to fix resizing
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
+            flowLayout.estimatedItemSize = CGSize(width: 100, height: 50)
+            
+        }
+        
+        
+        
+        
+        
+        
+        viewDidLayoutSubviewsForTheFirstTime = true
+        
+        
+        
+        
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // Only scroll when the view is rendered for the first time
+        if viewDidLayoutSubviewsForTheFirstTime {
+            
+            
+            viewDidLayoutSubviewsForTheFirstTime = false
+            // Calling collectionViewContentSize forces the UICollectionViewLayout to actually render the layout
+            collectionView.collectionViewLayout.collectionViewContentSize
+            // Now you can scroll to your desired indexPath or contentOffset
+            //collectionView.scrollToItem(at: IndexPath.init(row: 2, section: 0), at: .centeredVertically, animated: false)
+            
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return testList.count
+    }
+    
+    var testList = ["Everything", "News", "Comedy", "Arts", "Business", "Education", "Games & Hobbies", "Health", "Kids", "Music", "Science", "Sports", "TV & Film", "Technology"]
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "catagoryCell", for: indexPath) as! CatagoryCollectionViewCell
+        
+//        cell.catagoryLabel.text = testList[indexPath.row]
+//        cell.catagoryLabel.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+//        cell.catagoryLabel.clipsToBounds = true
+//        cell.catagoryLabel.layer.cornerRadius = 10
+//        cell.catagoryLabel.textColor = .white
+//        cell.catagoryLabel.sizeToFit()
+//        cell.catagoryLabel.isHidden = true
+        
+        
+        cell.catagoryButton.setTitle(testList[indexPath.row], for: .normal)
+        cell.catagoryButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+        cell.catagoryButton.titleLabel?.textColor = .white
+        cell.catagoryButton.clipsToBounds = true
+        cell.catagoryButton.layer.cornerRadius = 17.5
+        
+        cell.catagoryButton.titleLabel?.font = UIFont(name: "Avenir-Black", size: 13)
+        
+        
+        
+        
+        
+        return cell
+        
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "BasicCell") as! UITableViewCell
@@ -54,7 +134,14 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     }
                 }
             }
+            imgView.layer.cornerRadius = 25
+            imgView.clipsToBounds = true
+            imgView.contentMode = .scaleAspectFill
         }
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 240.0/255.0, alpha: 1.0)
+        cell.selectedBackgroundView = backgroundView
         
         return cell
     }
@@ -64,7 +151,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 70
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -91,6 +178,19 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             self.activityIndicator.stopAnimating()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected")
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        //self.searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.endEditing(true)
+        //self.searchBar.setShowsCancelButton(false, animated: true)
     }
 
 }

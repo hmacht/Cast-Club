@@ -25,7 +25,7 @@ class ClubTableViewCell: UITableViewCell {
         self.clubName.font = UIFont(name: "Avenir-Black", size: 16)
         //self.lastResponce.textColor = UIColor(red: 70.0/255.0, green: 70.0/255.0, blue: 70.0/255.0, alpha: 1.0)
         //self.lastResponce.font = UIFont(name: "Avenir-Medium", size: 15)
-        self.timeStamp.text = "1h"
+        self.timeStamp.text = ""
         self.timeStamp.textColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         self.timeStamp.font = UIFont(name: "Avenir-Medium", size: 15)
         

@@ -51,6 +51,7 @@
 		D7A20DC221DA884B00304D86 /* ClubCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */; };
 		D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */; };
 		D7A20DC621DAAD2000304D86 /* LastStepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC521DAAD2000304D86 /* LastStepVC.swift */; };
+		D7AF62C421EAB5AC00101919 /* CatagoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */; };
 		D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */; };
 		D7F365D321B0D352007F2CD9 /* slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F365D221B0D352007F2CD9 /* slider.swift */; };
 		D7F4A59D21CBEE9A006626FB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F4A59C21CBEE9A006626FB /* CloudKit.framework */; };
@@ -129,6 +130,7 @@
 		D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCreationVC.swift; sourceTree = "<group>"; };
 		D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFeild+LineColor.swift"; sourceTree = "<group>"; };
 		D7A20DC521DAAD2000304D86 /* LastStepVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepVC.swift; sourceTree = "<group>"; };
+		D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniController.swift; sourceTree = "<group>"; };
 		D7F365D221B0D352007F2CD9 /* slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slider.swift; sourceTree = "<group>"; };
 		D7F4A59B21CBEE97006626FB /* Pod Talk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pod Talk.entitlements"; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				212C621D21DEE8E4002B6AF9 /* SubscribeButton.swift */,
 				D7870C4521E80D0F008A7206 /* ChatHeaderTableViewCell.swift */,
 				D797BEE521E8224F005500DD /* ResponceTableViewCell.swift */,
+				D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */,
 				D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */,
 				D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */,
+				D7AF62C421EAB5AC00101919 /* CatagoryCollectionViewCell.swift in Sources */,
 				D77D9D2321C7576200010AFC /* UITableView+reloadSearch.swift in Sources */,
 				2163563D21D1350300EF63C8 /* CloudKitHelper.swift in Sources */,
 				D752495221D98E930066C5D9 /* ClubTableViewCell.swift in Sources */,

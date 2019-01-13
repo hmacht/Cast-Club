@@ -21,6 +21,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.clubTabelView.dataSource = self
         
         clubTabelView.tableFooterView = UIView()
+        //self.clubTabelView.separatorStyle = UITableViewCell.SeparatorStyle.none
         //clubTabelView.layoutMargins = UIEdgeInsets.zero
         //clubTabelView.separatorInset = UIEdgeInsets.zero
         

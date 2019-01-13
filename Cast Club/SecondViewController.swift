@@ -40,7 +40,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.activityIndicator.isHidden = true
         self.view.addSubview(self.activityIndicator)
         
-        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        //self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.keyboardDismissMode = .onDrag
         
     
@@ -139,6 +139,14 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             imgView.contentMode = .scaleAspectFill
         }
         
+        if let addButton = cell.viewWithTag(4) as? UIButton {
+            addButton.clipsToBounds = true
+            addButton.layer.cornerRadius = 15
+            addButton.layer.borderWidth = 1
+            addButton.layer.borderColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 237.0/255.0, alpha: 1.0).cgColor
+            addButton.addTarget(self, action: #selector(SecondViewController.addClub), for: .touchUpInside)
+        }
+        
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 240.0/255.0, alpha: 1.0)
         cell.selectedBackgroundView = backgroundView
@@ -191,6 +199,10 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
         //self.searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    @objc func addClub(){
+        print("ADD")
     }
 
 }

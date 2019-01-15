@@ -205,10 +205,13 @@ class CloudKitHelper {
     
     func getTopClubs(n: Int, completion: @escaping (Club) -> ()) {
         let query = CKQuery(recordType: ClubType, predicate: NSPredicate(value: true))
+        // Sort so that you get the biggest first
         query.sortDescriptors = [NSSortDescriptor(key: "numFollowers", ascending: false)]
         let operation = CKQueryOperation(query: query)
+        // Limit on num results
         operation.resultsLimit = n
         
+        // Gets called once for each record
         operation.recordFetchedBlock = { r in
             let c = Club()
             // Get data from club
@@ -325,6 +328,7 @@ class CloudKitHelper {
         record["fromUser"] = message.fromUser
         record["numLikes"] = message.numLikes
         record["text"] = message.text
+        record["fromMessageId"] = message.fromMessageId
         
         publicDB.save(record) { (record, error) in
             completion(error)
@@ -354,6 +358,9 @@ class CloudKitHelper {
                     }
                     if let fromUser = r["fromUser"] as? String {
                         message.fromUser = fromUser
+                    }
+                    if let fromMessageId = r["fromMessageId"] as? String {
+                        message.fromMessageId = fromMessageId
                     }
                     results.append(message)
                 }

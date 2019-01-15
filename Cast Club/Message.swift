@@ -14,4 +14,5 @@ struct Message {
     var numLikes = 0
     var flags = 0
     var clubId = ""
+    var fromMessageId = ""
 }

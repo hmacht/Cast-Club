@@ -24,6 +24,7 @@
 		21D13FB821A9E8380087F00E /* FeedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D13FB721A9E8380087F00E /* FeedHelper.swift */; };
 		7D9B7A4D6109563FC3AC3D8C /* Pods_Cast_ClubUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0A1B1CF8D6A51F3BB8F8C5 /* Pods_Cast_ClubUITests.framework */; };
 		CC7EB3C19D306844332EB570 /* Pods_Cast_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87DFBC75432441FC2D0D22D3 /* Pods_Cast_Club.framework */; };
+		D715DAB921E27E6800C53708 /* DoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D715DAB821E27E6800C53708 /* DoneView.swift */; };
 		D7380BB821A62E21003D19F8 /* Mont-HeavyDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */; };
 		D7388BA521C6F5AE00C6869D /* ErrorPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7388BA421C6F5AE00C6869D /* ErrorPopUp.swift */; };
 		D744775521A4BB1D00270726 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744775421A4BB1D00270726 /* AppDelegate.swift */; };
@@ -44,9 +45,13 @@
 		D767DF3B21B8D2890027DA85 /* String+RemoveHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = D767DF3A21B8D2890027DA85 /* String+RemoveHTML.swift */; };
 		D77D9D2121C7459400010AFC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77D9D2021C7459400010AFC /* TableViewCell.swift */; };
 		D77D9D2321C7576200010AFC /* UITableView+reloadSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77D9D2221C7576200010AFC /* UITableView+reloadSearch.swift */; };
+		D7870C4421E805B5008A7206 /* ClubChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7870C4321E805B5008A7206 /* ClubChatVC.swift */; };
+		D7870C4621E80D0F008A7206 /* ChatHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7870C4521E80D0F008A7206 /* ChatHeaderTableViewCell.swift */; };
+		D797BEE621E8224F005500DD /* ResponceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D797BEE521E8224F005500DD /* ResponceTableViewCell.swift */; };
 		D7A20DC221DA884B00304D86 /* ClubCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */; };
 		D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */; };
 		D7A20DC621DAAD2000304D86 /* LastStepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC521DAAD2000304D86 /* LastStepVC.swift */; };
+		D7AF62C421EAB5AC00101919 /* CatagoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */; };
 		D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */; };
 		D7F365D321B0D352007F2CD9 /* slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F365D221B0D352007F2CD9 /* slider.swift */; };
 		D7F4A59D21CBEE9A006626FB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F4A59C21CBEE9A006626FB /* CloudKit.framework */; };
@@ -92,6 +97,7 @@
 		BCF7D563C98ACDE4735780BC /* Pods_Cast_ClubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cast_ClubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0A1B1CF8D6A51F3BB8F8C5 /* Pods_Cast_ClubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cast_ClubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD19E3BB63A300D4CAAC00A6 /* Pods-Cast ClubUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubUITests/Pods-Cast ClubUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D715DAB821E27E6800C53708 /* DoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneView.swift; sourceTree = "<group>"; };
 		D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mont-HeavyDEMO.otf"; sourceTree = "<group>"; };
 		D7388BA421C6F5AE00C6869D /* ErrorPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPopUp.swift; sourceTree = "<group>"; };
 		D744775121A4BB1D00270726 /* Pod Talk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pod Talk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,9 +124,13 @@
 		D767DF3A21B8D2890027DA85 /* String+RemoveHTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RemoveHTML.swift"; sourceTree = "<group>"; };
 		D77D9D2021C7459400010AFC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		D77D9D2221C7576200010AFC /* UITableView+reloadSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+reloadSearch.swift"; sourceTree = "<group>"; };
+		D7870C4321E805B5008A7206 /* ClubChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubChatVC.swift; sourceTree = "<group>"; };
+		D7870C4521E80D0F008A7206 /* ChatHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		D797BEE521E8224F005500DD /* ResponceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponceTableViewCell.swift; sourceTree = "<group>"; };
 		D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCreationVC.swift; sourceTree = "<group>"; };
 		D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFeild+LineColor.swift"; sourceTree = "<group>"; };
 		D7A20DC521DAAD2000304D86 /* LastStepVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepVC.swift; sourceTree = "<group>"; };
+		D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniController.swift; sourceTree = "<group>"; };
 		D7F365D221B0D352007F2CD9 /* slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slider.swift; sourceTree = "<group>"; };
 		D7F4A59B21CBEE97006626FB /* Pod Talk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pod Talk.entitlements"; sourceTree = "<group>"; };
@@ -197,6 +207,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D715DAB721E27E5700C53708 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				D715DAB821E27E6800C53708 /* DoneView.swift */,
+			);
+			name = Animations;
+			sourceTree = "<group>";
+		};
 		D744774821A4BB1D00270726 = {
 			isa = PBXGroup;
 			children = (
@@ -224,10 +242,12 @@
 			children = (
 				D7F4A59B21CBEE97006626FB /* Pod Talk.entitlements */,
 				D760166B21ACC1F500CB25BB /* Extensions */,
+				D715DAB721E27E5700C53708 /* Animations */,
 				D760166421AC84BD00CB25BB /* View */,
 				21C87D4421A87FD000F9E727 /* Model */,
 				D744775621A4BB1D00270726 /* FirstViewController.swift */,
 				D744775821A4BB1D00270726 /* SecondViewController.swift */,
+				D7870C4321E805B5008A7206 /* ClubChatVC.swift */,
 				D752494F21D982110066C5D9 /* ClubVC.swift */,
 				D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */,
 				D7A20DC521DAAD2000304D86 /* LastStepVC.swift */,
@@ -275,6 +295,9 @@
 				D77D9D2021C7459400010AFC /* TableViewCell.swift */,
 				D752495121D98E930066C5D9 /* ClubTableViewCell.swift */,
 				212C621D21DEE8E4002B6AF9 /* SubscribeButton.swift */,
+				D7870C4521E80D0F008A7206 /* ChatHeaderTableViewCell.swift */,
+				D797BEE521E8224F005500DD /* ResponceTableViewCell.swift */,
+				D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -531,10 +554,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7870C4621E80D0F008A7206 /* ChatHeaderTableViewCell.swift in Sources */,
 				212C621E21DEE8E5002B6AF9 /* SubscribeButton.swift in Sources */,
+				D7870C4421E805B5008A7206 /* ClubChatVC.swift in Sources */,
 				213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */,
 				D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */,
 				D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */,
+				D7AF62C421EAB5AC00101919 /* CatagoryCollectionViewCell.swift in Sources */,
 				D77D9D2321C7576200010AFC /* UITableView+reloadSearch.swift in Sources */,
 				2163563D21D1350300EF63C8 /* CloudKitHelper.swift in Sources */,
 				D752495221D98E930066C5D9 /* ClubTableViewCell.swift in Sources */,
@@ -555,6 +581,7 @@
 				D7A20DC621DAAD2000304D86 /* LastStepVC.swift in Sources */,
 				D760166821AC9C6E00CB25BB /* CollectionViewCell.swift in Sources */,
 				21C87D4821A883DF00F9E727 /* PodcastAlbum.swift in Sources */,
+				D797BEE621E8224F005500DD /* ResponceTableViewCell.swift in Sources */,
 				218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */,
 				21AEF18021B095DA000DDA49 /* RemoteControlsHelper.swift in Sources */,
 				D760166D21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift in Sources */,
@@ -563,6 +590,7 @@
 				21CB313A21AF53D7006677F8 /* PodcastTablBarController.swift in Sources */,
 				21D13FB621A9E7E40087F00E /* Podcast.swift in Sources */,
 				21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */,
+				D715DAB921E27E6800C53708 /* DoneView.swift in Sources */,
 				D77D9D2121C7459400010AFC /* TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -741,14 +769,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Club/Pod Talk.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LCX682S6EY;
+				DEVELOPMENT_TEAM = 9832H7K9P2;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -762,14 +790,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Club/Pod Talk.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LCX682S6EY;
+				DEVELOPMENT_TEAM = 9832H7K9P2;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

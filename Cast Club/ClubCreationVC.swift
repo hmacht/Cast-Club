@@ -13,11 +13,15 @@ class ClubCreationVC: UIViewController {
     let screenSize = UIScreen.main.bounds
     var header = UILabel()
     var clubNameInput = UITextField()
+    var doneButton = UIButton()
+    var barButton = UIBarButtonItem()
     
     var toolbar = UIToolbar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //NotificationCenter.default.addObserver(self, selector: "textChanged:", name: UITextField.textDidChangeNotification, object: nil)
 
         // Do any additional setup after loading the view.
         createTextBoxes()
@@ -31,10 +35,11 @@ class ClubCreationVC: UIViewController {
     }
     
     func addDoneButtonOnKeyboard() {
-        let button: UIButton = UIButton(type: UIButton.ButtonType.custom) as! UIButton
-        button.setImage(UIImage(named: "Group 443"), for: .normal)
-        button.addTarget(self, action: #selector(ClubCreationVC.done), for: .touchUpInside)
-        let barButton = UIBarButtonItem(customView: button)
+        doneButton = UIButton(type: UIButton.ButtonType.custom) as! UIButton
+        doneButton.setImage(UIImage(named: "Group 443"), for: .normal)
+        doneButton.addTarget(self, action: #selector(ClubCreationVC.done), for: .touchUpInside)
+        barButton = UIBarButtonItem(customView: doneButton)
+        barButton.isEnabled = false
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let toolbar = UIToolbar()
         toolbar.barTintColor = .white
@@ -57,6 +62,7 @@ class ClubCreationVC: UIViewController {
         //clubNameInput.returnKeyType = UIReturnKeyType.done
         //clubNameInput.clearButtonMode = UITextField.ViewMode.whileEditing;
         clubNameInput.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        clubNameInput.addTarget(self, action: #selector(textFieldEditingDidChange), for: UIControl.Event.editingChanged)
         self.view.addSubview(clubNameInput)
     }
     
@@ -78,6 +84,15 @@ class ClubCreationVC: UIViewController {
                 vc?.clubeName = input
             }
             
+        }
+    }
+    
+    @objc func textFieldEditingDidChange() {
+        if clubNameInput.hasText{
+            barButton.isEnabled = true
+        }
+        else {
+            barButton.isEnabled = false
         }
     }
     

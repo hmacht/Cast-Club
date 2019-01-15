@@ -17,6 +17,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var collectionView: UICollectionView!
     
     var results = [Club]()
+    var topClubs = [Club]()
     var activityIndicator = UIActivityIndicatorView()
     var viewDidLayoutSubviewsForTheFirstTime = true
     let screenSize = UIScreen.main.bounds
@@ -49,17 +50,22 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             flowLayout.estimatedItemSize = CGSize(width: 100, height: 50)
             
         }
-        
-        
-        
-        
-        
+
         
         viewDidLayoutSubviewsForTheFirstTime = true
         
+        self.retrieveTopClubs()
         
         
-        
+    }
+    
+    func retrieveTopClubs() {
+        // Gets called one by one for each club
+        // Can reload after each club comes in
+        // And perform animation to each new cell
+        CloudKitHelper.instance.getTopClubs(n: 3) { (club) in
+            self.topClubs.append(club)
+        }
     }
     
     override func viewDidLayoutSubviews() {

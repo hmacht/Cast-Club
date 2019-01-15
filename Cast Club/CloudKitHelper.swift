@@ -37,7 +37,7 @@ class CloudKitHelper {
                 if let recs = records {
                     var results = [Club]()
                     for r in recs {
-                        var c = Club()
+                        let c = Club()
                         // Get data from club
                         if let n = r["name"] as? String {
                             c.name = n
@@ -201,6 +201,50 @@ class CloudKitHelper {
         publicDB.add(operation)
         
         completion(Club(), nil)
+    }
+    
+    func getTopClubs(n: Int, completion: @escaping (Club) -> ()) {
+        let query = CKQuery(recordType: ClubType, predicate: NSPredicate(value: true))
+        query.sortDescriptors = [NSSortDescriptor(key: "numFollowers", ascending: false)]
+        let operation = CKQueryOperation(query: query)
+        operation.resultsLimit = n
+        
+        operation.recordFetchedBlock = { r in
+            let c = Club()
+            // Get data from club
+            if let n = r["name"] as? String {
+                c.name = n
+            }
+            if let f = r["numFollowers"] as? Int {
+                c.numFollowers = f
+            }
+            if let id = r["recordName"] as? String {
+                c.id = id
+            }
+            if let category = r["category"] as? String {
+                if let cat = ClubCategory(rawValue: category) {
+                    c.category = cat
+                } else {
+                    c.category = ClubCategory.none
+                }
+            }
+            if let isPublic = r["isPublic"] as? Int {
+                if isPublic == 1 {
+                    c.isPublic = true
+                } else {
+                    c.isPublic = false
+                }
+            }
+            if let asset = r["coverPhoto"] as? CKAsset {
+                c.imgUrl = asset.fileURL
+                if let img  = c.imgUrl?.image() {
+                    c.coverImage = img
+                }
+            }
+            completion(c)
+        }
+        
+        self.publicDB.add(operation)
     }
     
     // Get the user's id

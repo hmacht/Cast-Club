@@ -370,6 +370,83 @@ class CloudKitHelper {
             }
         }
     }
+    
+    func getMessagesInReply(to messageId: String, completion: @escaping ([Message], Error?) -> ()) {
+        let query = CKQuery(recordType: MessageType, predicate: NSPredicate(format: "fromMessageId = %@", messageId))
+        
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let recs = records {
+                var results = [Message]()
+                
+                for r in recs {
+                    var message = Message()
+                    if let text = r["text"] as? String {
+                        message.text = text
+                    }
+                    if let clubId = r["clubId"] as? String {
+                        message.clubId = clubId
+                    }
+                    if let flags = r["flags"] as? Int {
+                        message.flags = flags
+                    }
+                    if let numLikes = r["numLikes"] as? Int {
+                        message.numLikes = numLikes
+                    }
+                    if let fromUser = r["fromUser"] as? String {
+                        message.fromUser = fromUser
+                    }
+                    if let fromMessageId = r["fromMessageId"] as? String {
+                        message.fromMessageId = fromMessageId
+                    }
+                    results.append(message)
+                }
+                completion(results, error)
+            } else {
+                completion([Message](), error)
+            }
+        }
+    }
+    
+    func flagMessageWithId(_ id: CKRecord.ID, completion: @escaping (Error?) -> ()) {
+        // Obtain message
+        self.publicDB.fetch(withRecordID: id) { (record, error) in
+            if let e = error {
+                completion(e)
+            } else {
+                if let rec = record {
+                    // Read current flags
+                    if let currentFlags = rec["flags"] as? Int {
+                        // Update flags and save
+                        rec["flags"] = currentFlags + 1
+                        self.publicDB.save(rec, completionHandler: { (_, e2) in
+                            completion(e2)
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
+    func likeMessageWithId(_ id: CKRecord.ID, completion: @escaping (Error?) -> ()) {
+        // Obtain message
+        self.publicDB.fetch(withRecordID: id) { (record, error) in
+            if let e = error {
+                completion(e)
+            } else {
+                if let rec = record {
+                    // Read current likes
+                    if let currentLikes = rec["numLikes"] as? Int {
+                        // Update flags and save
+                        rec["numLikes"] = currentLikes + 1
+                        self.publicDB.save(rec, completionHandler: { (_, e2) in
+                            completion(e2)
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
 }
 
 extension URL {

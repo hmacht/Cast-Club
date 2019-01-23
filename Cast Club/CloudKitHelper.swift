@@ -24,8 +24,12 @@ class CloudKitHelper {
     let ClubHolderType = "ClubHolder"
     
     // Club stuff
-    func searchClubsWithName(_ name: String, completion: @escaping ([Club]?) -> ()) {
-        let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "name BEGINSWITH %@ AND isPublic = 1", name))
+    func searchClubsWithName(_ name: String, category: ClubCategory = ClubCategory.everything, completion: @escaping ([Club]?) -> ()) {
+        var predicate = NSPredicate(format: "name BEGINSWITH %@", name)
+        if category != .everything {
+            predicate = NSPredicate(format: "name BEGINSWITH %@ AND category = %@", name, category.rawValue)
+        }
+        let query = CKQuery(recordType: ClubType, predicate: predicate)
         // Should add:
         // CKQueryOperation(query: query).desiredKeys = [blah blah blah without the image]
         // TO make faster then load in the image
@@ -57,6 +61,13 @@ class CloudKitHelper {
                         }
                         if let asset = r["coverPhoto"] as? CKAsset {
                             c.imgUrl = asset.fileURL
+                        }
+                        if let isPublic = r["isPublic"] as? Int {
+                            if isPublic == 1 {
+                                c.isPublic = true
+                            } else {
+                                c.isPublic = false
+                            }
                         }
                         results.append(c)
                     }

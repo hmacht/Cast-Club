@@ -11,6 +11,7 @@
 		211BDD7721A9F1560025A132 /* PlayPodcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */; };
 		212C621E21DEE8E5002B6AF9 /* SubscribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212C621D21DEE8E4002B6AF9 /* SubscribeButton.swift */; };
 		213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */; };
+		2145CB7721F7D75B002F307A /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2145CB7621F7D75B002F307A /* ErrorView.swift */; };
 		2163563D21D1350300EF63C8 /* CloudKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163563C21D1350300EF63C8 /* CloudKitHelper.swift */; };
 		2163563F21D1558C00EF63C8 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163563E21D1558C00EF63C8 /* Club.swift */; };
 		218A877B21D93094008541AC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A877A21D93094008541AC /* Message.swift */; };
@@ -79,6 +80,7 @@
 		211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPodcastViewController.swift; sourceTree = "<group>"; };
 		212C621D21DEE8E4002B6AF9 /* SubscribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeButton.swift; sourceTree = "<group>"; };
 		213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDownloadHelper.swift; sourceTree = "<group>"; };
+		2145CB7621F7D75B002F307A /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		2163563C21D1350300EF63C8 /* CloudKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitHelper.swift; sourceTree = "<group>"; };
 		2163563E21D1558C00EF63C8 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		218A877A21D93094008541AC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				D7870C4521E80D0F008A7206 /* ChatHeaderTableViewCell.swift */,
 				D797BEE521E8224F005500DD /* ResponceTableViewCell.swift */,
 				D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */,
+				2145CB7621F7D75B002F307A /* ErrorView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				21D13FB621A9E7E40087F00E /* Podcast.swift in Sources */,
 				21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */,
 				D715DAB921E27E6800C53708 /* DoneView.swift in Sources */,
+				2145CB7721F7D75B002F307A /* ErrorView.swift in Sources */,
 				D77D9D2121C7459400010AFC /* TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

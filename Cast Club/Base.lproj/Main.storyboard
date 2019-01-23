@@ -745,7 +745,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wgv-uN-B8j">
-                                <rect key="frame" x="0.0" y="130" width="375" height="488"/>
+                                <rect key="frame" x="0.0" y="135" width="375" height="483"/>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" rowHeight="70" id="c4h-tW-UDf">
@@ -800,8 +800,11 @@
                                 </prototypes>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="X5U-HU-baQ">
-                                <rect key="frame" x="0.0" y="76" width="375" height="46"/>
+                                <rect key="frame" x="0.0" y="76" width="375" height="54"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="Rhh-LI-j30"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="1" id="PyK-sv-4wa">
                                     <size key="itemSize" width="50" height="46"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -810,7 +813,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="catagoryCell" id="LkZ-Uv-NcJ" customClass="CatagoryCollectionViewCell" customModule="Pod_Talk" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="0.0" width="50" height="46"/>
+                                        <rect key="frame" x="16" y="4" width="50" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="46"/>
@@ -847,15 +850,14 @@
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="wgv-uN-B8j" secondAttribute="trailing" id="3lt-rw-PLN"/>
                             <constraint firstItem="X5U-HU-baQ" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="4Dh-Vh-mOs"/>
                             <constraint firstItem="X5U-HU-baQ" firstAttribute="top" secondItem="gba-iA-I84" secondAttribute="bottom" id="8ja-FG-H2m"/>
+                            <constraint firstItem="wgv-uN-B8j" firstAttribute="top" secondItem="X5U-HU-baQ" secondAttribute="bottom" constant="5" id="BDv-hc-ixX"/>
                             <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
                             <constraint firstItem="gba-iA-I84" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="H1S-nj-Qok"/>
                             <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
                             <constraint firstItem="wgv-uN-B8j" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="KUo-Oe-bIE"/>
                             <constraint firstItem="gba-iA-I84" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="LHN-n3-QNJ"/>
-                            <constraint firstItem="wgv-uN-B8j" firstAttribute="top" secondItem="X5U-HU-baQ" secondAttribute="bottom" constant="8" id="Nak-Yp-kGs"/>
                             <constraint firstItem="gba-iA-I84" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="Y1y-3P-ekn"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="wgv-uN-B8j" secondAttribute="bottom" id="ad5-Z2-9Ae"/>
-                            <constraint firstItem="wgv-uN-B8j" firstAttribute="top" secondItem="gba-iA-I84" secondAttribute="bottom" constant="54" id="flp-Kp-yLF"/>
                             <constraint firstItem="X5U-HU-baQ" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="pVW-rA-7bP"/>
                             <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
@@ -969,7 +971,6 @@
         <image name="Rectangle 164" width="131" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uGP-3G-T0P"/>
         <segue reference="vx5-G8-YPP"/>
         <segue reference="QTv-ZG-pl4"/>
     </inferredMetricsTieBreakers>

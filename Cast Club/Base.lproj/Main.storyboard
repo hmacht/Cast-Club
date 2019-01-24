@@ -174,7 +174,7 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try searching for club or podcast names or keywords" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXz-7d-VtL">
-                                <rect key="frame" x="24" y="78" width="326" height="14"/>
+                                <rect key="frame" x="24" y="78" width="326" height="11"/>
                                 <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="12"/>
                                 <color key="textColor" red="0.63564193250000001" green="0.63463193179999999" blue="0.66667133570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -597,21 +597,21 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ClubCell" rowHeight="75" id="BCg-Vh-ccF" customClass="ClubTableViewCell" customModule="Pod_Talk" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="75"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ClubCell" rowHeight="81" id="BCg-Vh-ccF" customClass="ClubTableViewCell" customModule="Pod_Talk" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BCg-Vh-ccF" id="ghn-eN-RTF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocG-dt-y5Y">
-                                                    <rect key="frame" x="324" y="23" width="36" height="7"/>
+                                                    <rect key="frame" x="324" y="23" width="36" height="13"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Te-Pe-M8V">
-                                                    <rect key="frame" x="15" y="12" width="50" height="50"/>
+                                                    <rect key="frame" x="15" y="15" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="7j8-61-xm3"/>
                                                         <constraint firstAttribute="width" constant="50" id="GhB-M9-3Ax"/>
@@ -619,7 +619,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catagory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFI-Oo-iGB">
-                                                    <rect key="frame" x="73" y="16" width="207" height="21"/>
+                                                    <rect key="frame" x="73" y="20" width="207" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="207" id="dRI-fi-NsZ"/>
                                                     </constraints>
@@ -628,7 +628,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Club Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wb-Lj-U2n">
-                                                    <rect key="frame" x="73" y="36" width="207" height="21"/>
+                                                    <rect key="frame" x="73" y="40" width="207" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -638,15 +638,15 @@
                                                 <constraint firstItem="kFI-Oo-iGB" firstAttribute="leading" secondItem="4Te-Pe-M8V" secondAttribute="trailing" constant="8" symbolic="YES" id="5c7-me-ESn"/>
                                                 <constraint firstItem="4Te-Pe-M8V" firstAttribute="leading" secondItem="ghn-eN-RTF" secondAttribute="leadingMargin" id="6mA-ho-olE"/>
                                                 <constraint firstItem="8wb-Lj-U2n" firstAttribute="leading" secondItem="4Te-Pe-M8V" secondAttribute="trailing" constant="8" symbolic="YES" id="CM2-de-n2F"/>
-                                                <constraint firstItem="4Te-Pe-M8V" firstAttribute="top" secondItem="ghn-eN-RTF" secondAttribute="topMargin" constant="1" id="CfB-Kw-DUM"/>
+                                                <constraint firstItem="4Te-Pe-M8V" firstAttribute="top" secondItem="ghn-eN-RTF" secondAttribute="topMargin" constant="4" id="CfB-Kw-DUM"/>
                                                 <constraint firstItem="8wb-Lj-U2n" firstAttribute="top" secondItem="kFI-Oo-iGB" secondAttribute="bottom" constant="-1" id="DVS-sk-7SU"/>
                                                 <constraint firstItem="ocG-dt-y5Y" firstAttribute="trailing" secondItem="ghn-eN-RTF" secondAttribute="trailingMargin" id="Dsm-Ze-IJM"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ocG-dt-y5Y" secondAttribute="bottom" constant="34" id="F34-kE-XGX"/>
                                                 <constraint firstItem="ocG-dt-y5Y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kFI-Oo-iGB" secondAttribute="trailing" constant="8" symbolic="YES" id="GDW-Kl-42Z"/>
-                                                <constraint firstItem="4Te-Pe-M8V" firstAttribute="bottom" secondItem="ghn-eN-RTF" secondAttribute="bottomMargin" constant="-2" id="Jck-BU-tiX"/>
+                                                <constraint firstItem="4Te-Pe-M8V" firstAttribute="bottom" secondItem="ghn-eN-RTF" secondAttribute="bottomMargin" constant="-5" id="Jck-BU-tiX"/>
                                                 <constraint firstItem="kFI-Oo-iGB" firstAttribute="trailing" secondItem="8wb-Lj-U2n" secondAttribute="trailing" id="UIq-PG-xNQ"/>
                                                 <constraint firstItem="ocG-dt-y5Y" firstAttribute="top" secondItem="ghn-eN-RTF" secondAttribute="topMargin" constant="12" id="fpn-2h-odU"/>
-                                                <constraint firstItem="kFI-Oo-iGB" firstAttribute="baseline" secondItem="ocG-dt-y5Y" secondAttribute="baseline" constant="7" id="sDA-n9-7WH"/>
+                                                <constraint firstItem="kFI-Oo-iGB" firstAttribute="baseline" secondItem="ocG-dt-y5Y" secondAttribute="baseline" constant="5" id="sDA-n9-7WH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

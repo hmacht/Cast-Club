@@ -120,10 +120,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             if let b = headerCell.viewWithTag(1) as? SubscribeButton {
                 self.subscribeButton = b
-                print("in here")
                 if subscriptionAlbum.contains(where: {$0.title == self.album.title && $0.artistName == self.album.artistName && $0.feedUrl == self.album.feedUrl}) {
                     // We are already subscribed
-                    print("already subscribed")
                     self.subscribeButton.setTextUnsubscribe()
                 } else {
                     self.subscribeButton.setTextSubscribe()

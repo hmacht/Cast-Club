@@ -24,8 +24,12 @@ class CloudKitHelper {
     let ClubHolderType = "ClubHolder"
     
     // Club stuff
-    func searchClubsWithName(_ name: String, completion: @escaping ([Club]?) -> ()) {
-        let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "name BEGINSWITH %@ AND isPublic = 1", name))
+    func searchClubsWithName(_ name: String, category: ClubCategory = ClubCategory.everything, completion: @escaping ([Club]?) -> ()) {
+        var predicate = NSPredicate(format: "name BEGINSWITH %@", name)
+        if category != .everything {
+            predicate = NSPredicate(format: "name BEGINSWITH %@ AND category = %@", name, category.rawValue)
+        }
+        let query = CKQuery(recordType: ClubType, predicate: predicate)
         // Should add:
         // CKQueryOperation(query: query).desiredKeys = [blah blah blah without the image]
         // TO make faster then load in the image
@@ -37,7 +41,7 @@ class CloudKitHelper {
                 if let recs = records {
                     var results = [Club]()
                     for r in recs {
-                        var c = Club()
+                        let c = Club()
                         // Get data from club
                         if let n = r["name"] as? String {
                             c.name = n
@@ -57,6 +61,13 @@ class CloudKitHelper {
                         }
                         if let asset = r["coverPhoto"] as? CKAsset {
                             c.imgUrl = asset.fileURL
+                        }
+                        if let isPublic = r["isPublic"] as? Int {
+                            if isPublic == 1 {
+                                c.isPublic = true
+                            } else {
+                                c.isPublic = false
+                            }
                         }
                         results.append(c)
                     }
@@ -203,6 +214,53 @@ class CloudKitHelper {
         completion(Club(), nil)
     }
     
+    func getTopClubs(n: Int, completion: @escaping (Club) -> ()) {
+        let query = CKQuery(recordType: ClubType, predicate: NSPredicate(value: true))
+        // Sort so that you get the biggest first
+        query.sortDescriptors = [NSSortDescriptor(key: "numFollowers", ascending: false)]
+        let operation = CKQueryOperation(query: query)
+        // Limit on num results
+        operation.resultsLimit = n
+        
+        // Gets called once for each record
+        operation.recordFetchedBlock = { r in
+            let c = Club()
+            // Get data from club
+            if let n = r["name"] as? String {
+                c.name = n
+            }
+            if let f = r["numFollowers"] as? Int {
+                c.numFollowers = f
+            }
+            if let id = r["recordName"] as? String {
+                c.id = id
+            }
+            if let category = r["category"] as? String {
+                if let cat = ClubCategory(rawValue: category) {
+                    c.category = cat
+                } else {
+                    c.category = ClubCategory.none
+                }
+            }
+            if let isPublic = r["isPublic"] as? Int {
+                if isPublic == 1 {
+                    c.isPublic = true
+                } else {
+                    c.isPublic = false
+                }
+            }
+            if let asset = r["coverPhoto"] as? CKAsset {
+                c.imgUrl = asset.fileURL
+                if let img  = c.imgUrl?.image() {
+                    c.coverImage = img
+                }
+            }
+            completion(c)
+        }
+        
+        self.publicDB.add(operation)
+    }
+    
     // Get the user's id
     func setCurrentUserId(completion: @escaping (Error?) -> ()) {
         CKContainer.default().fetchUserRecordID { (id, error) in
@@ -281,6 +339,7 @@ class CloudKitHelper {
         record["fromUser"] = message.fromUser
         record["numLikes"] = message.numLikes
         record["text"] = message.text
+        record["fromMessageId"] = message.fromMessageId
         
         publicDB.save(record) { (record, error) in
             completion(error)
@@ -311,6 +370,9 @@ class CloudKitHelper {
                     if let fromUser = r["fromUser"] as? String {
                         message.fromUser = fromUser
                     }
+                    if let fromMessageId = r["fromMessageId"] as? String {
+                        message.fromMessageId = fromMessageId
+                    }
                     results.append(message)
                 }
                 completion(results, error)
@@ -319,6 +381,83 @@ class CloudKitHelper {
             }
         }
     }
+    
+    func getMessagesInReply(to messageId: String, completion: @escaping ([Message], Error?) -> ()) {
+        let query = CKQuery(recordType: MessageType, predicate: NSPredicate(format: "fromMessageId = %@", messageId))
+        
+        publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let recs = records {
+                var results = [Message]()
+                
+                for r in recs {
+                    var message = Message()
+                    if let text = r["text"] as? String {
+                        message.text = text
+                    }
+                    if let clubId = r["clubId"] as? String {
+                        message.clubId = clubId
+                    }
+                    if let flags = r["flags"] as? Int {
+                        message.flags = flags
+                    }
+                    if let numLikes = r["numLikes"] as? Int {
+                        message.numLikes = numLikes
+                    }
+                    if let fromUser = r["fromUser"] as? String {
+                        message.fromUser = fromUser
+                    }
+                    if let fromMessageId = r["fromMessageId"] as? String {
+                        message.fromMessageId = fromMessageId
+                    }
+                    results.append(message)
+                }
+                completion(results, error)
+            } else {
+                completion([Message](), error)
+            }
+        }
+    }
+    
+    func flagMessageWithId(_ id: CKRecord.ID, completion: @escaping (Error?) -> ()) {
+        // Obtain message
+        self.publicDB.fetch(withRecordID: id) { (record, error) in
+            if let e = error {
+                completion(e)
+            } else {
+                if let rec = record {
+                    // Read current flags
+                    if let currentFlags = rec["flags"] as? Int {
+                        // Update flags and save
+                        rec["flags"] = currentFlags + 1
+                        self.publicDB.save(rec, completionHandler: { (_, e2) in
+                            completion(e2)
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
+    func likeMessageWithId(_ id: CKRecord.ID, completion: @escaping (Error?) -> ()) {
+        // Obtain message
+        self.publicDB.fetch(withRecordID: id) { (record, error) in
+            if let e = error {
+                completion(e)
+            } else {
+                if let rec = record {
+                    // Read current likes
+                    if let currentLikes = rec["numLikes"] as? Int {
+                        // Update flags and save
+                        rec["numLikes"] = currentLikes + 1
+                        self.publicDB.save(rec, completionHandler: { (_, e2) in
+                            completion(e2)
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
 }
 
 extension URL {

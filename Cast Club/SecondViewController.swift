@@ -17,9 +17,12 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var collectionView: UICollectionView!
     
     var results = [Club]()
+    var topClubs = [Club]()
     var activityIndicator = UIActivityIndicatorView()
     var viewDidLayoutSubviewsForTheFirstTime = true
     let screenSize = UIScreen.main.bounds
+    
+    var selectedCategoryIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,17 +52,22 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             flowLayout.estimatedItemSize = CGSize(width: 100, height: 50)
             
         }
-        
-        
-        
-        
-        
+
         
         viewDidLayoutSubviewsForTheFirstTime = true
         
+        self.retrieveTopClubs()
         
         
-        
+    }
+    
+    func retrieveTopClubs() {
+        // Gets called one by one for each club
+        // Can reload after each club comes in
+        // And perform animation to each new cell
+        CloudKitHelper.instance.getTopClubs(n: 3) { (club) in
+            self.topClubs.append(club)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -81,18 +89,10 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return testList.count
     }
     
-    var testList = ["Everything", "News", "Comedy", "Arts", "Business", "Education", "Games & Hobbies", "Health", "Kids", "Music", "Science", "Sports", "TV & Film", "Technology"]
+    var testList = ["Everything", "News", "Comedy", "Arts", "Business", "Education", "Games & Hobbies", "Health", "Kids", "Music", "Science", "Sports", "TV & Film", "Technology", "Other"]
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "catagoryCell", for: indexPath) as! CatagoryCollectionViewCell
-        
-//        cell.catagoryLabel.text = testList[indexPath.row]
-//        cell.catagoryLabel.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
-//        cell.catagoryLabel.clipsToBounds = true
-//        cell.catagoryLabel.layer.cornerRadius = 10
-//        cell.catagoryLabel.textColor = .white
-//        cell.catagoryLabel.sizeToFit()
-//        cell.catagoryLabel.isHidden = true
         
         
         cell.catagoryButton.setTitle(testList[indexPath.row], for: .normal)
@@ -102,12 +102,14 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.catagoryButton.titleLabel?.font = UIFont(name: "Avenir-Black", size: 13)
         
-        if indexPath.row == 0 {
+        if indexPath.row == self.selectedCategoryIndex {
             cell.catagoryButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
             cell.catagoryButton.setTitleColor(.white, for: .normal)
+            cell.catagoryButton.isUserInteractionEnabled = false
         } else {
             cell.catagoryButton.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), for: .normal)
             cell.catagoryButton.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            cell.catagoryButton.isUserInteractionEnabled = false
         }
         
         
@@ -147,10 +149,15 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         if let addButton = cell.viewWithTag(4) as? UIButton {
-            addButton.clipsToBounds = true
-            addButton.layer.cornerRadius = 15
-            addButton.layer.borderWidth = 1
-            addButton.layer.borderColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 237.0/255.0, alpha: 1.0).cgColor
+            if club.isPublic {
+                addButton.clipsToBounds = true
+                addButton.layer.cornerRadius = 15
+                addButton.layer.borderWidth = 1
+                addButton.layer.borderColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 237.0/255.0, alpha: 1.0).cgColor
+            } else {
+                addButton.setImage(UIImage(named: "Lock"), for: .normal)
+            }
+            addButton.tag = indexPath.row
             addButton.addTarget(self, action: #selector(SecondViewController.addClub), for: .touchUpInside)
         }
         
@@ -179,14 +186,28 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.activityIndicator.isHidden = false
         
         if let searchText = self.searchBar.text {
-            CloudKitHelper.instance.searchClubsWithName(searchText) { (recs) in
-                DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                }
-                if let records = recs {
-                    self.results = records
+            if let category = ClubCategory(rawValue: self.testList[self.selectedCategoryIndex]) {
+                CloudKitHelper.instance.searchClubsWithName(searchText, category: category) { (recs) in
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        self.activityIndicator.stopAnimating()
+                    }
+                    if let records = recs {
+                        self.results = records
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            } else {
+                CloudKitHelper.instance.searchClubsWithName(searchText) { (recs) in
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                    }
+                    if let records = recs {
+                        self.results = records
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
                 }
             }
@@ -196,7 +217,17 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected")
+        
+        if let cell = self.collectionView.cellForItem(at: indexPath) as? CatagoryCollectionViewCell {
+            cell.catagoryButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+            cell.catagoryButton.setTitleColor(.white, for: .normal)
+        }
+        if let currentCell = self.collectionView.cellForItem(at: IndexPath(row: self.selectedCategoryIndex, section: 0)) as? CatagoryCollectionViewCell {
+            currentCell.catagoryButton.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), for: .normal)
+            currentCell.catagoryButton.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+        }
+        
+        self.selectedCategoryIndex = indexPath.row
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -208,8 +239,16 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //self.searchBar.setShowsCancelButton(false, animated: true)
     }
     
-    @objc func addClub(){
-        print("ADD")
+    
+    @objc func addClub(sender: UIButton){
+        // If private
+        if !self.results[sender.tag].isPublic {
+            if let tabController = self.tabBarController as? PodcastTablBarController {
+                tabController.showError(with: ErrorMessage.privateClub.rawValue)
+            }
+        } else {
+            print("ADD")
+        }
     }
 
 }

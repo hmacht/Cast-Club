@@ -13,6 +13,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var clubTabelView: UITableView!
     
     var userIds = [String]()
+    var clubs = [Club?]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,9 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print(e)
             } else {
                 self.userIds = ids
+                for _ in 1...self.userIds.count {
+                    self.clubs.append(nil)
+                }
                 print("Got ids", self.userIds)
                 
                 DispatchQueue.main.async {
@@ -54,7 +58,11 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4 + self.userIds.count
+        return self.userIds.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
     }
     
     // Test Material
@@ -64,40 +72,34 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let cell = self.clubTabelView.dequeueReusableCell(withIdentifier: "ClubCell", for:indexPath) as! ClubTableViewCell
         
-        
-        let myCell = self.clubTabelView.dequeueReusableCell(withIdentifier: "ClubCell", for:indexPath) as! ClubTableViewCell
-        myCell.clubIMG.image = images[indexPath.row]
-        myCell.clubIMG.layer.cornerRadius = 25.0
-        myCell.clubIMG.clipsToBounds = true
-        myCell.clubName.text = header[indexPath.row]
-        myCell.clubName.font = UIFont(name: "Mont-HeavyDEMO", size: 16)
-        myCell.clubName.textColor = UIColor(red: 65.0/255.0, green: 65.0/255.0, blue: 65.0/255.0, alpha: 1.0)
-        myCell.catagoryLabel.text = responces[indexPath.row]
-        myCell.catagoryLabel.textColor = UIColor(red: 65.0/255.0, green: 65.0/255.0, blue: 65.0/255.0, alpha: 1.0)
-        myCell.catagoryLabel.font = UIFont(name: "Avenir-Heavy", size: 12)
-        myCell.timeStamp.text = ""
-        myCell.timeStamp.textColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-        myCell.timeStamp.font = UIFont(name: "Avenir-Medium", size: 15)
-        
-        
- 
-        
-        if indexPath.row < 4 {
-            myCell.clubIMG.image = images[indexPath.row]
-            myCell.clubName.text = header[indexPath.row]
-            //myCell.lastResponce.text = responces[indexPath.row]
-        } else {
-            CloudKitHelper.instance.getClub(with: self.userIds[indexPath.row - 4 ]) { (club, error) in
+        if self.clubs[indexPath.row] == nil {
+            // Retrieve club data
+            CloudKitHelper.instance.getClub(with: self.userIds[indexPath.row]) { (club, error) in
                 if let e = error {
-                    print(e)
+                    print("error getting club")
                 } else {
-                    // TODO - set the values of the cell
+                    self.clubs[indexPath.row] = club
+                    DispatchQueue.main.async {
+                        print(club.coverImage.size, club.name, club.category.rawValue)
+                        // TODO - Doesnt actually change labels for some reason just goes blank
+                        cell.clubIMG.image = club.coverImage
+                        cell.clubName.text = club.name
+                        cell.catagoryLabel.text = club.category.rawValue
+                    }
                 }
+            }
+        } else {
+            if let club = self.clubs[indexPath.row] {
+                cell.clubIMG.image = club.coverImage
+                cell.clubName.text = club.name
+                cell.catagoryLabel.text = club.category.rawValue
             }
         }
         
-        return myCell
+        
+        return cell
         
     }
     

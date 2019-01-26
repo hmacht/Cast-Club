@@ -43,6 +43,7 @@ class CloudKitHelper {
                     for r in recs {
                         let c = Club()
                         // Get data from club
+                        c.id = r.recordID.recordName
                         if let n = r["name"] as? String {
                             c.name = n
                         }
@@ -148,7 +149,6 @@ class CloudKitHelper {
                     let record = CKRecord(recordType: self.ClubHolderType)
                     record["fromUser"] = self.userId.recordName
                     record["clubIds"] = [id.recordName]
-                    print("Saving new record")
                     self.publicDB.save(record, completionHandler: { (_, error) in
                         completion(error)
                     })
@@ -161,10 +161,8 @@ class CloudKitHelper {
     
     func getClub(with id: String, completion: @escaping (Club, Error?) -> ()) {
         
-        let startTime = Date.timeIntervalSinceReferenceDate
         self.publicDB.fetch(withRecordID: CKRecord.ID(recordName: id)) { (record, error) in
             if let r = record {
-                print("1)", Date.timeIntervalSinceReferenceDate - startTime)
                 let c = Club()
                 // Get data from club
                 if let n = r["name"] as? String {
@@ -185,9 +183,7 @@ class CloudKitHelper {
                 }
                 if let asset = r["coverPhoto"] as? CKAsset {
                     c.imgUrl = asset.fileURL
-                    print("2)", Date.timeIntervalSinceReferenceDate - startTime)
                     if let img = c.imgUrl?.image() {
-                        print("3)", Date.timeIntervalSinceReferenceDate - startTime)
                         c.coverImage = img
                     }
                 }

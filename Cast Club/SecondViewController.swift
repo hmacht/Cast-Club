@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
@@ -247,7 +248,15 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 tabController.showError(with: ErrorMessage.privateClub.rawValue)
             }
         } else {
-            print("ADD")
+            CloudKitHelper.instance.subscribeToClub(id: CKRecord.ID(recordName: self.results[sender.tag].id)) { (error) in
+                if let e = error {
+                    if let tabController = self.tabBarController as? PodcastTablBarController {
+                        tabController.showError(with: e.localizedDescription)
+                    }
+                } else {
+                    print("successfully saved")
+                }
+            }
         }
     }
 

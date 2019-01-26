@@ -32,27 +32,28 @@ class PodcastTablBarController: UITabBarController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.showError(with: "Oppa")
-    }
-    
     func showError(with message: String) {
-        self.blockerView.isUserInteractionEnabled = true
+        
+        /*self.blockerView.isUserInteractionEnabled = true
         self.errorPopUp.message = message
         self.errorPopUp.messageLabel.text = self.errorPopUp.message
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: [], animations: {
             self.errorPopUp.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }, completion: nil)
+        }, completion: nil)*/
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func hide() {
-        self.blockerView.isUserInteractionEnabled = false
+        /*self.blockerView.isUserInteractionEnabled = false
     
         UIView.animate(withDuration: 0.4, animations: {
             self.errorPopUp.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         }) { (success) in
             self.errorPopUp.transform = CGAffineTransform(scaleX: 0, y: 0)
-        }
+        }*/
     }
     
 

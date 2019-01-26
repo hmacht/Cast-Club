@@ -51,8 +51,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             headerCell.followButton.addTarget(self, action: #selector(ClubChatVC.follow), for: .touchUpInside)
             
             headerCell.listeningToButton.addTarget(self, action: #selector(ClubChatVC.listeningTo), for: .touchUpInside)
-            
             headerCell.moreButton.addTarget(self, action: #selector(ClubChatVC.more), for: .touchUpInside)
+            headerCell.postButton.addTarget(self, action: #selector(ClubChatVC.post), for: .touchUpInside)
             
             headerCell.selectionStyle = .none
             
@@ -102,6 +102,9 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func more(){
         print("more")
+    }
+    
+    @objc func post(){
         self.performSegue(withIdentifier: "toPost", sender: self)
     }
     

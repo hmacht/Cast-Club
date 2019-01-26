@@ -102,6 +102,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func more(){
         print("more")
+        self.performSegue(withIdentifier: "toPost", sender: self)
     }
     
 

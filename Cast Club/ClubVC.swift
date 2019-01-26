@@ -72,6 +72,21 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let myCell = self.clubTabelView.dequeueReusableCell(withIdentifier: "ClubCell", for:indexPath) as! ClubTableViewCell
+        myCell.clubIMG.image = images[indexPath.row]
+        myCell.clubIMG.layer.cornerRadius = 22.5
+        myCell.clubIMG.clipsToBounds = true
+        myCell.clubName.text = header[indexPath.row]
+        myCell.clubName.font = UIFont(name: "Mont-HeavyDEMO", size: 16)
+        myCell.clubName.textColor = UIColor(red: 65.0/255.0, green: 65.0/255.0, blue: 65.0/255.0, alpha: 1.0)
+        myCell.catagoryLabel.text = responces[indexPath.row]
+        myCell.catagoryLabel.textColor = UIColor(red: 65.0/255.0, green: 65.0/255.0, blue: 65.0/255.0, alpha: 1.0)
+        myCell.catagoryLabel.font = UIFont(name: "Avenir-Heavy", size: 12)
+        myCell.timeStamp.text = ""
+        myCell.timeStamp.textColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        myCell.timeStamp.font = UIFont(name: "Avenir-Medium", size: 15)
+        
+        
         let cell = self.clubTabelView.dequeueReusableCell(withIdentifier: "ClubCell", for:indexPath) as! ClubTableViewCell
         
         if self.clubs[indexPath.row] == nil {

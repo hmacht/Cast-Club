@@ -19,7 +19,7 @@ class navViewController: UINavigationController {
         let BarButtonItemAppearance = UIBarButtonItem.appearance()
         BarButtonItemAppearance.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: .normal)
         
-        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Mont-HeavyDEMO", size: 18)!]
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Mont-HeavyDEMO", size: 17)!]
         /*
         let yourBackImage = UIImage(named: "Group 29")
         self.navigationBar.backIndicatorImage = yourBackImage

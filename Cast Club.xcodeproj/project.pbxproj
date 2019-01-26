@@ -36,6 +36,7 @@
 		D744776121A4BB1F00270726 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D744775F21A4BB1F00270726 /* LaunchScreen.storyboard */; };
 		D744776C21A4BB1F00270726 /* Cast_ClubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744776B21A4BB1F00270726 /* Cast_ClubTests.swift */; };
 		D744777721A4BB1F00270726 /* Cast_ClubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744777621A4BB1F00270726 /* Cast_ClubUITests.swift */; };
+		D74731D621FCE6FD00700FD4 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74731D521FCE6FD00700FD4 /* PostVC.swift */; };
 		D752495021D982110066C5D9 /* ClubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752494F21D982110066C5D9 /* ClubVC.swift */; };
 		D752495221D98E930066C5D9 /* ClubTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D752495121D98E930066C5D9 /* ClubTableViewCell.swift */; };
 		D760166621AC84DC00CB25BB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166521AC84DC00CB25BB /* SearchBar.swift */; };
@@ -116,6 +117,7 @@
 		D744777221A4BB1F00270726 /* Cast ClubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cast ClubUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D744777621A4BB1F00270726 /* Cast_ClubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast_ClubUITests.swift; sourceTree = "<group>"; };
 		D744777821A4BB1F00270726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D74731D521FCE6FD00700FD4 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		D752494F21D982110066C5D9 /* ClubVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubVC.swift; sourceTree = "<group>"; };
 		D752495121D98E930066C5D9 /* ClubTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubTableViewCell.swift; sourceTree = "<group>"; };
 		D760166521AC84DC00CB25BB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				D744775621A4BB1D00270726 /* FirstViewController.swift */,
 				D744775821A4BB1D00270726 /* SecondViewController.swift */,
 				D7870C4321E805B5008A7206 /* ClubChatVC.swift */,
+				D74731D521FCE6FD00700FD4 /* PostVC.swift */,
 				D752494F21D982110066C5D9 /* ClubVC.swift */,
 				D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */,
 				D7A20DC521DAAD2000304D86 /* LastStepVC.swift */,
@@ -571,6 +574,7 @@
 				D7388BA521C6F5AE00C6869D /* ErrorPopUp.swift in Sources */,
 				D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */,
 				21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */,
+				D74731D621FCE6FD00700FD4 /* PostVC.swift in Sources */,
 				D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */,
 				D744775721A4BB1D00270726 /* FirstViewController.swift in Sources */,
 				D7A20DC221DA884B00304D86 /* ClubCreationVC.swift in Sources */,

@@ -22,7 +22,7 @@
 		<key>FeedKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-Cast Club.xcscheme</key>
 		<dict>
@@ -32,7 +32,7 @@
 		<key>Pods-Cast Club.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-Cast ClubTests.xcscheme</key>
 		<dict>
@@ -42,7 +42,7 @@
 		<key>Pods-Cast ClubTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-Cast ClubUITests.xcscheme</key>
 		<dict>
@@ -52,7 +52,7 @@
 		<key>Pods-Cast ClubUITests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>5</integer>
 		</dict>
 	</dict>
 </dict>

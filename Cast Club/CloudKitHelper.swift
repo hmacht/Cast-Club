@@ -165,6 +165,7 @@ class CloudKitHelper {
             if let r = record {
                 let c = Club()
                 // Get data from club
+                c.id = r.recordID.recordName
                 if let n = r["name"] as? String {
                     c.name = n
                 }
@@ -188,8 +189,9 @@ class CloudKitHelper {
                     }
                 }
                 completion(c, error)
+            } else {
+                completion(Club(), error)
             }
-            completion(Club(), error)
         }
     }
     
@@ -351,6 +353,7 @@ class CloudKitHelper {
                 
                 for r in recs {
                     var message = Message()
+                    message.id = r.recordID.recordName
                     if let text = r["text"] as? String {
                         message.text = text
                     }
@@ -387,6 +390,7 @@ class CloudKitHelper {
                 
                 for r in recs {
                     var message = Message()
+                    message.id = r.recordID.recordName
                     if let text = r["text"] as? String {
                         message.text = text
                     }

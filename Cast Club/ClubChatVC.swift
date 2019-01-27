@@ -15,6 +15,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var selectedClub = Club()
     var selectedMessage = Message()
+    var messages = [Message]()
     
     
     override func viewDidLoad() {
@@ -36,8 +37,17 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
         
-        
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id) { (results, error) in
+            if let e = error {
+                print(e)
+            } else {
+                self.messages = results
+                // TODO - actually display them, ie. reload table view
+            }
+        }
     }
     
 //    override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +57,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 0.0)]
 //    }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
@@ -55,11 +66,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 0 {
             let headerCell = self.tableView.dequeueReusableCell(withIdentifier: "headerCell", for:indexPath) as! ChatHeaderTableViewCell
-            headerCell.profileImage.image = UIImage(named: "img1")
+            headerCell.profileImage.image = self.selectedClub.coverImage
             headerCell.profileImage.layer.cornerRadius = 30.0
             headerCell.profileImage.clipsToBounds = true
-            headerCell.nameLabel.text = "Longer Club Name"
-            headerCell.totalMembersLabel.text = "450 members"
+            headerCell.nameLabel.text = self.selectedClub.name
+            headerCell.totalMembersLabel.text = "\(self.selectedClub.numFollowers) members"
             
             headerCell.followButton.setTitle("Follow", for: .normal)
             headerCell.followButton.clipsToBounds = true

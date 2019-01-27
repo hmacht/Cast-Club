@@ -174,7 +174,7 @@
                                 </scopeButtonTitles>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try searching for club or podcast names or keywords" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXz-7d-VtL">
-                                <rect key="frame" x="24" y="78" width="326" height="14"/>
+                                <rect key="frame" x="24" y="78" width="326" height="11"/>
                                 <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="12"/>
                                 <color key="textColor" red="0.63564193250000001" green="0.63463193179999999" blue="0.66667133570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -603,11 +603,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="likeButton" destination="Jal-7O-ccV" id="uy1-jY-RgU"/>
-                                            <outlet property="replyButton" destination="ryb-ug-K6z" id="nPv-wd-vJ5"/>
-                                            <outlet property="reportButton" destination="4Bw-B8-4d9" id="r7D-wJ-czh"/>
                                             <outlet property="responcelabel" destination="cjv-CR-T2y" id="8xi-22-LvQ"/>
-                                            <outlet property="timeStamp" destination="db0-n7-Egh" id="50N-Rc-feR"/>
                                             <outlet property="usernameLabel" destination="oSj-Ec-hMO" id="l9p-Ss-QC3"/>
                                             <outlet property="usersProfileImage" destination="nYv-d8-Ptw" id="Wnu-UU-5Td"/>
                                         </connections>

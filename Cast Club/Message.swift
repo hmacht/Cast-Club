@@ -15,4 +15,5 @@ struct Message {
     var flags = 0
     var clubId = ""
     var fromMessageId = ""
+    var id = ""
 }

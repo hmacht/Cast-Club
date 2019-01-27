@@ -13,6 +13,9 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var selectedClub = Club()
+    var selectedMessage = Message()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,6 +138,14 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPost" {
+            if let destination = segue.destination as? PostVC {
+                destination.fromClub = self.selectedClub
+                destination.fromMessage = self.selectedMessage
+            }
+        }
+    }
     
     
     

@@ -14,6 +14,8 @@ class PostVC: UIViewController, UITextViewDelegate {
     var textView = UITextView()
     var postButton = UIButton()
     var closeButton = UIButton()
+    var fromClub = Club()
+    var fromMessage = Message()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,6 +123,27 @@ class PostVC: UIViewController, UITextViewDelegate {
     
     @objc func post(){
         print("POST")
+        if self.textView.text.count > 0 {
+            var message = Message()
+            message.clubId = self.fromClub.id
+            message.flags = 0
+            message.fromMessageId = self.fromMessage.id
+            message.fromUser = CloudKitHelper.instance.userId.recordName
+            message.numLikes = 0
+            message.text = self.textView.text
+            CloudKitHelper.instance.writeMessage(message) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    print("Done writing")
+                    DispatchQueue.main.async {
+                        // TODO - add some confirmation
+                        self.view.endEditing(true)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
     
     @objc func close(){

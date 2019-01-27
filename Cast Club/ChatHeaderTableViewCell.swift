@@ -16,5 +16,7 @@ class ChatHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var listeningToButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
-
+    @IBOutlet weak var postButton: UIButton!
+    
+    
 }

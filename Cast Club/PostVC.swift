@@ -21,7 +21,7 @@ class PostVC: UIViewController, UITextViewDelegate {
         createTextView()
         createPostButton()
         createCloseButton()
-        
+        attachButtonOnKeyboard()
         
         // Do any additional setup after loading the view.
         textView.delegate = self
@@ -48,7 +48,7 @@ class PostVC: UIViewController, UITextViewDelegate {
     }
     
     func createTextView() {
-        textView = UITextView(frame: CGRect(x: 10, y: screenSize.height/10, width: screenSize.width - 10, height: screenSize.height/2))
+        textView = UITextView(frame: CGRect(x: 15, y: screenSize.height/10, width: screenSize.width - 15, height: screenSize.height/2))
         textView.dataDetectorTypes = .link
         textView.text = "Share your thoughts"
         textView.textColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1.0)
@@ -57,6 +57,35 @@ class PostVC: UIViewController, UITextViewDelegate {
         textView.becomeFirstResponder()
         textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
         self.view.addSubview(textView)
+    }
+    
+    func attachButtonOnKeyboard() {
+        let button1: UIButton = UIButton(type: UIButton.ButtonType.custom) as! UIButton
+        button1.setImage(UIImage(named: "Group 499"), for: .normal)
+        
+        let button2: UIButton = UIButton(type: UIButton.ButtonType.custom) as! UIButton
+        button2.setImage(UIImage(named: "Group 498"), for: .normal)
+        
+        let button3: UIButton = UIButton(type: UIButton.ButtonType.custom) as! UIButton
+        button3.setImage(UIImage(named: "Group 497"), for: .normal)
+        
+        let button4: UIButton = UIButton(type: UIButton.ButtonType.custom) as! UIButton
+        button4.setImage(UIImage(named: "Group 335"), for: .normal)
+        //button.addTarget(self, action: #selector(ClubCreationVC.done), for: .touchUpInside)
+        let bb1 = UIBarButtonItem(customView: button1)
+        let bb2 = UIBarButtonItem(customView: button2)
+        let bb3 = UIBarButtonItem(customView: button3)
+        let bb4 = UIBarButtonItem(customView: button4)
+        
+    
+        let toolbar = UIToolbar()
+        toolbar.barTintColor = .white
+        //toolbar.setItems([bb1, bb2, bb3, bb4], animated: false)
+        
+        toolbar.items = [bb1, bb2, bb3, bb4]
+        
+        toolbar.sizeToFit()
+        textView.inputAccessoryView = toolbar
     }
     
     // creates placeholder text
@@ -98,5 +127,18 @@ class PostVC: UIViewController, UITextViewDelegate {
         print("CLOSE")
         self.view.endEditing(true)
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func camera(){
+        print("CAMERA")
+    }
+    @objc func gallary(){
+        print("GALLARY")
+    }
+    @objc func link(){
+        print("LINK")
+    }
+    @objc func podcast(){
+        print("PODCAST")
     }
 }

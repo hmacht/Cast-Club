@@ -274,24 +274,48 @@ class CloudKitHelper {
     
     // Album stuff
     func saveAlbumToPrivate(_ album: PodcastAlbum, completion: @escaping (Error?) -> ()) {
-        // Create record for album
-        let record = CKRecord(recordType: AlbumType)
-        record["title"] = album.title
-        record["artistName"] = album.artistName
-        record["feedUrl"] = album.feedUrl
-        record["numEpisodes"] = album.numEpisodes
-        record["artworkUrl"] = album.artworkUrl100
+        // Search to see if it already exists
+        let query = CKQuery(recordType: AlbumType, predicate: NSPredicate(format: "feedUrl BEGINSWITH %@ AND title = %@", album.feedUrl, album.title))
         
-        // Save it
-        privateDB.save(record) { (record, error) in
-            completion(error)
+        self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let e = error {
+                completion(e)
+            } else {
+                if let rec = records?.first {
+                    // We have found the record
+                    if var subscribedUsers = rec["subscribedUsers"] as? [String] {
+                        subscribedUsers.append(self.userId.recordName)
+                        rec["subscribedUsers"] = subscribedUsers
+                        self.publicDB.save(rec, completionHandler: { (_, error3) in
+                            completion(error3)
+                        })
+                    }
+                } else {
+                    // That record does not exist yet
+                    // Create record for album
+                    let record = CKRecord(recordType: self.AlbumType)
+                    record["title"] = album.title
+                    record["artistName"] = album.artistName
+                    record["feedUrl"] = album.feedUrl
+                    record["numEpisodes"] = album.numEpisodes
+                    record["artworkUrl"] = album.artworkUrl100
+                    record["subscribedUsers"] = [self.userId.recordName]
+                    
+                    // Save it
+                    self.publicDB.save(record) { (record, e2) in
+                        completion(e2)
+                    }
+                }
+            }
         }
+        
+        
     }
     
     func getAlbums(completion: @escaping ([PodcastAlbum], Error?) -> ()) {
         // Get all albums from private data base
-        let query = CKQuery(recordType: AlbumType, predicate: NSPredicate(value: true))
-        self.privateDB.perform(query, inZoneWith: nil) { (records, error) in
+        let query = CKQuery(recordType: AlbumType, predicate: NSPredicate(format: "subscribedUsers CONTAINS %@", self.userId.recordName))
+        self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let recs = records {
                 var results = [PodcastAlbum]()
                 // Create new PodcastAlbum instance for each record returned
@@ -324,8 +348,27 @@ class CloudKitHelper {
     
     func unsubsribe(from album: PodcastAlbum, completion: @escaping (Error?) -> ()) {
         // Delete the album from the users database
-        self.privateDB.delete(withRecordID: album.recordId) { (id, error) in
-            completion(error)
+        // Fetch the album
+        self.publicDB.fetch(withRecordID: album.recordId) { (record, error) in
+            if let e = error {
+                completion(e)
+            } else {
+                if let rec = record {
+                    // Get list of users
+                    if var subscribedUsers = rec["subscribedUsers"] as? [String] {
+                        if let ind = subscribedUsers.firstIndex(of: self.userId.recordName) {
+                            // Remove user from list
+                            subscribedUsers.remove(at: ind)
+                            rec["subscribedUsers"] = subscribedUsers
+                            self.publicDB.save(rec, completionHandler: { (_, error2) in
+                                completion(error2)
+                            })
+                        }
+                    }
+                } else {
+                    completion(error)
+                }
+            }
         }
     }
     

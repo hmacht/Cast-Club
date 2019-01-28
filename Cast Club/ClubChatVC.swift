@@ -46,6 +46,9 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } else {
                 self.messages = results
                 // TODO - actually display them, ie. reload table view
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -59,8 +62,9 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return self.messages.count + 1
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -90,14 +94,18 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             myCell.usersProfileImage.layer.cornerRadius = 20.0
             myCell.usersProfileImage.clipsToBounds = true
             myCell.usernameLabel.sizeToFit()
-            myCell.usernameLabel.text = "Username"
-            myCell.responcelabel.text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt Lorem ipsum dolor sit amet."
+            myCell.usernameLabel.text = self.messages[indexPath.row - 1].fromUser
+            myCell.responcelabel.text = self.messages[indexPath.row - 1].text
             myCell.responcelabel.sizeToFit()
             myCell.responcelabel.numberOfLines = 50
             
+            if let likeButton = myCell.viewWithTag(1) as? UIButton {
+                likeButton.setTitle(String(self.messages[indexPath.row - 1].numLikes), for: .normal) 
+            }
+            
             myCell.contentView.backgroundColor = UIColor(red: 246.0/255.0, green: 246.0/255.0, blue: 250.0/255.0, alpha: 1.0)
             
-            let whiteRoundedView : UIView = UIView(frame: CGRect(x: 0, y: 8, width: self.view.frame.size.width, height: myCell.frame.height - 10))
+            let whiteRoundedView : UIView = UIView(frame: CGRect(x: 0, y: 8, width: self.view.frame.size.width, height: myCell.contentView.frame.height))
             
             
             whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [255.0, 255.0, 255.0, 1.0])
@@ -126,14 +134,13 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 653"), style: .done, target: self, action: #selector(ClubChatVC.post))
             self.navigationItem.rightBarButtonItem = rightBarButtonItem
-            print("larger")
         } else {
             if let navController = navigationController {
                 navController.navigationBar.topItem?.title = ""
             }
             let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 654"), style: .done, target: self, action: #selector(ClubChatVC.filter))
             self.navigationItem.rightBarButtonItem = rightBarButtonItem
-            print("smaller")
+            
         }
 //        if tableView.contentOffset.y < 100 && tableView.contentOffset.y > 0 {
 //            if let navController = navigationController {

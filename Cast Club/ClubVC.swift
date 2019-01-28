@@ -47,7 +47,6 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print(e)
             } else {
                 self.userIds = ids
-                print("Got ids", self.userIds)
                 for id in self.userIds {
                     CloudKitHelper.instance.getClub(with: id, completion: { (club, error) in
                         self.clubs.append(club)
@@ -77,36 +76,9 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let cell = self.clubTabelView.dequeueReusableCell(withIdentifier: "ClubCell", for:indexPath) as! ClubTableViewCell
         let club = self.clubs[indexPath.row]
-        print(club.name, club.category, club.id)
         cell.clubIMG.image = club.coverImage
         cell.clubName.text = club.name
         cell.catagoryLabel.text = club.category.rawValue
-        
-        /*if indexPath.row >= self.clubs.count {
-            // Retrieve club data
-            CloudKitHelper.instance.getClub(with: self.userIds[indexPath.row]) { (club, error) in
-                if let e = error {
-                    print("error getting club")
-                } else {
-                    self.clubs.append(club)
-                    print("Count", self.clubs.count)
-                    DispatchQueue.main.async {
-                        print(club.coverImage.size, club.name, club.category.rawValue)
-                        print("From array", self.clubs[indexPath.row].coverImage.size, self.clubs[indexPath.row].name)
-                        // TODO - Doesnt actually change labels for some reason just goes blank
-                        cell.clubIMG.image = club.coverImage
-                        cell.clubName.text = club.name
-                        cell.catagoryLabel.text = club.category.rawValue
-                    }
-                }
-            }
-        } else {
-            let club = self.clubs[indexPath.row]
-            cell.clubIMG.image = club.coverImage
-            cell.clubName.text = club.name
-            cell.catagoryLabel.text = club.category.rawValue
-            
-        }*/
         
         
         return cell
@@ -115,10 +87,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print(indexPath)
-        print("in here")
         self.selectedClub = self.clubs[indexPath.row]
-        print(self.clubs[indexPath.row].name)
     
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "toChat", sender: self)
@@ -148,7 +117,6 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        print("Here", self.selectedClub.name)
         if segue.identifier == "toChat" {
             if let destination = segue.destination as? ClubChatVC {
                 destination.selectedClub = self.selectedClub

@@ -82,6 +82,9 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.clubName.text = club.name
         cell.catagoryLabel.text = club.category.rawValue
         
+        cell.catagoryLabel.font = UIFont(name: "Avenir-Heavy", size: 12)
+        cell.clubName.font = UIFont(name: "Avenir-Black", size: 16)
+        
         /*if indexPath.row >= self.clubs.count {
             // Retrieve club data
             CloudKitHelper.instance.getClub(with: self.userIds[indexPath.row]) { (club, error) in

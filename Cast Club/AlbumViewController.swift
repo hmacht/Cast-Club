@@ -287,25 +287,27 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func subscribe(_ sender: Any) {
         
         var alreadySubscribed = false
-        for i in 0...subscriptionAlbum.count - 1 {
-            let a = subscriptionAlbum[i]
-            // We are already subscribed to this album
-            // So we must unsubscribe
-            if a.title == self.album.title && a.artistName == self.album.artistName && a.feedUrl == self.album.feedUrl {
-                alreadySubscribed = true
-                CloudKitHelper.instance.unsubsribe(from: a) { (error) in
-                    if let e = error {
-                        print(e)
-                    } else {
-                        subscriptionAlbum.remove(at: i)
-                        // TODO - add some sort of ui feedback
-                        print("Done unsubscribing")
-                        DispatchQueue.main.async {
-                            self.subscribeButton.setTextSubscribe()
+        if subscriptionAlbum.count > 0 {
+            for i in 0...subscriptionAlbum.count - 1 {
+                let a = subscriptionAlbum[i]
+                // We are already subscribed to this album
+                // So we must unsubscribe
+                if a.title == self.album.title && a.artistName == self.album.artistName && a.feedUrl == self.album.feedUrl {
+                    alreadySubscribed = true
+                    CloudKitHelper.instance.unsubsribe(from: a) { (error) in
+                        if let e = error {
+                            print(e)
+                        } else {
+                            subscriptionAlbum.remove(at: i)
+                            // TODO - add some sort of ui feedback
+                            print("Done unsubscribing")
+                            DispatchQueue.main.async {
+                                self.subscribeButton.setTextSubscribe()
+                            }
                         }
                     }
+                    break
                 }
-                break
             }
         }
         

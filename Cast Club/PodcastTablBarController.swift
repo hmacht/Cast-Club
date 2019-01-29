@@ -32,7 +32,7 @@ class PodcastTablBarController: UITabBarController {
         
     }
     
-    func showError(with message: String) {
+    /*func showError(with message: String) {
         
         /*self.blockerView.isUserInteractionEnabled = true
         self.errorPopUp.message = message
@@ -44,7 +44,7 @@ class PodcastTablBarController: UITabBarController {
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
-    }
+    }*/
     
     @objc func hide() {
         /*self.blockerView.isUserInteractionEnabled = false
@@ -67,4 +67,15 @@ class PodcastTablBarController: UITabBarController {
     }
     */
 
+}
+
+
+extension UITabBarController {
+    func showError(with message: String) {
+        
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
 }

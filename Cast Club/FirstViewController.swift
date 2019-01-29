@@ -55,24 +55,25 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             self.view.addSubview(discovewrBtn)
         }
         
-        // Get user subscriptions
-        CloudKitHelper.instance.getAlbums { (albums, error) in
-            if let e = error {
-                print(e)
-            } else if albums.count > 0 {
-                subscriptionAlbum = albums
-                DispatchQueue.main.async {
-                    self.errorPopUp?.removeFromSuperview()
-                    self.discovewrBtn.removeFromSuperview()
-                    self.myCollectionView.reloadData()
-                }
-            }
-        }
         
         // TODO - very important to handle this if can't "authenticate" user
         CloudKitHelper.instance.setCurrentUserId { (error) in
             if let e = error {
                 print(e)
+            } else {
+                // Get user subscriptions
+                CloudKitHelper.instance.getAlbums { (albums, error) in
+                    if let e = error {
+                        print(e)
+                    } else if albums.count > 0 {
+                        subscriptionAlbum = albums
+                        DispatchQueue.main.async {
+                            self.errorPopUp?.removeFromSuperview()
+                            self.discovewrBtn.removeFromSuperview()
+                            self.myCollectionView.reloadData()
+                        }
+                    }
+                }
             }
         }
         

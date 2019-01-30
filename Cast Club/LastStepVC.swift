@@ -125,13 +125,12 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     func addDoneButtonOnKeyboard() {
         let button: UIButton = UIButton(type: UIButton.ButtonType.custom) as! UIButton
         button.setImage(UIImage(named: "Group 463"), for: .normal)
-        button.addTarget(self, action: #selector(ClubCreationVC.done), for: .touchUpInside)
+        button.addTarget(self, action: #selector(LastStepVC.done), for: .touchUpInside)
         let barButton = UIBarButtonItem(customView: button)
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let toolbar = UIToolbar()
         toolbar.barTintColor = .white
         toolbar.setItems([flexSpace, flexSpace, barButton], animated: false)
-        
         toolbar.sizeToFit()
         catagoryInput.inputAccessoryView = toolbar
     }

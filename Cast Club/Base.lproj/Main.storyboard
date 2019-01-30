@@ -425,11 +425,11 @@
             <objects>
                 <viewController id="2jA-pc-MRs" customClass="ClubChatVC" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fdO-8j-rYM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F63-m8-lrD">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerCell" rowHeight="156" id="vZa-Ki-U3H" customClass="ChatHeaderTableViewCell" customModule="Pod_Talk" customModuleProvider="target">
@@ -649,11 +649,11 @@
             <objects>
                 <viewController id="zCF-y8-IBF" customClass="ClubVC" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AZz-if-PMT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3k0-Cs-HG5">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -742,7 +742,7 @@
             <objects>
                 <viewController id="Zbf-qH-Wtx" customClass="ClubCreationVC" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OaH-PV-uxf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7Sw-Xr-HLe"/>
@@ -760,7 +760,7 @@
             <objects>
                 <viewController id="f4P-Q0-ptK" customClass="LastStepVC" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jNm-qc-Lfu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="JmH-g0-8Ks"/>
@@ -937,7 +937,19 @@
                     <view key="view" contentMode="scaleToFill" id="vJR-gH-ss8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Wy-Nb-4dT">
+                                <rect key="frame" x="127" y="174" width="120" height="30"/>
+                                <state key="normal" title="Create Username"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8Wy-Nb-4dT" firstAttribute="top" secondItem="rc4-7u-TcB" secondAttribute="top" constant="154" id="0kc-BH-fPV"/>
+                            <constraint firstItem="rc4-7u-TcB" firstAttribute="trailing" secondItem="8Wy-Nb-4dT" secondAttribute="trailing" constant="128" id="fDt-Vm-qJB"/>
+                            <constraint firstItem="rc4-7u-TcB" firstAttribute="bottom" secondItem="8Wy-Nb-4dT" secondAttribute="bottom" constant="414" id="lh9-jw-ADp"/>
+                            <constraint firstItem="8Wy-Nb-4dT" firstAttribute="leading" secondItem="rc4-7u-TcB" secondAttribute="leading" constant="127" id="x7N-io-tCw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rc4-7u-TcB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Profile-L" selectedImage="Profile-D" id="Fh0-Di-OFg"/>
@@ -994,7 +1006,7 @@
         <scene sceneID="NMX-F5-RwI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ck8-Ny-xWC" customClass="navViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Club-L-1" selectedImage="Club-L" id="YYX-i2-pDK"/>
+                    <tabBarItem key="tabBarItem" title="" image="Group 664" selectedImage="Group -1" id="YYX-i2-pDK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="EXx-PE-ry7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1014,15 +1026,15 @@
     <resources>
         <image name="Browse-D" width="27" height="27"/>
         <image name="Browse-L" width="27" height="27"/>
-        <image name="Club-L" width="26" height="28"/>
-        <image name="Club-L-1" width="26" height="28"/>
         <image name="Grid-D" width="23.5" height="23.5"/>
         <image name="Grid-L" width="23.5" height="23.5"/>
+        <image name="Group -1" width="24.5" height="28"/>
         <image name="Group 278" width="59" height="43"/>
         <image name="Group 306" width="11" height="6.5"/>
         <image name="Group 411" width="10.5" height="10.5"/>
         <image name="Group 652" width="59" height="43"/>
         <image name="Group 653" width="33.5" height="33.5"/>
+        <image name="Group 664" width="24.5" height="28"/>
         <image name="Path 1700" width="15.5" height="14"/>
         <image name="Path 1882" width="14.5" height="13.5"/>
         <image name="Profile-D" width="24" height="26.5"/>
@@ -1030,8 +1042,7 @@
         <image name="Rectangle 164" width="131" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oCs-JR-Erb"/>
-        <segue reference="vx5-G8-YPP"/>
+        <segue reference="Pqa-ip-UDE"/>
         <segue reference="QTv-ZG-pl4"/>
     </inferredMetricsTieBreakers>
 </document>

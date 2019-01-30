@@ -80,6 +80,35 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.clubName.text = club.name
         cell.catagoryLabel.text = club.category.rawValue
         
+        cell.catagoryLabel.font = UIFont(name: "Avenir-Heavy", size: 12)
+        cell.clubName.font = UIFont(name: "Avenir-Black", size: 16)
+        
+        /*if indexPath.row >= self.clubs.count {
+            // Retrieve club data
+            CloudKitHelper.instance.getClub(with: self.userIds[indexPath.row]) { (club, error) in
+                if let e = error {
+                    print("error getting club")
+                } else {
+                    self.clubs.append(club)
+                    print("Count", self.clubs.count)
+                    DispatchQueue.main.async {
+                        print(club.coverImage.size, club.name, club.category.rawValue)
+                        print("From array", self.clubs[indexPath.row].coverImage.size, self.clubs[indexPath.row].name)
+                        // TODO - Doesnt actually change labels for some reason just goes blank
+                        cell.clubIMG.image = club.coverImage
+                        cell.clubName.text = club.name
+                        cell.catagoryLabel.text = club.category.rawValue
+                    }
+                }
+            }
+        } else {
+            let club = self.clubs[indexPath.row]
+            cell.clubIMG.image = club.coverImage
+            cell.clubName.text = club.name
+            cell.catagoryLabel.text = club.category.rawValue
+            
+        }*/
+        
         
         return cell
         

@@ -13,5 +13,9 @@ class ResponceTableViewCell: UITableViewCell {
     @IBOutlet weak var usersProfileImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var responcelabel: UILabel!
+    @IBOutlet weak var timeStamp: UILabel!
+    @IBOutlet weak var reportButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var replyButton: UIButton!
     
 }

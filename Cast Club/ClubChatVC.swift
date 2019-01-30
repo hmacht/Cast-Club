@@ -100,7 +100,15 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             myCell.responcelabel.numberOfLines = 50
             
             if let likeButton = myCell.viewWithTag(1) as? UIButton {
-                likeButton.setTitle(String(self.messages[indexPath.row - 1].numLikes), for: .normal) 
+                likeButton.setTitle(String(self.messages[indexPath.row - 1].numLikes), for: .normal)
+                likeButton.tag = indexPath.row - 1
+                
+                likeButton.addTarget(self, action: #selector(ClubChatVC.likeMessage(sender:)), for: .touchUpInside)
+                
+                if self.messages[indexPath.row - 1].likedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
+                    // User has already liked message
+                    likeButton.setTitleColor(.red, for: .normal)
+                }
             }
             
             myCell.contentView.backgroundColor = UIColor(red: 246.0/255.0, green: 246.0/255.0, blue: 250.0/255.0, alpha: 1.0)
@@ -168,6 +176,42 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    @objc func likeMessage(sender: UIButton) {
+        let m = self.messages[sender.tag]
+        
+        
+        if m.likedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
+            self.messages[sender.tag].numLikes -= 1
+            if let ind = self.messages[sender.tag].likedUsersList.firstIndex(of: CloudKitHelper.instance.userId.recordName) {
+                self.messages[sender.tag].likedUsersList.remove(at: ind)
+            }
+            // User has already liked the message
+            CloudKitHelper.instance.unlikeMessageWithId(m.id.ckId()) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    DispatchQueue.main.async {
+                        sender.setTitleColor(.black, for: .normal)
+                        sender.setTitle("\(m.numLikes - 1)", for: .normal)
+                    }
+                }
+            }
+        } else {
+            // Like the message
+            self.messages[sender.tag].numLikes += 1
+            self.messages[sender.tag].likedUsersList.append(CloudKitHelper.instance.userId.recordName)
+            CloudKitHelper.instance.likeMessageWithId(m.id.ckId()) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    DispatchQueue.main.async {
+                        sender.setTitleColor(.red, for: .normal)
+                        sender.setTitle("\(m.numLikes + 1)", for: .normal)
+                    }
+                }
+            }
+        }
+    }
     
     @objc func follow(){
         print("Now folowing")

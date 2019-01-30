@@ -17,6 +17,8 @@ class ClubCreationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(clubCreationView)
+        
+        clubCreationView.doneButton.addTarget(self, action: #selector(ClubCreationVC.done), for: .touchUpInside)
         //NotificationCenter.default.addObserver(self, selector: "textChanged:", name: UITextField.textDidChangeNotification, object: nil)
 
         // Do any additional setup after loading the view.
@@ -38,6 +40,12 @@ class ClubCreationVC: UIViewController {
             }
             
         }
+    }
+    
+    @objc func done() {
+        print("Done")
+        self.performSegue(withIdentifier: "lastStep", sender: self)
+        
     }
     
     

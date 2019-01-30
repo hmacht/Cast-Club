@@ -40,7 +40,7 @@ class createView: UIView {
         clubNameInput.addTarget(self, action: #selector(textFieldEditingDidChange), for: UIControl.Event.editingChanged)
         self.addSubview(clubNameInput)
         
-        header = UILabel(frame: CGRect(x: clubNameInput.frame.minX, y: screenSize.height/10, width: 200, height: 30))
+        header = UILabel(frame: CGRect(x: clubNameInput.frame.minX, y: screenSize.height/10, width: 250, height: 30))
         header.textAlignment = .left
         header.textColor = .black
         header.font = UIFont(name: "Mont-HeavyDEMO", size: 27)
@@ -60,7 +60,7 @@ class createView: UIView {
     func addDoneButtonOnKeyboard() {
         doneButton = UIButton(type: UIButton.ButtonType.custom) as! UIButton
         doneButton.setImage(UIImage(named: "Group 443"), for: .normal)
-        doneButton.addTarget(self, action: #selector(createView.done), for: .touchUpInside)
+        
         barButton = UIBarButtonItem(customView: doneButton)
         barButton.isEnabled = false
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
@@ -87,11 +87,7 @@ class createView: UIView {
         }
     }
     
-    @objc func done() {
-        print("Done")
-        //self.performSegue(withIdentifier: "lastStep", sender: self)
-        
-    }
+    
     
     /*
     // Only override draw() if you perform custom drawing.

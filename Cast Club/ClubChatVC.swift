@@ -100,14 +100,15 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             myCell.responcelabel.numberOfLines = 50
             
             if let likeButton = myCell.viewWithTag(1) as? UIButton {
-                likeButton.setTitle(String(self.messages[indexPath.row - 1].numLikes), for: .normal)
+                likeButton.setTitle(String(" \(self.messages[indexPath.row - 1].numLikes)"), for: .normal)
                 likeButton.tag = indexPath.row - 1
                 
                 likeButton.addTarget(self, action: #selector(ClubChatVC.likeMessage(sender:)), for: .touchUpInside)
                 
                 if self.messages[indexPath.row - 1].likedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
                     // User has already liked message
-                    likeButton.setTitleColor(.red, for: .normal)
+                    //likeButton.setTitleColor(.red, for: .normal)
+                    likeButton.setImage(UIImage(named: "Path 1885"), for: .normal)
                 }
             }
             
@@ -191,8 +192,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     print(e)
                 } else {
                     DispatchQueue.main.async {
-                        sender.setTitleColor(.black, for: .normal)
-                        sender.setTitle("\(m.numLikes - 1)", for: .normal)
+                        //sender.setTitleColor(.black, for: .normal)
+                        sender.setImage(UIImage(named: "Path 1700"), for: .normal)
+                        let generator = UIImpactFeedbackGenerator(style: .medium)
+                        generator.impactOccurred()
+                        sender.setTitle(" \(m.numLikes - 1)", for: .normal)
                     }
                 }
             }
@@ -205,8 +209,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     print(e)
                 } else {
                     DispatchQueue.main.async {
-                        sender.setTitleColor(.red, for: .normal)
-                        sender.setTitle("\(m.numLikes + 1)", for: .normal)
+                        //sender.setTitleColor(.red, for: .normal)
+                        sender.setImage(UIImage(named: "Path 1885"), for: .normal)
+                        let generator = UIImpactFeedbackGenerator(style: .medium)
+                        generator.impactOccurred()
+                        sender.setTitle(" \(m.numLikes + 1)", for: .normal)
                     }
                 }
             }

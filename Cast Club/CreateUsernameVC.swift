@@ -10,10 +10,28 @@ import UIKit
 
 class CreateUsernameVC: UIViewController {
 
+    let usernameCreationView = createView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), headerText: "Enter a Name", placeholderText: "Username")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(usernameCreationView)
+        
+        usernameCreationView.doneButton.addTarget(self, action: #selector(CreateUsernameVC.done), for: .touchUpInside)
+        usernameCreationView.header.numberOfLines = 2
+        //NotificationCenter.default.addObserver(self, selector: "textChanged:", name: UITextField.textDidChangeNotification, object: nil)
+        
         // Do any additional setup after loading the view.
+        
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        
+        usernameCreationView.clubNameInput.becomeFirstResponder()
+    }
+    
+    @objc func done() {
+        print("Done")
+        
     }
     
 

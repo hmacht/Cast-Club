@@ -51,6 +51,7 @@
 		D77D9D2321C7576200010AFC /* UITableView+reloadSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77D9D2221C7576200010AFC /* UITableView+reloadSearch.swift */; };
 		D7870C4421E805B5008A7206 /* ClubChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7870C4321E805B5008A7206 /* ClubChatVC.swift */; };
 		D7870C4621E80D0F008A7206 /* ChatHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7870C4521E80D0F008A7206 /* ChatHeaderTableViewCell.swift */; };
+		D78FFBF12201374C00B9ABBF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78FFBF02201374C00B9ABBF /* ProfileViewController.swift */; };
 		D797BEE621E8224F005500DD /* ResponceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D797BEE521E8224F005500DD /* ResponceTableViewCell.swift */; };
 		D7A20DC221DA884B00304D86 /* ClubCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */; };
 		D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */; };
@@ -134,6 +135,7 @@
 		D77D9D2221C7576200010AFC /* UITableView+reloadSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+reloadSearch.swift"; sourceTree = "<group>"; };
 		D7870C4321E805B5008A7206 /* ClubChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubChatVC.swift; sourceTree = "<group>"; };
 		D7870C4521E80D0F008A7206 /* ChatHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		D78FFBF02201374C00B9ABBF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D797BEE521E8224F005500DD /* ResponceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponceTableViewCell.swift; sourceTree = "<group>"; };
 		D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCreationVC.swift; sourceTree = "<group>"; };
 		D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFeild+LineColor.swift"; sourceTree = "<group>"; };
@@ -255,10 +257,12 @@
 				21C87D4421A87FD000F9E727 /* Model */,
 				D744775621A4BB1D00270726 /* FirstViewController.swift */,
 				D744775821A4BB1D00270726 /* SecondViewController.swift */,
+				D78FFBF02201374C00B9ABBF /* ProfileViewController.swift */,
 				D7870C4321E805B5008A7206 /* ClubChatVC.swift */,
 				D74731D521FCE6FD00700FD4 /* PostVC.swift */,
 				D752494F21D982110066C5D9 /* ClubVC.swift */,
 				D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */,
+				D70A84D022010ECE00893744 /* CreateUsernameVC.swift */,
 				D7A20DC521DAAD2000304D86 /* LastStepVC.swift */,
 				218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */,
 				21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */,
@@ -270,7 +274,6 @@
 				D744775F21A4BB1F00270726 /* LaunchScreen.storyboard */,
 				D744776221A4BB1F00270726 /* Info.plist */,
 				D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */,
-				D70A84D022010ECE00893744 /* CreateUsernameVC.swift */,
 			);
 			path = "Cast Club";
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				D70A84D122010ECE00893744 /* CreateUsernameVC.swift in Sources */,
 				21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */,
 				D715DAB921E27E6800C53708 /* DoneView.swift in Sources */,
+				D78FFBF12201374C00B9ABBF /* ProfileViewController.swift in Sources */,
 				2145CB7721F7D75B002F307A /* ErrorView.swift in Sources */,
 				D77D9D2121C7459400010AFC /* TableViewCell.swift in Sources */,
 			);

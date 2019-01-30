@@ -16,4 +16,5 @@ struct Message {
     var clubId = ""
     var fromMessageId = ""
     var id = ""
+    var likedUsersList = [String]()
 }

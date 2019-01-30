@@ -381,6 +381,7 @@ class CloudKitHelper {
         record["numLikes"] = message.numLikes
         record["text"] = message.text
         record["fromMessageId"] = message.fromMessageId
+        record["likedUsersList"] = message.likedUsersList
         
         publicDB.save(record) { (record, error) in
             completion(error)
@@ -414,6 +415,9 @@ class CloudKitHelper {
                     }
                     if let fromMessageId = r["fromMessageId"] as? String {
                         message.fromMessageId = fromMessageId
+                    }
+                    if let likedUsersList = r["likedUsersList"] as? [String] {
+                        message.likedUsersList = likedUsersList
                     }
                     results.append(message)
                 }
@@ -451,6 +455,9 @@ class CloudKitHelper {
                     }
                     if let fromMessageId = r["fromMessageId"] as? String {
                         message.fromMessageId = fromMessageId
+                    }
+                    if let likedUsersList = r["likedUsersList"] as? [String] {
+                        message.likedUsersList = likedUsersList
                     }
                     results.append(message)
                 }
@@ -492,6 +499,12 @@ class CloudKitHelper {
                     if let currentLikes = rec["numLikes"] as? Int {
                         // Update flags and save
                         rec["numLikes"] = currentLikes + 1
+                        if var likedUsersList = rec["likedUsersList"] as? [String] {
+                            likedUsersList.append(self.userId.recordName)
+                            rec["likedUsersList"] = likedUsersList
+                        } else {
+                            rec["likedUsersList"] = [self.userId.recordName]
+                        }
                         self.publicDB.save(rec, completionHandler: { (_, e2) in
                             completion(e2)
                         })
@@ -500,6 +513,34 @@ class CloudKitHelper {
             }
         }
     }
+    
+    func unlikeMessageWithId(_ id: CKRecord.ID, completion: @escaping (Error?) -> ()) {
+        // Obtain message
+        self.publicDB.fetch(withRecordID: id) { (record, error) in
+            if let e = error {
+                completion(e)
+            } else {
+                if let rec = record {
+                    // Read current likes
+                    if let currentLikes = rec["numLikes"] as? Int {
+                        // Update flags and save
+                        rec["numLikes"] = max(currentLikes - 1, 0)
+                        if var likedUsersList = rec["likedUsersList"] as? [String] {
+                            if let ind = likedUsersList.firstIndex(of: self.userId.recordName) {
+                                likedUsersList.remove(at: ind)
+                            }
+                            rec["likedUsersList"] = likedUsersList
+                        }
+                        self.publicDB.save(rec, completionHandler: { (_, e2) in
+                            completion(e2)
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
+    
     
 }
 
@@ -527,5 +568,12 @@ struct ImageHelper {
             }
         }
         return fileURL
+    }
+}
+
+
+extension String {
+    func ckId() -> CKRecord.ID {
+        return CKRecord.ID(recordName: self)
     }
 }

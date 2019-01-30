@@ -40,7 +40,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id) { (results, error) in
+        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: .likes) { (results, error) in
             if let e = error {
                 print(e)
             } else {

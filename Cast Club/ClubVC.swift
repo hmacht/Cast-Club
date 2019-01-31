@@ -42,19 +42,33 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 257"), style: .done, target: self, action: #selector(ClubVC.playlist))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         
-        CloudKitHelper.instance.getClubIdsForCurrentUser { (ids, error) in
-            if let e = error {
-                print(e)
-            } else {
-                self.userIds = ids
-                for id in self.userIds {
-                    CloudKitHelper.instance.getClub(with: id, completion: { (club, error) in
-                        self.clubs.append(club)
-                        DispatchQueue.main.async {
-                            self.clubTabelView.reloadData()
-                        }
-                    })
+        if clubIds == ["none"] {
+            // Have not gotten club ids yet
+            CloudKitHelper.instance.getClubIdsForCurrentUser { (ids, error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    self.userIds = ids
+                    clubIds = ids
+                    for id in self.userIds {
+                        CloudKitHelper.instance.getClub(with: id, completion: { (club, error) in
+                            self.clubs.append(club)
+                            DispatchQueue.main.async {
+                                self.clubTabelView.reloadData()
+                            }
+                        })
+                    }
                 }
+            }
+        } else {
+            self.userIds = clubIds
+            for id in self.userIds {
+                CloudKitHelper.instance.getClub(with: id, completion: { (club, error) in
+                    self.clubs.append(club)
+                    DispatchQueue.main.async {
+                        self.clubTabelView.reloadData()
+                    }
+                })
             }
         }
     }

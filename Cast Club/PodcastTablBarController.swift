@@ -14,6 +14,7 @@ class PodcastTablBarController: UITabBarController {
     
     var errorPopUp = ErrorView()
     var blockerView = UIView()
+    var clubIds = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,7 @@ class PodcastTablBarController: UITabBarController {
 
 
 extension UITabBarController {
+    
     func showError(with message: String) {
         
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)

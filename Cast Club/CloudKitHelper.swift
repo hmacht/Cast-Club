@@ -388,8 +388,17 @@ class CloudKitHelper {
         }
     }
     
-    func getMessagesForClub(_ clubId: String, completion: @escaping ([Message], Error?) -> ()) {
+    
+    func getMessagesForClub(_ clubId: String, sortOption: SortOption = .likes, completion: @escaping ([Message], Error?) -> ()) {
         let query = CKQuery(recordType: MessageType, predicate: NSPredicate(format: "clubId = %@", clubId))
+        
+        if sortOption == .likes {
+            // Get messages with most likes first
+            query.sortDescriptors = [NSSortDescriptor(key: "numLikes", ascending: false)]
+        } else if sortOption == .newest {
+            // Get newest messages first
+            query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        }
         
         publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let recs = records {
@@ -428,8 +437,16 @@ class CloudKitHelper {
         }
     }
     
-    func getMessagesInReply(to messageId: String, completion: @escaping ([Message], Error?) -> ()) {
+    func getMessagesInReply(to messageId: String, sortOption: SortOption = .likes, completion: @escaping ([Message], Error?) -> ()) {
         let query = CKQuery(recordType: MessageType, predicate: NSPredicate(format: "fromMessageId = %@", messageId))
+        
+        if sortOption == .likes {
+            // Get messages with most likes first
+            query.sortDescriptors = [NSSortDescriptor(key: "numLikes", ascending: false)]
+        } else if sortOption == .newest {
+            // Get newest messages first
+            query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        }
         
         publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let recs = records {
@@ -576,4 +593,9 @@ extension String {
     func ckId() -> CKRecord.ID {
         return CKRecord.ID(recordName: self)
     }
+}
+
+enum SortOption {
+    case likes
+    case newest
 }

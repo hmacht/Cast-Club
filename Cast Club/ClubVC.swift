@@ -73,6 +73,14 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.userIds = clubIds
+        self.clubs = clubs.filter({self.userIds.contains($0.id)})
+        self.clubTabelView.reloadData()
+        
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.clubs.count
     }

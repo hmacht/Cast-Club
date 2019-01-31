@@ -26,6 +26,8 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var selectedCategoryIndex = 0
     
+    var headTitle = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -231,6 +233,8 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else if tableView.tag == 1{
             catagoryTableView.deselectRow(at: indexPath, animated: true)
             print(testList[indexPath.row])
+            headTitle = testList[indexPath.row]
+            self.performSegue(withIdentifier: "toCatagoryList", sender: self)
         }
         
     }
@@ -326,6 +330,16 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print("successfully saved")
                 }
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is catagoryVC
+        {
+            let vc = segue.destination as? catagoryVC
+            vc?.headerTitleText = headTitle
+            
         }
     }
 

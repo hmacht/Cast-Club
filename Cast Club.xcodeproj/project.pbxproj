@@ -57,6 +57,7 @@
 		D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */; };
 		D7A20DC621DAAD2000304D86 /* LastStepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC521DAAD2000304D86 /* LastStepVC.swift */; };
 		D7AF62C421EAB5AC00101919 /* CatagoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */; };
+		D7E15D5022027A3C006BA3F2 /* catagoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E15D4F22027A3C006BA3F2 /* catagoryVC.swift */; };
 		D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */; };
 		D7F365D321B0D352007F2CD9 /* slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F365D221B0D352007F2CD9 /* slider.swift */; };
 		D7F4A59D21CBEE9A006626FB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F4A59C21CBEE9A006626FB /* CloudKit.framework */; };
@@ -141,6 +142,7 @@
 		D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFeild+LineColor.swift"; sourceTree = "<group>"; };
 		D7A20DC521DAAD2000304D86 /* LastStepVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepVC.swift; sourceTree = "<group>"; };
 		D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		D7E15D4F22027A3C006BA3F2 /* catagoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catagoryVC.swift; sourceTree = "<group>"; };
 		D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniController.swift; sourceTree = "<group>"; };
 		D7F365D221B0D352007F2CD9 /* slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slider.swift; sourceTree = "<group>"; };
 		D7F4A59B21CBEE97006626FB /* Pod Talk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pod Talk.entitlements"; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				D744775621A4BB1D00270726 /* FirstViewController.swift */,
 				D744775821A4BB1D00270726 /* SecondViewController.swift */,
 				D78FFBF02201374C00B9ABBF /* ProfileViewController.swift */,
+				D7E15D4F22027A3C006BA3F2 /* catagoryVC.swift */,
 				D7870C4321E805B5008A7206 /* ClubChatVC.swift */,
 				D74731D521FCE6FD00700FD4 /* PostVC.swift */,
 				D752494F21D982110066C5D9 /* ClubVC.swift */,
@@ -599,6 +602,7 @@
 				D760166821AC9C6E00CB25BB /* CollectionViewCell.swift in Sources */,
 				21C87D4821A883DF00F9E727 /* PodcastAlbum.swift in Sources */,
 				D797BEE621E8224F005500DD /* ResponceTableViewCell.swift in Sources */,
+				D7E15D5022027A3C006BA3F2 /* catagoryVC.swift in Sources */,
 				218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */,
 				21AEF18021B095DA000DDA49 /* RemoteControlsHelper.swift in Sources */,
 				D760166D21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift in Sources */,
@@ -789,14 +793,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Club/Pod Talk.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LCX682S6EY;
+				DEVELOPMENT_TEAM = 9832H7K9P2;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -810,14 +814,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Club/Pod Talk.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LCX682S6EY;
+				DEVELOPMENT_TEAM = 9832H7K9P2;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

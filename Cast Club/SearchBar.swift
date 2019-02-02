@@ -48,7 +48,7 @@ class SearchBar: UISearchBar {
                     var bounds: CGRect
                     bounds = textField.bounds
                     bounds.size.height = 50 //(set height whatever you want)
-                    bounds.size.width = screenSize.width - 30
+                    //bounds.size.width = screenSize.width - 30
                     textField.bounds = bounds
                     textField.borderStyle = UITextField.BorderStyle.roundedRect
                 }

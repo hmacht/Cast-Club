@@ -17,10 +17,18 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let screenSize = UIScreen.main.bounds
+        extendedLayoutIncludesOpaqueBars = true
+        
+        
 
-        // Do any additional setup after loading the view.
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: -(screenSize.height/45)).isActive = true
+        
+        
     }
     
     

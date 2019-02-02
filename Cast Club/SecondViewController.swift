@@ -13,7 +13,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    
     @IBOutlet weak var tableView: UITableView!
     //@IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var catagoryTableView: UITableView!
@@ -27,6 +27,8 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var selectedCategoryIndex = 0
     
     var headTitle = ""
+    
+    var searchBar = SearchBar(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +57,17 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.tableFooterView = UIView()
         catagoryTableView.keyboardDismissMode = .onDrag
         
+        let yourBackImage = UIImage(named: "Group 29")
+        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
         
+        searchBar.searchBarStyle = UISearchBar.Style.default
+        searchBar.placeholder = " Search for a club"
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        searchBar.delegate = self
+        searchBar.tintColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+        self.navigationItem.titleView = searchBar
     
         // Need to fix resizing
 //        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
@@ -68,6 +80,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.retrieveTopClubs()
         
+        extendedLayoutIncludesOpaqueBars = true
         
     }
     

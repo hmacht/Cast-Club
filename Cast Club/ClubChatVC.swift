@@ -144,11 +144,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        if tableView.contentOffset.y > 60 {
+        if tableView.contentOffset.y > 130 {
             if let navController = navigationController {
                 navController.navigationBar.topItem?.title = "Longer Club Name"
             }
-            let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 653"), style: .done, target: self, action: #selector(ClubChatVC.post))
+            let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 734"), style: .done, target: self, action: #selector(ClubChatVC.more))
             self.navigationItem.rightBarButtonItem = rightBarButtonItem
         } else {
             if let navController = navigationController {
@@ -261,10 +261,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func more(){
         print("more")
+        self.performSegue(withIdentifier: "toPost", sender: self)
     }
     
     @objc func post(){
-        self.performSegue(withIdentifier: "toPost", sender: self)
+        //self.performSegue(withIdentifier: "toPost", sender: self)
     }
     
     @objc func filter(){

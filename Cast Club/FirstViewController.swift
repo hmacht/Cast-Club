@@ -8,8 +8,12 @@
 
 import UIKit
 
+// The podcast albums the user is subscribed to
 var subscriptionAlbum = [PodcastAlbum]()
 var newSubscriptions = 0
+
+// The clubs the user is subscribed to
+var clubIds = ["none"]
 
 class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
@@ -57,13 +61,14 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         
         
         // TODO - very important to handle this if can't "authenticate" user
+        // TODO - theoretically this logic should be moved to some sort of loading view
         CloudKitHelper.instance.setCurrentUserId { (error) in
             if let e = error {
                 print(e)
             } else {
-                // Get user subscriptions
-                CloudKitHelper.instance.getAlbums { (albums, error) in
-                    if let e = error {
+                // Get user subscriptions albums
+                CloudKitHelper.instance.getAlbums { (albums, error2) in
+                    if let e = error2 {
                         print(e)
                     } else if albums.count > 0 {
                         subscriptionAlbum = albums
@@ -74,6 +79,15 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                         }
                     }
                 }
+                
+                // Get user subscribed clubs
+                CloudKitHelper.instance.getClubIdsForCurrentUser(completion: { (results, error3) in
+                    if let e = error3 {
+                        print(e)
+                    } else {
+                        clubIds = results
+                    }
+                })
             }
         }
         

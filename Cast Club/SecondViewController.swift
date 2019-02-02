@@ -154,6 +154,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 DispatchQueue.global(qos: .background).async {
                     if let img = club.imgUrl?.image() {
                         DispatchQueue.main.async {
+                            club.coverImage = img
                             imgView.image = img
                         }
                     }
@@ -315,19 +316,33 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @objc func addClub(sender: UIButton){
+        let tag = sender.tag
         // If private
         if !self.results[sender.tag].isPublic {
             if let tabController = self.tabBarController as? PodcastTablBarController {
                 tabController.showError(with: ErrorMessage.privateClub.rawValue)
             }
         } else {
-            CloudKitHelper.instance.subscribeToClub(id: CKRecord.ID(recordName: self.results[sender.tag].id)) { (error) in
-                if let e = error {
-                    if let tabController = self.tabBarController as? PodcastTablBarController {
-                        tabController.showError(with: e.localizedDescription)
+            if clubIds.contains(self.results[sender.tag].id) {
+                // Already subscribed
+                self.tabBarController?.showError(with: "You are already subscribed to this club.")
+            } else {
+                CloudKitHelper.instance.subscribeToClub(id: CKRecord.ID(recordName: self.results[sender.tag].id)) { (error) in
+                    if let e = error {
+                        if let tabController = self.tabBarController as? PodcastTablBarController {
+                            tabController.showError(with: e.localizedDescription)
+                        }
+                    } else {
+                        
+                        clubIds.append(self.results[tag].id)
+                        // Tell clubvc that we have a new club to display
+                        if let navController = self.tabBarController?.customizableViewControllers?[2] as? UINavigationController {
+                            if let clubVC = navController.topViewController as? ClubVC {
+                                clubVC.clubs.append(self.results[tag])
+                            }
+                        }
+                        print("successfully saved")
                     }
-                } else {
-                    print("successfully saved")
                 }
             }
         }

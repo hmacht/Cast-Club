@@ -159,6 +159,36 @@ class CloudKitHelper {
         }
     }
     
+    func unsubscribeFromClub(id: String, completion: @escaping (Error?) -> ()) {
+        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
+        
+        // Get the ClubHolder for user
+        self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let recs = records {
+                if let firstRec = recs.first {
+                    var clubHolder = firstRec
+                    if let ids = firstRec["clubIds"] as? [String] {
+                        var userIds = ids
+                        if let ind = userIds.firstIndex(of: id) {
+                            userIds.remove(at: ind)
+                        }
+                        // Update the clubholder
+                        clubHolder["clubIds"] = userIds
+                        self.publicDB.save(clubHolder, completionHandler: { (_, e) in
+                            completion(e)
+                        })
+                    } else {
+                        completion(error)
+                    }
+                } else {
+                    completion(error)
+                }
+            } else {
+                completion(error)
+            }
+        }
+    }
+    
     func getClub(with id: String, completion: @escaping (Club, Error?) -> ()) {
         
         self.publicDB.fetch(withRecordID: CKRecord.ID(recordName: id)) { (record, error) in

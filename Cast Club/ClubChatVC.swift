@@ -76,10 +76,15 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             headerCell.nameLabel.text = self.selectedClub.name
             headerCell.totalMembersLabel.text = "\(self.selectedClub.numFollowers) members"
             
-            headerCell.followButton.setTitle("Follow", for: .normal)
+            if clubIds.contains(self.selectedClub.id) {
+                // We follow it already
+                headerCell.followButton.setTitle("Unfollow", for: .normal)
+            } else {
+                headerCell.followButton.setTitle("Follow", for: .normal)
+            }
             headerCell.followButton.clipsToBounds = true
             headerCell.followButton.layer.cornerRadius = 6.0
-            headerCell.followButton.addTarget(self, action: #selector(ClubChatVC.follow), for: .touchUpInside)
+            headerCell.followButton.addTarget(self, action: #selector(ClubChatVC.follow(sender:)), for: .touchUpInside)
             
             headerCell.listeningToButton.addTarget(self, action: #selector(ClubChatVC.listeningTo), for: .touchUpInside)
             headerCell.moreButton.addTarget(self, action: #selector(ClubChatVC.more), for: .touchUpInside)
@@ -220,8 +225,34 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    @objc func follow(){
-        print("Now folowing")
+    @objc func follow(sender: UIButton){
+        if clubIds.contains(self.selectedClub.id) {
+            // We are already subscribed so unsubscribe
+            if let ind = clubIds.firstIndex(of: self.selectedClub.id) {
+                clubIds.remove(at: ind)
+            }
+            CloudKitHelper.instance.unsubscribeFromClub(id: self.selectedClub.id) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    DispatchQueue.main.async {
+                        sender.setTitle("Follow", for: .normal)
+                    }
+                }
+            }
+        } else {
+            // Subscribe to club
+            clubIds.append(self.selectedClub.id)
+            CloudKitHelper.instance.subscribeToClub(id: self.selectedClub.id.ckId()) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    DispatchQueue.main.async {
+                        sender.setTitle("Unfollow", for: .normal)
+                    }
+                }
+            }
+        }
     }
     
     @objc func listeningTo(){

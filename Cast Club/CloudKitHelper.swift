@@ -412,6 +412,7 @@ class CloudKitHelper {
         record["text"] = message.text
         record["fromMessageId"] = message.fromMessageId
         record["likedUsersList"] = message.likedUsersList
+        record["flaggedUsersList"] = message.flaggedUsersList
         
         publicDB.save(record) { (record, error) in
             completion(error)
@@ -457,6 +458,9 @@ class CloudKitHelper {
                     }
                     if let likedUsersList = r["likedUsersList"] as? [String] {
                         message.likedUsersList = likedUsersList
+                    }
+                    if let flaggedUsersList = r["flaggedUsersList"] as? [String] {
+                        message.flaggedUsersList = flaggedUsersList
                     }
                     results.append(message)
                 }
@@ -506,6 +510,9 @@ class CloudKitHelper {
                     if let likedUsersList = r["likedUsersList"] as? [String] {
                         message.likedUsersList = likedUsersList
                     }
+                    if let flaggedUsersList = r["flaggedUsersList"] as? [String] {
+                        message.flaggedUsersList = flaggedUsersList
+                    }
                     results.append(message)
                 }
                 completion(results, error)
@@ -526,6 +533,12 @@ class CloudKitHelper {
                     if let currentFlags = rec["flags"] as? Int {
                         // Update flags and save
                         rec["flags"] = currentFlags + 1
+                        if var flaggedUsersList = rec["flaggedUsersList"] as? [String] {
+                            flaggedUsersList.append(self.userId.recordName)
+                            rec["flaggedUsersList"] = flaggedUsersList
+                        } else {
+                            rec["flaggedUsersList"] = [self.userId.recordName]
+                        }
                         self.publicDB.save(rec, completionHandler: { (_, e2) in
                             completion(e2)
                         })

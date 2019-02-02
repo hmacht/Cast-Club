@@ -59,7 +59,7 @@ class SearchBar: UISearchBar {
         
         
         
-        var textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
+        let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField
     
         textFieldInsideSearchBar?.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
         

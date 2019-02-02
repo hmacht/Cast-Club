@@ -117,6 +117,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
             
+            if let moreButton = myCell.viewWithTag(2) as? UIButton {
+                moreButton.tag = indexPath.row - 1
+                moreButton.addTarget(self, action: #selector(ClubChatVC.moreButtonPressed(sender:)), for: .touchUpInside)
+            }
+            
             myCell.contentView.backgroundColor = UIColor(red: 246.0/255.0, green: 246.0/255.0, blue: 250.0/255.0, alpha: 1.0)
             
             
@@ -253,6 +258,41 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
+    }
+    
+    @objc func moreButtonPressed(sender: UIButton) {
+        let popUp = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
+        
+        let flagAction = UIAlertAction(title: "Report", style: .default) { (action) in
+            if self.messages[sender.tag].flaggedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
+                // We have already flagged the message
+                self.tabBarController?.showError(with: "You have already flagged this message.")
+            } else {
+                self.messages[sender.tag].flaggedUsersList.append(CloudKitHelper.instance.userId.recordName)
+                self.messages[sender.tag].flags += 1
+                CloudKitHelper.instance.flagMessageWithId(self.messages[sender.tag].id.ckId(), completion: { (error) in
+                    if let e = error {
+                        print(e)
+                    } else {
+                        print("Done flagging")
+                    }
+                })
+            }
+        }
+        
+        
+        // TODO - implement sharing to facebook, also maybe twitter
+        let shareFacebookAction = UIAlertAction(title: "Share To Facebook", style: .default) { (action) in
+            print("Share to facebook")
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        popUp.addAction(flagAction)
+        popUp.addAction(shareFacebookAction)
+        popUp.addAction(cancelAction)
+        
+        self.present(popUp, animated: true, completion: nil)
     }
     
     @objc func listeningTo(){

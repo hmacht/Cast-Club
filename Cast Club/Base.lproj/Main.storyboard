@@ -561,7 +561,7 @@
                                                     <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bw-B8-4d9">
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bw-B8-4d9">
                                                     <rect key="frame" x="142" y="24" width="19" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="T6w-e2-5PZ"/>
@@ -944,7 +944,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLv-1W-FmR">
-                                                    <rect key="frame" x="15" y="51" width="318.5" height="50"/>
+                                                    <rect key="frame" x="15" y="51" width="318.5" height="50.5"/>
                                                     <string key="text">Join one that suits your interests. Clubs tend to
 Listen to podcasts that are related to their catagory.</string>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>

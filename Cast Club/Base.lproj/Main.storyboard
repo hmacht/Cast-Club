@@ -477,7 +477,7 @@
                                                     </constraints>
                                                     <state key="normal" backgroundImage="Group 652"/>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWO-1T-gvo">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWO-1T-gvo">
                                                     <rect key="frame" x="327" y="25" width="33" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33" id="dPH-Ts-4BY"/>
@@ -491,7 +491,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="8QV-LA-ehR"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="Group 278"/>
+                                                    <state key="normal" backgroundImage="Group 733"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -635,7 +635,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXN-nb-CJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5133.6000000000004" y="568.06596701649175"/>
+            <point key="canvasLocation" x="6072.8000000000002" y="568.06596701649175"/>
         </scene>
         <!--PostVC-->
         <scene sceneID="WHm-Tn-a2z">
@@ -650,7 +650,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPO-Bm-q9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5929" y="568"/>
+            <point key="canvasLocation" x="6868" y="567.16641679160421"/>
         </scene>
         <!--ClubVC-->
         <scene sceneID="yY6-du-Nek">
@@ -786,29 +786,24 @@
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="86.5" y="312" width="202" height="43"/>
+                                <rect key="frame" x="86.5" y="280" width="202" height="43"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="80" y="363" width="215" height="17"/>
+                                <rect key="frame" x="80" y="331" width="215" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" placeholder="Search for a Club" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gba-iA-I84" customClass="SearchBar" customModule="Pod_Talk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="56"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView hidden="YES" clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wgv-uN-B8j">
-                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" rowHeight="70" id="c4h-tW-UDf">
@@ -862,15 +857,15 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hQy-Cz-f57">
-                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hQy-Cz-f57">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="catagoryCell" id="KGT-VX-GGJ">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KGT-VX-GGJ" id="scm-Si-pl3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catagory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pA-5H-SDp">
@@ -906,50 +901,46 @@
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="wgv-uN-B8j" secondAttribute="trailing" id="3lt-rw-PLN"/>
                             <constraint firstItem="hQy-Cz-f57" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="8JA-74-HHa"/>
                             <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="gba-iA-I84" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="H1S-nj-Qok"/>
                             <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
                             <constraint firstItem="wgv-uN-B8j" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="KUo-Oe-bIE"/>
-                            <constraint firstItem="gba-iA-I84" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="LHN-n3-QNJ"/>
                             <constraint firstItem="hQy-Cz-f57" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="LaY-Sk-JST"/>
-                            <constraint firstItem="gba-iA-I84" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="Y1y-3P-ekn"/>
                             <constraint firstItem="hQy-Cz-f57" firstAttribute="top" secondItem="wgv-uN-B8j" secondAttribute="top" id="Zei-R7-nYX"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="wgv-uN-B8j" secondAttribute="bottom" id="ad5-Z2-9Ae"/>
-                            <constraint firstItem="hQy-Cz-f57" firstAttribute="top" secondItem="gba-iA-I84" secondAttribute="bottom" id="b4R-sY-9Oa"/>
+                            <constraint firstItem="hQy-Cz-f57" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="bQe-q0-Ddk"/>
                             <constraint firstItem="hQy-Cz-f57" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="dVx-p3-wWs"/>
                             <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Browse-L" selectedImage="Browse-D" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" id="jEj-cK-4Qf"/>
                     <connections>
                         <outlet property="catagoryTableView" destination="hQy-Cz-f57" id="hAw-vr-GtU"/>
-                        <outlet property="searchBar" destination="gba-iA-I84" id="cFx-R1-7wP"/>
                         <outlet property="tableView" destination="wgv-uN-B8j" id="KJa-fV-OPS"/>
                         <segue destination="Bzf-2M-qiT" kind="show" identifier="toCatagoryList" id="DEI-i0-sjL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
+            <point key="canvasLocation" x="1688.8" y="359.37031484257875"/>
         </scene>
         <!--CatagoryVC-->
         <scene sceneID="Eol-HU-zkS">
             <objects>
                 <viewController id="Bzf-2M-qiT" customClass="catagoryVC" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T3z-Za-B1G">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7nk-G4-FVn">
-                                <rect key="frame" x="0.0" y="47" width="375" height="620"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7nk-G4-FVn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" tag="6" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerCell" rowHeight="110" id="6t7-vx-obY">
                                         <rect key="frame" x="0.0" y="28" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6t7-vx-obY" id="VAc-Y2-efz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLv-1W-FmR">
@@ -963,7 +954,7 @@ Listen to podcasts that are related to their catagory.</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catagory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kej-xA-jcE">
                                                     <rect key="frame" x="15" y="15" width="132" height="41"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="30"/>
-                                                    <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -980,7 +971,7 @@ Listen to podcasts that are related to their catagory.</string>
                                         <rect key="frame" x="0.0" y="138" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hq7-c8-g07" id="Vcj-uo-59C">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iL3-FA-YrX">
@@ -1016,27 +1007,13 @@ Listen to podcasts that are related to their catagory.</string>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYB-mM-3Fm">
-                                <rect key="frame" x="16" y="25" width="13" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="1Qc-wP-F1r"/>
-                                    <constraint firstAttribute="width" constant="13" id="8Gx-rH-Q65"/>
-                                </constraints>
-                                <state key="normal" image="Group 29"/>
-                                <connections>
-                                    <segue destination="8rJ-Kc-sve" kind="show" id="pAG-Ou-vrn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7nk-G4-FVn" firstAttribute="leading" secondItem="fe4-Is-vCT" secondAttribute="leading" id="0dA-at-N3K"/>
-                            <constraint firstItem="7nk-G4-FVn" firstAttribute="top" secondItem="GYB-mM-3Fm" secondAttribute="bottom" id="8mM-DZ-Axv"/>
-                            <constraint firstItem="GYB-mM-3Fm" firstAttribute="leading" secondItem="fe4-Is-vCT" secondAttribute="leading" constant="16" id="MJ5-rM-gsY"/>
-                            <constraint firstItem="7nk-G4-FVn" firstAttribute="bottom" secondItem="fe4-Is-vCT" secondAttribute="bottom" id="mOd-4w-3HR"/>
-                            <constraint firstItem="GYB-mM-3Fm" firstAttribute="top" secondItem="fe4-Is-vCT" secondAttribute="top" constant="5" id="skb-oT-oNM"/>
-                            <constraint firstItem="7nk-G4-FVn" firstAttribute="top" secondItem="fe4-Is-vCT" secondAttribute="top" constant="27" id="ubU-b2-3m5"/>
-                            <constraint firstItem="7nk-G4-FVn" firstAttribute="trailing" secondItem="fe4-Is-vCT" secondAttribute="trailing" id="voR-5N-7Ze"/>
+                            <constraint firstItem="7nk-G4-FVn" firstAttribute="bottom" secondItem="fe4-Is-vCT" secondAttribute="bottom" id="43S-vh-tqE"/>
+                            <constraint firstItem="7nk-G4-FVn" firstAttribute="top" secondItem="fe4-Is-vCT" secondAttribute="top" id="HCl-Xl-irN"/>
+                            <constraint firstItem="7nk-G4-FVn" firstAttribute="leading" secondItem="fe4-Is-vCT" secondAttribute="leading" id="Ta5-i6-2Dt"/>
+                            <constraint firstItem="7nk-G4-FVn" firstAttribute="trailing" secondItem="fe4-Is-vCT" secondAttribute="trailing" id="cuZ-aN-5d2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fe4-Is-vCT"/>
                     </view>
@@ -1046,7 +1023,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bf8-ik-dsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1576.8" y="358.4707646176912"/>
+            <point key="canvasLocation" x="2516" y="358.4707646176912"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="HVd-JC-qsQ">
@@ -1109,7 +1086,7 @@ Listen to podcasts that are related to their catagory.</string>
                     </tabBar>
                     <connections>
                         <segue destination="wHO-qR-UOp" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="smb-xW-trE" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="Ck8-Ny-xWC" kind="relationship" relationship="viewControllers" id="p38-Qb-JEw"/>
                         <segue destination="40R-4k-dDa" kind="relationship" relationship="viewControllers" id="UKe-XV-2Wp"/>
                     </connections>
@@ -1127,7 +1104,7 @@ Listen to podcasts that are related to their catagory.</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="aas-Rn-8OL">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="18"/>
                         </textAttributes>
@@ -1150,7 +1127,7 @@ Listen to podcasts that are related to their catagory.</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="EXx-PE-ry7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1181,6 +1158,26 @@ Listen to podcasts that are related to their catagory.</string>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="1820.2398800599701"/>
         </scene>
+        <!--Nav View Controller-->
+        <scene sceneID="R2V-Qm-QyK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="smb-xW-trE" customClass="navViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Browse-L" selectedImage="Browse-D" id="cPa-gy-q4n"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Bgr-oe-Pvp">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="PhF-NY-MBc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pab-Nk-p4d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Browse-D" width="27" height="27"/>
@@ -1188,13 +1185,12 @@ Listen to podcasts that are related to their catagory.</string>
         <image name="Grid-D" width="23.5" height="23.5"/>
         <image name="Grid-L" width="23.5" height="23.5"/>
         <image name="Group -1" width="24.5" height="28"/>
-        <image name="Group 278" width="59" height="43"/>
-        <image name="Group 29" width="13" height="20"/>
         <image name="Group 306" width="11" height="6.5"/>
         <image name="Group 411" width="10.5" height="10.5"/>
         <image name="Group 652" width="59" height="43"/>
         <image name="Group 653" width="33.5" height="33.5"/>
         <image name="Group 664" width="24.5" height="28"/>
+        <image name="Group 733" width="59" height="43"/>
         <image name="Path 1700" width="15.5" height="14"/>
         <image name="Path 1882" width="14.5" height="13.5"/>
         <image name="Profile-D" width="24" height="26.5"/>
@@ -1202,7 +1198,6 @@ Listen to podcasts that are related to their catagory.</string>
         <image name="Rectangle 164" width="131" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pAG-Ou-vrn"/>
         <segue reference="Pqa-ip-UDE"/>
         <segue reference="QTv-ZG-pl4"/>
     </inferredMetricsTieBreakers>

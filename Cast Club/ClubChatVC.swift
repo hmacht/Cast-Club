@@ -13,6 +13,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
+    let screenSize = UIScreen.main.bounds
+    
     var selectedClub = Club()
     var selectedMessage = Message()
     var messages = [Message]()
@@ -310,6 +312,10 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func filter(){
         print("FILTER")
+        
+        let bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height), viewHeight: 100)
+        self.view.addSubview(bucketView)
+        
     }
     
 

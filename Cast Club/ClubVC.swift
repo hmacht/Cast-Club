@@ -151,13 +151,17 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let screenSize = UIScreen.main.bounds
     
+    
+    
     @objc func playlist() {
         print("playlist")
         
-        tabBarController?.tabBar.isHidden = true
-        let bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height), viewHeight: 500)
-        self.view.addSubview(bucketView)
+        
+        
+        
     }
+    
+    
     
     @objc func add() {
         print("add something")
@@ -178,6 +182,8 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
+    
  
 
 }

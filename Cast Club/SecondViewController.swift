@@ -34,9 +34,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
-        
         // Set delagates
         self.searchBar.delegate = self
         self.tableView.delegate = self
@@ -81,10 +78,16 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         viewDidLayoutSubviewsForTheFirstTime = true
         
-        self.retrieveTopClubs()
+        //self.retrieveTopClubs()
         
         extendedLayoutIncludesOpaqueBars = true
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
     }
     
     func retrieveTopClubs() {

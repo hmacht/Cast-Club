@@ -242,8 +242,12 @@ class CloudKitHelper {
         completion(Club(), nil)
     }
     
-    func getTopClubs(n: Int, completion: @escaping (Club) -> ()) {
-        let query = CKQuery(recordType: ClubType, predicate: NSPredicate(value: true))
+    func getTopClubs(n: Int, category: ClubCategory = .everything, completion: @escaping (Club) -> ()) {
+        var predicate = NSPredicate(value: true)
+        if category != .everything {
+            predicate = NSPredicate(format: "category = %@", category.rawValue)
+        }
+        let query = CKQuery(recordType: ClubType, predicate: predicate)
         // Sort so that you get the biggest first
         query.sortDescriptors = [NSSortDescriptor(key: "numFollowers", ascending: false)]
         let operation = CKQueryOperation(query: query)
@@ -254,14 +258,12 @@ class CloudKitHelper {
         operation.recordFetchedBlock = { r in
             let c = Club()
             // Get data from club
+            c.id = r.recordID.recordName
             if let n = r["name"] as? String {
                 c.name = n
             }
             if let f = r["numFollowers"] as? Int {
                 c.numFollowers = f
-            }
-            if let id = r["recordName"] as? String {
-                c.id = id
             }
             if let category = r["category"] as? String {
                 if let cat = ClubCategory(rawValue: category) {

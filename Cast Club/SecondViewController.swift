@@ -34,6 +34,9 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+        
         // Set delagates
         self.searchBar.delegate = self
         self.tableView.delegate = self
@@ -257,7 +260,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         
-        
+        self.searchBar.setShowsCancelButton(false, animated: true)
         self.searchBar.endEditing(true)
         self.results = []
         self.tableView.reloadData()

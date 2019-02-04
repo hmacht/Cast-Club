@@ -16,6 +16,9 @@ class BucketView: UIView {
     var bgView = UIView()
     var closeButton = UIButton()
     var reportButton = UIButton()
+    var facebookButton = UIButton()
+    var messageButton = UIButton()
+    var twitterButton = UIButton()
     
     
     let viewHeight: Int
@@ -88,12 +91,18 @@ class BucketView: UIView {
         self.view.addSubview(title1)
         
         for i in 0...2 {
-            print("Hello")
             var shareButton = UIButton(frame: CGRect(x: xPos, y: 40, width: Int(screenSize.width/6), height: Int(screenSize.width/6)))
             shareButton.setImage(UIImage(named: buttonImages[i]), for: .normal)
             shareButton.layer.cornerRadius = screenSize.width/12
             shareButton.addTarget(self, action: #selector(BucketView.share), for: .touchUpInside)
             shareButton.tag = i
+            if i == 0 {
+                self.messageButton = shareButton
+            } else if i == 1 {
+                self.twitterButton = shareButton
+            } else {
+                self.facebookButton = shareButton
+            }
             self.view.addSubview(shareButton)
             xPos += Int(screenSize.width/6 + 10)
         }

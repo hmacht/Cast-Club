@@ -33,14 +33,6 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //self.view.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
 
         // Do any additional setup after loading the view.
-        self.navigationItem.title = "Podcast Clubs"
-        let yourBackImage = UIImage(named: "Group 29")
-        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
-        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 32"), style: .done, target: self, action: #selector(ClubVC.add))
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 257"), style: .done, target: self, action: #selector(ClubVC.playlist))
-        self.navigationItem.leftBarButtonItem = leftBarButtonItem
         
         if clubIds == ["none"] {
             // Have not gotten club ids yet
@@ -71,6 +63,24 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 })
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.title = "Podcast Clubs"
+        let yourBackImage = UIImage(named: "Group 29")
+        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
+        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 32"), style: .done, target: self, action: #selector(ClubVC.add))
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 257"), style: .done, target: self, action: #selector(ClubVC.playlist))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationItem.title = ""
+        
+        //let whiteAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
+        //UIBarButtonItem.appearance().setTitleTextAttributes(whiteAttributes , for: .normal)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

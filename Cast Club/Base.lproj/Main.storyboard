@@ -569,7 +569,7 @@
                                                     </constraints>
                                                     <state key="normal" image="Group 306"/>
                                                 </button>
-                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jal-7O-ccV">
+                                                <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jal-7O-ccV">
                                                     <rect key="frame" x="62" y="68" width="42" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="QTa-CA-s10"/>

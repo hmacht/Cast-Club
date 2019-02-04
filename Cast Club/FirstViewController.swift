@@ -31,14 +31,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         self.tabBarController?.tabBar.setValue(true, forKey: "hidesShadow")
         self.navigationItem.title = "Home"
         
-        let yourBackImage = UIImage(named: "Group 29")
-        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
-        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 135"), style: .done, target: self, action: #selector(FirstViewController.search))
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        
-        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 257"), style: .done, target: self, action: #selector(FirstViewController.settings))
-        self.navigationItem.leftBarButtonItem = leftBarButtonItem
         //let miniController = MiniController(frame: CGRect(x: 0, y: screenSize.height, width: 0, height: 0), yposition: CGFloat((tabBarController?.tabBar.frame.minY)! - 90))
         //tabBarController?.view.addSubview(miniController)
         tabBarController?.tabBar.layer.zPosition = 1
@@ -103,6 +95,21 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             errorPopUp?.removeFromSuperview()
             discovewrBtn.removeFromSuperview()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let yourBackImage = UIImage(named: "Group 29")
+        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
+        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 135"), style: .done, target: self, action: #selector(FirstViewController.search))
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 257"), style: .done, target: self, action: #selector(FirstViewController.settings))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        //let whiteAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
+        //UIBarButtonItem.appearance().setTitleTextAttributes(whiteAttributes , for: .normal)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

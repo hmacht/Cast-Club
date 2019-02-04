@@ -13,6 +13,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
+    let screenSize = UIScreen.main.bounds
+    
     var selectedClub = Club()
     var selectedMessage = Message()
     var messages = [Message]()
@@ -261,38 +263,54 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func moreButtonPressed(sender: UIButton) {
-        let popUp = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
         
-        let flagAction = UIAlertAction(title: "Report", style: .default) { (action) in
-            if self.messages[sender.tag].flaggedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
-                // We have already flagged the message
-                self.tabBarController?.showError(with: "You have already flagged this message.")
-            } else {
-                self.messages[sender.tag].flaggedUsersList.append(CloudKitHelper.instance.userId.recordName)
-                self.messages[sender.tag].flags += 1
-                CloudKitHelper.instance.flagMessageWithId(self.messages[sender.tag].id.ckId(), completion: { (error) in
-                    if let e = error {
-                        print(e)
-                    } else {
-                        print("Done flagging")
-                    }
-                })
-            }
-        }
+        let bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: Int((screenSize.width/6) * 4.5), style: 1)
+        bucketView.frame = UIApplication.shared.keyWindow!.frame
+        UIApplication.shared.keyWindow!.addSubview(bucketView)
+        
+        bucketView.reportButton.addTarget(self, action: #selector(ClubChatVC.report), for: .touchUpInside)
         
         
-        // TODO - implement sharing to facebook, also maybe twitter
-        let shareFacebookAction = UIAlertAction(title: "Share To Facebook", style: .default) { (action) in
-            print("Share to facebook")
-        }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
-        popUp.addAction(flagAction)
-        popUp.addAction(shareFacebookAction)
-        popUp.addAction(cancelAction)
         
-        self.present(popUp, animated: true, completion: nil)
+        
+//        let popUp = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
+//
+//        let flagAction = UIAlertAction(title: "Report", style: .default) { (action) in
+//            if self.messages[sender.tag].flaggedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
+//                // We have already flagged the message
+//                self.tabBarController?.showError(with: "You have already flagged this message.")
+//            } else {
+//                self.messages[sender.tag].flaggedUsersList.append(CloudKitHelper.instance.userId.recordName)
+//                self.messages[sender.tag].flags += 1
+//                CloudKitHelper.instance.flagMessageWithId(self.messages[sender.tag].id.ckId(), completion: { (error) in
+//                    if let e = error {
+//                        print(e)
+//                    } else {
+//                        print("Done flagging")
+//                    }
+//                })
+//            }
+//        }
+//
+//
+//        // TODO - implement sharing to facebook, also maybe twitter
+//        let shareFacebookAction = UIAlertAction(title: "Share To Facebook", style: .default) { (action) in
+//            print("Share to facebook")
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//
+//        popUp.addAction(flagAction)
+//        popUp.addAction(shareFacebookAction)
+//        popUp.addAction(cancelAction)
+//
+//        self.present(popUp, animated: true, completion: nil)
+    }
+    
+    @objc func report(){
+        print("REPORT")
     }
     
     @objc func listeningTo(){
@@ -310,6 +328,9 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func filter(){
         print("FILTER")
+        
+        
+        
     }
     
 

@@ -149,11 +149,19 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     
+    let screenSize = UIScreen.main.bounds
+    
     
     
     @objc func playlist() {
         print("playlist")
+        
+        
+        
+        
     }
+    
+    
     
     @objc func add() {
         print("add something")
@@ -174,6 +182,8 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
+    
  
 
 }

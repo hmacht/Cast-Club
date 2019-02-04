@@ -56,6 +56,7 @@
 		D7A20DC221DA884B00304D86 /* ClubCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */; };
 		D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */; };
 		D7A20DC621DAAD2000304D86 /* LastStepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC521DAAD2000304D86 /* LastStepVC.swift */; };
+		D7A4389822069593007F9F7A /* BucketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A4389722069593007F9F7A /* BucketView.swift */; };
 		D7AF62C421EAB5AC00101919 /* CatagoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */; };
 		D7E15D5022027A3C006BA3F2 /* catagoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E15D4F22027A3C006BA3F2 /* catagoryVC.swift */; };
 		D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */; };
@@ -141,6 +142,7 @@
 		D7A20DC121DA884B00304D86 /* ClubCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCreationVC.swift; sourceTree = "<group>"; };
 		D7A20DC321DA8EC300304D86 /* UITextFeild+LineColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFeild+LineColor.swift"; sourceTree = "<group>"; };
 		D7A20DC521DAAD2000304D86 /* LastStepVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepVC.swift; sourceTree = "<group>"; };
+		D7A4389722069593007F9F7A /* BucketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketView.swift; sourceTree = "<group>"; };
 		D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		D7E15D4F22027A3C006BA3F2 /* catagoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catagoryVC.swift; sourceTree = "<group>"; };
 		D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniController.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */,
 				2145CB7621F7D75B002F307A /* ErrorView.swift */,
 				D70A84D22201105800893744 /* createView.swift */,
+				D7A4389722069593007F9F7A /* BucketView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				D744775521A4BB1D00270726 /* AppDelegate.swift in Sources */,
 				D7388BA521C6F5AE00C6869D /* ErrorPopUp.swift in Sources */,
 				D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */,
+				D7A4389822069593007F9F7A /* BucketView.swift in Sources */,
 				21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */,
 				D74731D621FCE6FD00700FD4 /* PostVC.swift in Sources */,
 				D760166A21ACAC2700CB25BB /* navViewController.swift in Sources */,

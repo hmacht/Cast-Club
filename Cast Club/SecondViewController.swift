@@ -381,6 +381,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if segue.destination is catagoryVC
         {
             let vc = segue.destination as? catagoryVC
+            vc?.newCat = true
             vc?.headerTitleText = headTitle
             
         }

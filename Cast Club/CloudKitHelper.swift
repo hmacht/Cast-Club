@@ -157,6 +157,15 @@ class CloudKitHelper {
                 completion(error)
             }
         }
+        
+        self.publicDB.fetch(withRecordID: id) { (record, error) in
+            if let rec = record {
+                if let numFollowers = rec["numFollowers"] as? Int {
+                    rec["numFollowers"] = numFollowers + 1
+                    self.publicDB.save(rec, completionHandler: { (_, _) in })
+                }
+            }
+        }
     }
     
     func unsubscribeFromClub(id: String, completion: @escaping (Error?) -> ()) {
@@ -185,6 +194,15 @@ class CloudKitHelper {
                 }
             } else {
                 completion(error)
+            }
+        }
+        
+        self.publicDB.fetch(withRecordID: id.ckId()) { (record, error) in
+            if let rec = record {
+                if let numFollowers = rec["numFollowers"] as? Int {
+                    rec["numFollowers"] = numFollowers - 1
+                    self.publicDB.save(rec, completionHandler: { (_, _) in })
+                }
             }
         }
     }
@@ -242,9 +260,9 @@ class CloudKitHelper {
         completion(Club(), nil)
     }
     
-    func getTopClubs(n: Int, category: ClubCategory = .everything, completion: @escaping (Club) -> ()) {
+    func getTopClubs(n: Int, category: ClubCategory = .none, completion: @escaping (Club) -> ()) {
         var predicate = NSPredicate(value: true)
-        if category != .everything {
+        if category != .none {
             predicate = NSPredicate(format: "category = %@", category.rawValue)
         }
         let query = CKQuery(recordType: ClubType, predicate: predicate)
@@ -253,6 +271,8 @@ class CloudKitHelper {
         let operation = CKQueryOperation(query: query)
         // Limit on num results
         operation.resultsLimit = n
+        operation.queuePriority = .veryHigh
+        operation.qualityOfService = .userInteractive
         
         // Gets called once for each record
         operation.recordFetchedBlock = { r in

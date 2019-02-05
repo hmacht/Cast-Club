@@ -246,8 +246,13 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if let e = error {
                     print(e)
                 } else {
+                    self.selectedClub.numFollowers -= 1
                     DispatchQueue.main.async {
                         sender.setTitle("Follow", for: .normal)
+                        
+                        if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ChatHeaderTableViewCell {
+                            cell.totalMembersLabel.text = "\(self.selectedClub.numFollowers) members"
+                        }
                     }
                 }
             }
@@ -258,8 +263,21 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if let e = error {
                     print(e)
                 } else {
+                    self.selectedClub.numFollowers += 1
+                    
+                    // Tell clubvc that we have a new club to display
+                    if let navController = self.tabBarController?.customizableViewControllers?[2] as? UINavigationController {
+                        if let clubVC = navController.topViewController as? ClubVC {
+                            clubVC.clubs.append(self.selectedClub)
+                        }
+                    }
+                    
                     DispatchQueue.main.async {
                         sender.setTitle("Unfollow", for: .normal)
+                        
+                        if let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ChatHeaderTableViewCell {
+                            cell.totalMembersLabel.text = "\(self.selectedClub.numFollowers) members"
+                        }
                     }
                 }
             }
@@ -279,42 +297,6 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         bucketView.facebookButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
         bucketView.twitterButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
         
-        
-        
-        
-        
-//        let popUp = UIAlertController(title: "More", message: nil, preferredStyle: .actionSheet)
-//
-//        let flagAction = UIAlertAction(title: "Report", style: .default) { (action) in
-//            if self.messages[sender.tag].flaggedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
-//                // We have already flagged the message
-//                self.tabBarController?.showError(with: "You have already flagged this message.")
-//            } else {
-//                self.messages[sender.tag].flaggedUsersList.append(CloudKitHelper.instance.userId.recordName)
-//                self.messages[sender.tag].flags += 1
-//                CloudKitHelper.instance.flagMessageWithId(self.messages[sender.tag].id.ckId(), completion: { (error) in
-//                    if let e = error {
-//                        print(e)
-//                    } else {
-//                        print("Done flagging")
-//                    }
-//                })
-//            }
-//        }
-//
-//
-//        // TODO - implement sharing to facebook, also maybe twitter
-//        let shareFacebookAction = UIAlertAction(title: "Share To Facebook", style: .default) { (action) in
-//            print("Share to facebook")
-//        }
-//
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//
-//        popUp.addAction(flagAction)
-//        popUp.addAction(shareFacebookAction)
-//        popUp.addAction(cancelAction)
-//
-//        self.present(popUp, animated: true, completion: nil)
     }
     
     @objc func report(){

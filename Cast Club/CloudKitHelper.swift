@@ -272,7 +272,7 @@ class CloudKitHelper {
         // Limit on num results
         operation.resultsLimit = n
         operation.queuePriority = .veryHigh
-        operation.qualityOfService = .userInteractive
+        operation.qualityOfService = .userInitiated
         
         // Gets called once for each record
         operation.recordFetchedBlock = { r in
@@ -322,6 +322,41 @@ class CloudKitHelper {
             }
             completion(error)
         }
+    }
+    
+    // Set the users username
+    func setUsername(username: String, completion: @escaping (Error?) -> ()) {
+        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
+        
+        let operation = CKQueryOperation(query: query)
+        operation.desiredKeys = ["fromUser"]
+        
+        operation.recordFetchedBlock = { r in
+            r["username"] = username
+            self.publicDB.save(r, completionHandler: { (_, error) in
+                completion(error)
+            })
+        }
+        
+        self.publicDB.add(operation)
+    }
+    
+    func setProfileImage(img: UIImage, completion: @escaping (Error?) -> ()) {
+        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
+        
+        let operation = CKQueryOperation(query: query)
+        operation.desiredKeys = ["fromUser"]
+        
+        operation.recordFetchedBlock = { r in
+            let url = ImageHelper.saveToDisk(image: img)
+            let asset = CKAsset(fileURL: url)
+            r["profileImage"] = asset
+            self.publicDB.save(r, completionHandler: { (_, error) in
+                completion(error)
+            })
+        }
+        
+        self.publicDB.add(operation)
     }
     
     // Album stuff
@@ -663,4 +698,38 @@ extension String {
 enum SortOption {
     case likes
     case newest
+}
+
+
+// For resizing images
+extension UIImage {
+    
+    /// Returns a image that fills in newSize
+    func resizedImage(newSize: CGSize) -> UIImage {
+        // Guard newSize is different
+        guard self.size != newSize else { return self }
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
+    /// Returns a resized image that fits in rectSize, keeping it's aspect ratio
+    /// Note that the new image size is not rectSize, but within it.
+    func resizedImageWithinRect(rectSize: CGSize) -> UIImage {
+        let widthFactor = size.width / rectSize.width
+        let heightFactor = size.height / rectSize.height
+        
+        var resizeFactor = widthFactor
+        if size.height > size.width {
+            resizeFactor = heightFactor
+        }
+        
+        let newSize = CGSize(width: size.width/resizeFactor, height: size.height/resizeFactor)
+        let resized = resizedImage(newSize: newSize)
+        return resized
+    }
+    
 }

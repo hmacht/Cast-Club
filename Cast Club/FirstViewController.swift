@@ -80,6 +80,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                         clubIds = results
                     }
                 })
+                
             }
         }
         

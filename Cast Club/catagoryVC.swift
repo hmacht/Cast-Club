@@ -14,9 +14,11 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     var headerTitleText = String()
-    var selectedCategory = ClubCategory.everything
+    var newCat = false
+    var selectedCategory = ClubCategory.none
     
     var results = [Club]()
+    var selectedClub = Club()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +44,14 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.selectedCategory = cat
             }
         }
-        
-        self.retrieveTopClubs()
+        if self.newCat {
+            self.retrieveTopClubs()
+        }
         
     }
     
     func retrieveTopClubs() {
+        self.newCat = false
         CloudKitHelper.instance.getTopClubs(n: 5, category: self.selectedCategory) { (club) in
             self.results.append(club)
             DispatchQueue.main.async {
@@ -91,16 +95,30 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return myCell
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        if !self.results[indexPath.row - 1].isPublic {
+            self.tabBarController?.showError(with: ErrorMessage.privateClub.rawValue)
+        } else {
+            self.selectedClub = self.results[indexPath.row - 1]
+            self.performSegue(withIdentifier: "fromCatagoryToChat", sender: self)
+        }
+    }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if let dest = segue.destination as? ClubChatVC {
+            dest.selectedClub = self.selectedClub
+        }
     }
-    */
+ 
 
 }

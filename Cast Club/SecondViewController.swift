@@ -57,9 +57,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.tableFooterView = UIView()
         catagoryTableView.keyboardDismissMode = .onDrag
         
-        let yourBackImage = UIImage(named: "Group 29")
-        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
         
         searchBar.searchBarStyle = UISearchBar.Style.default
         searchBar.placeholder = " Search for a club"
@@ -86,10 +83,22 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let yourBackImage = UIImage(named: "Group 29")
+        self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
+        
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+    }
     func retrieveTopClubs() {
         // Gets called one by one for each club
         // Can reload after each club comes in
@@ -372,6 +381,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if segue.destination is catagoryVC
         {
             let vc = segue.destination as? catagoryVC
+            vc?.newCat = true
             vc?.headerTitleText = headTitle
             
         }

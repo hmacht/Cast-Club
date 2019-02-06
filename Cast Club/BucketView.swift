@@ -45,7 +45,7 @@ class BucketView: UIView {
         self.addSubview(view)
         
         // Reminder: navigation bar is messing things up
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.25, animations: {
             self.view.center.y -= self.view.frame.height
         }, completion: {finished in
             self.view.isUserInteractionEnabled = true
@@ -58,7 +58,7 @@ class BucketView: UIView {
         bgView.alpha = 0.0
         self.addSubview(bgView)
         
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.25, animations: {
             self.bgView.alpha = 0.3
         }, completion: nil)
     }
@@ -76,6 +76,8 @@ class BucketView: UIView {
     }
     
     
+    
+    // Share Bucket ---
     var sharButtons = [UIButton]()
     var buttonImages = ["Group 301", "Group 302", "Group 737"]
     var xPos = 20
@@ -123,9 +125,11 @@ class BucketView: UIView {
         
     }
     
+    // Filter Bucket ---
+    
     
     @objc func close(){
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.25, animations: {
             self.bgView.alpha = 0.0
             self.view.center.y += self.view.frame.height
         }, completion: {finished in

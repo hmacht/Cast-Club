@@ -16,6 +16,7 @@ class BucketView: UIView {
     var bgView = UIView()
     var closeButton = UIButton()
     var reportButton = UIButton()
+    var shareButton = UIButton()
     var facebookButton = UIButton()
     var messageButton = UIButton()
     var twitterButton = UIButton()
@@ -81,44 +82,55 @@ class BucketView: UIView {
     
     
     // Share Bucket ---
-    var sharButtons = [UIButton]()
-    var buttonImages = ["Group 301", "Group 302", "Group 737"]
-    var xPos = 20
+    
+    //var buttonImages = ["Group 301", "Group 302", "Group 737"]
+    var buttonTitles = ["   Share", "   Report"]
+    var yPos = 0
     
     func createShareBucket(){
-        let title1 = UILabel(frame: CGRect(x: 20, y: 0, width: 100, height: 50))
-        title1.text = "Share"
-        title1.font = UIFont(name: "Avenir-Heavy", size: 14)
-        title1.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0)
-        self.view.addSubview(title1)
+//        let title1 = UILabel(frame: CGRect(x: 20, y: 0, width: 100, height: 50))
+//        title1.text = "Share"
+//        title1.font = UIFont(name: "Avenir-Heavy", size: 14)
+//        title1.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0)
+//        self.view.addSubview(title1)
         
-        for i in 0...2 {
-            var shareButton = UIButton(frame: CGRect(x: xPos, y: 40, width: Int(screenSize.width/6), height: Int(screenSize.width/6)))
-            shareButton.setImage(UIImage(named: buttonImages[i]), for: .normal)
-            shareButton.layer.cornerRadius = screenSize.width/12
-            shareButton.addTarget(self, action: #selector(BucketView.share), for: .touchUpInside)
-            shareButton.tag = i
+        for i in 0...1 {
+            var button = UIButton(frame: CGRect(x: 0, y: yPos, width: Int(screenSize.width - screenSize.width/15), height: 50))
+            //button.setImage(UIImage(named: buttonImages[i]), for: .normal)
+            //button.layer.cornerRadius = screenSize.width/12
+            button.addTarget(self, action: #selector(BucketView.share), for: .touchUpInside)
+            button.center.x = screenSize.width/2
+            button.backgroundColor = .white
+            button.setTitle(buttonTitles[i], for: .normal)
+            button.contentHorizontalAlignment = .left
+            button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+            button.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0), for: .normal)
+            button.tag = i
+            
             if i == 0 {
-                self.messageButton = shareButton
-            } else if i == 1 {
-                self.twitterButton = shareButton
+                self.shareButton = button
+                print("B1")
             } else {
-                self.facebookButton = shareButton
+                self.reportButton = button
+                print("B2")
             }
-            self.view.addSubview(shareButton)
-            xPos += Int(screenSize.width/6 + 10)
+            self.view.addSubview(button)
+            print(button.frame.midY)
+            yPos += 50
+            
+            
         }
         
-        let title2 = UILabel(frame: CGRect(x: 20, y: screenSize.width/6 + 25, width: 100, height: 50))
-        title2.text = "Report"
-        title2.font = UIFont(name: "Avenir-Heavy", size: 14)
-        title2.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0)
-        self.view.addSubview(title2)
-        
-        reportButton = UIButton(frame: CGRect(x: 20, y: Int(title2.frame.minY + 40), width: Int(screenSize.width/6), height: Int(screenSize.width/6)))
-        reportButton.setImage(UIImage(named: "Group 304"), for: .normal)
-        reportButton.layer.cornerRadius = screenSize.width/12
-        self.view.addSubview(reportButton)
+//        let title2 = UILabel(frame: CGRect(x: 20, y: screenSize.width/6 + 25, width: 100, height: 50))
+//        title2.text = "Report"
+//        title2.font = UIFont(name: "Avenir-Heavy", size: 14)
+//        title2.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0)
+//        self.view.addSubview(title2)
+//        
+//        reportButton = UIButton(frame: CGRect(x: 20, y: Int(title2.frame.minY + 40), width: Int(screenSize.width/6), height: Int(screenSize.width/6)))
+//        reportButton.setImage(UIImage(named: "Group 304"), for: .normal)
+//        reportButton.layer.cornerRadius = screenSize.width/12
+//        self.view.addSubview(reportButton)
         
     }
     

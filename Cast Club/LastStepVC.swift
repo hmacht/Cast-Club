@@ -239,9 +239,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     @objc func create() {
         print("Create")
         
-        
-        
-        if let img = profileImageView.image {
+        if let img = profileImageView.image?.resizedImageWithinRect(rectSize: CGSize(width: 250, height: 250)) {
             CloudKitHelper.instance.writeClub(name: clubeName, img: img, isPublic: self.isPublic, category: self.selectedCategory) { (error) in
                 if let e = error {
                     print(e)
@@ -265,7 +263,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         //self.view.addSubview(checkAnimation)
  
         
-        self.performSegue(withIdentifier: "doneWithCreation", sender: self)
+        //self.performSegue(withIdentifier: "doneWithCreation", sender: self)
  
        
         

@@ -194,8 +194,14 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @objc func likeMessage(sender: UIButton) {
+        
+        
         let m = self.messages[sender.tag]
         
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        sender.setTitle(" \(m.numLikes - 1)", for: .normal)
+        sender.setImage(UIImage(named: "Path 1700"), for: .normal)
         
         if m.likedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
             self.messages[sender.tag].numLikes -= 1
@@ -209,15 +215,16 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 } else {
                     DispatchQueue.main.async {
                         //sender.setTitleColor(.black, for: .normal)
-                        sender.setImage(UIImage(named: "Path 1700"), for: .normal)
-                        let generator = UIImpactFeedbackGenerator(style: .medium)
-                        generator.impactOccurred()
-                        sender.setTitle(" \(m.numLikes - 1)", for: .normal)
                     }
                 }
             }
         } else {
             // Like the message
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
+            sender.setTitle(" \(m.numLikes + 1)", for: .normal)
+            sender.setImage(UIImage(named: "Path 1885"), for: .normal)
+            
             self.messages[sender.tag].numLikes += 1
             self.messages[sender.tag].likedUsersList.append(CloudKitHelper.instance.userId.recordName)
             CloudKitHelper.instance.likeMessageWithId(m.id.ckId()) { (error) in
@@ -226,10 +233,6 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 } else {
                     DispatchQueue.main.async {
                         //sender.setTitleColor(.red, for: .normal)
-                        sender.setImage(UIImage(named: "Path 1885"), for: .normal)
-                        let generator = UIImpactFeedbackGenerator(style: .medium)
-                        generator.impactOccurred()
-                        sender.setTitle(" \(m.numLikes + 1)", for: .normal)
                     }
                 }
             }
@@ -288,14 +291,15 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         self.moreMessageInd = sender.tag
         
-        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: Int((screenSize.width/6) * 4.5), style: 1)
+        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 1)
         bucketView.frame = UIApplication.shared.keyWindow!.frame
         UIApplication.shared.keyWindow!.addSubview(bucketView)
         
         bucketView.reportButton.addTarget(self, action: #selector(ClubChatVC.report), for: .touchUpInside)
-        bucketView.messageButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
-        bucketView.facebookButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
-        bucketView.twitterButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
+        //bucketView.messageButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
+        //bucketView.facebookButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
+        //bucketView.twitterButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
+        bucketView.shareButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
         
     }
     
@@ -361,9 +365,18 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func filter(){
         print("FILTER")
+        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 230, style: 2)
+        bucketView.frame = UIApplication.shared.keyWindow!.frame
+        UIApplication.shared.keyWindow!.addSubview(bucketView)
+        
+        bucketView.latestFilterButton.addTarget(self, action: #selector(ClubChatVC.activateFilter), for: .touchUpInside)
+        bucketView.likesFilterButton.addTarget(self, action: #selector(ClubChatVC.activateFilter), for: .touchUpInside)
+        bucketView.popularFilterButton.addTarget(self, action: #selector(ClubChatVC.activateFilter), for: .touchUpInside)
         
         
-        
+    }
+    @objc func activateFilter() {
+        print("Filtering")
     }
     
 

@@ -425,11 +425,11 @@
             <objects>
                 <viewController id="2jA-pc-MRs" customClass="ClubChatVC" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fdO-8j-rYM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F63-m8-lrD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerCell" rowHeight="156" id="vZa-Ki-U3H" customClass="ChatHeaderTableViewCell" customModule="Pod_Talk" customModuleProvider="target">
@@ -680,16 +680,16 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trh-QD-fDU">
-                                                    <rect key="frame" x="67" y="16" width="293" height="43"/>
+                                                    <rect key="frame" x="73" y="16" width="287" height="43"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catagory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFI-Oo-iGB">
-                                                            <rect key="frame" x="0.0" y="4" width="293" height="15"/>
+                                                            <rect key="frame" x="0.0" y="4" width="287" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Club Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wb-Lj-U2n">
-                                                            <rect key="frame" x="0.0" y="20" width="288" height="19"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Club Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wb-Lj-U2n">
+                                                            <rect key="frame" x="0.0" y="18" width="282" height="19"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -698,17 +698,18 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="kFI-Oo-iGB" firstAttribute="top" secondItem="trh-QD-fDU" secondAttribute="top" constant="4" id="0ZL-AJ-cuQ"/>
-                                                        <constraint firstItem="8wb-Lj-U2n" firstAttribute="top" secondItem="kFI-Oo-iGB" secondAttribute="bottom" constant="1" id="71Z-gx-mtW"/>
-                                                        <constraint firstAttribute="bottom" secondItem="8wb-Lj-U2n" secondAttribute="bottom" constant="4" id="ADy-kB-dec"/>
+                                                        <constraint firstItem="8wb-Lj-U2n" firstAttribute="top" secondItem="kFI-Oo-iGB" secondAttribute="bottom" constant="-3" id="71Z-gx-mtW"/>
+                                                        <constraint firstAttribute="bottom" secondItem="8wb-Lj-U2n" secondAttribute="bottom" constant="6" id="ADy-kB-dec"/>
                                                         <constraint firstAttribute="trailing" secondItem="kFI-Oo-iGB" secondAttribute="trailing" id="BTM-RP-yY8"/>
                                                         <constraint firstItem="kFI-Oo-iGB" firstAttribute="leading" secondItem="trh-QD-fDU" secondAttribute="leading" id="QLk-fo-9PW"/>
+                                                        <constraint firstItem="8wb-Lj-U2n" firstAttribute="top" secondItem="kFI-Oo-iGB" secondAttribute="bottom" constant="-3" id="RDr-nl-WCh"/>
                                                         <constraint firstAttribute="trailing" secondItem="8wb-Lj-U2n" secondAttribute="trailing" constant="5" id="Z4N-5y-r8z"/>
                                                         <constraint firstItem="8wb-Lj-U2n" firstAttribute="leading" secondItem="trh-QD-fDU" secondAttribute="leading" id="d1B-6h-DPG"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="trh-QD-fDU" firstAttribute="leading" secondItem="4Te-Pe-M8V" secondAttribute="trailing" constant="5" id="4Q5-0d-plm"/>
+                                                <constraint firstItem="trh-QD-fDU" firstAttribute="leading" secondItem="4Te-Pe-M8V" secondAttribute="trailing" constant="11" id="4Q5-0d-plm"/>
                                                 <constraint firstItem="trh-QD-fDU" firstAttribute="trailing" secondItem="ghn-eN-RTF" secondAttribute="trailingMargin" id="5gG-r3-0Pr"/>
                                                 <constraint firstItem="4Te-Pe-M8V" firstAttribute="leading" secondItem="ghn-eN-RTF" secondAttribute="leadingMargin" id="Vaz-Gx-xea"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="trh-QD-fDU" secondAttribute="bottom" constant="5" id="Xks-Tr-VTo"/>
@@ -1213,7 +1214,7 @@ Listen to podcasts that are related to their catagory.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vx5-G8-YPP"/>
-        <segue reference="5JY-ZE-ZJO"/>
+        <segue reference="sK0-5e-Mr7"/>
         <segue reference="QTv-ZG-pl4"/>
     </inferredMetricsTieBreakers>
 </document>

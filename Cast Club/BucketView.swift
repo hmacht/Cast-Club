@@ -17,9 +17,9 @@ class BucketView: UIView {
     var closeButton = UIButton()
     var reportButton = UIButton()
     var shareButton = UIButton()
-    var facebookButton = UIButton()
-    var messageButton = UIButton()
-    var twitterButton = UIButton()
+    var latestFilterButton = UIButton()
+    var likesFilterButton = UIButton()
+    var popularFilterButton = UIButton()
     
     
     let viewHeight: Int
@@ -37,6 +37,8 @@ class BucketView: UIView {
         
         if style == 1{
             createShareBucket()
+        } else if style == 2 {
+            createFilterBucket()
         }
         
     }
@@ -84,7 +86,7 @@ class BucketView: UIView {
     // Share Bucket ---
     
     //var buttonImages = ["Group 301", "Group 302", "Group 737"]
-    var buttonTitles = ["   Share", "   Report"]
+    var buttonTitles = ["     Share", "     Report"]
     var yPos = 0
     
     func createShareBucket(){
@@ -147,6 +149,36 @@ class BucketView: UIView {
     }
     
     // Filter Bucket ---
+    var filterButtonTitles = ["     Latest", "     Likes", "     Popular"]
+    func createFilterBucket(){
+        for i in 0...2 {
+            var button = UIButton(frame: CGRect(x: 0, y: yPos, width: Int(screenSize.width - screenSize.width/15), height: 50))
+            button.center.x = screenSize.width/2
+            button.backgroundColor = .white
+            button.setTitle(filterButtonTitles[i], for: .normal)
+            button.contentHorizontalAlignment = .left
+            button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+            button.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0), for: .normal)
+            button.tag = i
+            
+            if i == 0 {
+                self.latestFilterButton = button
+                print("B1")
+            } else if i == 1 {
+                self.likesFilterButton = button
+                print("B2")
+            } else {
+                self.popularFilterButton = button
+            }
+            
+            self.view.addSubview(button)
+            print(button.frame.midY)
+            yPos += 50
+            
+            
+        }
+        
+    }
     
     
     @objc func close(){

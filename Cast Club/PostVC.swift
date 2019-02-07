@@ -72,7 +72,14 @@ class PostVC: UIViewController, UITextViewDelegate {
         button3.setImage(UIImage(named: "Group 497"), for: .normal)
         
         let button4: UIButton = UIButton(type: UIButton.ButtonType.custom) as! UIButton
-        button4.setImage(UIImage(named: "Group 335"), for: .normal)
+        button4.setImage(UIImage(named: "Group 748"), for: .normal)
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        
+        let fizedSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        
+        fizedSpace.width = 20
+        
         //button.addTarget(self, action: #selector(ClubCreationVC.done), for: .touchUpInside)
         let bb1 = UIBarButtonItem(customView: button1)
         let bb2 = UIBarButtonItem(customView: button2)
@@ -84,7 +91,7 @@ class PostVC: UIViewController, UITextViewDelegate {
         toolbar.barTintColor = .white
         //toolbar.setItems([bb1, bb2, bb3, bb4], animated: false)
         
-        toolbar.items = [bb1, bb2, bb3, bb4]
+        toolbar.items = [bb1, fizedSpace, bb2, fizedSpace, bb4, flexSpace]
         
         toolbar.sizeToFit()
         textView.inputAccessoryView = toolbar
@@ -123,6 +130,9 @@ class PostVC: UIViewController, UITextViewDelegate {
     
     @objc func post(){
         print("POST")
+        self.view.endEditing(true)
+        self.dismiss(animated: true, completion: nil)
+        
         if self.textView.text.count > 0 {
             var message = Message()
             message.clubId = self.fromClub.id
@@ -138,8 +148,7 @@ class PostVC: UIViewController, UITextViewDelegate {
                     print("Done writing")
                     DispatchQueue.main.async {
                         // TODO - add some confirmation
-                        self.view.endEditing(true)
-                        self.dismiss(animated: true, completion: nil)
+                        
                     }
                 }
             }

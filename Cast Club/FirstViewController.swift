@@ -84,6 +84,14 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             }
         }
         
+        CloudKitHelper.instance.writeClubUpdate(message: "The first pod update", clubId: "7DF35BD3-7492-46FC-BA5B-9CBA86C9AAB5") { (error) in
+            if let e = error {
+                print(e)
+            } else {
+                print("Done writing update")
+            }
+        }
+        
         
     }
     

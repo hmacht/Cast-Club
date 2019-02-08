@@ -15,11 +15,18 @@ class BucketView: UIView {
     var view = UIView()
     var bgView = UIView()
     var closeButton = UIButton()
+    
     var reportButton = UIButton()
     var shareButton = UIButton()
+    
     var latestFilterButton = UIButton()
     var likesFilterButton = UIButton()
     var popularFilterButton = UIButton()
+    
+    var cameraButton = UIButton()
+    var libraryButton = UIButton()
+    
+    
     
     
     let viewHeight: Int
@@ -39,6 +46,8 @@ class BucketView: UIView {
             createShareBucket()
         } else if style == 2 {
             createFilterBucket()
+        } else if style == 3 {
+            createCameraBucket()
         }
         
     }
@@ -173,6 +182,34 @@ class BucketView: UIView {
             
             self.view.addSubview(button)
             print(button.frame.midY)
+            yPos += 50
+            
+            
+        }
+        
+    }
+    
+    // photo selection Bucket ---
+    var cameraButtonTitles = ["     Camera", "     Library"]
+    func createCameraBucket(){
+        for i in 0...1 {
+            var button = UIButton(frame: CGRect(x: 0, y: yPos, width: Int(screenSize.width - screenSize.width/15), height: 50))
+            button.center.x = screenSize.width/2
+            button.backgroundColor = .white
+            button.setTitle(cameraButtonTitles[i], for: .normal)
+            button.contentHorizontalAlignment = .left
+            button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+            button.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0), for: .normal)
+            button.tag = i
+            
+            if i == 0 {
+                self.cameraButton = button
+                print("B1")
+            } else {
+                self.libraryButton = button
+            }
+            
+            self.view.addSubview(button)
             yPos += 50
             
             

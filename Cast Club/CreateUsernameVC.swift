@@ -22,7 +22,6 @@ class CreateUsernameVC: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        
     }
     override func viewDidAppear(_ animated: Bool) {
         
@@ -30,7 +29,16 @@ class CreateUsernameVC: UIViewController {
     }
     
     @objc func done() {
-        print("Done")
+        if let text = usernameCreationView.clubNameInput.text {
+            CloudKitHelper.instance.username = text
+            CloudKitHelper.instance.setUsername(username: text) { (error) in
+                if let e = error {
+                    print(e)
+                }
+            }
+        }
+       
+        self.navigationController?.popViewController(animated: true)
         
     }
     

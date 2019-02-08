@@ -16,12 +16,15 @@ class CloudKitHelper {
     let privateDB = CKContainer.default().privateCloudDatabase
     
     var userId = CKRecord.ID()
+    var username = ""
     
     // Types of records
     let ClubType = "Club"
     let AlbumType = "Album"
     let MessageType = "Message"
     let ClubHolderType = "ClubHolder"
+    
+    var profilePictures = [String : UIImage]()
     
     // Club stuff
     func searchClubsWithName(_ name: String, category: ClubCategory = ClubCategory.everything, completion: @escaping ([Club]?) -> ()) {
@@ -125,24 +128,54 @@ class CloudKitHelper {
         self.publicDB.add(fetchOperation)
     }
     
-    
+    // Obtains username and user subscribed clubs
     func getClubIdsForCurrentUser(completion: @escaping ([String], Error?) -> ()) {
         let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
         
-        self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
-            if let recs = records {
-                if let firstRec = recs.first {
-                    if let clubIds = firstRec["clubIds"] as? [String] {
-                        completion(clubIds, error)
-                    } else {
-                        completion([String](), error)
-                    }
-                } else {
-                    completion([String](), error)
-                }
-            } else {
-                completion([String](), error)
+        let operation = CKQueryOperation(query: query)
+        operation.resultsLimit = 1
+        operation.desiredKeys = ["clubIds", "username"]
+        
+        operation.recordFetchedBlock = { firstRec in
+            if let username = firstRec["username"] as? String {
+                self.username = username
             }
+            if let clubIds = firstRec["clubIds"] as? [String] {
+                completion(clubIds, nil)
+            } else {
+                completion([String](), nil)
+            }
+        }
+        
+        self.publicDB.add(operation)
+    }
+    
+    func getProfilePic(for user: String, completion: @escaping (UIImage?) -> ()) {
+        
+        if let pic = self.profilePictures["user"] {
+            completion(pic)
+        } else {
+            let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
+            
+            let operation = CKQueryOperation(query: query)
+            operation.resultsLimit = 1
+            operation.desiredKeys = ["profileImage"]
+            operation.qualityOfService = .userInitiated
+            operation.queuePriority = .veryHigh
+            
+            
+            operation.recordFetchedBlock = { rec in
+                if let asset = rec["profileImage"] as? CKAsset {
+                    if let img = asset.fileURL.image() {
+                        self.profilePictures["user"] = img
+                    }
+                    completion(asset.fileURL.image())
+                } else {
+                    completion(nil)
+                }
+            }
+            
+            self.publicDB.add(operation)
         }
     }
     

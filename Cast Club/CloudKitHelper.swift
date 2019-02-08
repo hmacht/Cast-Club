@@ -70,6 +70,9 @@ class CloudKitHelper {
                                 c.isPublic = false
                             }
                         }
+                        if let update = r["update"] as? String {
+                            c.update = update
+                        }
                         results.append(c)
                     }
                     completion(results)
@@ -89,6 +92,7 @@ class CloudKitHelper {
             record["isPublic"] = 0
         }
         record["category"] = category.rawValue
+        record["update"] = ""
         
         // Save image
         let url = ImageHelper.saveToDisk(image: img)
@@ -100,6 +104,25 @@ class CloudKitHelper {
         publicDB.save(record) { (record, error) in
             completion(error)
         }
+    }
+    
+    func writeClubUpdate(message: String, clubId: String, completion: @escaping (Error?) -> ()) {
+        
+        let fetchOperation = CKFetchRecordsOperation(recordIDs: [clubId.ckId()])
+        fetchOperation.desiredKeys = ["isPublic"]
+        
+        fetchOperation.perRecordCompletionBlock = { rec, r2, error in
+            if let r = rec {
+                r["update"] = message
+                self.publicDB.save(r) { (_, error2) in
+                    completion(error2)
+                }
+            } else {
+                completion(error)
+            }
+        }
+        
+        self.publicDB.add(fetchOperation)
     }
     
     
@@ -236,6 +259,16 @@ class CloudKitHelper {
                         c.coverImage = img
                     }
                 }
+                if let isPublic = r["isPublic"] as? Int {
+                    if isPublic == 1 {
+                        c.isPublic = true
+                    } else {
+                        c.isPublic = false
+                    }
+                }
+                if let update = r["update"] as? String {
+                    c.update = update
+                }
                 completion(c, error)
             } else {
                 completion(Club(), error)
@@ -304,6 +337,9 @@ class CloudKitHelper {
                 if let img  = c.imgUrl?.image() {
                     c.coverImage = img
                 }
+            }
+            if let update = r["update"] as? String {
+                c.update = update
             }
             completion(c)
         }

@@ -84,7 +84,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             }
         }
         
-        
     }
     
     

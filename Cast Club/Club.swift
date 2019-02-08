@@ -36,5 +36,6 @@ class Club {
     var imgUrl: URL?
     var isPublic = true
     var category = ClubCategory.none
+    var update = ""
 }
 

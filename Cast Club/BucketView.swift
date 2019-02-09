@@ -27,6 +27,9 @@ class BucketView: UIView {
     var libraryButton = UIButton()
     
     var podcastButton = UIButton()
+    var updateMessageLabel = UILabel()
+    var podcastTitle = UILabel()
+    var podcastAuthor = UILabel()
     
     
     
@@ -232,13 +235,13 @@ class BucketView: UIView {
         self.podcastButton = button
         self.view.addSubview(button)
         
-        var podcastTitle = UILabel(frame: CGRect(x: button.frame.maxX + 20, y: button.frame.midY - 20, width: 100, height: 25))
+        podcastTitle = UILabel(frame: CGRect(x: button.frame.maxX + 10, y: button.frame.midY - 20, width: self.frame.width - button.frame.width - 15, height: 25))
         podcastTitle.text = "Podcast Title"
         podcastTitle.font = UIFont(name: "Avenir-Heavy", size: 12)
         podcastTitle.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
         self.view.addSubview(podcastTitle)
         
-        var podcastAuthor = UILabel(frame: CGRect(x: button.frame.maxX + 20, y: button.frame.midY - 5, width: 100, height: 25))
+        podcastAuthor = UILabel(frame: CGRect(x: button.frame.maxX + 10, y: button.frame.midY - 5, width: self.frame.width - button.frame.width - 15, height: 25))
         podcastAuthor.text = "Author"
         podcastAuthor.font = UIFont(name: "Avenir-Heavy", size: 12)
         podcastAuthor.textColor = UIColor(red: 178.0/255.0, green: 178.0/255.0, blue: 178.0/255.0, alpha: 1.0)
@@ -250,7 +253,7 @@ class BucketView: UIView {
         subheader2.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
         self.view.addSubview(subheader2)
         
-        var updateMessageLabel = UILabel(frame: CGRect(x: button.frame.minX, y: 35, width: closeButton.frame.width, height: 90))
+        updateMessageLabel = UILabel(frame: CGRect(x: button.frame.minX, y: 35, width: closeButton.frame.width, height: 90))
         updateMessageLabel.text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus."
         updateMessageLabel.font = UIFont(name: "Avenir-Heavy", size: 13)
         updateMessageLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)

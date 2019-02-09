@@ -76,6 +76,9 @@ class CloudKitHelper {
                         if let update = r["update"] as? String {
                             c.update = update
                         }
+                        if let albumId = r["currentAlbum"] as? String {
+                            c.currentAlbumId = albumId
+                        }
                         results.append(c)
                     }
                     completion(results)
@@ -96,6 +99,7 @@ class CloudKitHelper {
         }
         record["category"] = category.rawValue
         record["update"] = ""
+        record["currentAlbum"] = ""
         
         // Save image
         let url = ImageHelper.saveToDisk(image: img)
@@ -302,6 +306,9 @@ class CloudKitHelper {
                 if let update = r["update"] as? String {
                     c.update = update
                 }
+                if let albumId = r["currentAlbum"] as? String {
+                    c.currentAlbumId = albumId
+                }
                 completion(c, error)
             } else {
                 completion(Club(), error)
@@ -373,6 +380,9 @@ class CloudKitHelper {
             }
             if let update = r["update"] as? String {
                 c.update = update
+            }
+            if let albumId = r["currentAlbum"] as? String {
+                c.currentAlbumId = albumId
             }
             completion(c)
         }
@@ -498,6 +508,33 @@ class CloudKitHelper {
                 completion(results, error)
             } else {
                 completion([PodcastAlbum](), error)
+            }
+        }
+    }
+    
+    func getAlbum(id: String, completion: @escaping (PodcastAlbum?, Error?) -> ()) {
+        self.publicDB.fetch(withRecordID: id.ckId()) { (record, error) in
+            if let r = record {
+                let album = PodcastAlbum()
+                if let title = r["title"] as? String {
+                    album.title = title
+                }
+                if let artistName = r["artistName"] as? String {
+                    album.artistName = artistName
+                }
+                if let numEpisodes = r["numEpisodes"] as? Int {
+                    album.numEpisodes = numEpisodes
+                }
+                if let feedUrl = r["feedUrl"] as? String {
+                    album.feedUrl = feedUrl
+                }
+                if let artworkUrl = r["artworkUrl"] as? String {
+                    album.artworkUrl100 = artworkUrl
+                }
+                album.recordId = r.recordID
+                completion(album, error)
+            } else {
+                completion(nil, error)
             }
         }
     }

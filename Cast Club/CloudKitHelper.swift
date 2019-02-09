@@ -268,8 +268,11 @@ class CloudKitHelper {
     }
     
     func getClub(with id: String, completion: @escaping (Club, Error?) -> ()) {
+        let fetchOperation = CKFetchRecordsOperation(recordIDs: [id.ckId()])
+        fetchOperation.qualityOfService = .userInitiated
+        fetchOperation.queuePriority = .veryHigh
         
-        self.publicDB.fetch(withRecordID: CKRecord.ID(recordName: id)) { (record, error) in
+        fetchOperation.perRecordCompletionBlock = { record, _, error in
             if let r = record {
                 let c = Club()
                 // Get data from club
@@ -314,6 +317,55 @@ class CloudKitHelper {
                 completion(Club(), error)
             }
         }
+        
+        self.publicDB.add(fetchOperation)
+        
+        /*
+        self.publicDB.fetch(withRecordID: CKRecord.ID(recordName: id)) { (record, error) in
+            if let r = record {
+                let c = Club()
+                // Get data from club
+                c.id = r.recordID.recordName
+                if let n = r["name"] as? String {
+                    c.name = n
+                }
+                if let f = r["numFollowers"] as? Int {
+                    c.numFollowers = f
+                }
+                if let id = r["recordName"] as? String {
+                    c.id = id
+                }
+                if let category = r["category"] as? String {
+                    if let cat = ClubCategory(rawValue: category) {
+                        c.category = cat
+                    } else {
+                        c.category = ClubCategory.none
+                    }
+                }
+                if let asset = r["coverPhoto"] as? CKAsset {
+                    c.imgUrl = asset.fileURL
+                    if let img = c.imgUrl?.image() {
+                        c.coverImage = img
+                    }
+                }
+                if let isPublic = r["isPublic"] as? Int {
+                    if isPublic == 1 {
+                        c.isPublic = true
+                    } else {
+                        c.isPublic = false
+                    }
+                }
+                if let update = r["update"] as? String {
+                    c.update = update
+                }
+                if let albumId = r["currentAlbum"] as? String {
+                    c.currentAlbumId = albumId
+                }
+                completion(c, error)
+            } else {
+                completion(Club(), error)
+            }
+        }*/
     }
     
     func getClubQuickly(id: String, completion: @escaping (Club, Error?) -> ()) {

@@ -24,6 +24,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let label = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.viewWithTag(4) as? UILabel {
+            if CloudKitHelper.instance.username.count > 0 {
+                label.text = CloudKitHelper.instance.username
+            } else {
+                label.text = "Set your username"
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
     }
@@ -41,16 +51,30 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let headerCell = self.tableView.dequeueReusableCell(withIdentifier: "headerCell", for:indexPath) as! UITableViewCell
+            let headerCell = self.tableView.dequeueReusableCell(withIdentifier: "headerCell", for:indexPath)
             if let profileImg = headerCell.viewWithTag(3) as? UIImageView {
-                profileImg.image = UIImage(named: "img3")
+                profileImg.image = UIImage(named: "AppIcon")
                 profileImg.clipsToBounds = true
                 profileImg.layer.cornerRadius = 60
                 profileImg.contentMode = .scaleAspectFill
+                
+                CloudKitHelper.instance.getProfilePic(for: CloudKitHelper.instance.userId.recordName) { (image) in
+                    if let img = image {
+                        DispatchQueue.main.async {
+                            if profileImg.image?.size == UIImage(named: "AppIcon")?.size {
+                                profileImg.image = img
+                            }
+                        }
+                    }
+                }
             }
             
             if let usernameLabel = headerCell.viewWithTag(4) as? UILabel {
-                usernameLabel.text = "Henry Macht"
+                if CloudKitHelper.instance.username.count > 0 {
+                    usernameLabel.text = CloudKitHelper.instance.username
+                } else {
+                    usernameLabel.text = "Set your username"
+                }
             }
         
             headerCell.selectionStyle = .none
@@ -151,9 +175,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         myPickerController.sourceType = .photoLibrary
         self.present(myPickerController, animated: true, completion: nil)
     }
-    
-    
-    
-    
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if let imageView = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.viewWithTag(3) as? UIImageView {
+                imageView.image = image
+                CloudKitHelper.instance.setProfileImage(img: image.resizedImageWithinRect(rectSize: CGSize(width: 250, height: 250))) { (error) in
+                    if let e = error {
+                        print(e)
+                    }
+                }
+                picker.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
     
 }

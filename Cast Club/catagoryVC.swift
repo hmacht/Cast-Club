@@ -52,7 +52,7 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func retrieveTopClubs() {
         self.newCat = false
-        CloudKitHelper.instance.getTopClubs(n: 5, category: self.selectedCategory) { (club) in
+        CloudKitHelper.instance.getTopClubs(n: 20, category: self.selectedCategory) { (club) in
             self.results.append(club)
             DispatchQueue.main.async {
                 self.tableView.reloadData()

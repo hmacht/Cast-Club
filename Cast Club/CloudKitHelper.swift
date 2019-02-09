@@ -557,6 +557,7 @@ class CloudKitHelper {
             query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         }
         
+        
         publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let recs = records {
                 var results = [Message]()

@@ -79,6 +79,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             headerCell.profileImage.image = self.selectedClub.coverImage
             headerCell.profileImage.layer.cornerRadius = 30.0
             headerCell.profileImage.clipsToBounds = true
+            headerCell.profileImage.contentMode = .scaleAspectFill
             headerCell.nameLabel.text = self.selectedClub.name
             headerCell.totalMembersLabel.text = "\(self.selectedClub.numFollowers) members"
             
@@ -104,6 +105,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             myCell.usersProfileImage.image = UIImage(named: "img1")
             myCell.usersProfileImage.layer.cornerRadius = 20.0
             myCell.usersProfileImage.clipsToBounds = true
+            myCell.usersProfileImage.contentMode = .scaleAspectFill
             myCell.usernameLabel.sizeToFit()
             myCell.usernameLabel.text = self.messages[indexPath.row - 1].fromUser
             myCell.responcelabel.text = self.messages[indexPath.row - 1].text

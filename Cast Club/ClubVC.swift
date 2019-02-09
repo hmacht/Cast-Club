@@ -109,6 +109,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = self.clubTabelView.dequeueReusableCell(withIdentifier: "ClubCell", for:indexPath) as! ClubTableViewCell
         let club = self.clubs[indexPath.row]
         cell.clubIMG.image = club.coverImage
+        cell.clubIMG.contentMode = .scaleAspectFill
         cell.clubName.text = club.name
         cell.catagoryLabel.text = club.category.rawValue
         

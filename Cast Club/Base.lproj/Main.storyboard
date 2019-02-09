@@ -425,11 +425,11 @@
             <objects>
                 <viewController id="2jA-pc-MRs" customClass="ClubChatVC" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fdO-8j-rYM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F63-m8-lrD">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerCell" rowHeight="156" id="vZa-Ki-U3H" customClass="ChatHeaderTableViewCell" customModule="Pod_Talk" customModuleProvider="target">
@@ -1002,7 +1002,7 @@ Listen to podcasts that are related to their catagory.</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEI-du-kew">
-                                                    <rect key="frame" x="60" y="28.5" width="53" height="16.5"/>
+                                                    <rect key="frame" x="60" y="30" width="53" height="16.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                                     <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1015,7 +1015,7 @@ Listen to podcasts that are related to their catagory.</string>
                                                 <constraint firstItem="8Ok-jk-sP0" firstAttribute="top" secondItem="Vcj-uo-59C" secondAttribute="topMargin" constant="3" id="coz-a6-b4K"/>
                                                 <constraint firstItem="IEI-du-kew" firstAttribute="leading" secondItem="iL3-FA-YrX" secondAttribute="trailing" constant="8" id="d0m-8y-jTa"/>
                                                 <constraint firstItem="iL3-FA-YrX" firstAttribute="leading" secondItem="Vcj-uo-59C" secondAttribute="leadingMargin" id="eFt-iH-4fQ"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="IEI-du-kew" secondAttribute="bottom" constant="4" id="riw-Ay-zUp"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="IEI-du-kew" secondAttribute="bottom" constant="2.5" id="riw-Ay-zUp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1275,7 +1275,7 @@ Listen to podcasts that are related to their catagory.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vx5-G8-YPP"/>
-        <segue reference="sK0-5e-Mr7"/>
+        <segue reference="5JY-ZE-ZJO"/>
         <segue reference="QTv-ZG-pl4"/>
     </inferredMetricsTieBreakers>
 </document>

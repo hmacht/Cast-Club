@@ -352,6 +352,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func listeningTo(){
         print("listening to")
+        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 330, style: 4)
+        bucketView.frame = UIApplication.shared.keyWindow!.frame
+        UIApplication.shared.keyWindow!.addSubview(bucketView)
+        
+        bucketView.podcastButton.addTarget(self, action: #selector(ClubChatVC.toPodcastDetails), for: .touchUpInside)
     }
     
     @objc func more(){
@@ -378,6 +383,12 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @objc func activateFilter() {
         print("Filtering")
     }
+
+    @objc func toPodcastDetails() {
+        print("To podcast page")
+    }
+
+
     
 
     

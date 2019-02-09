@@ -82,6 +82,9 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             if let imgView = myCell.viewWithTag(3) as? UIImageView {
                 imgView.image = self.results[indexPath.row - 1].coverImage
+                imgView.clipsToBounds = true
+                imgView.layer.cornerRadius = 37.0/2.0
+                imgView.contentMode = .scaleAspectFill
             }
             
             if let nameLabel = myCell.viewWithTag(4) as? UILabel {

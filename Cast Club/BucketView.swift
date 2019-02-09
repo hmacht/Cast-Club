@@ -26,6 +26,8 @@ class BucketView: UIView {
     var cameraButton = UIButton()
     var libraryButton = UIButton()
     
+    var podcastButton = UIButton()
+    
     
     
     
@@ -48,6 +50,8 @@ class BucketView: UIView {
             createFilterBucket()
         } else if style == 3 {
             createCameraBucket()
+        } else if style == 4 {
+            createUpdateBucket()
         }
         
     }
@@ -216,6 +220,55 @@ class BucketView: UIView {
         }
         
     }
+    
+    // Update Bucket ---
+    
+    func createUpdateBucket(){
+        
+        var button = UIButton(frame: CGRect(x: closeButton.frame.minX, y: closeButton.frame.minY - 90, width: 70, height: 70))
+        button.setImage(UIImage(named: "Group 439"), for: .normal)
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 6.0
+        self.podcastButton = button
+        self.view.addSubview(button)
+        
+        var podcastTitle = UILabel(frame: CGRect(x: button.frame.maxX + 20, y: button.frame.midY - 20, width: 100, height: 25))
+        podcastTitle.text = "Podcast Title"
+        podcastTitle.font = UIFont(name: "Avenir-Heavy", size: 12)
+        podcastTitle.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
+        self.view.addSubview(podcastTitle)
+        
+        var podcastAuthor = UILabel(frame: CGRect(x: button.frame.maxX + 20, y: button.frame.midY - 5, width: 100, height: 25))
+        podcastAuthor.text = "Author"
+        podcastAuthor.font = UIFont(name: "Avenir-Heavy", size: 12)
+        podcastAuthor.textColor = UIColor(red: 178.0/255.0, green: 178.0/255.0, blue: 178.0/255.0, alpha: 1.0)
+        self.view.addSubview(podcastAuthor)
+        
+        var subheader2 = UILabel(frame: CGRect(x: button.frame.minX, y: button.frame.minY - 30, width: 200, height: 25))
+        subheader2.text = "Currently listening to"
+        subheader2.font = UIFont(name: "Avenir-Black", size: 14)
+        subheader2.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
+        self.view.addSubview(subheader2)
+        
+        var updateMessageLabel = UILabel(frame: CGRect(x: button.frame.minX, y: 35, width: closeButton.frame.width, height: 90))
+        updateMessageLabel.text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus."
+        updateMessageLabel.font = UIFont(name: "Avenir-Heavy", size: 13)
+        updateMessageLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
+        updateMessageLabel.numberOfLines = 6
+        self.view.addSubview(updateMessageLabel)
+        
+        var subheader1 = UILabel(frame: CGRect(x: button.frame.minX, y: 10, width: 200, height: 25))
+        subheader1.text = "Update from Club Creator"
+        subheader1.font = UIFont(name: "Avenir-Black", size: 14)
+        subheader1.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
+        self.view.addSubview(subheader1)
+        
+            
+            
+        
+        
+    }
+    
     
     
     @objc func close(){

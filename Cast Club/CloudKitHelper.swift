@@ -79,6 +79,9 @@ class CloudKitHelper {
                         if let albumId = r["currentAlbum"] as? String {
                             c.currentAlbumId = albumId
                         }
+                        if let creator = r["creator"] as? String {
+                            c.creatorId = creator
+                        }
                         results.append(c)
                     }
                     completion(results)
@@ -100,6 +103,7 @@ class CloudKitHelper {
         record["category"] = category.rawValue
         record["update"] = ""
         record["currentAlbum"] = ""
+        record["creator"] = self.userId.recordName
         
         // Save image
         let url = ImageHelper.saveToDisk(image: img)
@@ -312,6 +316,9 @@ class CloudKitHelper {
                 if let albumId = r["currentAlbum"] as? String {
                     c.currentAlbumId = albumId
                 }
+                if let creator = r["creator"] as? String {
+                    c.creatorId = creator
+                }
                 completion(c, error)
             } else {
                 completion(Club(), error)
@@ -435,6 +442,9 @@ class CloudKitHelper {
             }
             if let albumId = r["currentAlbum"] as? String {
                 c.currentAlbumId = albumId
+            }
+            if let creator = r["creator"] as? String {
+                c.creatorId = creator
             }
             completion(c)
         }

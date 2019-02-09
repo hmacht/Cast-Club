@@ -39,5 +39,6 @@ class Club {
     var update = ""
     var currentAlbumId = ""
     var currentAlbum: PodcastAlbum?
+    var creatorId = ""
 }
 

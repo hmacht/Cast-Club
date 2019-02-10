@@ -16,7 +16,7 @@ class CloudKitHelper {
     let privateDB = CKContainer.default().privateCloudDatabase
     
     var userId = CKRecord.ID()
-    var username = ""
+    var username = "AnonymousUsername"
     
     // Types of records
     let ClubType = "Club"
@@ -160,7 +160,7 @@ class CloudKitHelper {
     
     func getProfilePic(for user: String, completion: @escaping (UIImage?) -> ()) {
         
-        if let pic = self.profilePictures["user"] {
+        if let pic = self.profilePictures[user] {
             completion(pic)
         } else {
             let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
@@ -175,7 +175,7 @@ class CloudKitHelper {
             operation.recordFetchedBlock = { rec in
                 if let asset = rec["profileImage"] as? CKAsset {
                     if let img = asset.fileURL.image() {
-                        self.profilePictures["user"] = img
+                        self.profilePictures[user] = img
                     }
                     completion(asset.fileURL.image())
                 } else {
@@ -638,6 +638,7 @@ class CloudKitHelper {
         record["fromMessageId"] = message.fromMessageId
         record["likedUsersList"] = message.likedUsersList
         record["flaggedUsersList"] = message.flaggedUsersList
+        record["fromUsername"] = self.username
         
         publicDB.save(record) { (record, error) in
             completion(error)
@@ -687,6 +688,9 @@ class CloudKitHelper {
                     }
                     if let flaggedUsersList = r["flaggedUsersList"] as? [String] {
                         message.flaggedUsersList = flaggedUsersList
+                    }
+                    if let username = r["fromUsername"] as? String {
+                        message.fromUsername = username
                     }
                     results.append(message)
                 }
@@ -738,6 +742,9 @@ class CloudKitHelper {
                     }
                     if let flaggedUsersList = r["flaggedUsersList"] as? [String] {
                         message.flaggedUsersList = flaggedUsersList
+                    }
+                    if let username = r["fromUsername"] as? String {
+                        message.fromUsername = username
                     }
                     results.append(message)
                 }

@@ -124,7 +124,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
             UIApplication.shared.keyWindow!.addSubview(bucketView)
             
             bucketView.yesButton.addTarget(self, action: #selector(SearchPodcastsViewController.setPodcast), for: .touchUpInside)
-            bucketView.questionLabel.text = "Would you like to change what the club is listening to \"\(self.searchResults[indexPath.row].title)\"?"
+            bucketView.questionLabel.text = "Would you like to set \(self.searchResults[indexPath.row].title) as the club's current podcast?"
             
             selectedPodcastIndex = indexPath.row
         }
@@ -185,7 +185,21 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     @objc func setPodcast(){
         print("YES")
         bucketView.close()
+        
+        if self.currentClub.currentAlbum?.feedUrl != self.searchResults[selectedPodcastIndex].feedUrl && self.currentClub.currentAlbum?.title != self.searchResults[selectedPodcastIndex].title {
+            CloudKitHelper.instance.setAlbumAsCurrentAlbum(album: self.searchResults[selectedPodcastIndex], club: self.currentClub.id) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    print("Done setting podcast")
+                }
+            }
+        } else {
+            print("This is already the podcast for your club")
+        }
+        
         currentClub.currentAlbum = self.searchResults[selectedPodcastIndex]
     }
 
 }
+

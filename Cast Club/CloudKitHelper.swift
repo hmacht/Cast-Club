@@ -601,6 +601,59 @@ class CloudKitHelper {
         }
     }
     
+    func setAlbumAsCurrentAlbum(album: PodcastAlbum, club: String, completion: @escaping (Error?) -> ()) {
+        let query = CKQuery(recordType: AlbumType, predicate: NSPredicate(format: "feedUrl BEGINSWITH %@ AND title = %@", album.feedUrl, album.title))
+        
+        var currentAlbumId = ""
+        
+        let operation = CKFetchRecordsOperation(recordIDs: [club.ckId()])
+        operation.desiredKeys = ["creator"]
+        
+        operation.perRecordCompletionBlock = { record, _, error in
+            if let rec = record {
+                rec["currentAlbum"] = currentAlbumId
+                self.publicDB.save(rec, completionHandler: { (_, error2) in
+                    completion(error2)
+                })
+            }
+        }
+        
+        
+        self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
+            if let e = error {
+                completion(e)
+            } else {
+                if let rec = records?.first {
+                    // We have found the record
+                    currentAlbumId = rec.recordID.recordName
+                    self.publicDB.add(operation)
+                } else {
+                    // That record does not exist yet
+                    // Create record for album
+                    let record = CKRecord(recordType: self.AlbumType)
+                    record["title"] = album.title
+                    record["artistName"] = album.artistName
+                    record["feedUrl"] = album.feedUrl
+                    record["numEpisodes"] = album.numEpisodes
+                    record["artworkUrl"] = album.artworkUrl100
+                    record["subscribedUsers"] = [self.userId.recordName]
+                    
+                    // Save it
+                    self.publicDB.save(record) { (resultingRecord, e2) in
+                        if let rec = resultingRecord {
+                            // We saved the album
+                            currentAlbumId = rec.recordID.recordName
+                            // Save to the club
+                            self.publicDB.add(operation)
+                        } else {
+                            completion(e2)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func unsubsribe(from album: PodcastAlbum, completion: @escaping (Error?) -> ()) {
         // Delete the album from the users database
         // Fetch the album

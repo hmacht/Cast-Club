@@ -15,10 +15,17 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var hintLabel: UILabel!
     
+    var bucketView = BucketView(frame: CGRect(), viewHeight: 0, style: 0)
+    var currentClub = Club()
+    var selectedPodcastIndex = Int()
+    
+    
     var searchResults = [PodcastAlbum]()
     var selectedAlbum = PodcastAlbum()
     var activityIndicator = UIActivityIndicatorView()
     var errorPopUp = ErrorPopUp(frame: CGRect(), headerText: "", bodyText: "")
+    
+    var editingClubPodcast = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,10 +112,22 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedAlbum = self.searchResults[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        searchBar.resignFirstResponder()
-        self.performSegue(withIdentifier: "toAlbumView", sender: self)
+        if editingClubPodcast == false {
+            self.selectedAlbum = self.searchResults[indexPath.row]
+            searchBar.resignFirstResponder()
+            self.performSegue(withIdentifier: "toAlbumView", sender: self)
+        } else {
+            print("Set as new club podcast")
+            self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 220, style: 6)
+            bucketView.frame = UIApplication.shared.keyWindow!.frame
+            UIApplication.shared.keyWindow!.addSubview(bucketView)
+            
+            bucketView.yesButton.addTarget(self, action: #selector(SearchPodcastsViewController.setPodcast), for: .touchUpInside)
+            bucketView.questionLabel.text = "Would you like to change what the club is listening to \"\(self.searchResults[indexPath.row].title)\"?"
+            
+            selectedPodcastIndex = indexPath.row
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -161,6 +180,12 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
+    }
+    
+    @objc func setPodcast(){
+        print("YES")
+        bucketView.close()
+        currentClub.currentAlbum = self.searchResults[selectedPodcastIndex]
     }
 
 }

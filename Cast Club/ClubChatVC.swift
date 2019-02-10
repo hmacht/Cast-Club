@@ -83,15 +83,24 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             headerCell.nameLabel.text = self.selectedClub.name
             headerCell.totalMembersLabel.text = "\(self.selectedClub.numFollowers) members"
             
-            if clubIds.contains(self.selectedClub.id) {
-                // We follow it already
-                headerCell.followButton.setTitle("Unfollow", for: .normal)
+            
+            if selectedClub.creatorId == CloudKitHelper.instance.userId.recordName {
+                print("YOU ARE THE OWNER")
+                headerCell.followButton.setTitle("Edit Club", for: .normal)
+                headerCell.followButton.addTarget(self, action: #selector(ClubChatVC.edit), for: .touchUpInside)
             } else {
-                headerCell.followButton.setTitle("Follow", for: .normal)
+                headerCell.followButton.addTarget(self, action: #selector(ClubChatVC.follow(sender:)), for: .touchUpInside)
+                if clubIds.contains(self.selectedClub.id) {
+                    // We follow it already
+                    headerCell.followButton.setTitle("Unfollow", for: .normal)
+                } else {
+                    headerCell.followButton.setTitle("Follow", for: .normal)
+                }
             }
+            
             headerCell.followButton.clipsToBounds = true
             headerCell.followButton.layer.cornerRadius = 6.0
-            headerCell.followButton.addTarget(self, action: #selector(ClubChatVC.follow(sender:)), for: .touchUpInside)
+            
             
             headerCell.listeningToButton.addTarget(self, action: #selector(ClubChatVC.listeningTo), for: .touchUpInside)
             headerCell.moreButton.addTarget(self, action: #selector(ClubChatVC.more), for: .touchUpInside)
@@ -195,6 +204,15 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let destination = segue.destination as? AlbumViewController {
             if let album = self.selectedClub.currentAlbum {
                 destination.album = album
+            }
+        }
+        
+        
+        if segue.identifier == "toSearchPodcast" {
+            if let destination = segue.destination as? SearchPodcastsViewController {
+                print("to search")
+                destination.editingClubPodcast = true
+                destination.currentClub = selectedClub
             }
         }
     }
@@ -421,8 +439,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             } else {
-                self.bucketView.podcastTitle.text = "This club hasn't started listening to any podcasts yet."
-                self.bucketView.podcastAuthor.text = ""
+                self.bucketView.podcastTitle.text = "No Podcast Yet"
+                self.bucketView.podcastAuthor.text = "Tell the creator to add one"
             }
         }
         
@@ -461,6 +479,32 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         print("To podcast page")
         self.bucketView.close()
         self.performSegue(withIdentifier: "toAlbumDetail", sender: self)
+    }
+    
+    @objc func edit() {
+        print("EDIT")
+        
+        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 230, style: 5)
+        bucketView.frame = UIApplication.shared.keyWindow!.frame
+        UIApplication.shared.keyWindow!.addSubview(bucketView)
+        
+        bucketView.changePodcastButton.addTarget(self, action: #selector(ClubChatVC.editPodcast), for: .touchUpInside)
+        bucketView.changeImageButton.addTarget(self, action: #selector(ClubChatVC.editImage), for: .touchUpInside)
+        bucketView.changeNameButton.addTarget(self, action: #selector(ClubChatVC.editName), for: .touchUpInside)
+    }
+    
+    @objc func editPodcast() {
+        print("editPodcast")
+        bucketView.close()
+        self.performSegue(withIdentifier: "toSearchPodcast", sender: self)
+    }
+    
+    @objc func editImage() {
+        print("editImage")
+    }
+    
+    @objc func editName() {
+        print("editName")
     }
 
 

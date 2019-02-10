@@ -188,6 +188,11 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             let destination = segue.destination as! AlbumViewController
             destination.album = self.homeSelection
         }
+        
+        if segue.identifier == "toSearch" {
+            let destination = segue.destination as! SearchPodcastsViewController
+            destination.editingClubPodcast = false
+        }
     }
 
 }

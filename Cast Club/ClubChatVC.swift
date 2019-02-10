@@ -159,7 +159,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if tableView.contentOffset.y > 130 {
             if let navController = navigationController {
-                navController.navigationBar.topItem?.title = "Longer Club Name"
+                navController.navigationBar.topItem?.title = self.selectedClub.name
             }
             let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 734"), style: .done, target: self, action: #selector(ClubChatVC.more))
             self.navigationItem.rightBarButtonItem = rightBarButtonItem

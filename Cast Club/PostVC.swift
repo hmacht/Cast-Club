@@ -141,6 +141,7 @@ class PostVC: UIViewController, UITextViewDelegate {
             message.fromUser = CloudKitHelper.instance.userId.recordName
             message.numLikes = 0
             message.text = self.textView.text
+            message.fromUsername = CloudKitHelper.instance.username
             CloudKitHelper.instance.writeMessage(message) { (error) in
                 if let e = error {
                     print(e)

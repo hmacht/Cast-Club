@@ -103,11 +103,19 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             let myCell = self.tableView.dequeueReusableCell(withIdentifier: "responceCell", for:indexPath) as! ResponceTableViewCell
             myCell.usersProfileImage.image = UIImage(named: "img1")
+            // Get the profile picture
+            CloudKitHelper.instance.getProfilePic(for: self.messages[indexPath.row - 1].fromUser) { (img) in
+                if let image = img {
+                    DispatchQueue.main.async {
+                        myCell.usersProfileImage.image = image
+                    }
+                }
+            }
             myCell.usersProfileImage.layer.cornerRadius = 20.0
             myCell.usersProfileImage.clipsToBounds = true
             myCell.usersProfileImage.contentMode = .scaleAspectFill
             myCell.usernameLabel.sizeToFit()
-            myCell.usernameLabel.text = self.messages[indexPath.row - 1].fromUser
+            myCell.usernameLabel.text = self.messages[indexPath.row - 1].fromUsername
             myCell.responcelabel.text = self.messages[indexPath.row - 1].text
             myCell.responcelabel.sizeToFit()
             myCell.responcelabel.numberOfLines = 50

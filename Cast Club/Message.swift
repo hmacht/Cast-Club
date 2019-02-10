@@ -18,4 +18,5 @@ struct Message {
     var id = ""
     var likedUsersList = [String]()
     var flaggedUsersList = [String]()
+    var fromUsername = ""
 }

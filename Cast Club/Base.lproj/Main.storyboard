@@ -631,6 +631,7 @@
                     <connections>
                         <outlet property="tableView" destination="F63-m8-lrD" id="pIG-Tn-x0D"/>
                         <segue destination="1aw-5R-hxk" kind="presentation" identifier="toPost" id="aPP-qd-IP2"/>
+                        <segue destination="YnJ-Ln-gEA" kind="show" identifier="toAlbumDetail" id="UPa-Zj-iA9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXN-nb-CJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1276,6 +1277,6 @@ Listen to podcasts that are related to their catagory.</string>
     <inferredMetricsTieBreakers>
         <segue reference="vx5-G8-YPP"/>
         <segue reference="5JY-ZE-ZJO"/>
-        <segue reference="QTv-ZG-pl4"/>
+        <segue reference="UPa-Zj-iA9"/>
     </inferredMetricsTieBreakers>
 </document>

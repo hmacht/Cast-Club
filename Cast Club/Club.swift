@@ -37,5 +37,8 @@ class Club {
     var isPublic = true
     var category = ClubCategory.none
     var update = ""
+    var currentAlbumId = ""
+    var currentAlbum: PodcastAlbum?
+    var creatorId = ""
 }
 

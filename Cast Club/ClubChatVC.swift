@@ -192,6 +192,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 destination.fromMessage = self.selectedMessage
             }
         }
+        if let destination = segue.destination as? AlbumViewController {
+            if let album = self.selectedClub.currentAlbum {
+                destination.album = album
+            }
+        }
     }
     
     
@@ -353,12 +358,78 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func listeningTo(){
-        print("listening to")
+        
         self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 330, style: 4)
+        if self.selectedClub.update == "" {
+            self.bucketView.updateMessageLabel.text = "The club creator has not sent out an update."
+        } else {
+            self.bucketView.updateMessageLabel.text = self.selectedClub.update
+        }
+        self.bucketView.podcastButton.isUserInteractionEnabled = false
+        
+        if let album = self.selectedClub.currentAlbum {
+                // We have already retrieved the album
+            if let img = self.selectedClub.currentAlbum?.artworkImage {
+                self.bucketView.podcastButton.setImage(img, for: .normal)
+            } else {
+                DispatchQueue.global(qos: .background).async {
+                    _ = album.getImageData(dimensions: .hundred, completion: { (image) in
+                        if let img = image {
+                            self.selectedClub.currentAlbum?.artworkImage = img
+                            DispatchQueue.main.async {
+                                self.bucketView.podcastButton.setImage(img, for: .normal)
+                            }
+                        }
+                    })
+                }
+            }
+            
+            self.bucketView.podcastButton.isUserInteractionEnabled = true
+            self.bucketView.podcastTitle.text = album.title
+            self.bucketView.podcastAuthor.text = album.artistName
+        } else {
+            if self.selectedClub.currentAlbumId != "" {
+                // Obtain the album
+                CloudKitHelper.instance.getAlbum(id: self.selectedClub.currentAlbumId) { (podcastAlbum, error) in
+                    if let e = error {
+                        print(e)
+                    } else {
+                        if let album = podcastAlbum {
+                            self.selectedClub.currentAlbum = album
+                            if let img = self.selectedClub.currentAlbum?.artworkImage {
+                                DispatchQueue.main.async {
+                                    self.bucketView.podcastButton.setImage(img, for: .normal)
+                                }
+                            } else {
+                                DispatchQueue.global(qos: .background).async {
+                                    _ = album.getImageData(dimensions: .hundred, completion: { (image) in
+                                        if let img = image {
+                                            self.selectedClub.currentAlbum?.artworkImage = img
+                                            DispatchQueue.main.async {
+                                                self.bucketView.podcastButton.setImage(img, for: .normal)
+                                            }
+                                        }
+                                    })
+                                }
+                            }
+                            DispatchQueue.main.async {
+                                self.bucketView.podcastButton.isUserInteractionEnabled = true
+                                self.bucketView.podcastTitle.text = album.title
+                                self.bucketView.podcastAuthor.text = album.artistName
+                            }
+                        }
+                    }
+                }
+            } else {
+                self.bucketView.podcastTitle.text = "This club hasn't started listening to any podcasts yet."
+                self.bucketView.podcastAuthor.text = ""
+            }
+        }
+        
         bucketView.frame = UIApplication.shared.keyWindow!.frame
         UIApplication.shared.keyWindow!.addSubview(bucketView)
-        
         bucketView.podcastButton.addTarget(self, action: #selector(ClubChatVC.toPodcastDetails), for: .touchUpInside)
+        
     }
     
     @objc func more(){
@@ -388,6 +459,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @objc func toPodcastDetails() {
         print("To podcast page")
+        self.bucketView.close()
+        self.performSegue(withIdentifier: "toAlbumDetail", sender: self)
     }
 
 

@@ -31,6 +31,13 @@ class BucketView: UIView {
     var podcastTitle = UILabel()
     var podcastAuthor = UILabel()
     
+    var changePodcastButton = UIButton()
+    var changeImageButton = UIButton()
+    var changeNameButton = UIButton()
+    
+    var questionLabel = UILabel()
+    var yesButton = UIButton()
+    
     
     
     
@@ -55,6 +62,10 @@ class BucketView: UIView {
             createCameraBucket()
         } else if style == 4 {
             createUpdateBucket()
+        } else if style == 5 {
+            createEditBucket()
+        } else if style == 6 {
+            createSetClubBucket()
         }
         
     }
@@ -232,6 +243,7 @@ class BucketView: UIView {
         button.setImage(UIImage(named: "Group 439"), for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 6.0
+        button.contentMode = .scaleAspectFill
         self.podcastButton = button
         self.view.addSubview(button)
         
@@ -266,12 +278,66 @@ class BucketView: UIView {
         subheader1.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
         self.view.addSubview(subheader1)
         
+    }
+    
+    // Filter Bucket ---
+    var editButtonTitles = ["     Edit Podcast", "     Edit Profile Photo", "     Edit Name"]
+    func createEditBucket(){
+        for i in 0...2 {
+            var button = UIButton(frame: CGRect(x: 0, y: yPos, width: Int(screenSize.width - screenSize.width/15), height: 50))
+            button.center.x = screenSize.width/2
+            button.backgroundColor = .white
+            button.setTitle(editButtonTitles[i], for: .normal)
+            button.contentHorizontalAlignment = .left
+            button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+            button.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0), for: .normal)
+            button.tag = i
+            
+            if i == 0 {
+                self.changePodcastButton = button
+                print("B1")
+            } else if i == 1 {
+                self.changeImageButton = button
+                print("B2")
+            } else {
+                self.changeNameButton = button
+            }
+            
+            self.view.addSubview(button)
+            print(button.frame.midY)
+            yPos += 50
             
             
-        
+        }
         
     }
     
+    // setClub Bucket ---
+    func createSetClubBucket(){
+        var header = UILabel(frame: CGRect(x: closeButton.frame.minX, y: 10, width: 200, height: 25))
+        header.text = "Change Podcast"
+        header.font = UIFont(name: "Avenir-Black", size: 14)
+        header.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
+        self.view.addSubview(header)
+        
+        questionLabel = UILabel(frame: CGRect(x: closeButton.frame.minX, y: 35, width: closeButton.frame.width, height: 40))
+        questionLabel.font = UIFont(name: "Avenir-Heavy", size: 13)
+        questionLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
+        questionLabel.numberOfLines = 2
+        self.view.addSubview(questionLabel)
+        
+        var button = UIButton(frame: CGRect(x: 0, y: Int(closeButton.frame.minY - 55), width: Int(screenSize.width - screenSize.width/15), height: 50))
+        button.center.x = screenSize.width/2
+        button.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247/255.0, alpha: 1.0)
+        button.setTitle("Yes", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+        button.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0), for: .normal)
+        button.layer.cornerRadius = 5.0
+        self.yesButton = button
+        self.view.addSubview(button)
+        
+        
+    }
     
     
     @objc func close(){

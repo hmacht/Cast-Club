@@ -17,6 +17,9 @@ class PostVC: UIViewController, UITextViewDelegate {
     var fromClub = Club()
     var fromMessage = Message()
     
+    var isUpdate = Bool()
+    var currentClub = Club()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +55,11 @@ class PostVC: UIViewController, UITextViewDelegate {
     func createTextView() {
         textView = UITextView(frame: CGRect(x: 15, y: screenSize.height/10, width: screenSize.width - 15, height: screenSize.height/2))
         textView.dataDetectorTypes = .link
-        textView.text = "Share your thoughts"
+        if isUpdate {
+            textView.text = "Tell your members what going on"
+        } else {
+            textView.text = "Share your thoughts"
+        }
         textView.textColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1.0)
         textView.font = UIFont(name: "Avenir-Heavy", size: 16)
         
@@ -104,7 +111,12 @@ class PostVC: UIViewController, UITextViewDelegate {
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
         
         if updatedText.isEmpty {
-            textView.text = "Share your thoughts"
+            if isUpdate {
+                textView.text = "Tell your members what going on"
+            } else {
+                textView.text = "Share your thoughts"
+            }
+            
             textView.textColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1.0)
             
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
@@ -133,27 +145,34 @@ class PostVC: UIViewController, UITextViewDelegate {
         self.view.endEditing(true)
         self.dismiss(animated: true, completion: nil)
         
-        if self.textView.text.count > 0 {
-            var message = Message()
-            message.clubId = self.fromClub.id
-            message.flags = 0
-            message.fromMessageId = self.fromMessage.id
-            message.fromUser = CloudKitHelper.instance.userId.recordName
-            message.numLikes = 0
-            message.text = self.textView.text
-            message.fromUsername = CloudKitHelper.instance.username
-            CloudKitHelper.instance.writeMessage(message) { (error) in
-                if let e = error {
-                    print(e)
-                } else {
-                    print("Done writing")
-                    DispatchQueue.main.async {
-                        // TODO - add some confirmation
-                        
+        if isUpdate {
+            print("posted Update")
+            currentClub.update = self.textView.text
+        } else {
+            if self.textView.text.count > 0 {
+                var message = Message()
+                message.clubId = self.fromClub.id
+                message.flags = 0
+                message.fromMessageId = self.fromMessage.id
+                message.fromUser = CloudKitHelper.instance.userId.recordName
+                message.numLikes = 0
+                message.text = self.textView.text
+                message.fromUsername = CloudKitHelper.instance.username
+                CloudKitHelper.instance.writeMessage(message) { (error) in
+                    if let e = error {
+                        print(e)
+                    } else {
+                        print("Done writing")
+                        DispatchQueue.main.async {
+                            // TODO - add some confirmation
+                            
+                        }
                     }
                 }
             }
         }
+        
+        
     }
     
     @objc func close(){

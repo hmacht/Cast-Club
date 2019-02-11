@@ -274,7 +274,8 @@ class BucketView: UIView {
         updateMessageLabel.text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus."
         updateMessageLabel.font = UIFont(name: "Avenir-Heavy", size: 13)
         updateMessageLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
-        updateMessageLabel.numberOfLines = 6
+        updateMessageLabel.numberOfLines = 0
+        updateMessageLabel.sizeToFit()
         self.view.addSubview(updateMessageLabel)
         
         var subheader1 = UILabel(frame: CGRect(x: button.frame.minX, y: 10, width: 200, height: 25))

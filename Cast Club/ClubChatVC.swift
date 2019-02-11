@@ -24,6 +24,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var bucketView = BucketView(frame: CGRect(), viewHeight: 0, style: 0)
     
+    var isUpdate = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,7 +106,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             headerCell.listeningToButton.addTarget(self, action: #selector(ClubChatVC.listeningTo), for: .touchUpInside)
             headerCell.moreButton.addTarget(self, action: #selector(ClubChatVC.more), for: .touchUpInside)
-            headerCell.postButton.addTarget(self, action: #selector(ClubChatVC.post), for: .touchUpInside)
+            //headerCell.postButton.addTarget(self, action: #selector(ClubChatVC.post), for: .touchUpInside)
             
             headerCell.selectionStyle = .none
             
@@ -223,6 +225,14 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 destination.currentClub = selectedClub
             }
         }
+        
+        if segue.identifier == "toPost" {
+            if let destination = segue.destination as? PostVC {
+                destination.isUpdate = isUpdate
+                destination.currentClub = selectedClub
+            }
+        }
+        
     }
     
     
@@ -461,13 +471,13 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @objc func more(){
         print("more")
         if selectedClub.creatorId == CloudKitHelper.instance.userId.recordName {
-            self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 230, style: 5)
+            self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 7)
             bucketView.frame = UIApplication.shared.keyWindow!.frame
             UIApplication.shared.keyWindow!.addSubview(bucketView)
-            
-            bucketView.postClubButton.addTarget(self, action: #selector(ClubChatVC.post), for: .touchUpInside)
-            bucketView.postUpdateButton.addTarget(self, action: #selector(ClubChatVC.post), for: .touchUpInside)
+            bucketView.postClubButton.addTarget(self, action: #selector(ClubChatVC.postToClub), for: .touchUpInside)
+            bucketView.postUpdateButton.addTarget(self, action: #selector(ClubChatVC.postUpdate), for: .touchUpInside)
         } else {
+            isUpdate = false
             self.performSegue(withIdentifier: "toPost", sender: self)
         }
         
@@ -475,7 +485,16 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    @objc func post(){
+    @objc func postUpdate(){
+        bucketView.close()
+        isUpdate = true
+        print("POST UPDATE")
+        self.performSegue(withIdentifier: "toPost", sender: self)
+    }
+    
+    @objc func postToClub(){
+        bucketView.close()
+        isUpdate = false
         self.performSegue(withIdentifier: "toPost", sender: self)
     }
     

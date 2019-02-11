@@ -163,7 +163,7 @@ class CloudKitHelper {
         if let pic = self.profilePictures[user] {
             completion(pic)
         } else {
-            let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
+            let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", user))
             
             let operation = CKQueryOperation(query: query)
             operation.resultsLimit = 1
@@ -716,7 +716,7 @@ class CloudKitHelper {
                 var results = [Message]()
                 
                 for r in recs {
-                    var message = Message()
+                    let message = Message()
                     message.id = r.recordID.recordName
                     if let text = r["text"] as? String {
                         message.text = text
@@ -744,6 +744,9 @@ class CloudKitHelper {
                     }
                     if let username = r["fromUsername"] as? String {
                         message.fromUsername = username
+                    }
+                    if let date = r.creationDate {
+                        message.creationDate = date
                     }
                     results.append(message)
                 }
@@ -770,7 +773,7 @@ class CloudKitHelper {
                 var results = [Message]()
                 
                 for r in recs {
-                    var message = Message()
+                    let message = Message()
                     message.id = r.recordID.recordName
                     if let text = r["text"] as? String {
                         message.text = text
@@ -798,6 +801,9 @@ class CloudKitHelper {
                     }
                     if let username = r["fromUsername"] as? String {
                         message.fromUsername = username
+                    }
+                    if let date = r.creationDate {
+                        message.creationDate = date
                     }
                     results.append(message)
                 }

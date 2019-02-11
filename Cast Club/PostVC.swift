@@ -56,7 +56,7 @@ class PostVC: UIViewController, UITextViewDelegate {
         textView = UITextView(frame: CGRect(x: 15, y: screenSize.height/10, width: screenSize.width - 15, height: screenSize.height/2))
         textView.dataDetectorTypes = .link
         if isUpdate {
-            textView.text = "Tell your members what going on"
+            textView.text = "Tell your members what's going on"
         } else {
             textView.text = "Share your thoughts"
         }
@@ -140,14 +140,17 @@ class PostVC: UIViewController, UITextViewDelegate {
         }
     }
     
-    @objc func post(){
-        print("POST")
-        self.view.endEditing(true)
-        self.dismiss(animated: true, completion: nil)
+    @objc func post() {
         
         if isUpdate {
-            print("posted Update")
-            currentClub.update = self.textView.text
+            if self.textView.text.count > 0 {
+                currentClub.update = self.textView.text
+                CloudKitHelper.instance.writeClubUpdate(message: self.currentClub.update, clubId: self.currentClub.id) { (error) in
+                    if let e = error {
+                        print(e)
+                    }
+                }
+            }
         } else {
             if self.textView.text.count > 0 {
                 var message = Message()
@@ -172,7 +175,8 @@ class PostVC: UIViewController, UITextViewDelegate {
             }
         }
         
-        
+        self.view.endEditing(true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func close(){

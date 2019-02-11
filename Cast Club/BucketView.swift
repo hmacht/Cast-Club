@@ -38,6 +38,9 @@ class BucketView: UIView {
     var questionLabel = UILabel()
     var yesButton = UIButton()
     
+    var postClubButton = UIButton()
+    var postUpdateButton = UIButton()
+    
     
     
     
@@ -66,6 +69,8 @@ class BucketView: UIView {
             createEditBucket()
         } else if style == 6 {
             createSetClubBucket()
+        } else if style == 7 {
+            createPostOptionsBucket()
         }
         
     }
@@ -269,7 +274,8 @@ class BucketView: UIView {
         updateMessageLabel.text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus."
         updateMessageLabel.font = UIFont(name: "Avenir-Heavy", size: 13)
         updateMessageLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)
-        updateMessageLabel.numberOfLines = 6
+        updateMessageLabel.numberOfLines = 0
+        updateMessageLabel.sizeToFit()
         self.view.addSubview(updateMessageLabel)
         
         var subheader1 = UILabel(frame: CGRect(x: button.frame.minX, y: 10, width: 200, height: 25))
@@ -337,6 +343,39 @@ class BucketView: UIView {
         self.view.addSubview(button)
         
         
+    }
+    
+    // Post Options Bucket ---
+    
+    //var buttonImages = ["Group 301", "Group 302", "Group 737"]
+    var postOptionsTitles = ["     Post to Club", "     Post an Update"]
+    var yPos2 = 0
+    
+    func createPostOptionsBucket(){
+        for i in 0...1 {
+            var button = UIButton(frame: CGRect(x: 0, y: yPos2, width: Int(screenSize.width - screenSize.width/15), height: 50))
+            //button.setImage(UIImage(named: buttonImages[i]), for: .normal)
+            //button.layer.cornerRadius = screenSize.width/12
+            button.addTarget(self, action: #selector(BucketView.share), for: .touchUpInside)
+            button.center.x = screenSize.width/2
+            button.backgroundColor = .white
+            button.setTitle(postOptionsTitles[i], for: .normal)
+            button.contentHorizontalAlignment = .left
+            button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+            button.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0), for: .normal)
+            button.tag = i
+            
+            if i == 0 {
+                self.postClubButton = button
+            } else {
+                self.postUpdateButton = button
+            }
+            self.view.addSubview(button)
+            print(button.frame.midY)
+            yPos2 += 50
+            
+            
+        }
     }
     
     

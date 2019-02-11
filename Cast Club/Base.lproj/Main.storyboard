@@ -533,6 +533,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="105.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OY5-Q1-r8l">
+                                                    <rect key="frame" x="0.0" y="8" width="375" height="97.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nYv-d8-Ptw">
                                                     <rect key="frame" x="15" y="22" width="40" height="40"/>
                                                     <constraints>
@@ -595,6 +599,7 @@
                                             <constraints>
                                                 <constraint firstItem="oSj-Ec-hMO" firstAttribute="leading" secondItem="nYv-d8-Ptw" secondAttribute="trailing" constant="7" id="71M-iH-fxk"/>
                                                 <constraint firstItem="4Bw-B8-4d9" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="topMargin" constant="13" id="EpX-v2-6wh"/>
+                                                <constraint firstAttribute="bottom" secondItem="OY5-Q1-r8l" secondAttribute="bottom" id="LYF-X2-gYV"/>
                                                 <constraint firstItem="Jal-7O-ccV" firstAttribute="leading" secondItem="1YS-yD-b6f" secondAttribute="leading" constant="62" id="RgX-CX-PyV"/>
                                                 <constraint firstItem="nYv-d8-Ptw" firstAttribute="leading" secondItem="1YS-yD-b6f" secondAttribute="leadingMargin" id="Vey-h1-89u"/>
                                                 <constraint firstItem="cjv-CR-T2y" firstAttribute="leading" secondItem="nYv-d8-Ptw" secondAttribute="trailing" constant="7" id="Wob-go-UQf"/>
@@ -602,8 +607,11 @@
                                                 <constraint firstItem="db0-n7-Egh" firstAttribute="leading" secondItem="oSj-Ec-hMO" secondAttribute="trailing" constant="8" id="bj3-hG-kXP"/>
                                                 <constraint firstItem="ryb-ug-K6z" firstAttribute="leading" secondItem="Jal-7O-ccV" secondAttribute="trailing" constant="8" id="fg0-eV-k2Z"/>
                                                 <constraint firstItem="oSj-Ec-hMO" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="topMargin" constant="11" id="ggV-82-4Rg"/>
+                                                <constraint firstItem="OY5-Q1-r8l" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="top" constant="8" id="giR-4t-Vku"/>
                                                 <constraint firstAttribute="bottom" secondItem="Jal-7O-ccV" secondAttribute="bottom" constant="5.5" id="jDc-uc-ahP"/>
+                                                <constraint firstItem="OY5-Q1-r8l" firstAttribute="leading" secondItem="1YS-yD-b6f" secondAttribute="leading" id="oXq-kp-mU0"/>
                                                 <constraint firstItem="4Bw-B8-4d9" firstAttribute="leading" secondItem="db0-n7-Egh" secondAttribute="trailing" id="qiH-tw-ha2"/>
+                                                <constraint firstAttribute="trailing" secondItem="OY5-Q1-r8l" secondAttribute="trailing" id="toO-sC-2ad"/>
                                                 <constraint firstItem="cjv-CR-T2y" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="topMargin" constant="31" id="vph-5M-1jY"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="cjv-CR-T2y" secondAttribute="bottom" constant="35" id="vtG-si-oCd"/>
                                                 <constraint firstItem="db0-n7-Egh" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="topMargin" constant="12" id="xh4-ch-5tZ"/>

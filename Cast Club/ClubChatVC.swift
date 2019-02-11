@@ -216,8 +216,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             whiteRoundedView.layer.cornerRadius = 2.0
             
             
-            myCell.contentView.addSubview(whiteRoundedView)
-            myCell.contentView.sendSubviewToBack(whiteRoundedView)
+            //myCell.contentView.addSubview(whiteRoundedView)
+            //myCell.contentView.sendSubviewToBack(whiteRoundedView)
             
             let backgroundView = UIView()
             backgroundView.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)

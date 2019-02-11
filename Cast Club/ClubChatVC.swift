@@ -19,6 +19,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var selectedClub = Club()
     var selectedMessage = Message()
     var messages = [Message]()
+    var currentSortOption = SortOption.likes
     
     var moreMessageInd = 0
     
@@ -53,9 +54,37 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print(e)
             } else {
                 self.messages = results
-                // TODO - actually display them, ie. reload table view
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func getMessagesSorted(by sortOption: SortOption) {
+        if sortOption == .likes && self.currentSortOption != .likes {
+            self.currentSortOption = .likes
+            CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: .likes) { (results, error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    self.messages = results
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+            
+        } else if sortOption == .newest && self.currentSortOption != .newest {
+            self.currentSortOption = .newest
+            CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: .newest) { (results, error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    self.messages = results
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
@@ -87,7 +116,6 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             
             if selectedClub.creatorId == CloudKitHelper.instance.userId.recordName {
-                print("YOU ARE THE OWNER")
                 headerCell.followButton.setTitle("Edit Club", for: .normal)
                 headerCell.followButton.addTarget(self, action: #selector(ClubChatVC.edit), for: .touchUpInside)
             } else {
@@ -133,7 +161,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             if let likeButton = myCell.viewWithTag(-1) as? UIButton {
                 likeButton.setTitle(String(" \(self.messages[indexPath.row - 1].numLikes)"), for: .normal)
-                likeButton.tag = indexPath.row - 1
+                //likeButton.tag = indexPath.row - 1
                 
                 likeButton.addTarget(self, action: #selector(ClubChatVC.likeMessage(sender:)), for: .touchUpInside)
                 
@@ -141,6 +169,33 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     // User has already liked message
                     //likeButton.setTitleColor(.red, for: .normal)
                     likeButton.setImage(UIImage(named: "Path 1885"), for: .normal)
+                } else {
+                    likeButton.setImage(UIImage(named: "Path 1700"), for: .normal)
+                }
+            }
+            
+            if let timeLabel = myCell.viewWithTag(-2) as? UILabel {
+                let date = self.messages[indexPath.row - 1].creationDate
+                let secondsSinceNow = abs(date.timeIntervalSinceNow)
+                // More than a year ago
+                if secondsSinceNow > 60 * 60 * 24 * 30 {
+                    // More than a month ago
+                    let formatter = DateFormatter()
+                    formatter.dateStyle = .medium
+                    formatter.timeStyle = .none
+                    
+                    timeLabel.text = formatter.string(from: date)
+                } else if secondsSinceNow > 60 * 60 * 24 {
+                    // More than a day ago
+                    timeLabel.text = "\(Int(secondsSinceNow) / (60 * 60 * 24)) days ago"
+                } else if secondsSinceNow > 60 * 60 {
+                    // More than an hour ago
+                    timeLabel.text = "\(Int(secondsSinceNow) / (60 * 60)) hours ago"
+                } else if secondsSinceNow > 60 {
+                    // More than a minute ago
+                    timeLabel.text = "\(Int(secondsSinceNow) / 60) minutes ago"
+                } else {
+                    timeLabel.text = "\(secondsSinceNow) seconds ago"
                 }
             }
             
@@ -238,44 +293,47 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func likeMessage(sender: UIButton) {
         
-        
-        let m = self.messages[sender.tag]
-        
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
-        sender.setTitle(" \(m.numLikes - 1)", for: .normal)
-        sender.setImage(UIImage(named: "Path 1700"), for: .normal)
-        
-        if m.likedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
-            self.messages[sender.tag].numLikes -= 1
-            if let ind = self.messages[sender.tag].likedUsersList.firstIndex(of: CloudKitHelper.instance.userId.recordName) {
-                self.messages[sender.tag].likedUsersList.remove(at: ind)
-            }
-            // User has already liked the message
-            CloudKitHelper.instance.unlikeMessageWithId(m.id.ckId()) { (error) in
-                if let e = error {
-                    print(e)
-                } else {
-                    DispatchQueue.main.async {
-                        //sender.setTitleColor(.black, for: .normal)
-                    }
-                }
-            }
-        } else {
-            // Like the message
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+        if let path = tableView.indexPathForRow(at: buttonPosition) {
+            let indexPath = IndexPath(row: path.row - 1, section: path.section)
+            let m = self.messages[indexPath.row]
+            
             let generator = UIImpactFeedbackGenerator(style: .medium)
             generator.impactOccurred()
-            sender.setTitle(" \(m.numLikes + 1)", for: .normal)
-            sender.setImage(UIImage(named: "Path 1885"), for: .normal)
+            sender.setTitle(" \(m.numLikes - 1)", for: .normal)
+            sender.setImage(UIImage(named: "Path 1700"), for: .normal)
             
-            self.messages[sender.tag].numLikes += 1
-            self.messages[sender.tag].likedUsersList.append(CloudKitHelper.instance.userId.recordName)
-            CloudKitHelper.instance.likeMessageWithId(m.id.ckId()) { (error) in
-                if let e = error {
-                    print(e)
-                } else {
-                    DispatchQueue.main.async {
-                        //sender.setTitleColor(.red, for: .normal)
+            if m.likedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
+                self.messages[indexPath.row].numLikes -= 1
+                if let ind = self.messages[indexPath.row].likedUsersList.firstIndex(of: CloudKitHelper.instance.userId.recordName) {
+                    self.messages[indexPath.row].likedUsersList.remove(at: ind)
+                }
+                // User has already liked the message
+                CloudKitHelper.instance.unlikeMessageWithId(m.id.ckId()) { (error) in
+                    if let e = error {
+                        print(e)
+                    } else {
+                        DispatchQueue.main.async {
+                            //sender.setTitleColor(.black, for: .normal)
+                        }
+                    }
+                }
+            } else {
+                // Like the message
+                let generator = UIImpactFeedbackGenerator(style: .medium)
+                generator.impactOccurred()
+                sender.setTitle(" \(m.numLikes + 1)", for: .normal)
+                sender.setImage(UIImage(named: "Path 1885"), for: .normal)
+                
+                self.messages[indexPath.row].numLikes += 1
+                self.messages[indexPath.row].likedUsersList.append(CloudKitHelper.instance.userId.recordName)
+                CloudKitHelper.instance.likeMessageWithId(m.id.ckId()) { (error) in
+                    if let e = error {
+                        print(e)
+                    } else {
+                        DispatchQueue.main.async {
+                            //sender.setTitleColor(.red, for: .normal)
+                        }
                     }
                 }
             }
@@ -504,14 +562,20 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         bucketView.frame = UIApplication.shared.keyWindow!.frame
         UIApplication.shared.keyWindow!.addSubview(bucketView)
         
-        bucketView.latestFilterButton.addTarget(self, action: #selector(ClubChatVC.activateFilter), for: .touchUpInside)
-        bucketView.likesFilterButton.addTarget(self, action: #selector(ClubChatVC.activateFilter), for: .touchUpInside)
-        bucketView.popularFilterButton.addTarget(self, action: #selector(ClubChatVC.activateFilter), for: .touchUpInside)
+        bucketView.latestFilterButton.addTarget(self, action: #selector(ClubChatVC.activateFilterNewest), for: .touchUpInside)
+        bucketView.likesFilterButton.addTarget(self, action: #selector(ClubChatVC.activateFilterLikes), for: .touchUpInside)
+        //bucketView.popularFilterButton.addTarget(self, action: #selector(ClubChatVC.activateFilter), for: .touchUpInside)
         
         
     }
-    @objc func activateFilter() {
-        print("Filtering")
+    @objc func activateFilterLikes() {
+        self.getMessagesSorted(by: .likes)
+        self.bucketView.close()
+    }
+    
+    @objc func activateFilterNewest() {
+        self.getMessagesSorted(by: .newest)
+        self.bucketView.close()
     }
 
     @objc func toPodcastDetails() {

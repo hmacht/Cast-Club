@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Message {
+class Message {
     var fromUser = ""
     var text = ""
     var numLikes = 0
@@ -19,4 +19,5 @@ struct Message {
     var likedUsersList = [String]()
     var flaggedUsersList = [String]()
     var fromUsername = ""
+    var creationDate = Date()
 }

@@ -460,11 +460,23 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func more(){
         print("more")
-        self.performSegue(withIdentifier: "toPost", sender: self)
+        if selectedClub.creatorId == CloudKitHelper.instance.userId.recordName {
+            self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 230, style: 5)
+            bucketView.frame = UIApplication.shared.keyWindow!.frame
+            UIApplication.shared.keyWindow!.addSubview(bucketView)
+            
+            bucketView.postClubButton.addTarget(self, action: #selector(ClubChatVC.post), for: .touchUpInside)
+            bucketView.postUpdateButton.addTarget(self, action: #selector(ClubChatVC.post), for: .touchUpInside)
+        } else {
+            self.performSegue(withIdentifier: "toPost", sender: self)
+        }
+        
+        
     }
     
+    
     @objc func post(){
-        //self.performSegue(withIdentifier: "toPost", sender: self)
+        self.performSegue(withIdentifier: "toPost", sender: self)
     }
     
     @objc func filter(){

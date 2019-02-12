@@ -73,7 +73,8 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let headerTitle = headerCell.viewWithTag(1) as? UILabel {
                 headerTitle.text = headerTitleText
             }
-            
+            headerCell.selectionStyle = .none
+            headerCell.isUserInteractionEnabled = false
             return headerCell
             
             
@@ -94,6 +95,10 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let numFollowersLabel = myCell.viewWithTag(5) as? UILabel {
                 numFollowersLabel.text = "\(self.results[indexPath.row - 1].numFollowers) members"
             }
+            
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
+            myCell.selectedBackgroundView = backgroundView
             
             return myCell
         }

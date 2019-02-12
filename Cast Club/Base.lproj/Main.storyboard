@@ -533,6 +533,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="105.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OY5-Q1-r8l">
+                                                    <rect key="frame" x="0.0" y="8" width="375" height="97.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nYv-d8-Ptw">
                                                     <rect key="frame" x="15" y="22" width="40" height="40"/>
                                                     <constraints>
@@ -595,6 +599,7 @@
                                             <constraints>
                                                 <constraint firstItem="oSj-Ec-hMO" firstAttribute="leading" secondItem="nYv-d8-Ptw" secondAttribute="trailing" constant="7" id="71M-iH-fxk"/>
                                                 <constraint firstItem="4Bw-B8-4d9" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="topMargin" constant="13" id="EpX-v2-6wh"/>
+                                                <constraint firstAttribute="bottom" secondItem="OY5-Q1-r8l" secondAttribute="bottom" id="LYF-X2-gYV"/>
                                                 <constraint firstItem="Jal-7O-ccV" firstAttribute="leading" secondItem="1YS-yD-b6f" secondAttribute="leading" constant="62" id="RgX-CX-PyV"/>
                                                 <constraint firstItem="nYv-d8-Ptw" firstAttribute="leading" secondItem="1YS-yD-b6f" secondAttribute="leadingMargin" id="Vey-h1-89u"/>
                                                 <constraint firstItem="cjv-CR-T2y" firstAttribute="leading" secondItem="nYv-d8-Ptw" secondAttribute="trailing" constant="7" id="Wob-go-UQf"/>
@@ -602,14 +607,18 @@
                                                 <constraint firstItem="db0-n7-Egh" firstAttribute="leading" secondItem="oSj-Ec-hMO" secondAttribute="trailing" constant="8" id="bj3-hG-kXP"/>
                                                 <constraint firstItem="ryb-ug-K6z" firstAttribute="leading" secondItem="Jal-7O-ccV" secondAttribute="trailing" constant="8" id="fg0-eV-k2Z"/>
                                                 <constraint firstItem="oSj-Ec-hMO" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="topMargin" constant="11" id="ggV-82-4Rg"/>
+                                                <constraint firstItem="OY5-Q1-r8l" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="top" constant="8" id="giR-4t-Vku"/>
                                                 <constraint firstAttribute="bottom" secondItem="Jal-7O-ccV" secondAttribute="bottom" constant="5.5" id="jDc-uc-ahP"/>
+                                                <constraint firstItem="OY5-Q1-r8l" firstAttribute="leading" secondItem="1YS-yD-b6f" secondAttribute="leading" id="oXq-kp-mU0"/>
                                                 <constraint firstItem="4Bw-B8-4d9" firstAttribute="leading" secondItem="db0-n7-Egh" secondAttribute="trailing" id="qiH-tw-ha2"/>
+                                                <constraint firstAttribute="trailing" secondItem="OY5-Q1-r8l" secondAttribute="trailing" id="toO-sC-2ad"/>
                                                 <constraint firstItem="cjv-CR-T2y" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="topMargin" constant="31" id="vph-5M-1jY"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="cjv-CR-T2y" secondAttribute="bottom" constant="35" id="vtG-si-oCd"/>
                                                 <constraint firstItem="db0-n7-Egh" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="topMargin" constant="12" id="xh4-ch-5tZ"/>
                                                 <constraint firstAttribute="bottom" secondItem="ryb-ug-K6z" secondAttribute="bottom" constant="5.5" id="ylW-E3-nel"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="responcelabel" destination="cjv-CR-T2y" id="8xi-22-LvQ"/>
                                             <outlet property="usernameLabel" destination="oSj-Ec-hMO" id="l9p-Ss-QC3"/>
@@ -932,6 +941,7 @@
                         <outlet property="catagoryTableView" destination="hQy-Cz-f57" id="hAw-vr-GtU"/>
                         <outlet property="tableView" destination="wgv-uN-B8j" id="KJa-fV-OPS"/>
                         <segue destination="Bzf-2M-qiT" kind="show" identifier="toCatagoryList" id="DEI-i0-sjL"/>
+                        <segue destination="2jA-pc-MRs" kind="show" identifier="fromSecondVCToChat" id="GPy-LR-DbP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -957,28 +967,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLv-1W-FmR">
-                                                    <rect key="frame" x="15" y="61" width="355" height="40.5"/>
-                                                    <string key="text">Join a club that suits your interests. Clubs tend to
-Listen to podcasts that are related to their catagory.</string>
-                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
-                                                    <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Catagory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kej-xA-jcE">
                                                     <rect key="frame" x="15" y="15" width="340" height="41"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="30"/>
                                                     <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLv-1W-FmR">
+                                                    <rect key="frame" x="15" y="54" width="355" height="40.5"/>
+                                                    <string key="text">Join a club that suits your interests. Clubs tend to
+Listen to podcasts that are related to their catagory.</string>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
+                                                    <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="kej-xA-jcE" firstAttribute="leading" secondItem="VAc-Y2-efz" secondAttribute="leadingMargin" id="QS7-nu-sGQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="lLv-1W-FmR" secondAttribute="trailing" constant="5" id="SxV-ER-3qN"/>
-                                                <constraint firstItem="lLv-1W-FmR" firstAttribute="top" secondItem="kej-xA-jcE" secondAttribute="bottom" constant="5" id="VAg-dt-dfB"/>
+                                                <constraint firstItem="lLv-1W-FmR" firstAttribute="top" secondItem="kej-xA-jcE" secondAttribute="bottom" constant="-2" id="VAg-dt-dfB"/>
                                                 <constraint firstItem="kej-xA-jcE" firstAttribute="top" secondItem="VAc-Y2-efz" secondAttribute="topMargin" constant="4" id="e69-2U-old"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="kej-xA-jcE" secondAttribute="trailing" constant="5" id="joF-mi-hX3"/>
-                                                <constraint firstAttribute="bottom" secondItem="lLv-1W-FmR" secondAttribute="bottom" constant="8.5" id="r8l-CN-FEb"/>
+                                                <constraint firstAttribute="bottom" secondItem="lLv-1W-FmR" secondAttribute="bottom" constant="15.5" id="r8l-CN-FEb"/>
                                                 <constraint firstItem="lLv-1W-FmR" firstAttribute="leading" secondItem="VAc-Y2-efz" secondAttribute="leading" constant="15" id="uwD-Wy-GH6"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1277,7 +1287,7 @@ Listen to podcasts that are related to their catagory.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vx5-G8-YPP"/>
-        <segue reference="5JY-ZE-ZJO"/>
+        <segue reference="GPy-LR-DbP"/>
         <segue reference="UPa-Zj-iA9"/>
         <segue reference="clu-BJ-Kq8"/>
     </inferredMetricsTieBreakers>

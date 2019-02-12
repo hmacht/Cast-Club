@@ -48,7 +48,8 @@ class PostVC: UIViewController, UITextViewDelegate {
         postButton.setTitle("Post", for: .normal)
         postButton.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 15)
         postButton.addTarget(self, action: #selector(PostVC.post), for: .touchUpInside)
-        postButton.setTitleColor(UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0), for: .normal)
+        postButton.isUserInteractionEnabled = false
+        postButton.setTitleColor(UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 0.5), for: .normal)
         self.view.addSubview(postButton)
     }
     
@@ -117,6 +118,9 @@ class PostVC: UIViewController, UITextViewDelegate {
                 textView.text = "Share your thoughts"
             }
             
+            postButton.isUserInteractionEnabled = false
+            postButton.titleLabel?.textColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 0.5)
+            
             textView.textColor = UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1.0)
             
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
@@ -124,12 +128,15 @@ class PostVC: UIViewController, UITextViewDelegate {
         else if textView.textColor == UIColor(red: 229.0/255.0, green: 229.0/255.0, blue: 229.0/255.0, alpha: 1.0) && !text.isEmpty {
             textView.textColor = UIColor.black
             textView.text = text
+            postButton.isUserInteractionEnabled = true
+            postButton.titleLabel?.textColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
         }
         else {
             return true
         }
         return false
     }
+    
     
     // prevents user from moving cursor
     func textViewDidChangeSelection(_ textView: UITextView) {
@@ -172,8 +179,11 @@ class PostVC: UIViewController, UITextViewDelegate {
                         }
                     }
                 }
+                
             }
         }
+        
+        
         
         self.view.endEditing(true)
         self.dismiss(animated: true, completion: nil)

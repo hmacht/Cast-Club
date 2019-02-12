@@ -21,7 +21,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var selectedClub = Club()
     var selectedMessage = Message()
     var messages = [Message]()
-    var currentSortOption = SortOption.likes
+    var currentSortOption = SortOption.newest
     
     var moreMessageInd = 0
     
@@ -53,7 +53,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: .likes) { (results, error) in
+        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: .newest) { (results, error) in
             if let e = error {
                 print(e)
             } else {
@@ -191,15 +191,30 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     timeLabel.text = formatter.string(from: date)
                 } else if secondsSinceNow > 60 * 60 * 24 {
                     // More than a day ago
-                    timeLabel.text = "\(Int(secondsSinceNow) / (60 * 60 * 24)) days ago"
+                    let value = Int(secondsSinceNow) / (60 * 60 * 24)
+                    var units = "days"
+                    if value == 1 {
+                        units = "day"
+                    }
+                    timeLabel.text = "\(value) \(units) ago"
                 } else if secondsSinceNow > 60 * 60 {
                     // More than an hour ago
-                    timeLabel.text = "\(Int(secondsSinceNow) / (60 * 60)) hours ago"
+                    let value = Int(secondsSinceNow) / (60 * 60)
+                    var units = "hours"
+                    if value == 1 {
+                        units = "hour"
+                    }
+                    timeLabel.text = "\(value) \(units) ago"
                 } else if secondsSinceNow > 60 {
                     // More than a minute ago
-                    timeLabel.text = "\(Int(secondsSinceNow) / 60) minutes ago"
+                    let value = Int(secondsSinceNow) / 60
+                    var units = "minutes"
+                    if value == 1 {
+                        units = "minute"
+                    }
+                    timeLabel.text = "\(value) \(units) ago"
                 } else {
-                    timeLabel.text = "\(secondsSinceNow) seconds ago"
+                    timeLabel.text = "\(Int(secondsSinceNow)) seconds ago"
                 }
             }
             

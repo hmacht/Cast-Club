@@ -113,6 +113,11 @@ class CloudKitHelper {
         
         
         publicDB.save(record) { (record, error) in
+            if let rec = record {
+                CloudKitHelper.instance.subscribeToClub(id: rec.recordID, completion: { (_) in
+                    
+                })
+            }
             completion(error)
         }
     }

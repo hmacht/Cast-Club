@@ -30,6 +30,9 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var searchBar = SearchBar(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
+    var selectedClub = Club()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -258,7 +261,9 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == 2{
+            self.selectedClub = self.results[indexPath.row]
             tableView.deselectRow(at: indexPath, animated: true)
+            self.performSegue(withIdentifier: "fromSecondVCToChat", sender: self)
         } else if tableView.tag == 1{
             catagoryTableView.deselectRow(at: indexPath, animated: true)
             print(testList[indexPath.row])
@@ -385,7 +390,12 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             vc?.headerTitleText = headTitle
             
         }
+        
+        if let dest = segue.destination as? ClubChatVC {
+            dest.selectedClub = self.selectedClub
+        }
     }
 
 }
+
 

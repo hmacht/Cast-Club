@@ -618,6 +618,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="ryb-ug-K6z" secondAttribute="bottom" constant="5.5" id="ylW-E3-nel"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="responcelabel" destination="cjv-CR-T2y" id="8xi-22-LvQ"/>
                                             <outlet property="usernameLabel" destination="oSj-Ec-hMO" id="l9p-Ss-QC3"/>
@@ -940,6 +941,7 @@
                         <outlet property="catagoryTableView" destination="hQy-Cz-f57" id="hAw-vr-GtU"/>
                         <outlet property="tableView" destination="wgv-uN-B8j" id="KJa-fV-OPS"/>
                         <segue destination="Bzf-2M-qiT" kind="show" identifier="toCatagoryList" id="DEI-i0-sjL"/>
+                        <segue destination="2jA-pc-MRs" kind="show" identifier="fromSecondVCToChat" id="GPy-LR-DbP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -965,28 +967,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLv-1W-FmR">
-                                                    <rect key="frame" x="15" y="61" width="355" height="40.5"/>
-                                                    <string key="text">Join a club that suits your interests. Clubs tend to
-Listen to podcasts that are related to their catagory.</string>
-                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
-                                                    <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Catagory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kej-xA-jcE">
                                                     <rect key="frame" x="15" y="15" width="340" height="41"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="30"/>
                                                     <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLv-1W-FmR">
+                                                    <rect key="frame" x="15" y="54" width="355" height="40.5"/>
+                                                    <string key="text">Join a club that suits your interests. Clubs tend to
+Listen to podcasts that are related to their catagory.</string>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
+                                                    <color key="textColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="kej-xA-jcE" firstAttribute="leading" secondItem="VAc-Y2-efz" secondAttribute="leadingMargin" id="QS7-nu-sGQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="lLv-1W-FmR" secondAttribute="trailing" constant="5" id="SxV-ER-3qN"/>
-                                                <constraint firstItem="lLv-1W-FmR" firstAttribute="top" secondItem="kej-xA-jcE" secondAttribute="bottom" constant="5" id="VAg-dt-dfB"/>
+                                                <constraint firstItem="lLv-1W-FmR" firstAttribute="top" secondItem="kej-xA-jcE" secondAttribute="bottom" constant="-2" id="VAg-dt-dfB"/>
                                                 <constraint firstItem="kej-xA-jcE" firstAttribute="top" secondItem="VAc-Y2-efz" secondAttribute="topMargin" constant="4" id="e69-2U-old"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="kej-xA-jcE" secondAttribute="trailing" constant="5" id="joF-mi-hX3"/>
-                                                <constraint firstAttribute="bottom" secondItem="lLv-1W-FmR" secondAttribute="bottom" constant="8.5" id="r8l-CN-FEb"/>
+                                                <constraint firstAttribute="bottom" secondItem="lLv-1W-FmR" secondAttribute="bottom" constant="15.5" id="r8l-CN-FEb"/>
                                                 <constraint firstItem="lLv-1W-FmR" firstAttribute="leading" secondItem="VAc-Y2-efz" secondAttribute="leading" constant="15" id="uwD-Wy-GH6"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1285,7 +1287,7 @@ Listen to podcasts that are related to their catagory.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vx5-G8-YPP"/>
-        <segue reference="5JY-ZE-ZJO"/>
+        <segue reference="GPy-LR-DbP"/>
         <segue reference="UPa-Zj-iA9"/>
         <segue reference="clu-BJ-Kq8"/>
     </inferredMetricsTieBreakers>

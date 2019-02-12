@@ -111,13 +111,14 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     
     func createCreateButton(){
         createButton = UIButton(frame: CGRect(x: xVal, y: inviteButton.frame.maxY + 75, width: 300, height: 50))
-        createButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+        createButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 0.5)
         createButton.setTitle("Create", for: .normal)
         createButton.titleLabel?.font = UIFont(name: "Mont-HeavyDEMO", size: 14)
         createButton.layer.masksToBounds = true
         createButton.layer.cornerRadius = 5.0
         createButton.setTitleColor(.white, for: .normal)
         createButton.addTarget(self, action: #selector(LastStepVC.create), for: .touchUpInside)
+        createButton.isUserInteractionEnabled = false
         self.view.addSubview(createButton)
         //buttons.append(createButton)
     }
@@ -197,6 +198,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     // the selected option.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         catagoryInput.text = catagories[row]
+        catagoryInput.textColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
         
         if let category = ClubCategory(rawValue: catagories[row]) {
             self.selectedCategory = category
@@ -231,6 +233,17 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     
     @objc func done() {
         print("Done")
+        print(catagoryInput.text)
+        if catagoryInput.text == " " {
+            catagoryInput.text = "Must Enter Club Catagory"
+            catagoryInput.textColor = UIColor(red: 253.0/255.0, green: 115.0/255.0, blue: 115.0/255.0, alpha: 1.0)
+            createButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 0.5)
+            createButton.isUserInteractionEnabled = false
+        } else {
+            catagoryInput.textColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
+            createButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+            createButton.isUserInteractionEnabled = true
+        }
         self.view.endEditing(true)
         
         

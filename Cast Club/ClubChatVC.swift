@@ -16,6 +16,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let screenSize = UIScreen.main.bounds
     
+    
+    
     var selectedClub = Club()
     var selectedMessage = Message()
     var messages = [Message]()
@@ -29,6 +31,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        extendedLayoutIncludesOpaqueBars = true
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -204,20 +208,13 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 moreButton.addTarget(self, action: #selector(ClubChatVC.moreButtonPressed(sender:)), for: .touchUpInside)
             }
             
-            myCell.contentView.backgroundColor = UIColor(red: 246.0/255.0, green: 246.0/255.0, blue: 250.0/255.0, alpha: 1.0)
-            
-            
-            
-            let whiteRoundedView : UIView = UIView(frame: CGRect(x: 0, y: 8, width: self.view.frame.size.width, height: myCell.contentView.frame.height))
-            
-            
-            whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [255.0, 255.0, 255.0, 1.0])
-            whiteRoundedView.layer.masksToBounds = false
-            whiteRoundedView.layer.cornerRadius = 2.0
-            
-            
-            //myCell.contentView.addSubview(whiteRoundedView)
-            //myCell.contentView.sendSubviewToBack(whiteRoundedView)
+//            myCell.contentView.backgroundColor = UIColor(red: 246.0/255.0, green: 246.0/255.0, blue: 250.0/255.0, alpha: 1.0)
+//            let whiteRoundedView : UIView = UIView(frame: CGRect(x: 0, y: 8, width: self.view.frame.size.width, height: myCell.contentView.frame.height))
+//            whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [255.0, 255.0, 255.0, 1.0])
+//            whiteRoundedView.layer.masksToBounds = false
+//            whiteRoundedView.layer.cornerRadius = 2.0
+//            myCell.contentView.addSubview(whiteRoundedView)
+//            myCell.contentView.sendSubviewToBack(whiteRoundedView)
             
             let backgroundView = UIView()
             backgroundView.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
@@ -558,7 +555,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func filter(){
         print("FILTER")
-        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 230, style: 2)
+        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 2)
         bucketView.frame = UIApplication.shared.keyWindow!.frame
         UIApplication.shared.keyWindow!.addSubview(bucketView)
         

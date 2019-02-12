@@ -181,9 +181,9 @@ class BucketView: UIView {
     }
     
     // Filter Bucket ---
-    var filterButtonTitles = ["     Latest", "     Likes", "     Popular"]
+    var filterButtonTitles = ["     Latest", "     Likes"]
     func createFilterBucket(){
-        for i in 0...2 {
+        for i in 0...1 {
             var button = UIButton(frame: CGRect(x: 0, y: yPos, width: Int(screenSize.width - screenSize.width/15), height: 50))
             button.center.x = screenSize.width/2
             button.backgroundColor = .white
@@ -199,9 +199,7 @@ class BucketView: UIView {
             } else if i == 1 {
                 self.likesFilterButton = button
                 print("B2")
-            } else {
-                self.popularFilterButton = button
-            }
+            } 
             
             self.view.addSubview(button)
             print(button.frame.midY)

@@ -57,7 +57,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let e = error {
                 print(e)
             } else {
-                self.messages = results
+                self.messages = results.filter({ !CloudKitHelper.instance.blockedUsers.contains($0.fromUser) })
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -72,7 +72,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if let e = error {
                     print(e)
                 } else {
-                    self.messages = results
+                    self.messages = results.filter({ !CloudKitHelper.instance.blockedUsers.contains($0.fromUser) })
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
@@ -85,7 +85,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 if let e = error {
                     print(e)
                 } else {
-                    self.messages = results
+                    self.messages = results.filter({ !CloudKitHelper.instance.blockedUsers.contains($0.fromUser) })
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }

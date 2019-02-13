@@ -28,6 +28,8 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     let catagories = [" ", "Everything", "News", "Comedy", "Arts", "Business", "Education", "Games & Hobbies", "Health", "Kids", "Music", "Science", "Sports", "TV & Film", "Technology"]
     
     var buttons = [UIButton]()
+    
+    var hasEditedImage = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -228,6 +230,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         profileImageView.image = image
+        self.hasEditedImage = true
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -246,14 +249,17 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         }
         self.view.endEditing(true)
         
-        
     }
     
     @objc func create() {
         print("Create")
         
         if let img = profileImageView.image?.resizedImageWithinRect(rectSize: CGSize(width: 250, height: 250)) {
-            CloudKitHelper.instance.writeClub(name: clubeName, img: img, isPublic: self.isPublic, category: self.selectedCategory) { (error) in
+            var imgToUse: UIImage? = img
+            if !self.hasEditedImage {
+                imgToUse = nil
+            } 
+            CloudKitHelper.instance.writeClub(name: clubeName, image: imgToUse, isPublic: self.isPublic, category: self.selectedCategory) { (error) in
                 if let e = error {
                     print(e)
                 } else {

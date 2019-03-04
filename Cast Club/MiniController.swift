@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import AVKit
 
 class MiniController: UIView {
 
@@ -32,6 +33,7 @@ class MiniController: UIView {
     var isDown = false
     
     var player: AVAudioPlayer?
+    var avPlayer = AVPlayer()
     
     init (frame: CGRect, yposition: CGFloat, artwork: UIImage?, podcast: Podcast) {
         self.yposition = yposition
@@ -130,11 +132,22 @@ class MiniController: UIView {
     
     @objc func play() {
         if !self.activityIndicator.isAnimating {
-            if self.player?.isPlaying ?? false {
+            /*if self.player?.isPlaying ?? false {
                 self.player?.pause()
+                self.avPlayer.pause()
                 playButton.setImage(UIImage(named: "Path 74"), for: .normal)
             } else {
                 self.player?.play()
+                self.avPlayer.play()
+                playButton.setImage(UIImage(named: "Group 240"), for: .normal)
+            }*/
+            
+            // rate is 0 when paused
+            if avPlayer.rate != 0 {
+                self.avPlayer.pause()
+                playButton.setImage(UIImage(named: "Path 74"), for: .normal)
+            } else {
+                self.avPlayer.play()
                 playButton.setImage(UIImage(named: "Group 240"), for: .normal)
             }
         }
@@ -155,8 +168,7 @@ class MiniController: UIView {
     
     @objc func skip() {
         if !self.activityIndicator.isAnimating {
-            print("skip")
-            if let dur = self.player?.duration{
+            /*if let dur = self.player?.duration {
                 if let cur = self.player?.currentTime{
                     if Int(cur) < Int(dur) - 15 {
                         self.player?.currentTime += 15
@@ -165,14 +177,23 @@ class MiniController: UIView {
                     }
                     self.podSlider?.setValue(Float(cur / dur), animated: true)
                 }
+            }*/
+            if let durationTime = self.avPlayer.currentItem?.duration {
+                let dur = CMTimeGetSeconds(durationTime)
+                let current = CMTimeGetSeconds(self.avPlayer.currentTime())
+                if current < dur - 15 {
+                    self.player?.currentTime += 15
+                    self.avPlayer.seek(to: CMTime(seconds: current + 15, preferredTimescale: 1000))
+                } else {
+                    self.avPlayer.seek(to: CMTime(seconds: dur, preferredTimescale: 1000))
+                }
             }
         }
     }
     
     @objc func backSkip() {
         if !self.activityIndicator.isAnimating {
-            print("back skip")
-            if let cur = self.player?.currentTime{
+            /*if let cur = self.player?.currentTime{
                 if Int(cur) > 15 {
                     self.player?.currentTime -= 15
                 } else {
@@ -181,6 +202,13 @@ class MiniController: UIView {
                 if let dur = self.player?.duration {
                     self.podSlider?.setValue(Float(cur / dur), animated: true)
                 }
+            }*/
+            
+            let current = CMTimeGetSeconds(self.avPlayer.currentTime())
+            if current > 15 {
+                self.avPlayer.seek(to: CMTime(seconds: current - 15, preferredTimescale: 1000))
+            } else {
+                self.avPlayer.seek(to: CMTime(seconds: 0, preferredTimescale: 1000))
             }
             
         }
@@ -189,9 +217,7 @@ class MiniController: UIView {
     
     func switchToPlay(podcast: Podcast, artwork: UIImage?) {
         self.player?.stop()
-        
-        // Show loading
-        self.showActivity()
+        self.avPlayer.rate = 0
         
         self.podcast = podcast
         if let img = artwork {
@@ -199,8 +225,12 @@ class MiniController: UIView {
         }
         
         self.podcastTitle.text = self.podcast.title
-        
         playButton.setImage(UIImage(named: "Group 240"), for: .normal)
+        
+        // Show loading
+        //self.showActivity()
+        
+        
         
         if hasExpanded{
             self.coverArt.frame = CGRect(x: self.frame.height/4 - 25, y: 0, width: 50, height: 50)
@@ -224,9 +254,17 @@ class MiniController: UIView {
             */
         }
         
+        if let url = URL(string: self.podcast.contentUrl) {
+            self.avPlayer = AVPlayer(url: url)
+            self.avPlayer.play()
+            
+            RemoteControlsHelper.instance.currentPodcast = self.podcast
+            RemoteControlsHelper.instance.player = self.avPlayer
+            RemoteControlsHelper.instance.setupRemoteTransportControls()
+            RemoteControlsHelper.instance.setupNowPlaying(img: artwork)
+        }
         
-        
-        
+        /*
         AudioDownloadHelper.instance.getAudio(from: self.podcast.contentUrl) { (url, initialUrl) in
             DispatchQueue.main.async {
                 self.stopActivity()
@@ -246,7 +284,7 @@ class MiniController: UIView {
                     }
                 }
             }
-        }
+        }*/
         
         
     }
@@ -361,19 +399,29 @@ class MiniController: UIView {
     }
     
     @objc func changeVlaue(_ sender: UISlider) {
-        if let val = TimeInterval(exactly: sender.value) {
+        /*if let val = TimeInterval(exactly: sender.value) {
             if let dur = self.player?.duration {
                 self.player?.currentTime = val * dur
+            }
+        }*/
+        if let val = TimeInterval(exactly: sender.value) {
+            if let dur = self.avPlayer.currentItem?.duration {
+                let seekTime = val * CMTimeGetSeconds(dur)
+                self.avPlayer.seek(to: CMTime(seconds: seekTime, preferredTimescale: 1000))
             }
         }
     }
     
     
     func updateSlider() {
+        /*
         if let time = self.player?.currentTime {
             if let dur = self.player?.duration {
                 self.podSlider?.setValue(Float(time/dur), animated: true)
             }
+        }*/
+        if let dur = self.avPlayer.currentItem?.duration {
+            self.podSlider?.setValue(Float(CMTimeGetSeconds(self.avPlayer.currentTime()) / CMTimeGetSeconds(dur)), animated: true)
         }
     }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class PodcastTablBarController: UITabBarController {
     
@@ -31,6 +32,36 @@ class PodcastTablBarController: UITabBarController {
         self.errorPopUp.transform = CGAffineTransform(scaleX: 0, y: 0)
         self.view.addSubview(errorPopUp)
         
+    }
+    
+    func setObserverForMinicontroller() {
+        self.audioController?.avPlayer.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
+        self.audioController?.avPlayer.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
+        self.audioController?.avPlayer.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if object is AVPlayerItem {
+            switch keyPath {
+            case "playbackBufferEmpty":
+                // Show loader
+                self.audioController?.showActivity()
+                print("Loading")
+                break
+            case "playbackLikelyToKeepUp":
+                // Hide loader
+                self.audioController?.stopActivity()
+                print("No more")
+                break
+            case "playbackBufferFull":
+                // Hide loader
+                self.audioController?.stopActivity()
+                print("No more 2")
+                break
+            default:
+                break
+            }
+        }
     }
     
     /*func showError(with message: String) {

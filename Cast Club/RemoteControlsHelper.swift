@@ -14,7 +14,7 @@ class RemoteControlsHelper {
     static let instance = RemoteControlsHelper()
     
     var currentPodcast = Podcast()
-    var player = AVAudioPlayer()
+    var player = AVPlayer()
     var image = UIImage()
     
     
@@ -44,8 +44,11 @@ class RemoteControlsHelper {
         commandCenter.changePlaybackPositionCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
             
             if let e = event as? MPChangePlaybackPositionCommandEvent {
-                self.player.currentTime = e.positionTime
-                self.setupNowPlaying(img: self.image)
+                //self.player.currentTime = e.positionTime
+                //self.player.seek(to: CMTime(seconds: e.positionTime, preferredTimescale: 1000))
+                self.player.seek(to: CMTime(seconds: e.positionTime, preferredTimescale: 1000), completionHandler: { (s) in
+                    self.setupNowPlaying(img: self.image)
+                })
                 return .success
             }
             return .commandFailed
@@ -66,8 +69,8 @@ class RemoteControlsHelper {
             }
         }
         
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.player.currentTime
-        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.player.duration
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(self.player.currentTime())
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = CMTimeGetSeconds(self.player.currentItem?.duration ?? CMTime(seconds: 0, preferredTimescale: 1000))
         //nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player.rate
         
         // Set the metadata

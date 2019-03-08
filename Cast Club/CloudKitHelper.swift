@@ -17,6 +17,7 @@ class CloudKitHelper {
     
     var userId = CKRecord.ID()
     var username = "AnonymousUsername"
+    var blockedUsers = [String]()
     
     // Types of records
     let ClubType = "Club"
@@ -65,6 +66,8 @@ class CloudKitHelper {
                         }
                         if let asset = r["coverPhoto"] as? CKAsset {
                             c.imgUrl = asset.fileURL
+                        } else {
+                            c.coverImage = UIImage(named: "Group 466")!
                         }
                         if let isPublic = r["isPublic"] as? Int {
                             if isPublic == 1 {
@@ -90,7 +93,7 @@ class CloudKitHelper {
         }
     }
     
-    func writeClub(name: String, img: UIImage, isPublic: Bool, category: ClubCategory, completion: @escaping (Error?) -> ()) {
+    func writeClub(name: String, image: UIImage?, isPublic: Bool, category: ClubCategory, completion: @escaping (Error?) -> ()) {
         let record = CKRecord(recordType: ClubType)
         record["numFollowers"] = 0
         record["name"] = name
@@ -106,13 +109,20 @@ class CloudKitHelper {
         record["creator"] = self.userId.recordName
         
         // Save image
-        let url = ImageHelper.saveToDisk(image: img)
-        let asset = CKAsset(fileURL: url)
-        record["coverPhoto"] = asset
+        if let img = image {
+            let url = ImageHelper.saveToDisk(image: img)
+            let asset = CKAsset(fileURL: url)
+            record["coverPhoto"] = asset
+        }
         
         
         
         publicDB.save(record) { (record, error) in
+            if let rec = record {
+                CloudKitHelper.instance.subscribeToClub(id: rec.recordID, completion: { (_) in
+                    
+                })
+            }
             completion(error)
         }
     }
@@ -142,11 +152,14 @@ class CloudKitHelper {
         
         let operation = CKQueryOperation(query: query)
         operation.resultsLimit = 1
-        operation.desiredKeys = ["clubIds", "username"]
+        operation.desiredKeys = ["clubIds", "username", "blockedUsers"]
         
         operation.recordFetchedBlock = { firstRec in
             if let username = firstRec["username"] as? String {
                 self.username = username
+            }
+            if let blockedUsers = firstRec["blockedUsers"] as? [String] {
+                self.blockedUsers = blockedUsers
             }
             if let clubIds = firstRec["clubIds"] as? [String] {
                 completion(clubIds, nil)
@@ -184,6 +197,32 @@ class CloudKitHelper {
             }
             
             self.publicDB.add(operation)
+        }
+    }
+    
+    func blockUser(id: String, completion: @escaping (Error?) -> ()) {
+        
+        if id != self.userId.recordName {
+            let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
+            
+            let operation = CKQueryOperation(query: query)
+            operation.desiredKeys = ["blockedUsers"]
+            
+            operation.recordFetchedBlock = { r in
+                if var users = r["blockedUsers"] as? [String] {
+                    users.append(id)
+                    r["blockedUsers"] = users
+                } else {
+                    r["blockedUsers"] = [id]
+                }
+                self.publicDB.save(r, completionHandler: { (_, error) in
+                    completion(error)
+                })
+            }
+            
+            self.publicDB.add(operation)
+        } else {
+            completion(nil)
         }
     }
     
@@ -302,6 +341,8 @@ class CloudKitHelper {
                     if let img = c.imgUrl?.image() {
                         c.coverImage = img
                     }
+                } else {
+                    c.coverImage = UIImage(named: "Group 466")!
                 }
                 if let isPublic = r["isPublic"] as? Int {
                     if isPublic == 1 {
@@ -436,6 +477,8 @@ class CloudKitHelper {
                 if let img  = c.imgUrl?.image() {
                     c.coverImage = img
                 }
+            } else {
+                c.coverImage = UIImage(named: "Group 466")!
             }
             if let update = r["update"] as? String {
                 c.update = update

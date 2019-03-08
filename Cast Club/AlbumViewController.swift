@@ -193,8 +193,24 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 miniController.podSlider = podcastSlider
                 miniController.setUpSlider()
                 
-                //miniController.addSubview(podcastSlider)
+                do {
+                    //try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
+                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: AVAudioSession.Mode.default, options: .defaultToSpeaker)
+                    try AVAudioSession.sharedInstance().setActive(true)
+                } catch {
+                    print("Error", error)
+                }
                 
+                if let url = URL(string: self.selectedPodcast.contentUrl) {
+                    miniController.avPlayer = AVPlayer(url: url)
+                    miniController.avPlayer.play()
+                    RemoteControlsHelper.instance.currentPodcast = self.selectedPodcast
+                    RemoteControlsHelper.instance.player = miniController.avPlayer
+                    RemoteControlsHelper.instance.setupRemoteTransportControls()
+                    RemoteControlsHelper.instance.setupNowPlaying(img: self.album.artworkImage)
+                }
+                
+                /*
                 // Get audio
                 miniController.showActivity()
                 AudioDownloadHelper.instance.getAudio(from: self.selectedPodcast.contentUrl) { (url, initialUrl) in
@@ -226,7 +242,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                             }
                         }
                     }
-                }
+                }*/
             } else {
                 tabController.audioController?.switchToPlay(podcast: self.selectedPodcast, artwork: self.album.artworkImage)
             }

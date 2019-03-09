@@ -46,9 +46,11 @@ class RemoteControlsHelper {
             if let e = event as? MPChangePlaybackPositionCommandEvent {
                 //self.player.currentTime = e.positionTime
                 //self.player.seek(to: CMTime(seconds: e.positionTime, preferredTimescale: 1000))
+                
                 self.player.seek(to: CMTime(seconds: e.positionTime, preferredTimescale: 1000), completionHandler: { (s) in
                     self.setupNowPlaying(img: self.image)
                 })
+        
                 return .success
             }
             return .commandFailed

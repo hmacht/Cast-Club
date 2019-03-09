@@ -35,28 +35,34 @@ class PodcastTablBarController: UITabBarController {
     }
     
     func setObserverForMinicontroller() {
-        self.audioController?.avPlayer.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
-        self.audioController?.avPlayer.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
-        self.audioController?.avPlayer.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
+        //self.audioController?.avPlayer.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
+        //self.audioController?.avPlayer.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
+        //self.audioController?.avPlayer.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
+        
+        self.audioController?.avPlayer.currentItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
+        self.audioController?.avPlayer.currentItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
+        self.audioController?.avPlayer.currentItem?.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
         if object is AVPlayerItem {
             switch keyPath {
             case "playbackBufferEmpty":
                 // Show loader
                 self.audioController?.showActivity()
-                print("Loading")
                 break
             case "playbackLikelyToKeepUp":
                 // Hide loader
                 self.audioController?.stopActivity()
-                print("No more")
+                // Update remote controls
+                RemoteControlsHelper.instance.setupNowPlaying(img: RemoteControlsHelper.instance.image)
                 break
             case "playbackBufferFull":
                 // Hide loader
                 self.audioController?.stopActivity()
-                print("No more 2")
+                // Update remote controls
+                RemoteControlsHelper.instance.setupNowPlaying(img: RemoteControlsHelper.instance.image)
                 break
             default:
                 break

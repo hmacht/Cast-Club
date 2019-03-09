@@ -204,6 +204,11 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if let url = URL(string: self.selectedPodcast.contentUrl) {
                     miniController.avPlayer = AVPlayer(url: url)
                     miniController.avPlayer.play()
+                    
+                    if let tab = self.tabBarController as? PodcastTablBarController {
+                        tab.setObserverForMinicontroller()
+                    }
+                    
                     RemoteControlsHelper.instance.currentPodcast = self.selectedPodcast
                     RemoteControlsHelper.instance.player = miniController.avPlayer
                     RemoteControlsHelper.instance.setupRemoteTransportControls()
@@ -245,6 +250,9 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }*/
             } else {
                 tabController.audioController?.switchToPlay(podcast: self.selectedPodcast, artwork: self.album.artworkImage)
+                if let tab = self.tabBarController as? PodcastTablBarController {
+                    tab.setObserverForMinicontroller()
+                }
             }
         }
     }

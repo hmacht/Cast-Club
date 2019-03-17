@@ -353,6 +353,12 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func follow(sender: UIButton){
+        
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud to follow a Club.")
+            return
+        }
+        
         if clubIds.contains(self.selectedClub.id) {
             // We are already subscribed so unsubscribe
             if let ind = clubIds.firstIndex(of: self.selectedClub.id) {
@@ -538,8 +544,13 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    @objc func more(){
-        print("more")
+    @objc func more() {
+        
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud to write a post.")
+            return
+        }
+        
         if selectedClub.creatorId == CloudKitHelper.instance.userId.recordName {
             self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 7)
             bucketView.frame = UIApplication.shared.keyWindow!.frame
@@ -562,7 +573,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.performSegue(withIdentifier: "toPost", sender: self)
     }
     
-    @objc func postToClub(){
+    @objc func postToClub() {
         bucketView.close()
         isUpdate = false
         self.performSegue(withIdentifier: "toPost", sender: self)

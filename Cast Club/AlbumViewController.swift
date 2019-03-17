@@ -310,6 +310,11 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func subscribe(_ sender: Any) {
         
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud to subscribe to a podcast.")
+            return
+        }
+        
         var alreadySubscribed = false
         if subscriptionAlbum.count > 0 {
             for i in 0...subscriptionAlbum.count - 1 {

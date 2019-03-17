@@ -253,7 +253,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if tableView.tag == 2{
             return 70
         } else if tableView.tag == 1{
-            return 44
+            return 50
         } else {
             return 70
         }

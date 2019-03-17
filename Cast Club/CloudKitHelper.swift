@@ -16,7 +16,8 @@ class CloudKitHelper {
     let privateDB = CKContainer.default().privateCloudDatabase
     
     var userId = CKRecord.ID()
-    var username = "AnonymousUsername"
+    var isAuthenticated = false
+    var username = ""
     var blockedUsers = [String]()
     
     // Types of records

@@ -39,6 +39,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             CloudKitHelper.instance.getClubIdsForCurrentUser { (ids, error) in
                 if let e = error {
                     print(e)
+                    self.tabBarController?.showError(with: e.localizedDescription)
                 } else {
                     self.userIds = ids
                     clubIds = ids
@@ -175,8 +176,12 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @objc func add() {
-        print("add something")
-        self.performSegue(withIdentifier: "create", sender: self)
+        
+        if CloudKitHelper.instance.isAuthenticated {
+            self.performSegue(withIdentifier: "create", sender: self)
+        } else {
+            self.tabBarController?.showError(with: "You must login to iCloud to create a Club.")
+        }
     }
     
 

@@ -36,11 +36,9 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         tabBarController?.tabBar.layer.zPosition = 1
         
         
-        errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: screenSize.height/2 - 55, width: screenSize.width, height: 200), headerText: "Hello Henry", bodyText: "Podcast that you subscribe to will show up here. You can search for a podcast or use the discover tab to browse. Don’t forget to join a club and enjoy!!")
+        errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: screenSize.height/2 - 55, width: screenSize.width, height: 200), headerText: "Hello!", bodyText: "Podcasts that you subscribe to will show up here. You can search for a podcast or use the discover tab to browse. Don’t forget to join a club and enjoy!!")
         
-        if let errorView = errorPopUp{
-            self.view.addSubview(errorView)
-            
+        if let errorView = errorPopUp {
             discovewrBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
             discovewrBtn.center = CGPoint(x: screenSize.width/2, y: errorView.frame.maxY - 50)
             discovewrBtn.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
@@ -48,7 +46,8 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             discovewrBtn.titleLabel?.font = UIFont(name: "Mont-HeavyDEMO", size: 12)
             discovewrBtn.setTitle("Discover", for: .normal)
             discovewrBtn.addTarget(self, action: #selector(FirstViewController.discover), for: .touchUpInside)
-            self.view.addSubview(discovewrBtn)
+            //self.view.addSubview(discovewrBtn)
+            // self.view.addSubview(errorView)
         }
         
         
@@ -57,17 +56,42 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         CloudKitHelper.instance.setCurrentUserId { (error) in
             if let e = error {
                 print(e)
+                
+                DispatchQueue.main.async {
+                    //self.view.addSubview(self.discovewrBtn)
+                    if let pop = self.errorPopUp {
+                        self.view.addSubview(pop)
+                    }
+                }
+                
+                self.tabBarController?.showError(with: e.localizedDescription)
+                
             } else {
+                CloudKitHelper.instance.isAuthenticated = true
                 // Get user subscriptions albums
                 CloudKitHelper.instance.getAlbums { (albums, error2) in
                     if let e = error2 {
                         print(e)
+                        
+                        DispatchQueue.main.async {
+                            //self.view.addSubview(self.discovewrBtn)
+                            if let pop = self.errorPopUp {
+                                self.view.addSubview(pop)
+                            }
+                        }
+                        
+                        self.tabBarController?.showError(with: e.localizedDescription)
                     } else if albums.count > 0 {
                         subscriptionAlbum = albums
                         DispatchQueue.main.async {
-                            self.errorPopUp?.removeFromSuperview()
-                            self.discovewrBtn.removeFromSuperview()
                             self.myCollectionView.reloadData()
+                        }
+                    } else if albums.count == 0 {
+                        DispatchQueue.main.async {
+                            //self.view.addSubview(self.discovewrBtn)
+                            if let pop = self.errorPopUp {
+                                self.view.addSubview(pop)
+                            }
                         }
                     }
                 }
@@ -75,7 +99,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                 // Get user subscribed clubs
                 CloudKitHelper.instance.getClubIdsForCurrentUser(completion: { (results, error3) in
                     if let e = error3 {
-                        print(e)
+                        self.tabBarController?.showError(with: e.localizedDescription)
                     } else {
                         clubIds = results
                     }
@@ -178,8 +202,9 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     }
     
     @objc func discover() {
-        //print("discover")
-        tabBarController?.selectedIndex = 1
+        print("discover")
+        self.performSegue(withIdentifier: "toSearch", sender: self)
+        //tabBarController?.selectedIndex = 1
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

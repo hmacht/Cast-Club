@@ -58,9 +58,10 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                 print(e)
                 
                 DispatchQueue.main.async {
-                    //self.view.addSubview(self.discovewrBtn)
+                    self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 55, width: self.screenSize.width, height: 200), headerText: "Hello!", bodyText: "You must login to iCloud in your Settings to enjoy all the features of Pod Talk. Until you do that, you can still listen to podcasts and look at clubs.")
                     if let pop = self.errorPopUp {
                         self.view.addSubview(pop)
+                        self.view.addSubview(self.discovewrBtn)
                     }
                 }
                 
@@ -74,9 +75,9 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                         print(e)
                         
                         DispatchQueue.main.async {
-                            //self.view.addSubview(self.discovewrBtn)
                             if let pop = self.errorPopUp {
                                 self.view.addSubview(pop)
+                                self.view.addSubview(self.discovewrBtn)
                             }
                         }
                         
@@ -88,9 +89,9 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                         }
                     } else if albums.count == 0 {
                         DispatchQueue.main.async {
-                            //self.view.addSubview(self.discovewrBtn)
                             if let pop = self.errorPopUp {
                                 self.view.addSubview(pop)
+                                self.view.addSubview(self.discovewrBtn)
                             }
                         }
                     }
@@ -202,7 +203,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     }
     
     @objc func discover() {
-        print("discover")
+        //print("discover")
         self.performSegue(withIdentifier: "toSearch", sender: self)
         //tabBarController?.selectedIndex = 1
     }

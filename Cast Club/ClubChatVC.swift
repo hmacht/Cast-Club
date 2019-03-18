@@ -549,6 +549,9 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if !CloudKitHelper.instance.isAuthenticated {
             self.tabBarController?.showError(with: "You must be logged in to iCloud to write a post.")
             return
+        } else if CloudKitHelper.instance.username == "" {
+            self.tabBarController?.showError(with: "You must set your username in the Profile Tab to write a post.")
+            return
         }
         
         if selectedClub.creatorId == CloudKitHelper.instance.userId.recordName {

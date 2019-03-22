@@ -17,6 +17,10 @@ class PodcastTablBarController: UITabBarController {
     var blockerView = UIView()
     var clubIds = [String]()
     
+    var startPos = CGPoint()
+    var audioSourcePos = CGPoint()
+    var removingView = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -104,7 +108,56 @@ class PodcastTablBarController: UITabBarController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let pos = touches.first?.location(in: self.view) {
+            if self.audioController?.frame.contains(pos) ?? false && (self.audioController?.hasExpanded ?? true) == false{
+                self.startPos = pos
+                self.audioSourcePos = CGPoint(x: self.audioController?.frame.origin.x ?? 0, y: self.audioController?.frame.origin.y ?? 0)
+            }
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.audioController?.hasExpanded ?? true {
+            return
+        }
+        if let pos = touches.first?.location(in: self.view) {
+            if pos.x - startPos.x > 100 {
+                // Dismiss right
+                self.audioController?.avPlayer.pause()
+                self.removingView = true
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.audioController?.frame.origin.x += self.view.frame.width
+                }) { (_) in
+                    self.audioController = nil
+                    self.removingView = false
+                }
+            } else if pos.x - startPos.x < -100 {
+                // Dismiss left
+                self.audioController?.avPlayer.pause()
+                self.removingView = true
+                UIView.animate(withDuration: 0.5, animations: {
+                     self.audioController?.frame.origin.x -= self.view.frame.width
+                }) { (_) in
+                    self.audioController = nil
+                    self.removingView = false
+                }
+            } else if abs(pos.x - startPos.y) > 50 {
+                self.audioController?.frame = CGRect(x: pos.x - startPos.x, y: self.tabBar.frame.minY - 90, width: self.audioController?.frame.width ?? 0, height: self.audioController?.frame.height ?? 0)
+            }
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.audioController != nil  && !self.removingView && !(self.audioController?.hasExpanded ?? true) {
+            UIView.animate(withDuration: 0.25) {
+                self.audioController?.frame.origin.x = 10
+                self.audioController?.frame.origin.y = self.audioSourcePos.y
+            }
+        }
+    }
+    
 }
 
 

@@ -29,6 +29,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var isUpdate = false
     
+    var sortLatest = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -585,6 +587,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @objc func filter(){
         print("FILTER")
         self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 2)
+        self.bucketView.setCurrentFilterImg(latest: self.sortLatest)
         bucketView.frame = UIApplication.shared.keyWindow!.frame
         UIApplication.shared.keyWindow!.addSubview(bucketView)
         
@@ -596,11 +599,15 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     @objc func activateFilterLikes() {
         self.getMessagesSorted(by: .likes)
+        self.sortLatest = false
+        self.bucketView.setCurrentFilterImg(latest: false)
         self.bucketView.close()
     }
     
     @objc func activateFilterNewest() {
         self.getMessagesSorted(by: .newest)
+        self.sortLatest = true
+        self.bucketView.setCurrentFilterImg(latest: true)
         self.bucketView.close()
     }
 

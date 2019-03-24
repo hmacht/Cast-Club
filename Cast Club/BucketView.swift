@@ -193,6 +193,7 @@ class BucketView: UIView {
             button.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0), for: .normal)
             button.tag = i
             
+            
             if i == 0 {
                 self.latestFilterButton = button
                 print("B1")
@@ -208,6 +209,23 @@ class BucketView: UIView {
             
         }
         
+    }
+    
+    func setCurrentFilterImg(latest: Bool) {
+        self.latestFilterButton.viewWithTag(10)?.removeFromSuperview()
+        self.likesFilterButton.viewWithTag(10)?.removeFromSuperview()
+        
+        if let img = UIImage(named: "Group 463") {
+            let imgView = UIImageView(image: img)
+            imgView.frame = CGRect(x: -5, y: self.latestFilterButton.frame.height/2 - 10, width: 20, height: 20)
+            imgView.tag = 10
+            
+            if latest {
+                self.latestFilterButton.addSubview(imgView)
+            } else {
+                self.likesFilterButton.addSubview(imgView)
+            }
+        }
     }
     
     // photo selection Bucket ---

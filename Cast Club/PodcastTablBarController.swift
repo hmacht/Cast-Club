@@ -21,6 +21,8 @@ class PodcastTablBarController: UITabBarController {
     var audioSourcePos = CGPoint()
     var removingView = false
     
+    var activityIndicator = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +37,13 @@ class PodcastTablBarController: UITabBarController {
         self.errorPopUp.okButton.addTarget(self, action: #selector(PodcastTablBarController.hide), for: .touchUpInside)
         self.errorPopUp.transform = CGAffineTransform(scaleX: 0, y: 0)
         self.view.addSubview(errorPopUp)
+        
+        self.activityIndicator = UIActivityIndicatorView(style: .gray)
+        self.activityIndicator.frame = CGRect(x: self.view.frame.width/2 - 25, y: self.view.frame.height/2 - 25, width: 50, height: 50)
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.isHidden = true
+        self.activityIndicator.tag = 10
+        self.view.addSubview(self.activityIndicator)
         
     }
     
@@ -74,6 +83,8 @@ class PodcastTablBarController: UITabBarController {
         }
     }
     
+    
+    
     /*func showError(with message: String) {
         
         /*self.blockerView.isUserInteractionEnabled = true
@@ -108,6 +119,9 @@ class PodcastTablBarController: UITabBarController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    // Touch handling
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let pos = touches.first?.location(in: self.view) {
@@ -171,6 +185,19 @@ extension UITabBarController {
             alert.addAction(action)
         
             self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func showActivity() {
+        if let indicator = self.view.viewWithTag(10) as? UIActivityIndicatorView {
+            indicator.isHidden = false
+            indicator.startAnimating()
+        }
+    }
+    
+    func stopActivity() {
+        if let indicator = self.view.viewWithTag(10) as? UIActivityIndicatorView {
+            indicator.stopAnimating()
         }
     }
 }

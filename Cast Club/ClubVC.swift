@@ -34,6 +34,10 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         // Do any additional setup after loading the view.
         
+        if CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showActivity()
+        }
+        
         if clubIds == ["none"] {
             // Have not gotten club ids yet
             CloudKitHelper.instance.getClubIdsForCurrentUser { (ids, error) in
@@ -42,11 +46,15 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.tabBarController?.showError(with: e.localizedDescription)
                 } else {
                     self.userIds = ids
+                    if self.userIds.count == 0 {
+                        self.tabBarController?.stopActivity()
+                    }
                     clubIds = ids
                     for id in self.userIds {
                         CloudKitHelper.instance.getClub(with: id, completion: { (club, error) in
                             self.clubs.append(club)
                             DispatchQueue.main.async {
+                                self.tabBarController?.stopActivity()
                                 self.clubTabelView.reloadData()
                             }
                         })
@@ -55,10 +63,14 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         } else {
             self.userIds = clubIds
+            if self.userIds.count == 0 {
+                self.tabBarController?.stopActivity()
+            }
             for id in self.userIds {
                 CloudKitHelper.instance.getClub(with: id, completion: { (club, error) in
                     self.clubs.append(club)
                     DispatchQueue.main.async {
+                        self.tabBarController?.stopActivity()
                         self.clubTabelView.reloadData()
                     }
                 })

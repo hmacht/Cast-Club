@@ -45,6 +45,14 @@ class PodcastTablBarController: UITabBarController {
         self.activityIndicator.tag = 10
         self.view.addSubview(self.activityIndicator)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePauseButton), name: Notification.Name("updatePause"), object: nil)
+        
+    }
+    
+    @objc func updatePauseButton() {
+        if self.audioController?.avPlayer.rate == 0 {
+            self.audioController?.playButton.setImage(UIImage(named: "Path 74"), for: .normal)
+        }
     }
     
     func setObserverForMinicontroller() {

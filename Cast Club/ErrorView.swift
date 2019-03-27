@@ -11,7 +11,7 @@ import UIKit
 enum ErrorMessage: String {
     case basic = "Oops, something went wrong."
     case internet = "Check your internet and try again."
-    case privateClub = "This club is private. Ask someone from the club to send you an invite."
+    case privateClub = "This club is private."
 }
 
 class ErrorView: UIView {

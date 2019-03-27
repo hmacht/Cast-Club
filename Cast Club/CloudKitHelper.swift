@@ -86,6 +86,9 @@ class CloudKitHelper {
                         if let creator = r["creator"] as? String {
                             c.creatorId = creator
                         }
+                        if let pendingUsers = r["pendingUsersList"] as? [String] {
+                            c.pendingUsersList = pendingUsers
+                        }
                         results.append(c)
                     }
                     completion(results)
@@ -361,6 +364,9 @@ class CloudKitHelper {
                 if let creator = r["creator"] as? String {
                     c.creatorId = creator
                 }
+                if let pendingUsers = r["pendingUsersList"] as? [String] {
+                    c.pendingUsersList = pendingUsers
+                }
                 completion(c, error)
             } else {
                 completion(Club(), error)
@@ -415,6 +421,30 @@ class CloudKitHelper {
                 completion(Club(), error)
             }
         }*/
+    }
+    
+    func requestPrivateClubJoin(clubId: String, completion: @escaping (Error?) -> ()) {
+        
+        let fetchOperation = CKFetchRecordsOperation(recordIDs: [clubId.ckId()])
+        fetchOperation.desiredKeys = ["pendingUsersList"]
+        
+        fetchOperation.perRecordCompletionBlock = { rec, r2, error in
+            if let r = rec {
+                if var pendingUsers = r["pendingUsersList"] as? [String] {
+                    pendingUsers.append(self.userId.recordName)
+                    r["pendingUsersList"] = pendingUsers
+                } else {
+                    r["pendingUsersList"] = [self.userId.recordName]
+                }
+                self.publicDB.save(r) { (_, error2) in
+                    completion(error2)
+                }
+            } else {
+                completion(error)
+            }
+        }
+        
+        self.publicDB.add(fetchOperation)
     }
     
     func getClubQuickly(id: String, completion: @escaping (Club, Error?) -> ()) {
@@ -489,6 +519,9 @@ class CloudKitHelper {
             }
             if let creator = r["creator"] as? String {
                 c.creatorId = creator
+            }
+            if let pendingUsers = r["pendingUsersList"] as? [String] {
+                c.pendingUsersList = pendingUsers
             }
             completion(c)
         }

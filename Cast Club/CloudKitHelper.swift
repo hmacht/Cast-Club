@@ -230,9 +230,12 @@ class CloudKitHelper {
         }
     }
     
-    func subscribeToClub(id: CKRecord.ID, completion: @escaping (Error?) -> ()) {
-        
-        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
+    func subscribeToClub(id: CKRecord.ID, userId: String? = nil, completion: @escaping (Error?) -> ()) {
+        var user = self.userId.recordName
+        if let uId = userId {
+            user = uId
+        }
+        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", user))
         
         // Get the ClubHolder for user
         self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
@@ -446,6 +449,40 @@ class CloudKitHelper {
         
         self.publicDB.add(fetchOperation)
     }
+    
+    func updateUserRequestToPrivateClub(accepted: Bool, clubId: String, userId: String, completion: @escaping (Error?) -> ()) {
+        // Remove id from pendingUsersListInClub
+        let fetchOperation = CKFetchRecordsOperation(recordIDs: [clubId.ckId()])
+        fetchOperation.desiredKeys = ["pendingUsersList"]
+        
+        fetchOperation.perRecordCompletionBlock = { rec, r2, error in
+            if let r = rec {
+                // Get pending users list
+                if var pendingUsers = r["pendingUsersList"] as? [String] {
+                    // Remove user from list
+                    if let ind = pendingUsers.firstIndex(of: userId) {
+                        pendingUsers.remove(at: ind)
+                    }
+                    r["pendingUsersList"] = pendingUsers
+                }
+                self.publicDB.save(r) { (_, error2) in
+                    completion(error2)
+                }
+                
+                // Subscribe user to club
+                if accepted {
+                    self.subscribeToClub(id: clubId.ckId(), userId: userId, completion: { (_) in
+                        
+                    })
+                }
+            } else {
+                completion(error)
+            }
+        }
+        
+        self.publicDB.add(fetchOperation)
+    }
+    
     
     func getClubQuickly(id: String, completion: @escaping (Club, Error?) -> ()) {
         //let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "recordName BEGINSWITH %@", id))

@@ -50,7 +50,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             // self.view.addSubview(errorView)
         }
         
-        
         // TODO - very important to handle this if can't "authenticate" user
         // TODO - theoretically this logic should be moved to some sort of loading view
         CloudKitHelper.instance.setCurrentUserId { (error) in

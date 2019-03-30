@@ -101,8 +101,17 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.clubs = clubs.filter({self.userIds.contains($0.id)})
         self.clubTabelView.reloadData()
         
+        if self.userIds.count > 0 && self.clubs.count == 0 {
+            self.tabBarController?.showActivity()
+        }
+        
     }
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.stopActivity()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.clubs.count

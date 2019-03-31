@@ -111,6 +111,7 @@ class CloudKitHelper {
         record["update"] = ""
         record["currentAlbum"] = ""
         record["creator"] = self.userId.recordName
+        record["pendingUsersList"] = [String]()
         
         // Save image
         if let img = image {

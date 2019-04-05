@@ -29,6 +29,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var isUpdate = false
     
+    var sortLatest = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -353,6 +355,12 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func follow(sender: UIButton){
+        
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud to follow a Club.")
+            return
+        }
+        
         if clubIds.contains(self.selectedClub.id) {
             // We are already subscribed so unsubscribe
             if let ind = clubIds.firstIndex(of: self.selectedClub.id) {
@@ -538,8 +546,16 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    @objc func more(){
-        print("more")
+    @objc func more() {
+        
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud to write a post.")
+            return
+        } else if CloudKitHelper.instance.username == "" {
+            self.tabBarController?.showError(with: "You must set your username in the Profile Tab to write a post.")
+            return
+        }
+        
         if selectedClub.creatorId == CloudKitHelper.instance.userId.recordName {
             self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 7)
             bucketView.frame = UIApplication.shared.keyWindow!.frame
@@ -562,7 +578,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.performSegue(withIdentifier: "toPost", sender: self)
     }
     
-    @objc func postToClub(){
+    @objc func postToClub() {
         bucketView.close()
         isUpdate = false
         self.performSegue(withIdentifier: "toPost", sender: self)
@@ -571,6 +587,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @objc func filter(){
         print("FILTER")
         self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 2)
+        self.bucketView.setCurrentFilterImg(latest: self.sortLatest)
         bucketView.frame = UIApplication.shared.keyWindow!.frame
         UIApplication.shared.keyWindow!.addSubview(bucketView)
         
@@ -582,11 +599,15 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     @objc func activateFilterLikes() {
         self.getMessagesSorted(by: .likes)
+        self.sortLatest = false
+        self.bucketView.setCurrentFilterImg(latest: false)
         self.bucketView.close()
     }
     
     @objc func activateFilterNewest() {
         self.getMessagesSorted(by: .newest)
+        self.sortLatest = true
+        self.bucketView.setCurrentFilterImg(latest: true)
         self.bucketView.close()
     }
 

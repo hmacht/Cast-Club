@@ -386,7 +386,7 @@ class MiniController: UIView {
     
     
     @objc func expand(_ sender:UITapGestureRecognizer){
-        // If loading dont change
+        // If loading don't change
         if !self.activityIndicator.isAnimating {
             if hasExpanded == false{
                 expandView()

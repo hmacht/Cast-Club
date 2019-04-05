@@ -253,18 +253,43 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if tableView.tag == 2{
             return 70
         } else if tableView.tag == 1{
-            return 44
+            return 50
         } else {
             return 70
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.tag == 2{
-            self.selectedClub = self.results[indexPath.row]
+        if tableView.tag == 2 {
             tableView.deselectRow(at: indexPath, animated: true)
-            self.performSegue(withIdentifier: "fromSecondVCToChat", sender: self)
-        } else if tableView.tag == 1{
+            if self.results[indexPath.row].isPublic || clubIds.contains(self.results[indexPath.row].id) {
+                self.selectedClub = self.results[indexPath.row]
+                self.performSegue(withIdentifier: "fromSecondVCToChat", sender: self)
+            } else if !CloudKitHelper.instance.isAuthenticated {
+                // User not logged in
+                self.tabBarController?.showError(with: "This club is private. Once you log in you can request to join this club.")
+            } else if self.results[indexPath.row].pendingUsersList.contains(CloudKitHelper.instance.userId.recordName) {
+                self.tabBarController?.showError(with: "You have already sent a request to join this club.")
+            } else {
+                // Club is private
+                let alert = UIAlertController(title: "Private Club", message: "This is a private club. Do you want to request to join this club?", preferredStyle: .alert)
+                
+                let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+                    self.results[indexPath.row].pendingUsersList.append(CloudKitHelper.instance.userId.recordName)
+                    CloudKitHelper.instance.requestPrivateClubJoin(clubId: self.results[indexPath.row].id, completion: { (error) in
+                        if let e = error {
+                            print(e)
+                        }
+                    })
+                }
+                
+                let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+                alert.addAction(yesAction)
+                alert.addAction(noAction)
+                
+                self.present(alert, animated: true)
+            }
+        } else if tableView.tag == 1 {
             catagoryTableView.deselectRow(at: indexPath, animated: true)
             print(testList[indexPath.row])
             headTitle = testList[indexPath.row]
@@ -352,9 +377,9 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let tag = sender.tag
         // If private
         if !self.results[sender.tag].isPublic {
-            if let tabController = self.tabBarController as? PodcastTablBarController {
+            /*if let tabController = self.tabBarController as? PodcastTablBarController {
                 tabController.showError(with: ErrorMessage.privateClub.rawValue)
-            }
+            }*/
         } else {
             if clubIds.contains(self.results[sender.tag].id) {
                 // Already subscribed

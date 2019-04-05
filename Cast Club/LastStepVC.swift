@@ -42,6 +42,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         createSubHeader(text: "Privacy", add: 120)
         createButton(title: "Public", Action: #selector(publicAction), Frame: CGRect(x: xVal, y: catagoryInput.frame.maxY + 35, width: 140, height: 40))
         createButton(title: "Private", Action: #selector(privateAction), Frame: CGRect(x: xVal + 160, y: catagoryInput.frame.maxY + 35, width: 140, height: 40))
+        self.selected(index: 1, Sender: self.buttons[0])
         createSubHeader(text: "Clubs Profile Image", add: 195)
         createImageSelectors(frameX: Int(xVal), imgName: "Group 464", Action: #selector(accessCamera))
         createImageSelectors(frameX: Int(xVal + 75), imgName: "Group 465", Action: #selector(accessPhotoLib))
@@ -109,6 +110,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         button.addTarget(self, action: Action, for: .touchUpInside)
         self.view.addSubview(button)
         buttons.append(button)
+        
     }
     
     func createCreateButton(){

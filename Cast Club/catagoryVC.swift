@@ -52,14 +52,20 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func retrieveTopClubs() {
         self.newCat = false
+        self.tabBarController?.showActivity()
         CloudKitHelper.instance.getTopClubs(n: 20, category: self.selectedCategory) { (club) in
             self.results.append(club)
             DispatchQueue.main.async {
+                self.tabBarController?.stopActivity()
                 self.tableView.reloadData()
             }
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.stopActivity()
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,8 +112,31 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        if !self.results[indexPath.row - 1].isPublic {
-            self.tabBarController?.showError(with: ErrorMessage.privateClub.rawValue)
+        if !self.results[indexPath.row - 1].isPublic && !clubIds.contains(self.results[indexPath.row - 1].id) {
+            if !CloudKitHelper.instance.isAuthenticated {
+                // User not logged in
+                self.tabBarController?.showError(with: "This club is private. Once you log in you can request to join this club.")
+            } else if self.results[indexPath.row - 1].pendingUsersList.contains(CloudKitHelper.instance.userId.recordName) {
+                self.tabBarController?.showError(with: "You have already sent a request to join this club.")
+            } else {
+                // Club is private
+                let alert = UIAlertController(title: "Private Club", message: "This is a private club. Do you want to request to join this club?", preferredStyle: .alert)
+                
+                let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+                    self.results[indexPath.row - 1].pendingUsersList.append(CloudKitHelper.instance.userId.recordName)
+                    CloudKitHelper.instance.requestPrivateClubJoin(clubId: self.results[indexPath.row - 1].id, completion: { (error) in
+                        if let e = error {
+                            print(e)
+                        }
+                    })
+                }
+                
+                let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+                alert.addAction(yesAction)
+                alert.addAction(noAction)
+                
+                self.present(alert, animated: true)
+            }
         } else {
             self.selectedClub = self.results[indexPath.row - 1]
             self.performSegue(withIdentifier: "fromCatagoryToChat", sender: self)

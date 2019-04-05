@@ -16,7 +16,8 @@ class CloudKitHelper {
     let privateDB = CKContainer.default().privateCloudDatabase
     
     var userId = CKRecord.ID()
-    var username = "AnonymousUsername"
+    var isAuthenticated = false
+    var username = ""
     var blockedUsers = [String]()
     
     // Types of records
@@ -85,6 +86,9 @@ class CloudKitHelper {
                         if let creator = r["creator"] as? String {
                             c.creatorId = creator
                         }
+                        if let pendingUsers = r["pendingUsersList"] as? [String] {
+                            c.pendingUsersList = pendingUsers
+                        }
                         results.append(c)
                     }
                     completion(results)
@@ -107,6 +111,7 @@ class CloudKitHelper {
         record["update"] = ""
         record["currentAlbum"] = ""
         record["creator"] = self.userId.recordName
+        record["pendingUsersList"] = [String]()
         
         // Save image
         if let img = image {
@@ -226,9 +231,12 @@ class CloudKitHelper {
         }
     }
     
-    func subscribeToClub(id: CKRecord.ID, completion: @escaping (Error?) -> ()) {
-        
-        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
+    func subscribeToClub(id: CKRecord.ID, userId: String? = nil, completion: @escaping (Error?) -> ()) {
+        var user = self.userId.recordName
+        if let uId = userId {
+            user = uId
+        }
+        let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", user))
         
         // Get the ClubHolder for user
         self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
@@ -360,6 +368,9 @@ class CloudKitHelper {
                 if let creator = r["creator"] as? String {
                     c.creatorId = creator
                 }
+                if let pendingUsers = r["pendingUsersList"] as? [String] {
+                    c.pendingUsersList = pendingUsers
+                }
                 completion(c, error)
             } else {
                 completion(Club(), error)
@@ -415,6 +426,64 @@ class CloudKitHelper {
             }
         }*/
     }
+    
+    func requestPrivateClubJoin(clubId: String, completion: @escaping (Error?) -> ()) {
+        
+        let fetchOperation = CKFetchRecordsOperation(recordIDs: [clubId.ckId()])
+        fetchOperation.desiredKeys = ["pendingUsersList"]
+        
+        fetchOperation.perRecordCompletionBlock = { rec, r2, error in
+            if let r = rec {
+                if var pendingUsers = r["pendingUsersList"] as? [String] {
+                    pendingUsers.append(self.userId.recordName)
+                    r["pendingUsersList"] = pendingUsers
+                } else {
+                    r["pendingUsersList"] = [self.userId.recordName]
+                }
+                self.publicDB.save(r) { (_, error2) in
+                    completion(error2)
+                }
+            } else {
+                completion(error)
+            }
+        }
+        
+        self.publicDB.add(fetchOperation)
+    }
+    
+    func updateUserRequestToPrivateClub(accepted: Bool, clubId: String, userId: String, completion: @escaping (Error?) -> ()) {
+        // Remove id from pendingUsersListInClub
+        let fetchOperation = CKFetchRecordsOperation(recordIDs: [clubId.ckId()])
+        fetchOperation.desiredKeys = ["pendingUsersList"]
+        
+        fetchOperation.perRecordCompletionBlock = { rec, r2, error in
+            if let r = rec {
+                // Get pending users list
+                if var pendingUsers = r["pendingUsersList"] as? [String] {
+                    // Remove user from list
+                    if let ind = pendingUsers.firstIndex(of: userId) {
+                        pendingUsers.remove(at: ind)
+                    }
+                    r["pendingUsersList"] = pendingUsers
+                }
+                self.publicDB.save(r) { (_, error2) in
+                    completion(error2)
+                }
+                
+                // Subscribe user to club
+                if accepted {
+                    self.subscribeToClub(id: clubId.ckId(), userId: userId, completion: { (_) in
+                        
+                    })
+                }
+            } else {
+                completion(error)
+            }
+        }
+        
+        self.publicDB.add(fetchOperation)
+    }
+    
     
     func getClubQuickly(id: String, completion: @escaping (Club, Error?) -> ()) {
         //let query = CKQuery(recordType: ClubType, predicate: NSPredicate(format: "recordName BEGINSWITH %@", id))
@@ -488,6 +557,9 @@ class CloudKitHelper {
             }
             if let creator = r["creator"] as? String {
                 c.creatorId = creator
+            }
+            if let pendingUsers = r["pendingUsersList"] as? [String] {
+                c.pendingUsersList = pendingUsers
             }
             completion(c)
         }

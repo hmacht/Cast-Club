@@ -106,8 +106,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 1 {
-            self.performSegue(withIdentifier: "toUsername", sender: self)
+            if !CloudKitHelper.instance.isAuthenticated {
+                self.tabBarController?.showError(with: "You must be logged in to iCloud to edit your username.")
+                return
+            } else {
+                self.performSegue(withIdentifier: "toUsername", sender: self)
+            }
         } else if indexPath.row == 2 {
+            if !CloudKitHelper.instance.isAuthenticated {
+                self.tabBarController?.showError(with: "You must be logged in to iCloud to edit your profile picture.")
+                return
+            }
             self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 3)
             bucketView.frame = UIApplication.shared.keyWindow!.frame
             UIApplication.shared.keyWindow!.addSubview(bucketView)
@@ -182,6 +191,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 imageView.image = image
                 CloudKitHelper.instance.setProfileImage(img: image.resizedImageWithinRect(rectSize: CGSize(width: 250, height: 250))) { (error) in
                     if let e = error {
+                        self.tabBarController?.showError(with: e.localizedDescription)
                         print(e)
                     }
                 }

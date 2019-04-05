@@ -173,7 +173,7 @@
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try searching for club or podcast names or keywords" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXz-7d-VtL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try searching for podcast names or keywords" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXz-7d-VtL">
                                 <rect key="frame" x="24" y="78" width="326" height="11"/>
                                 <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="12"/>
                                 <color key="textColor" red="0.63564193250000001" green="0.63463193179999999" blue="0.66667133570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -974,7 +974,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLv-1W-FmR">
-                                                    <rect key="frame" x="15" y="54" width="355" height="40.5"/>
+                                                    <rect key="frame" x="15" y="58" width="355" height="36.5"/>
                                                     <string key="text">Join a club that suits your interests. Clubs tend to
 Listen to podcasts that are related to their catagory.</string>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
@@ -985,7 +985,7 @@ Listen to podcasts that are related to their catagory.</string>
                                             <constraints>
                                                 <constraint firstItem="kej-xA-jcE" firstAttribute="leading" secondItem="VAc-Y2-efz" secondAttribute="leadingMargin" id="QS7-nu-sGQ"/>
                                                 <constraint firstAttribute="trailing" secondItem="lLv-1W-FmR" secondAttribute="trailing" constant="5" id="SxV-ER-3qN"/>
-                                                <constraint firstItem="lLv-1W-FmR" firstAttribute="top" secondItem="kej-xA-jcE" secondAttribute="bottom" constant="-2" id="VAg-dt-dfB"/>
+                                                <constraint firstItem="lLv-1W-FmR" firstAttribute="top" secondItem="kej-xA-jcE" secondAttribute="bottom" constant="2" id="VAg-dt-dfB"/>
                                                 <constraint firstItem="kej-xA-jcE" firstAttribute="top" secondItem="VAc-Y2-efz" secondAttribute="topMargin" constant="4" id="e69-2U-old"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="kej-xA-jcE" secondAttribute="trailing" constant="5" id="joF-mi-hX3"/>
                                                 <constraint firstAttribute="bottom" secondItem="lLv-1W-FmR" secondAttribute="bottom" constant="15.5" id="r8l-CN-FEb"/>
@@ -1287,8 +1287,8 @@ Listen to podcasts that are related to their catagory.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vx5-G8-YPP"/>
-        <segue reference="GPy-LR-DbP"/>
-        <segue reference="UPa-Zj-iA9"/>
+        <segue reference="5JY-ZE-ZJO"/>
+        <segue reference="S7V-rU-xOc"/>
         <segue reference="clu-BJ-Kq8"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -16,6 +16,7 @@
 		2163563F21D1558C00EF63C8 /* Club.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2163563E21D1558C00EF63C8 /* Club.swift */; };
 		218A877B21D93094008541AC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218A877A21D93094008541AC /* Message.swift */; };
 		218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */; };
+		21A021AA226CFE85005AD3E7 /* PrivateClubRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A021A9226CFE85005AD3E7 /* PrivateClubRequestViewController.swift */; };
 		21AEF18021B095DA000DDA49 /* RemoteControlsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AEF17F21B095DA000DDA49 /* RemoteControlsHelper.swift */; };
 		21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */; };
 		21C87D4621A87FF300F9E727 /* TunesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C87D4521A87FF300F9E727 /* TunesHelper.swift */; };
@@ -91,6 +92,7 @@
 		2163563E21D1558C00EF63C8 /* Club.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Club.swift; sourceTree = "<group>"; };
 		218A877A21D93094008541AC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		218C530821A87C260083EA38 /* SearchPodcastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPodcastsViewController.swift; sourceTree = "<group>"; };
+		21A021A9226CFE85005AD3E7 /* PrivateClubRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateClubRequestViewController.swift; sourceTree = "<group>"; };
 		21AEF17F21B095DA000DDA49 /* RemoteControlsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteControlsHelper.swift; sourceTree = "<group>"; };
 		21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		21C87D4521A87FF300F9E727 /* TunesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunesHelper.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				21C7A19821A8B7E200F57A3C /* AlbumViewController.swift */,
 				211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */,
 				21CB313921AF53D7006677F8 /* PodcastTablBarController.swift */,
+				21A021A9226CFE85005AD3E7 /* PrivateClubRequestViewController.swift */,
 				D744775421A4BB1D00270726 /* AppDelegate.swift */,
 				D744775A21A4BB1D00270726 /* Main.storyboard */,
 				D744775D21A4BB1F00270726 /* Assets.xcassets */,
@@ -615,6 +618,7 @@
 				21CB313A21AF53D7006677F8 /* PodcastTablBarController.swift in Sources */,
 				21D13FB621A9E7E40087F00E /* Podcast.swift in Sources */,
 				D70A84D122010ECE00893744 /* CreateUsernameVC.swift in Sources */,
+				21A021AA226CFE85005AD3E7 /* PrivateClubRequestViewController.swift in Sources */,
 				21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */,
 				D715DAB921E27E6800C53708 /* DoneView.swift in Sources */,
 				D78FFBF12201374C00B9ABBF /* ProfileViewController.swift in Sources */,

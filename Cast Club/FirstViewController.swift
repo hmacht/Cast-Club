@@ -36,6 +36,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         tabBarController?.tabBar.layer.zPosition = 1
         
         
+        
         errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: screenSize.height/2 - 55, width: screenSize.width, height: 200), headerText: "Hello!", bodyText: "Podcasts that you subscribe to will show up here. You can search for a podcast or use the discover tab to browse. Don’t forget to join a club and enjoy!!")
         
         if let errorView = errorPopUp {

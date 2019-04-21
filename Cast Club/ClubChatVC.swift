@@ -286,6 +286,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         
+        if let destination = segue.destination as? PrivateClubRequestViewController {
+            destination.selectedClub = self.selectedClub
+            destination.userIdsList = self.selectedClub.pendingUsersList
+        }
+        
         
         if segue.identifier == "toSearchPodcast" {
             if let destination = segue.destination as? SearchPodcastsViewController {
@@ -637,6 +642,9 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func editImage() {
         print("editImage")
+        self.bucketView.close()
+        self.performSegue(withIdentifier: "toClubRequestVC", sender: self)
+        
     }
     
     @objc func editName() {

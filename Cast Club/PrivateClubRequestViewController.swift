@@ -80,7 +80,6 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
             acceptButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
             acceptButton.backgroundColor = .green
             acceptButton.layer.cornerRadius = acceptButton.frame.height/2
-            acceptButton.tag = indexPath.row
             
             acceptButton.addTarget(self, action: #selector(PrivateClubRequestViewController.acceptUser(sender:)), for: .touchUpInside)
         }
@@ -90,7 +89,6 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
             declineButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
             declineButton.backgroundColor = .red
             declineButton.layer.cornerRadius = declineButton.frame.height/2
-            declineButton.tag = indexPath.row
             
             declineButton.addTarget(self, action: #selector(PrivateClubRequestViewController.declineUser(sender:)), for: .touchUpInside)
         }
@@ -100,25 +98,37 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
     }
     
     @objc func acceptUser(sender: UIButton) {
-        let tag = sender.tag
-        CloudKitHelper.instance.updateUserRequestToPrivateClub(accepted: true, clubId: self.selectedClub.id, userId: self.userIdsList[tag]) { (error) in
-            if let e = error {
-                print(e)
-            } else {
-                self.removeUserFromPendingList(self.userIdsList[tag])
-                print("Done accepting")
+        
+        let pos = sender.convert(CGPoint.zero, to: self.tableView)
+        if let row = self.tableView.indexPathForRow(at: pos)?.row {
+            CloudKitHelper.instance.updateUserRequestToPrivateClub(accepted: true, clubId: self.selectedClub.id, userId: self.userIdsList[row]) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    self.removeUserFromPendingList(self.userIdsList[row])
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    print("Done accepting")
+                }
             }
         }
     }
     
     @objc func declineUser(sender: UIButton) {
-        let tag = sender.tag
-        CloudKitHelper.instance.updateUserRequestToPrivateClub(accepted: false, clubId: self.selectedClub.id, userId: self.userIdsList[tag]) { (error) in
-            if let e = error {
-                print(e)
-            } else {
-                self.removeUserFromPendingList(self.userIdsList[tag])
-                print("Done delining")
+
+        let pos = sender.convert(CGPoint.zero, to: self.tableView)
+        if let row = self.tableView.indexPathForRow(at: pos)?.row {
+            CloudKitHelper.instance.updateUserRequestToPrivateClub(accepted: false, clubId: self.selectedClub.id, userId: self.userIdsList[row]) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    self.removeUserFromPendingList(self.userIdsList[row])
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    print("Done declining")
+                }
             }
         }
     }
@@ -127,5 +137,14 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
         if let ind = self.selectedClub.pendingUsersList.firstIndex(of: user) {
             self.selectedClub.pendingUsersList.remove(at: ind)
         }
+        
+        if let ind = self.userIdsList.firstIndex(of: user) {
+            self.userIdsList.remove(at: ind)
+            
+            DispatchQueue.main.async {
+                self.tableView.deleteRows(at: [IndexPath(row: ind, section: 0)], with: UITableView.RowAnimation.left)
+            }
+        }
+        
     }
 }

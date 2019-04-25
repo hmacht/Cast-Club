@@ -27,6 +27,7 @@ class CloudKitHelper {
     let ClubHolderType = "ClubHolder"
     
     var profilePictures = [String : UIImage]()
+    var usernamesDic = [String : String]()
     
     // Club stuff
     func searchClubsWithName(_ name: String, category: ClubCategory = ClubCategory.everything, completion: @escaping ([Club]?) -> ()) {
@@ -196,6 +197,33 @@ class CloudKitHelper {
                         self.profilePictures[user] = img
                     }
                     completion(asset.fileURL.image())
+                } else {
+                    completion(nil)
+                }
+            }
+            
+            self.publicDB.add(operation)
+        }
+    }
+    
+    func getUsername(for user: String, completion: @escaping (String?) -> ()) {
+        
+        if let username = self.usernamesDic[user] {
+            completion(username)
+        } else {
+            let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", user))
+            
+            let operation = CKQueryOperation(query: query)
+            operation.resultsLimit = 1
+            operation.desiredKeys = ["username"]
+            operation.qualityOfService = .userInitiated
+            operation.queuePriority = .veryHigh
+            
+            
+            operation.recordFetchedBlock = { rec in
+                if let name = rec["username"] as? String {
+                    self.usernamesDic[user]  = name
+                    completion(name)
                 } else {
                     completion(nil)
                 }

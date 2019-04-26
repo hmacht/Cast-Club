@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -591,7 +591,7 @@
                                                         <constraint firstAttribute="height" constant="32" id="Zjd-be-0pz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
-                                                    <state key="normal" title=" 17" image="Path 1882">
+                                                    <state key="normal" title=" " image="Path 1882">
                                                         <color key="titleColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                 </button>
@@ -794,7 +794,7 @@
                                                     <color key="textColor" red="0.76862745099999996" green="0.76862745099999996" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMb-1I-Q4k">
+                                                <button opaque="NO" tag="27" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMb-1I-Q4k">
                                                     <rect key="frame" x="142" y="24" width="19" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="19" id="PW7-tO-MFi"/>
@@ -809,27 +809,14 @@
                                                         <constraint firstAttribute="width" constant="42" id="VvD-oZ-Vez"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
-                                                    <state key="normal" title=" 124" image="Path 1700">
-                                                        <color key="titleColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyQ-co-B9u">
-                                                    <rect key="frame" x="112" y="68" width="42" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="7pi-Gm-vq1"/>
-                                                        <constraint firstAttribute="width" constant="42" id="E9v-MQ-AXY"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
-                                                    <state key="normal" title=" 17" image="Path 1882">
+                                                    <state key="normal" title=" 0" image="Path 1700">
                                                         <color key="titleColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="AyQ-co-B9u" secondAttribute="bottom" constant="5.5" id="2F4-uA-PW2"/>
                                                 <constraint firstAttribute="bottom" secondItem="dXx-To-sAl" secondAttribute="bottom" id="5JA-iL-rUy"/>
                                                 <constraint firstItem="IHZ-us-oO3" firstAttribute="leading" secondItem="6wr-RO-IeB" secondAttribute="trailing" constant="7" id="8eK-fs-p1B"/>
-                                                <constraint firstItem="AyQ-co-B9u" firstAttribute="leading" secondItem="K1l-r7-xTu" secondAttribute="trailing" constant="8" id="C5c-dH-WNN"/>
                                                 <constraint firstItem="K1l-r7-xTu" firstAttribute="leading" secondItem="gcr-C2-Pg0" secondAttribute="leading" constant="62" id="La0-fO-Gh4"/>
                                                 <constraint firstItem="uF9-WS-sbZ" firstAttribute="top" secondItem="gcr-C2-Pg0" secondAttribute="topMargin" constant="31" id="Nzz-lI-PUa"/>
                                                 <constraint firstItem="6wr-RO-IeB" firstAttribute="leading" secondItem="gcr-C2-Pg0" secondAttribute="leadingMargin" id="OdX-D0-Uiw"/>
@@ -1501,7 +1488,7 @@ Listen to podcasts that are related to their catagory.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vx5-G8-YPP"/>
-        <segue reference="aPP-qd-IP2"/>
+        <segue reference="UvS-CW-bYW"/>
         <segue reference="5JY-ZE-ZJO"/>
         <segue reference="UPa-Zj-iA9"/>
         <segue reference="clu-BJ-Kq8"/>

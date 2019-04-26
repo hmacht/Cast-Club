@@ -303,7 +303,7 @@ class BucketView: UIView {
     }
     
     // Filter Bucket ---
-    var editButtonTitles = ["     Edit Podcast", "     Edit Profile Photo", "     Edit Name"]
+    var editButtonTitles = ["     Edit Podcast", "     Join Requests", "     Edit Name"]
     func createEditBucket(){
         for i in 0...2 {
             var button = UIButton(frame: CGRect(x: 0, y: yPos, width: Int(screenSize.width - screenSize.width/15), height: 50))

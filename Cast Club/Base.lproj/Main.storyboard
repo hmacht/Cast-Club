@@ -728,6 +728,44 @@
             </objects>
             <point key="canvasLocation" x="6073" y="1332"/>
         </scene>
+        <!--Help Page View Controller-->
+        <scene sceneID="UYu-Qb-Dle">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="roL-gV-5Sw" customClass="HelpPageViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g53-Dr-300" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1173" y="2627"/>
+        </scene>
+        <!--Help1 View Controller-->
+        <scene sceneID="tC2-EK-teM">
+            <objects>
+                <viewController storyboardIdentifier="sbHelp1" id="cWp-nj-Jr4" customClass="Help1ViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mqa-6N-qCe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="J3Q-mM-0JI"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FPv-Rm-1XL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1943" y="2626"/>
+        </scene>
+        <!--Help2 View Controller-->
+        <scene sceneID="rX7-Dt-RDp">
+            <objects>
+                <viewController storyboardIdentifier="sbHelp2" id="bP9-bq-gfV" customClass="Help2ViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hH1-Vg-vMU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="WJs-Ya-UeN"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vbH-qF-cCE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2697" y="2625"/>
+        </scene>
         <!--PostVC-->
         <scene sceneID="WHm-Tn-a2z">
             <objects>
@@ -1347,6 +1385,7 @@ Listen to podcasts that are related to their catagory.</string>
                     <connections>
                         <outlet property="tableView" destination="UoP-Fc-Cna" id="j30-M1-yuz"/>
                         <segue destination="QZH-Yy-EYG" kind="show" identifier="toUsername" id="0ee-Tb-LTK"/>
+                        <segue destination="roL-gV-5Sw" kind="show" identifier="toHelp" id="YRZ-sn-A0J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKA-TP-LuN" userLabel="First Responder" sceneMemberID="firstResponder"/>

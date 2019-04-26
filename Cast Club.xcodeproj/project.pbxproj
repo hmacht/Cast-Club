@@ -60,6 +60,9 @@
 		D7A20DC621DAAD2000304D86 /* LastStepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20DC521DAAD2000304D86 /* LastStepVC.swift */; };
 		D7A4389822069593007F9F7A /* BucketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A4389722069593007F9F7A /* BucketView.swift */; };
 		D7AF62C421EAB5AC00101919 /* CatagoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */; };
+		D7D1194D227293D800E7D91F /* Help1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1194C227293D800E7D91F /* Help1ViewController.swift */; };
+		D7D1194F22729DB000E7D91F /* Help2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1194E22729DB000E7D91F /* Help2ViewController.swift */; };
+		D7D119512272A1ED00E7D91F /* HelpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D119502272A1ED00E7D91F /* HelpPageViewController.swift */; };
 		D7E15D5022027A3C006BA3F2 /* catagoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E15D4F22027A3C006BA3F2 /* catagoryVC.swift */; };
 		D7E2DC9921AE04BB001E0DE8 /* MiniController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */; };
 		D7F365D321B0D352007F2CD9 /* slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F365D221B0D352007F2CD9 /* slider.swift */; };
@@ -148,6 +151,9 @@
 		D7A20DC521DAAD2000304D86 /* LastStepVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastStepVC.swift; sourceTree = "<group>"; };
 		D7A4389722069593007F9F7A /* BucketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketView.swift; sourceTree = "<group>"; };
 		D7AF62C321EAB5AC00101919 /* CatagoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		D7D1194C227293D800E7D91F /* Help1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help1ViewController.swift; sourceTree = "<group>"; };
+		D7D1194E22729DB000E7D91F /* Help2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help2ViewController.swift; sourceTree = "<group>"; };
+		D7D119502272A1ED00E7D91F /* HelpPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpPageViewController.swift; sourceTree = "<group>"; };
 		D7E15D4F22027A3C006BA3F2 /* catagoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = catagoryVC.swift; sourceTree = "<group>"; };
 		D7E2DC9821AE04BB001E0DE8 /* MiniController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniController.swift; sourceTree = "<group>"; };
 		D7F365D221B0D352007F2CD9 /* slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slider.swift; sourceTree = "<group>"; };
@@ -267,6 +273,9 @@
 				D744775821A4BB1D00270726 /* SecondViewController.swift */,
 				D78FFBF02201374C00B9ABBF /* ProfileViewController.swift */,
 				D7E15D4F22027A3C006BA3F2 /* catagoryVC.swift */,
+				D7D1194C227293D800E7D91F /* Help1ViewController.swift */,
+				D7D1194E22729DB000E7D91F /* Help2ViewController.swift */,
+				D7D119502272A1ED00E7D91F /* HelpPageViewController.swift */,
 				D7870C4321E805B5008A7206 /* ClubChatVC.swift */,
 				D7101DC82272776F00F2C399 /* ReplyViewController.swift */,
 				D74731D521FCE6FD00700FD4 /* PostVC.swift */,
@@ -613,6 +622,8 @@
 				D760166821AC9C6E00CB25BB /* CollectionViewCell.swift in Sources */,
 				21C87D4821A883DF00F9E727 /* PodcastAlbum.swift in Sources */,
 				D797BEE621E8224F005500DD /* ResponceTableViewCell.swift in Sources */,
+				D7D119512272A1ED00E7D91F /* HelpPageViewController.swift in Sources */,
+				D7D1194F22729DB000E7D91F /* Help2ViewController.swift in Sources */,
 				D7E15D5022027A3C006BA3F2 /* catagoryVC.swift in Sources */,
 				218C530921A87C260083EA38 /* SearchPodcastsViewController.swift in Sources */,
 				21AEF18021B095DA000DDA49 /* RemoteControlsHelper.swift in Sources */,
@@ -626,6 +637,7 @@
 				21C7A19921A8B7E200F57A3C /* AlbumViewController.swift in Sources */,
 				D715DAB921E27E6800C53708 /* DoneView.swift in Sources */,
 				D78FFBF12201374C00B9ABBF /* ProfileViewController.swift in Sources */,
+				D7D1194D227293D800E7D91F /* Help1ViewController.swift in Sources */,
 				2145CB7721F7D75B002F307A /* ErrorView.swift in Sources */,
 				D77D9D2121C7459400010AFC /* TableViewCell.swift in Sources */,
 			);

@@ -40,13 +40,14 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         createHeader()
         createSubHeader(text: "Category", add: 45)
         createSubHeader(text: "Privacy", add: 120)
-        createButton(title: "Public", Action: #selector(publicAction), Frame: CGRect(x: xVal, y: catagoryInput.frame.maxY + 35, width: 140, height: 40))
-        createButton(title: "Private", Action: #selector(privateAction), Frame: CGRect(x: xVal + 160, y: catagoryInput.frame.maxY + 35, width: 140, height: 40))
+        let bWidth = (self.view.frame.width - 100 - 15 - 15) / 2
+        createButton(title: "Public", Action: #selector(publicAction), Frame: CGRect(x: xVal, y: catagoryInput.frame.maxY + 35, width: bWidth, height: 40))
+        createButton(title: "Private", Action: #selector(privateAction), Frame: CGRect(x: xVal + 100 + bWidth/2, y: catagoryInput.frame.maxY + 35, width: bWidth, height: 40))
         self.selected(index: 1, Sender: self.buttons[0])
         createSubHeader(text: "Clubs Profile Image", add: 195)
         createImageSelectors(frameX: Int(xVal), imgName: "Group 464", Action: #selector(accessCamera))
         createImageSelectors(frameX: Int(xVal + 75), imgName: "Group 465", Action: #selector(accessPhotoLib))
-        createSubHeader(text: "Invite", add: 290)
+        //createSubHeader(text: "Invite", add: 290)
         
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -55,7 +56,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         addDoneButtonOnKeyboard()
         
         createProfileImage()
-        createInviteButton()
+        //createInviteButton()
         
         createCreateButton()
 
@@ -81,7 +82,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     func createTextBoxe(){
-        catagoryInput = UITextField(frame: CGRect(x: 0, y: screenSize.height/10 + 75, width: 300, height: 40))
+        catagoryInput = UITextField(frame: CGRect(x: 0, y: screenSize.height/10 + 75, width: self.view.frame.width - 40, height: 40))
         catagoryInput.center.x = screenSize.width/2
         catagoryInput.attributedPlaceholder = NSAttributedString(string: "Select a category",
                                                                attributes: [NSAttributedString.Key.foregroundColor: UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)])
@@ -114,7 +115,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     func createCreateButton(){
-        createButton = UIButton(frame: CGRect(x: xVal, y: inviteButton.frame.maxY + 75, width: 300, height: 50))
+        createButton = UIButton(frame: CGRect(x: xVal, y: profileImageView.frame.maxY + 20, width: self.view.frame.width - 40, height: 50))
         createButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 0.5)
         createButton.setTitle("Create", for: .normal)
         createButton.titleLabel?.font = UIFont(name: "Mont-HeavyDEMO", size: 14)

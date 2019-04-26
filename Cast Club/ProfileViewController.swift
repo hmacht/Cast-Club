@@ -18,6 +18,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
@@ -35,7 +37,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return 7
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -46,8 +48,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    var sectionIcons = ["Group 749", "Group 750", "Group 751", "Group 752", "Group 753", "Group 754", "Group 755"]
-    var sectionTitles = ["Username", "Profile Picture", "Notification", "Settings", "Report an Issue", "Help", "Terms & conditions"]
+    //Notification, group 751, 4
+    var sectionIcons = ["Group 749", "Group 750", "Group 752", "Group 843", "Group 754", "Group 755"]
+    var sectionTitles = ["Username", "Profile Picture", "Settings", "Report an Issue", "Help", "Terms & conditions"]
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -143,6 +146,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             present(alertController, animated: true, completion: nil)
             
+        } else if indexPath.row == 5 {
+            performSegue(withIdentifier: "toHelp", sender: self)
         }
     }
     

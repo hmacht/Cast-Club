@@ -148,6 +148,8 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
+        myCell.selectionStyle = .none
+        
         return myCell
     }
     

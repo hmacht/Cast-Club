@@ -213,19 +213,43 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.selectedBackgroundView = backgroundView
             
             cell0 = cell
+            
         } else if tableView.tag == 1{
-            let cell2 = self.catagoryTableView.dequeueReusableCell(withIdentifier: "catagoryCell") as! UITableViewCell
-            
-            if let catagoryLabel = cell2.viewWithTag(2) as? UILabel {
-                catagoryLabel.text = testList[indexPath.row]
+            if indexPath.row == 0 {
+                let headerCell = self.catagoryTableView.dequeueReusableCell(withIdentifier: "headerCell", for:indexPath) as! UITableViewCell
+                
+                if let clubsNamelab = headerCell.viewWithTag(1) as? UILabel {
+                    clubsNamelab.text = "Most Popular"
+                    clubsNamelab.font = UIFont(name: "Avenir-Black", size: 20)
+                    clubsNamelab.textColor = UIColor(red: 252.0/255.0, green: 240.0/255.0, blue: 228.0/255.0, alpha: 1.0)
+                }
+                
+                if let headerImage = headerCell.viewWithTag(2) as? UIImageView {
+                    headerImage.image = UIImage(named: "pablo-upgrade")
+                    headerImage.layer.cornerRadius = 6.0
+                    headerImage.clipsToBounds = true
+                    headerImage.contentMode = .scaleAspectFill
+                    
+                }
+                
+                headerCell.selectionStyle = .none
+                
+                cell0 = headerCell
+                
+            } else {
+                let cell2 = self.catagoryTableView.dequeueReusableCell(withIdentifier: "catagoryCell") as! UITableViewCell
+                
+                if let catagoryLabel = cell2.viewWithTag(2) as? UILabel {
+                    catagoryLabel.text = testList[indexPath.row]
+                }
+                
+                if let catagoryImage = cell2.viewWithTag(1) as? UIImageView {
+                    catagoryImage.image = catagoryIcons[indexPath.row]
+                }
+                
+                
+                cell0 = cell2
             }
-            
-            if let catagoryImage = cell2.viewWithTag(1) as? UIImageView {
-                catagoryImage.image = catagoryIcons[indexPath.row]
-            }
-            
-            
-            cell0 = cell2
         }
         
         let backgroundView = UIView()
@@ -253,7 +277,12 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if tableView.tag == 2{
             return 70
         } else if tableView.tag == 1{
-            return 50
+            if indexPath.row > 0{
+                return 50
+            } else {
+                return 220
+            }
+            
         } else {
             return 70
         }

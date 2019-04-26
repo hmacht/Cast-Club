@@ -111,9 +111,14 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCell = tableView.cellForRow(at: indexPath) as! ResponceTableViewCell
-        if let UN = selectedCell.usernameLabel.text {
-            replyUsername = UN
+        if indexPath.row != 0 {
+            let selectedCell = tableView.cellForRow(at: indexPath) as! ResponceTableViewCell
+            if let UN = selectedCell.usernameLabel.text {
+                replyUsername = UN
+            }
+            self.selectedMessage = self.messages[indexPath.row]
+            tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "toReply", sender: self)
         }
         self.selectedMessage = self.messages[indexPath.row - 1]
         tableView.deselectRow(at: indexPath, animated: true)
@@ -331,6 +336,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func likeMessage(sender: UIButton) {
         
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud in your settings to like a message")
+            return
+        }
+        
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         if let path = tableView.indexPathForRow(at: buttonPosition) {
             let indexPath = IndexPath(row: path.row - 1, section: path.section)
@@ -449,7 +459,12 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func report(){
-        print("REPORT")
+        
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud in your settings to report a message")
+            return
+        }
+        
         if self.messages[self.moreMessageInd].flaggedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
             // We have already flagged the message
             self.tabBarController?.showError(with: "You have already flagged this message.")
@@ -473,7 +488,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func share(sender: UIButton) {
         self.bucketView.close()
-        let initialText = "Come discuss podcasts on Podtalk. You can chat with \(self.messages[self.moreMessageInd].fromUser)"
+        let initialText = "Come discuss podcasts on Pod Talk. You can chat with \(self.messages[self.moreMessageInd].fromUser)"
         
         let activityViewController : UIActivityViewController = UIActivityViewController(
             activityItems: [initialText], applicationActivities: nil)

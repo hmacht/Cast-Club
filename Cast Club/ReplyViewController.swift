@@ -15,6 +15,8 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var cellUsername = ""
     var selectedMessage = Message()
     var messages = [Message]()
+    var bucketView = BucketView(frame: CGRect(), viewHeight: 0, style: 0)
+    var moreMessageInd = 0
     
     var bucketView = BucketView(frame: CGRect(), viewHeight: 0, style: 0)
     
@@ -92,9 +94,22 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             responcelabel.numberOfLines = 50
         }
         
-        if let moreButton = myCell.viewWithTag(5) as? UIButton {
-            moreButton.tag = indexPath.row - 1
-            moreButton.addTarget(self, action: #selector(ClubChatVC.moreButtonPressed(sender:)), for: .touchUpInside)
+        if let likeButton = myCell.viewWithTag(-1) as? UIButton {
+            likeButton.setTitle(String(" \(self.messages[indexPath.row].numLikes)"), for: .normal)
+            
+            likeButton.addTarget(self, action: #selector(ReplyViewController.likeMessage(sender:)), for: .touchUpInside)
+            
+            if self.messages[indexPath.row].likedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
+                // User has already liked message
+                likeButton.setImage(UIImage(named: "Path 1885"), for: .normal)
+            } else {
+                likeButton.setImage(UIImage(named: "Path 1700"), for: .normal)
+            }
+        }
+        
+        if let moreButton = myCell.viewWithTag(27) as? UIButton {
+            print("In here")
+            moreButton.addTarget(self, action: #selector(ReplyViewController.moreButtonPressed(sender:)), for: .touchUpInside)
         }
         
         if let timeLabel = myCell.viewWithTag(-2) as? UILabel {
@@ -171,19 +186,123 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.performSegue(withIdentifier: "toPost2", sender: self)
     }
     
+    @objc func likeMessage(sender: UIButton) {
+        
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud in your settings to like a message")
+            return
+        }
+        
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+        
+        if let indexPath = tableView.indexPathForRow(at: buttonPosition) {
+            let m = self.messages[indexPath.row]
+            
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
+            sender.setTitle(" \(m.numLikes - 1)", for: .normal)
+            sender.setImage(UIImage(named: "Path 1700"), for: .normal)
+            
+            if m.likedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
+                self.messages[indexPath.row].numLikes -= 1
+                if let ind = self.messages[indexPath.row].likedUsersList.firstIndex(of: CloudKitHelper.instance.userId.recordName) {
+                    self.messages[indexPath.row].likedUsersList.remove(at: ind)
+                }
+                // User has already liked the message
+                CloudKitHelper.instance.unlikeMessageWithId(m.id.ckId()) { (error) in
+                    if let e = error {
+                        print(e)
+                    } else {
+                        DispatchQueue.main.async {
+                            //sender.setTitleColor(.black, for: .normal)
+                        }
+                    }
+                }
+            } else {
+                // Like the message
+                let generator = UIImpactFeedbackGenerator(style: .medium)
+                generator.impactOccurred()
+                sender.setTitle(" \(m.numLikes + 1)", for: .normal)
+                sender.setImage(UIImage(named: "Path 1885"), for: .normal)
+                
+                self.messages[indexPath.row].numLikes += 1
+                self.messages[indexPath.row].likedUsersList.append(CloudKitHelper.instance.userId.recordName)
+                CloudKitHelper.instance.likeMessageWithId(m.id.ckId()) { (error) in
+                    if let e = error {
+                        print(e)
+                    } else {
+                        DispatchQueue.main.async {
+                            //sender.setTitleColor(.red, for: .normal)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     @objc func moreButtonPressed(sender: UIButton) {
+        print("now")
+        if let indexPath = self.tableView.indexPathForRow(at: sender.convert(CGPoint.zero, to: self.tableView)) {
+            self.moreMessageInd = indexPath.row
+            print("yo")
+            self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 1)
+            bucketView.frame = UIApplication.shared.keyWindow!.frame
+            UIApplication.shared.keyWindow!.addSubview(bucketView)
+            
+            bucketView.reportButton.addTarget(self, action: #selector(ReplyViewController.report), for: .touchUpInside)
+            bucketView.shareButton.addTarget(self, action: #selector(ReplyViewController.share(sender:)), for: .touchUpInside)
+        }
+    }
+    
+    @objc func share(sender: UIButton) {
+        self.bucketView.close()
+        let initialText = "Come discuss podcasts on Pod Talk. You can chat with \(self.messages[self.moreMessageInd].fromUser)"
         
-        self.moreMessageInd = sender.tag
+        let activityViewController : UIActivityViewController = UIActivityViewController(
+            activityItems: [initialText], applicationActivities: nil)
         
-        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 1)
-        bucketView.frame = UIApplication.shared.keyWindow!.frame
-        UIApplication.shared.keyWindow!.addSubview(bucketView)
+        // Anything you want to exclude
+        activityViewController.excludedActivityTypes = [
+            UIActivity.ActivityType.postToWeibo,
+            UIActivity.ActivityType.print,
+            UIActivity.ActivityType.assignToContact,
+            UIActivity.ActivityType.saveToCameraRoll,
+            UIActivity.ActivityType.addToReadingList,
+            UIActivity.ActivityType.postToFlickr,
+            UIActivity.ActivityType.postToVimeo,
+            UIActivity.ActivityType.postToTencentWeibo,
+            UIActivity.ActivityType.airDrop,
+            UIActivity.ActivityType.copyToPasteboard
+        ]
         
-        bucketView.reportButton.addTarget(self, action: #selector(ClubChatVC.report), for: .touchUpInside)
-        //bucketView.messageButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
-        //bucketView.facebookButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
-        //bucketView.twitterButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
-        bucketView.shareButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    @objc func report() {
+        
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud in your settings to report a message")
+            return
+        }
+
+        if self.messages[self.moreMessageInd].flaggedUsersList.contains(CloudKitHelper.instance.userId.recordName) {
+            // We have already flagged the message
+            self.tabBarController?.showError(with: "You have already flagged this message.")
+            self.bucketView.close()
+        } else {
+            self.messages[self.moreMessageInd].flaggedUsersList.append(CloudKitHelper.instance.userId.recordName)
+            self.messages[self.moreMessageInd].flags += 1
+            CloudKitHelper.instance.flagMessageWithId(self.messages[self.moreMessageInd].id.ckId(), completion: { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    print("Done flagging")
+                }
+                DispatchQueue.main.async {
+                    self.bucketView.close()
+                }
+            })
+        }
         
     }
 }

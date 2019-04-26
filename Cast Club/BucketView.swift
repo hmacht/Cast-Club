@@ -215,9 +215,9 @@ class BucketView: UIView {
         self.latestFilterButton.viewWithTag(10)?.removeFromSuperview()
         self.likesFilterButton.viewWithTag(10)?.removeFromSuperview()
         
-        if let img = UIImage(named: "Group 463") {
+        if let img = UIImage(named: "Ellipse 265") {
             let imgView = UIImageView(image: img)
-            imgView.frame = CGRect(x: -5, y: self.latestFilterButton.frame.height/2 - 10, width: 20, height: 20)
+            imgView.frame = CGRect(x: 5, y: self.latestFilterButton.frame.height/2 - 3, width: 6, height: 6)
             imgView.tag = 10
             
             if latest {

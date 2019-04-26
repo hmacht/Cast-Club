@@ -16,6 +16,10 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var selectedMessage = Message()
     var messages = [Message]()
     
+    var bucketView = BucketView(frame: CGRect(), viewHeight: 0, style: 0)
+    
+    var moreMessageInd = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,6 +92,11 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             responcelabel.numberOfLines = 50
         }
         
+        if let moreButton = myCell.viewWithTag(5) as? UIButton {
+            moreButton.tag = indexPath.row - 1
+            moreButton.addTarget(self, action: #selector(ClubChatVC.moreButtonPressed(sender:)), for: .touchUpInside)
+        }
+        
         if let timeLabel = myCell.viewWithTag(-2) as? UILabel {
             let date = self.messages[indexPath.row].creationDate
             let secondsSinceNow = abs(date.timeIntervalSinceNow)
@@ -128,6 +137,8 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
+        myCell.selectionStyle = .none
+        
         return myCell
     }
     
@@ -158,5 +169,21 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.tabBarController?.showError(with: "You must set your username to post a message.")
         }
         self.performSegue(withIdentifier: "toPost2", sender: self)
+    }
+    
+    @objc func moreButtonPressed(sender: UIButton) {
+        
+        self.moreMessageInd = sender.tag
+        
+        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 1)
+        bucketView.frame = UIApplication.shared.keyWindow!.frame
+        UIApplication.shared.keyWindow!.addSubview(bucketView)
+        
+        bucketView.reportButton.addTarget(self, action: #selector(ClubChatVC.report), for: .touchUpInside)
+        //bucketView.messageButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
+        //bucketView.facebookButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
+        //bucketView.twitterButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
+        bucketView.shareButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
+        
     }
 }

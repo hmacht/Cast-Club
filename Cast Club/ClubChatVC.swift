@@ -115,7 +115,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let UN = selectedCell.usernameLabel.text {
             replyUsername = UN
         }
-        self.selectedMessage = self.messages[indexPath.row]
+        self.selectedMessage = self.messages[indexPath.row - 1]
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "toReply", sender: self)
     }

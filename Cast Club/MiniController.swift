@@ -53,7 +53,13 @@ class MiniController: UIView {
         self.center.x = screenSize.width/2
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(MiniController.expand))
+        
         self.addGestureRecognizer(gesture)
+        
+        
+        //let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(MiniController.expand))
+        //swipeRight.direction = UISwipeGestureRecognizer.Direction.right
+        //self.addGestureRecognizer(swipeRight)
         
         
         UIView.animate(withDuration: 0.45, delay: 0.1, usingSpringWithDamping: 0.65, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
@@ -352,6 +358,14 @@ class MiniController: UIView {
         
         podSlider?.center = CGPoint(x: self.frame.width/2, y: playButton.frame.minX - 30)
         self.addSubview(podSlider!)
+        
+        
+        let downloadButton = UIButton(frame: CGRect(x: self.frame.width - 50, y: podcastTitle.frame.minY, width: 50, height: 50))
+        downloadButton.center.y = self.frame.height/2
+        downloadButton.setImage(UIImage(named: "Group 900"), for: .normal)
+        downloadButton.contentMode = .scaleAspectFit
+        //downloadButton.addTarget(self, action: #selector(MiniController.download), for: .touchUpInside)
+        //self.addSubview(downloadButton)
        
     }
     func shrinkView(){

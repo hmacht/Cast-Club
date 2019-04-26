@@ -59,7 +59,8 @@ class Help1ViewController: UIViewController {
 
     @objc func next(sender: UIButton!) {
         print("Button tapped")
-        performSegue(withIdentifier: "toHelp2", sender: self)
+        
+        //performSegue(withIdentifier: "toHelp2", sender: self)
     }
 
     override func viewDidLoad() {

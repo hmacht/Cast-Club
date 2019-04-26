@@ -18,10 +18,6 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var bucketView = BucketView(frame: CGRect(), viewHeight: 0, style: 0)
     var moreMessageInd = 0
     
-    var bucketView = BucketView(frame: CGRect(), viewHeight: 0, style: 0)
-    
-    var moreMessageInd = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

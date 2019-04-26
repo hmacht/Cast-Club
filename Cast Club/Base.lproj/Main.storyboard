@@ -751,9 +751,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Krz-hn-2wv">
-                                <rect key="frame" x="-6" y="-1" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Krz-hn-2wv">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="replyCell" rowHeight="106" id="awY-Wd-nY0" customClass="ResponceTableViewCell" customModule="Pod_Talk" customModuleProvider="target">
@@ -859,10 +858,19 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hOO-KI-cvB" firstAttribute="trailing" secondItem="Krz-hn-2wv" secondAttribute="trailing" id="0Jt-He-Y0w"/>
+                            <constraint firstItem="hOO-KI-cvB" firstAttribute="bottom" secondItem="Krz-hn-2wv" secondAttribute="bottom" id="8bI-qv-wBz"/>
+                            <constraint firstItem="Krz-hn-2wv" firstAttribute="leading" secondItem="FUo-NN-08s" secondAttribute="leading" id="JX4-32-RWm"/>
+                            <constraint firstItem="Krz-hn-2wv" firstAttribute="top" secondItem="FUo-NN-08s" secondAttribute="top" id="dfb-sf-bMo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hOO-KI-cvB"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Krz-hn-2wv" id="eFR-9q-tOg"/>
+                        <segue destination="1aw-5R-hxk" kind="presentation" identifier="toPost2" id="UvS-CW-bYW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ucd-jI-sAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1493,6 +1501,7 @@ Listen to podcasts that are related to their catagory.</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vx5-G8-YPP"/>
+        <segue reference="aPP-qd-IP2"/>
         <segue reference="5JY-ZE-ZJO"/>
         <segue reference="UPa-Zj-iA9"/>
         <segue reference="clu-BJ-Kq8"/>

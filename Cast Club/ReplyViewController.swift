@@ -13,11 +13,17 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     
     var cellUsername = ""
+    var selectedMessage = Message()
+    var messages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = "Reply to @\(cellUsername)"
+        
+        //let addButton = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(ReplyViewController.writeMessage))
+        let addButton = UIBarButtonItem(image: UIImage(named: "Group 734"), style: .plain, target: self, action: #selector(ReplyViewController.writeMessage))
+        self.navigationItem.rightBarButtonItem = addButton
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -32,11 +38,22 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.backgroundColor = UIColor(red: 246.0/255.0, green: 246.0/255.0, blue: 250.0/255.0, alpha: 1.0)
         
         // Do any additional setup after loading the view.
+        
+        CloudKitHelper.instance.getMessagesInReply(to: self.selectedMessage.id, sortOption: .newest) { (results, error) in
+            if let e = error {
+                print(e)
+            } else {
+                self.messages = results
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return self.messages.count + 1
-        return 1
+        return self.messages.count
     }
     
     
@@ -48,19 +65,67 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             usersProfileImage.layer.cornerRadius = 20.0
             usersProfileImage.clipsToBounds = true
             usersProfileImage.contentMode = .scaleAspectFill
+            usersProfileImage.image = UIImage(named: "img1")
+            CloudKitHelper.instance.getProfilePic(for: self.messages[indexPath.row].fromUser) { (image) in
+                if let img = image {
+                    DispatchQueue.main.async {
+                         usersProfileImage.image = img
+                    }
+                }
+            }
         }
         
         if let usernameLabel = myCell.viewWithTag(2) as? UILabel {
             usernameLabel.sizeToFit()
             //usernameLabel.text = self.messages[indexPath.row - 1].fromUsername
-            usernameLabel.text = "Username"
+            usernameLabel.text = self.messages[indexPath.row].fromUsername
         }
         
         if let responcelabel = myCell.viewWithTag(3) as? UILabel {
             //responcelabel.text = self.messages[indexPath.row - 1].text
-            responcelabel.text = "Here is my reply comment"
+            responcelabel.text = self.messages[indexPath.row].text
             responcelabel.sizeToFit()
             responcelabel.numberOfLines = 50
+        }
+        
+        if let timeLabel = myCell.viewWithTag(-2) as? UILabel {
+            let date = self.messages[indexPath.row].creationDate
+            let secondsSinceNow = abs(date.timeIntervalSinceNow)
+            // More than a year ago
+            if secondsSinceNow > 60 * 60 * 24 * 30 {
+                // More than a month ago
+                let formatter = DateFormatter()
+                formatter.dateStyle = .medium
+                formatter.timeStyle = .none
+                
+                timeLabel.text = formatter.string(from: date)
+            } else if secondsSinceNow > 60 * 60 * 24 {
+                // More than a day ago
+                let value = Int(secondsSinceNow) / (60 * 60 * 24)
+                var units = "days"
+                if value == 1 {
+                    units = "day"
+                }
+                timeLabel.text = "\(value) \(units) ago"
+            } else if secondsSinceNow > 60 * 60 {
+                // More than an hour ago
+                let value = Int(secondsSinceNow) / (60 * 60)
+                var units = "hours"
+                if value == 1 {
+                    units = "hour"
+                }
+                timeLabel.text = "\(value) \(units) ago"
+            } else if secondsSinceNow > 60 {
+                // More than a minute ago
+                let value = Int(secondsSinceNow) / 60
+                var units = "minutes"
+                if value == 1 {
+                    units = "minute"
+                }
+                timeLabel.text = "\(value) \(units) ago"
+            } else {
+                timeLabel.text = "\(Int(secondsSinceNow)) seconds ago"
+            }
         }
         
         return myCell
@@ -78,5 +143,20 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? PostVC {
+            destination.fromMessage = self.selectedMessage
+        }
+    }
+    
+    @objc func writeMessage() {
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to post a message.")
+        }
+        if CloudKitHelper.instance.username == "" {
+            self.tabBarController?.showError(with: "You must set your username to post a message.")
+        }
+        self.performSegue(withIdentifier: "toPost2", sender: self)
+    }
 }

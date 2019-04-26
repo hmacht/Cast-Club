@@ -31,6 +31,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var sortLatest = true
     
+    var replyUsername = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -106,6 +108,15 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messages.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell = tableView.cellForRow(at: indexPath) as! ResponceTableViewCell
+        if let UN = selectedCell.usernameLabel.text {
+            replyUsername = UN
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "toReply", sender: self)
     }
     
     
@@ -304,6 +315,12 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let destination = segue.destination as? PostVC {
                 destination.isUpdate = isUpdate
                 destination.currentClub = selectedClub
+            }
+        }
+        
+        if segue.identifier == "toReply" {
+            if let destination = segue.destination as? ReplyViewController {
+                destination.cellUsername = replyUsername
             }
         }
         

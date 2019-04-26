@@ -121,6 +121,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 75
     }
     
+    
     // Test Material
     var images = [UIImage(named: "Group 439"), UIImage(named: "img1"), UIImage(named: "img3"), UIImage(named: "img2")]
     var header = ["Club Name", "The longest Club Name", "Short", "Long Name"]

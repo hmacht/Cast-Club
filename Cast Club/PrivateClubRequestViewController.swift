@@ -134,13 +134,14 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
     }
     
     func removeUserFromPendingList(_ user: String) {
+        // Remove from club list
         if let ind = self.selectedClub.pendingUsersList.firstIndex(of: user) {
             self.selectedClub.pendingUsersList.remove(at: ind)
         }
-        
+        // Remove from table view list
         if let ind = self.userIdsList.firstIndex(of: user) {
             self.userIdsList.remove(at: ind)
-            
+            // Animate dismiss
             DispatchQueue.main.async {
                 self.tableView.deleteRows(at: [IndexPath(row: ind, section: 0)], with: UITableView.RowAnimation.left)
             }

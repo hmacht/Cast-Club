@@ -181,6 +181,12 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @objc func likeMessage(sender: UIButton) {
+        
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud in your settings to like a message")
+            return
+        }
+        
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         
         if let indexPath = tableView.indexPathForRow(at: buttonPosition) {

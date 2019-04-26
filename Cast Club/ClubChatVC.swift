@@ -333,6 +333,11 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func likeMessage(sender: UIButton) {
         
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to iCloud in your settings to like a message")
+            return
+        }
+        
         let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
         if let path = tableView.indexPathForRow(at: buttonPosition) {
             let indexPath = IndexPath(row: path.row - 1, section: path.section)

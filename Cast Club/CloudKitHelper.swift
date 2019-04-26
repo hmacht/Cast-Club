@@ -157,8 +157,24 @@ class CloudKitHelper {
         let query = CKQuery(recordType: ClubHolderType, predicate: NSPredicate(format: "fromUser BEGINSWITH %@", self.userId.recordName))
         
         let operation = CKQueryOperation(query: query)
+        
+        var numResults = 0
+        
         operation.resultsLimit = 1
         operation.desiredKeys = ["clubIds", "username", "blockedUsers"]
+        
+        operation.completionBlock = {
+            if numResults == 0 {
+                // Need to create club holder b/c we didnt find one
+                let record = CKRecord(recordType: self.ClubHolderType)
+                record["fromUser"] = self.userId.recordName
+                record["clubIds"] = [String]()
+                
+                self.publicDB.save(record, completionHandler: { (_, error) in
+                    completion([String](), error)
+                })
+            }
+        }
         
         operation.recordFetchedBlock = { firstRec in
             if let username = firstRec["username"] as? String {
@@ -168,11 +184,14 @@ class CloudKitHelper {
                 self.blockedUsers = blockedUsers
             }
             if let clubIds = firstRec["clubIds"] as? [String] {
+                print("completion")
+                numResults += 1
                 completion(clubIds, nil)
             } else {
                 completion([String](), nil)
             }
         }
+        
         
         self.publicDB.add(operation)
     }

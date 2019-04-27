@@ -202,7 +202,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     addButton.layer.borderWidth = 1
                     addButton.layer.borderColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 237.0/255.0, alpha: 1.0).cgColor
                 } else {
-                    addButton.setImage(UIImage(named: "Lock"), for: .normal)
+                    addButton.setImage(UIImage(named: "Group 845"), for: .normal)
                 }
                 addButton.tag = indexPath.row
                 addButton.addTarget(self, action: #selector(SecondViewController.addClub), for: .touchUpInside)
@@ -414,6 +414,10 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 // Already subscribed
                 self.tabBarController?.showError(with: "You are already subscribed to this club.")
             } else {
+
+                sender.setImage(UIImage(named: "Ellipse 121"), for: .normal)
+                sender.backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 240.0/255.0, alpha: 1.0)
+                
                 CloudKitHelper.instance.subscribeToClub(id: CKRecord.ID(recordName: self.results[sender.tag].id)) { (error) in
                     if let e = error {
                         if let tabController = self.tabBarController as? PodcastTablBarController {
@@ -430,7 +434,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         }
                         print("successfully saved")
                         
-                        //sender.setImage(UIImage(named: "Group 844"), for: .normal)
+                        
                     }
                 }
             }

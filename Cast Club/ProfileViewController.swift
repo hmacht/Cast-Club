@@ -126,7 +126,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             bucketView.cameraButton.addTarget(self, action: #selector(ProfileViewController.accessCamera(sender:)), for: .touchUpInside)
             bucketView.libraryButton.addTarget(self, action: #selector(ProfileViewController.accessPhotoLib(sender:)), for: .touchUpInside)
-        } else if indexPath.row == 4 {
+        } else if indexPath.row == 3 {
             let alertController = UIAlertController (title: "Go to Settings", message: "Would you like to view the setting for this app? Doing so will take you out of the app and into your settings.", preferredStyle: .alert)
             
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in

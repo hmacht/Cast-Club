@@ -40,9 +40,9 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         createHeader()
         createSubHeader(text: "Category", add: 45)
         createSubHeader(text: "Privacy", add: 120)
-        let bWidth = (self.view.frame.width - 100 - 15 - 15) / 2
+        let bWidth = (self.view.frame.width - 130) / 2
         createButton(title: "Public", Action: #selector(publicAction), Frame: CGRect(x: xVal, y: catagoryInput.frame.maxY + 35, width: bWidth, height: 40))
-        createButton(title: "Private", Action: #selector(privateAction), Frame: CGRect(x: xVal + 100 + bWidth/2, y: catagoryInput.frame.maxY + 35, width: bWidth, height: 40))
+        createButton(title: "Private", Action: #selector(privateAction), Frame: CGRect(x: xVal + 80 + bWidth/2, y: catagoryInput.frame.maxY + 35, width: bWidth, height: 40))
         self.selected(index: 1, Sender: self.buttons[0])
         createSubHeader(text: "Clubs Profile Image", add: 195)
         createImageSelectors(frameX: Int(xVal), imgName: "Group 464", Action: #selector(accessCamera))
@@ -115,7 +115,9 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     func createCreateButton(){
-        createButton = UIButton(frame: CGRect(x: xVal, y: profileImageView.frame.maxY + 20, width: self.view.frame.width - 40, height: 50))
+        //if let tabBarHeight = tabBarController?.tabBar.frame.height{
+            createButton = UIButton(frame: CGRect(x: xVal, y: screenSize.height - 240, width: self.view.frame.width - 40, height: 50))
+        //}
         createButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 0.5)
         createButton.setTitle("Create", for: .normal)
         createButton.titleLabel?.font = UIFont(name: "Mont-HeavyDEMO", size: 14)

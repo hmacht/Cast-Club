@@ -365,7 +365,7 @@ class MiniController: UIView {
         downloadButton.setImage(UIImage(named: "Group 900"), for: .normal)
         downloadButton.contentMode = .scaleAspectFit
         //downloadButton.addTarget(self, action: #selector(MiniController.download), for: .touchUpInside)
-        //self.addSubview(downloadButton)
+        self.addSubview(downloadButton)
        
     }
     func shrinkView(){

@@ -8,12 +8,37 @@
 
 import UIKit
 import AVFoundation
+import MessageUI
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
     var bucketView = BucketView(frame: CGRect(), viewHeight: 0, style: 0)
+    
+    
+    
+    func createEmail(reasoning: String, explanation: String) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["podtalkdevelopers@gmail.com"])
+            mail.setSubject(reasoning)
+            mail.setMessageBody("<b>\(explanation)</b> \n <p>Issue: </p>", isHTML: true)
+            
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,7 +171,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             present(alertController, animated: true, completion: nil)
             
-        } else if indexPath.row == 5 {
+        } else if indexPath.row == 4 {
+            createEmail(reasoning: "Report A Problem", explanation: "Tell us anything you think whe should know. It could be a bug in the app or a problem with the way it works, we listen to everything")
+        }
+        else if indexPath.row == 5 {
             performSegue(withIdentifier: "toHelp", sender: self)
         }
     }

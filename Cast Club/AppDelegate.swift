@@ -17,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UIApplication.shared.beginReceivingRemoteControlEvents()
+        
+        if !UserDefaults.standard.bool(forKey: "didSee") {
+            UserDefaults.standard.set(true, forKey: "didSee")
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "sbWelcome")
+            self.window?.rootViewController = viewController
+            self.window?.makeKeyAndVisible()
+        }
         return true
     }
 

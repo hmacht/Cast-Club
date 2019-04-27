@@ -106,12 +106,15 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                     }
                 })
                 
+                
             }
         }
         
+        
+        
     }
     
-    
+    var didShow = false
     
     // --- Currently Everything is hard Coded for prototyping. ---
     override func viewDidAppear(_ animated: Bool) {
@@ -120,6 +123,13 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             errorPopUp?.removeFromSuperview()
             discovewrBtn.removeFromSuperview()
         }
+        
+        //if didShow == false{
+          //  performSegue(withIdentifier: "toOB", sender: self)
+            //didShow = true
+        //}
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

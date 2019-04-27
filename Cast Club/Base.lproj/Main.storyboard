@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yq7-Aj-1Qg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -93,6 +93,7 @@
                         <outlet property="myCollectionView" destination="Pyn-xn-M3I" id="Mv2-Zg-Me0"/>
                         <segue destination="GMk-vi-Sml" kind="show" identifier="toSearch" id="XOF-A9-nIy"/>
                         <segue destination="YnJ-Ln-gEA" kind="show" identifier="viewDetails" id="QTv-ZG-pl4"/>
+                        <segue destination="Yq7-Aj-1Qg" kind="presentation" identifier="toOB" id="W0e-1T-sOY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -1392,10 +1393,10 @@ Listen to podcasts that are related to their catagory.</string>
         <!--Help Page View Controller-->
         <scene sceneID="052-UM-GLN">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Yq7-Aj-1Qg" customClass="HelpPageViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="sbWelcome" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Yq7-Aj-1Qg" customClass="HelpPageViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mor-p1-RQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3988" y="742"/>
+            <point key="canvasLocation" x="1689" y="-1411"/>
         </scene>
         <!--Help0 View Controller-->
         <scene sceneID="uLz-Dt-5Xc">
@@ -1410,7 +1411,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bs-AU-a0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3222" y="742"/>
+            <point key="canvasLocation" x="2465" y="-1411"/>
         </scene>
         <!--Help1 View Controller-->
         <scene sceneID="Pr3-xN-nUX">
@@ -1425,7 +1426,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bLr-wN-xDJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2460" y="742"/>
+            <point key="canvasLocation" x="3260" y="-1411"/>
         </scene>
         <!--Help2 View Controller-->
         <scene sceneID="3vz-AQ-9zX">
@@ -1440,7 +1441,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pnu-za-Jy0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1694" y="742"/>
+            <point key="canvasLocation" x="4081" y="-1411"/>
         </scene>
         <!--Create UsernameVC-->
         <scene sceneID="XL8-A5-vZB">
@@ -1459,7 +1460,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHM-s0-ne4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1278" y="1552"/>
+            <point key="canvasLocation" x="4849" y="-1410"/>
         </scene>
         <!--Create UsernameVC-->
         <scene sceneID="IIg-v4-goB">
@@ -1603,7 +1604,7 @@ Listen to podcasts that are related to their catagory.</string>
         <segue reference="vx5-G8-YPP"/>
         <segue reference="UvS-CW-bYW"/>
         <segue reference="GPy-LR-DbP"/>
-        <segue reference="UPa-Zj-iA9"/>
-        <segue reference="clu-BJ-Kq8"/>
+        <segue reference="QTv-ZG-pl4"/>
+        <segue reference="XOF-A9-nIy"/>
     </inferredMetricsTieBreakers>
 </document>

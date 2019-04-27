@@ -57,7 +57,7 @@ class Help2ViewController: UIViewController {
     
     @objc func next(sender: UIButton!) {
         print("Button tapped")
-        performSegue(withIdentifier: "toHome", sender: self)
+        //performSegue(withIdentifier: "toHome", sender: self)
     }
     
     override func viewDidLoad() {

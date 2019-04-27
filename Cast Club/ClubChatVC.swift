@@ -461,6 +461,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @objc func report(){
         
         if !CloudKitHelper.instance.isAuthenticated {
+            self.bucketView.close()
             self.tabBarController?.showError(with: "You must be logged in to iCloud in your settings to report a message")
             return
         }

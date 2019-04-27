@@ -1,11 +1,3 @@
-//
-//  ClubVC.swift
-//  Cast Club
-//
-//  Created by Henry Macht on 12/30/18.
-//  Copyright © 2018 Henry Macht. All rights reserved.
-//
-
 import UIKit
 
 class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -31,23 +23,25 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.clubTabelView.backgroundColor = UIColor(red: 246.0/255.0, green: 246.0/255.0, blue: 250.0/255.0, alpha: 1.0)
         
         //self.view.backgroundColor = UIColor(red: 244.0/255.0, green: 244.0/255.0, blue: 247.0/255.0, alpha: 1.0)
-
+        
         // Do any additional setup after loading the view.
         
         if CloudKitHelper.instance.isAuthenticated {
             self.tabBarController?.showActivity()
         }
         
-        if clubIds == ["none"] {
+        if clubIds == ["none"] && CloudKitHelper.instance.isAuthenticated {
             // Have not gotten club ids yet
             CloudKitHelper.instance.getClubIdsForCurrentUser { (ids, error) in
                 if let e = error {
                     print(e)
+                    self.tabBarController?.stopActivity()
                     self.tabBarController?.showError(with: e.localizedDescription)
                 } else {
                     self.userIds = ids
                     if self.userIds.count == 0 {
                         self.tabBarController?.stopActivity()
+                        self.tabBarController?.showNoResultsLabel(message: "You have not subscribed to any clubs yet!")
                     }
                     clubIds = ids
                     for id in self.userIds {
@@ -61,10 +55,11 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             }
-        } else {
+        } else if CloudKitHelper.instance.isAuthenticated {
             self.userIds = clubIds
             if self.userIds.count == 0 {
                 self.tabBarController?.stopActivity()
+                self.tabBarController?.showNoResultsLabel(message: "You have not subscribed to any clubs yet!")
             }
             for id in self.userIds {
                 CloudKitHelper.instance.getClub(with: id, completion: { (club, error) in
@@ -75,6 +70,9 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 })
             }
+        } else {
+            self.tabBarController?.stopActivity()
+            self.tabBarController?.showNoResultsLabel(message: "When you log in, the clubs you follow will show up here!")
         }
     }
     
@@ -101,16 +99,23 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.clubs = clubs.filter({self.userIds.contains($0.id)})
         self.clubTabelView.reloadData()
         
-        if self.userIds.count > 0 && self.clubs.count == 0 {
+        if self.userIds.count > 0 && self.clubs.count == 0 && CloudKitHelper.instance.isAuthenticated {
             self.tabBarController?.showActivity()
+            self.tabBarController?.hideNoResultsLabel()
+        } else if self.userIds.count == 0 && CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showNoResultsLabel(message: "You have not subscribed to any clubs yet!")
         }
         
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showNoResultsLabel(message: "When you log in, the clubs you follow will show up here!")
+        }
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.stopActivity()
+        self.tabBarController?.hideNoResultsLabel()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -140,30 +145,30 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.clubName.font = UIFont(name: "Avenir-Black", size: 16)
         
         /*if indexPath.row >= self.clubs.count {
-            // Retrieve club data
-            CloudKitHelper.instance.getClub(with: self.userIds[indexPath.row]) { (club, error) in
-                if let e = error {
-                    print("error getting club")
-                } else {
-                    self.clubs.append(club)
-                    print("Count", self.clubs.count)
-                    DispatchQueue.main.async {
-                        print(club.coverImage.size, club.name, club.category.rawValue)
-                        print("From array", self.clubs[indexPath.row].coverImage.size, self.clubs[indexPath.row].name)
-                        // TODO - Doesnt actually change labels for some reason just goes blank
-                        cell.clubIMG.image = club.coverImage
-                        cell.clubName.text = club.name
-                        cell.catagoryLabel.text = club.category.rawValue
-                    }
-                }
-            }
-        } else {
-            let club = self.clubs[indexPath.row]
-            cell.clubIMG.image = club.coverImage
-            cell.clubName.text = club.name
-            cell.catagoryLabel.text = club.category.rawValue
-            
-        }*/
+         // Retrieve club data
+         CloudKitHelper.instance.getClub(with: self.userIds[indexPath.row]) { (club, error) in
+         if let e = error {
+         print("error getting club")
+         } else {
+         self.clubs.append(club)
+         print("Count", self.clubs.count)
+         DispatchQueue.main.async {
+         print(club.coverImage.size, club.name, club.category.rawValue)
+         print("From array", self.clubs[indexPath.row].coverImage.size, self.clubs[indexPath.row].name)
+         // TODO - Doesnt actually change labels for some reason just goes blank
+         cell.clubIMG.image = club.coverImage
+         cell.clubName.text = club.name
+         cell.catagoryLabel.text = club.category.rawValue
+         }
+         }
+         }
+         } else {
+         let club = self.clubs[indexPath.row]
+         cell.clubIMG.image = club.coverImage
+         cell.clubName.text = club.name
+         cell.catagoryLabel.text = club.category.rawValue
+         
+         }*/
         
         
         return cell
@@ -173,7 +178,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         self.selectedClub = self.clubs[indexPath.row]
-    
+        
         tableView.deselectRow(at: indexPath, animated: true)
         self.performSegue(withIdentifier: "toChat", sender: self)
         
@@ -206,10 +211,10 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-
+    
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -222,6 +227,6 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
- 
-
+    
+    
 }

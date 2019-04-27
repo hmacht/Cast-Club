@@ -175,9 +175,11 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @objc func writeMessage() {
         if !CloudKitHelper.instance.isAuthenticated {
             self.tabBarController?.showError(with: "You must be logged in to post a message.")
+            return
         }
         if CloudKitHelper.instance.username == "" {
             self.tabBarController?.showError(with: "You must set your username to post a message.")
+            return
         }
         self.performSegue(withIdentifier: "toPost2", sender: self)
     }
@@ -278,6 +280,7 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if !CloudKitHelper.instance.isAuthenticated {
             self.tabBarController?.showError(with: "You must be logged in to iCloud in your settings to report a message")
+            self.bucketView.close()
             return
         }
 

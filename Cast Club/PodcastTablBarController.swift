@@ -223,6 +223,32 @@ extension UITabBarController {
             indicator.stopAnimating()
         }
     }
+    
+    func showNoResultsLabel(message: String) {
+        DispatchQueue.main.async {
+            if let _ = self.view.viewWithTag(-43) {
+                return
+            }
+            let label = UILabel(frame: CGRect(x: 15, y: self.view.frame.height/2 - 125, width: self.view.frame.width - 30, height: 250))
+            label.numberOfLines = 0
+            label.font = UIFont(name: "Avenir-Black", size: 20)
+            label.text = message
+            label.textAlignment = NSTextAlignment.center
+            label.textColor = .lightGray
+            label.tag = -43
+            
+            self.view.addSubview(label)
+        }
+    }
+    
+    func hideNoResultsLabel() {
+        DispatchQueue.main.async {
+            if let label = self.view.viewWithTag(-43) {
+                label.removeFromSuperview()
+                
+            }
+        }
+    }
 }
 
 

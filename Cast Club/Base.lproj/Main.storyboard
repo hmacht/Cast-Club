@@ -726,7 +726,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWc-go-Qr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6073" y="1332"/>
+            <point key="canvasLocation" x="7012" y="1331.784107946027"/>
         </scene>
         <!--PostVC-->
         <scene sceneID="WHm-Tn-a2z">
@@ -956,7 +956,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tgu-be-mk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1688.8" y="1069.1154422788607"/>
+            <point key="canvasLocation" x="2628" y="1069.1154422788607"/>
         </scene>
         <!--Club CreationVC-->
         <scene sceneID="gzV-eS-BZk">
@@ -974,7 +974,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54a-ZN-l8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2570" y="1069"/>
+            <point key="canvasLocation" x="3508" y="1068.215892053973"/>
         </scene>
         <!--Last StepVC-->
         <scene sceneID="AjW-ow-ysQ">
@@ -992,7 +992,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zje-CS-F45" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3398" y="1069"/>
+            <point key="canvasLocation" x="4336.8000000000002" y="1068.215892053973"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
@@ -1387,7 +1387,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKA-TP-LuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1688.8" y="1820.2398800599701"/>
+            <point key="canvasLocation" x="2628" y="1820.2398800599701"/>
         </scene>
         <!--Help Page View Controller-->
         <scene sceneID="052-UM-GLN">
@@ -1395,7 +1395,22 @@ Listen to podcasts that are related to their catagory.</string>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Yq7-Aj-1Qg" customClass="HelpPageViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mor-p1-RQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3226" y="742"/>
+            <point key="canvasLocation" x="-3988" y="742"/>
+        </scene>
+        <!--Help0 View Controller-->
+        <scene sceneID="uLz-Dt-5Xc">
+            <objects>
+                <viewController storyboardIdentifier="sbHelp0" id="Cic-rx-nRJ" customClass="Help0ViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KeN-AY-L99">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="rFc-OX-f5P"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Bs-AU-a0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3222" y="742"/>
         </scene>
         <!--Help1 View Controller-->
         <scene sceneID="Pr3-xN-nUX">
@@ -1422,13 +1437,29 @@ Listen to podcasts that are related to their catagory.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="tHI-FI-kBd"/>
                     </view>
-                    <connections>
-                        <segue destination="49e-Tb-3d3" kind="show" identifier="toHome" id="oo6-ty-VxF"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pnu-za-Jy0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1694" y="742"/>
+        </scene>
+        <!--Create UsernameVC-->
+        <scene sceneID="XL8-A5-vZB">
+            <objects>
+                <viewController storyboardIdentifier="sbUsername" id="6OX-ya-bQK" customClass="CreateUsernameVC" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yL3-x0-3BG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="LwK-DX-Vab"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CI4-UD-G7q"/>
+                    <connections>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="toHome" id="O7y-kU-FDw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bHM-s0-ne4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1278" y="1552"/>
         </scene>
         <!--Create UsernameVC-->
         <scene sceneID="IIg-v4-goB">
@@ -1443,7 +1474,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uw2-rq-ljI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="1819.3403298350827"/>
+            <point key="canvasLocation" x="3567.1999999999998" y="1819.3403298350827"/>
         </scene>
         <!--Podcast Tabl Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1507,7 +1538,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H4M-o7-zON" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="1069.1154422788607"/>
+            <point key="canvasLocation" x="1688.8" y="1069.1154422788607"/>
         </scene>
         <!--Nav View Controller-->
         <scene sceneID="TZj-vF-Dvl">
@@ -1527,7 +1558,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyP-09-WK3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="1820.2398800599701"/>
+            <point key="canvasLocation" x="1688.8" y="1820.2398800599701"/>
         </scene>
         <!--Nav View Controller-->
         <scene sceneID="R2V-Qm-QyK">

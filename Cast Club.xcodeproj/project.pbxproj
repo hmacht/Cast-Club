@@ -32,6 +32,7 @@
 		D715DAB921E27E6800C53708 /* DoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D715DAB821E27E6800C53708 /* DoneView.swift */; };
 		D7380BB821A62E21003D19F8 /* Mont-HeavyDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */; };
 		D7388BA521C6F5AE00C6869D /* ErrorPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7388BA421C6F5AE00C6869D /* ErrorPopUp.swift */; };
+		D743D8502274C7BA00EDA69F /* Help0ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D743D84F2274C7BA00EDA69F /* Help0ViewController.swift */; };
 		D744775521A4BB1D00270726 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744775421A4BB1D00270726 /* AppDelegate.swift */; };
 		D744775721A4BB1D00270726 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744775621A4BB1D00270726 /* FirstViewController.swift */; };
 		D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D744775821A4BB1D00270726 /* SecondViewController.swift */; };
@@ -117,6 +118,7 @@
 		D715DAB821E27E6800C53708 /* DoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneView.swift; sourceTree = "<group>"; };
 		D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mont-HeavyDEMO.otf"; sourceTree = "<group>"; };
 		D7388BA421C6F5AE00C6869D /* ErrorPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPopUp.swift; sourceTree = "<group>"; };
+		D743D84F2274C7BA00EDA69F /* Help0ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help0ViewController.swift; sourceTree = "<group>"; };
 		D744775121A4BB1D00270726 /* Pod Talk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pod Talk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D744775421A4BB1D00270726 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D744775621A4BB1D00270726 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,17 @@
 			name = Animations;
 			sourceTree = "<group>";
 		};
+		D743D8512274C97B00EDA69F /* On Board */ = {
+			isa = PBXGroup;
+			children = (
+				D743D84F2274C7BA00EDA69F /* Help0ViewController.swift */,
+				D7D1194C227293D800E7D91F /* Help1ViewController.swift */,
+				D7D1194E22729DB000E7D91F /* Help2ViewController.swift */,
+				D7D119502272A1ED00E7D91F /* HelpPageViewController.swift */,
+			);
+			name = "On Board";
+			sourceTree = "<group>";
+		};
 		D744774821A4BB1D00270726 = {
 			isa = PBXGroup;
 			children = (
@@ -273,9 +286,7 @@
 				D744775821A4BB1D00270726 /* SecondViewController.swift */,
 				D78FFBF02201374C00B9ABBF /* ProfileViewController.swift */,
 				D7E15D4F22027A3C006BA3F2 /* catagoryVC.swift */,
-				D7D1194C227293D800E7D91F /* Help1ViewController.swift */,
-				D7D1194E22729DB000E7D91F /* Help2ViewController.swift */,
-				D7D119502272A1ED00E7D91F /* HelpPageViewController.swift */,
+				D743D8512274C97B00EDA69F /* On Board */,
 				D7870C4321E805B5008A7206 /* ClubChatVC.swift */,
 				D7101DC82272776F00F2C399 /* ReplyViewController.swift */,
 				D74731D521FCE6FD00700FD4 /* PostVC.swift */,
@@ -617,6 +628,7 @@
 				D760166621AC84DC00CB25BB /* SearchBar.swift in Sources */,
 				D767DF3B21B8D2890027DA85 /* String+RemoveHTML.swift in Sources */,
 				21D13FB821A9E8380087F00E /* FeedHelper.swift in Sources */,
+				D743D8502274C7BA00EDA69F /* Help0ViewController.swift in Sources */,
 				211BDD7721A9F1560025A132 /* PlayPodcastViewController.swift in Sources */,
 				D7A20DC621DAAD2000304D86 /* LastStepVC.swift in Sources */,
 				D760166821AC9C6E00CB25BB /* CollectionViewCell.swift in Sources */,

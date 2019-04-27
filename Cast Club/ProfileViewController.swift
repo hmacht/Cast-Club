@@ -151,6 +151,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is CreateUsernameVC
+        {
+            let vc = segue.destination as? CreateUsernameVC
+            vc?.fromSettings = true
+            
+            
+        }
+    }
+    
     func requestAccess(){
         //Camera
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in

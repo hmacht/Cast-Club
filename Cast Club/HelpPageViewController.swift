@@ -41,7 +41,7 @@ class HelpPageViewController: UIPageViewController, UIPageViewControllerDelegate
             return nil
         }
         
-        if viewControllerIndex < 1 {
+        if viewControllerIndex < 3 {
             
             let nextIndex = viewControllerIndex + 1
             
@@ -60,7 +60,7 @@ class HelpPageViewController: UIPageViewController, UIPageViewControllerDelegate
     }
     
     lazy var orderViewController: [UIViewController] = {
-        return [self.newVC(viewController: "sbHelp1"), self.newVC(viewController: "sbHelp2")]
+        return [self.newVC(viewController: "sbHelp0"), self.newVC(viewController: "sbHelp1"), self.newVC(viewController: "sbHelp2"), self.newVC(viewController: "sbUsername")]
     }()
     
     func newVC(viewController: String) -> UIViewController {

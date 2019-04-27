@@ -46,7 +46,7 @@ class Help2ViewController: UIViewController {
     func createNextButton(){
         let button = UIButton(frame: CGRect(x: 25, y: detailLabel.frame.maxY + 10, width: 100, height: 45))
         button.backgroundColor = UIColor(red: 28.0/255.0, green: 28.0/255.0, blue: 28.0/255.0, alpha: 1.0)
-        button.setTitle("Begin", for: .normal)
+        button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 14)
         button.layer.cornerRadius = 45/2
         button.clipsToBounds = true

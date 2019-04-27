@@ -9,12 +9,20 @@
 import UIKit
 
 class CreateUsernameVC: UIViewController {
+    
+    var fromSettings = false
+    
+    
 
     let usernameCreationView = createView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), headerText: "Enter a Name", placeholderText: "Username")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(usernameCreationView)
+        
+        if fromSettings == false{
+            usernameCreationView.frame = CGRect(x: 0, y: 100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        }
         
         usernameCreationView.doneButton.addTarget(self, action: #selector(CreateUsernameVC.done), for: .touchUpInside)
         usernameCreationView.header.numberOfLines = 2
@@ -25,7 +33,11 @@ class CreateUsernameVC: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         
-        usernameCreationView.clubNameInput.becomeFirstResponder()
+        
+        if fromSettings {
+            usernameCreationView.clubNameInput.becomeFirstResponder()
+        }
+        
     }
     
     @objc func done() {
@@ -37,8 +49,13 @@ class CreateUsernameVC: UIViewController {
                 }
             }
         }
-       
-        self.navigationController?.popViewController(animated: true)
+        
+        if fromSettings{
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            performSegue(withIdentifier: "toHome", sender: self)
+        }
+        
         
     }
     

@@ -21,6 +21,7 @@ class MiniController: UIView {
     let backSkipButton = UIButton()
     let slider = UISlider()
     var activityIndicator = UIActivityIndicatorView()
+    var downloadButton = UIButton()
     
     var yposition: CGFloat
     var title: String
@@ -327,6 +328,8 @@ class MiniController: UIView {
         }
     }
     
+    
+    
     func expandView(){
         UIView.animate(withDuration: 0.35, delay: 0.1, usingSpringWithDamping: 0.58, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.frame.size = CGSize(width: self.frame.width, height: self.frame.height * 3)
@@ -359,9 +362,16 @@ class MiniController: UIView {
         podSlider?.center = CGPoint(x: self.frame.width/2, y: playButton.frame.minX - 30)
         self.addSubview(podSlider!)
         
+        downloadButton.frame = CGRect(x: self.frame.width - 70, y: self.frame.height, width: 50, height: 50)
         
-        let downloadButton = UIButton(frame: CGRect(x: self.frame.width - 50, y: podcastTitle.frame.minY, width: 50, height: 50))
-        downloadButton.center.y = self.frame.height/2
+        UIView.animate(withDuration: 0.35, delay: 0.1, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            
+            self.downloadButton.center.y = self.podcastTitle.frame.midY
+            
+        })
+        
+        
+        
         downloadButton.setImage(UIImage(named: "Group 900"), for: .normal)
         downloadButton.contentMode = .scaleAspectFit
         //downloadButton.addTarget(self, action: #selector(MiniController.download), for: .touchUpInside)
@@ -369,6 +379,21 @@ class MiniController: UIView {
        
     }
     func shrinkView(){
+        
+      
+        
+        
+            
+        UIView.animate(withDuration: 0.35, delay: 0.1, usingSpringWithDamping: 0.58, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            
+            self.downloadButton.center.y = self.podcastTitle.frame.midY + 50
+            
+        })
+            
+            
+        
+        
+        
         UIView.animate(withDuration: 0.35, delay: 0.1, usingSpringWithDamping: 0.58, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
             self.frame.size = CGSize(width: self.screenSize.width - 20, height: 70)
             self.transform = CGAffineTransform(translationX: 0, y: 5)
@@ -390,6 +415,8 @@ class MiniController: UIView {
             
             self.podcastTitle.frame = CGRect(x: self.coverArt.frame.maxX + 10, y: 0, width: self.frame.width/3, height: 40)
             self.podcastTitle.center.y = self.frame.height/2
+            
+            
         })
 
         //podcastSlider.removeFromSuperview()

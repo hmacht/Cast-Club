@@ -130,8 +130,12 @@ class PodcastTablBarController: UITabBarController {
     
     
     // Touch handling
+    var isDeleted = false
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        isDeleted = false
+        
         if let pos = touches.first?.location(in: self.view) {
             if self.audioController?.frame.contains(pos) ?? false && (self.audioController?.hasExpanded ?? true) == false{
                 self.startPos = pos
@@ -141,6 +145,8 @@ class PodcastTablBarController: UITabBarController {
             }
         }
     }
+    
+    
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.audioController?.hasExpanded ?? true {
@@ -155,6 +161,7 @@ class PodcastTablBarController: UITabBarController {
                     // Dismiss right
                     self.audioController?.avPlayer.pause()
                     self.removingView = true
+                    self.isDeleted = true
                     UIView.animate(withDuration: 0.5, animations: {
                         self.audioController?.frame.origin.x += self.view.frame.width
                     }) { (_) in
@@ -171,8 +178,9 @@ class PodcastTablBarController: UITabBarController {
                         self.audioController = nil
                         self.removingView = false
                     }
-                } else if abs(pos.x - startPos.y) > 50 {
+                } else if abs(pos.x - startPos.y) > 50 && isDeleted == false{
                     self.audioController?.frame = CGRect(x: pos.x - startPos.x, y: self.tabBar.frame.minY - 90, width: self.audioController?.frame.width ?? 0, height: self.audioController?.frame.height ?? 0)
+                    
                 }
             }
         }

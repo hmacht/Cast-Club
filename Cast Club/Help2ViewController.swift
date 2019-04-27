@@ -20,14 +20,14 @@ class Help2ViewController: UIViewController {
     
     func createImage(){
         let sideLemgth = screenSize.width
-        image = UIImageView(frame: CGRect(x: screenSize.width/2 - sideLemgth/2, y: 40, width: sideLemgth, height: sideLemgth))
+        image = UIImageView(frame: CGRect(x: screenSize.width/2 - sideLemgth/2, y: 80, width: sideLemgth, height: sideLemgth))
         image.image = UIImage(named: "mirage-message-sent")
         image.contentMode = .scaleAspectFill
         self.view.addSubview(image)
     }
     
     func createHeaderLabel(){
-        headerLabel = UILabel(frame: CGRect(x: 25, y: screenSize.height - screenSize.height/2.4, width: 200, height: 50))
+        headerLabel = UILabel(frame: CGRect(x: 25, y: screenSize.height - screenSize.height/3.2, width: 200, height: 50))
         headerLabel.text = "Join a Club"
         headerLabel.font = UIFont(name: "Avenir-Black", size: 20)
         headerLabel.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0)

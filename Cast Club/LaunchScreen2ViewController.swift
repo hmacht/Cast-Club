@@ -17,7 +17,49 @@ class LaunchScreen2ViewController: UIPageViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        performSegue(withIdentifier: "startApp", sender: self)
+        CloudKitHelper.instance.setCurrentUserId { (error) in
+            if let e = error {
+                print(e)
+                
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "startApp", sender: self)
+                }
+                
+            } else {
+                CloudKitHelper.instance.isAuthenticated = true
+                // Get user subscriptions albums
+                CloudKitHelper.instance.getAlbums { (albums, error2) in
+                    if let e = error2 {
+                        print(e)
+                        // If error, start app
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "startApp", sender: self)
+                        }
+                        
+                    } else if albums.count > 0 {
+                        subscriptionAlbum = albums
+                        DispatchQueue.main.async {
+                           self.performSegue(withIdentifier: "startApp", sender: self)
+                        }
+                    } else if albums.count == 0 {
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "startApp", sender: self)
+                        }
+                    }
+                }
+                
+                // Get user subscribed clubs
+                CloudKitHelper.instance.getClubIdsForCurrentUser(completion: { (results, error3) in
+                    if let e = error3 {
+                        self.tabBarController?.showError(with: e.localizedDescription)
+                    } else {
+                        clubIds = results
+                    }
+                })
+                
+                
+            }
+        }
     }
     
 

@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -27,6 +27,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>We need acces to you camera so you can take a photo and set it as the profile image</string>
+	<key>Privacy - Photo Library Usage Description    </key>
+	<string>We need acces to your photo liberary in order for you to be able to select a photo from your library as your profile image</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Mont-HeavyDEMO.otf</string>

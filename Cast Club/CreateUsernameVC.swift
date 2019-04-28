@@ -36,6 +36,10 @@ class CreateUsernameVC: UIViewController {
         
         if fromSettings {
             usernameCreationView.clubNameInput.becomeFirstResponder()
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+                self.usernameCreationView.clubNameInput.becomeFirstResponder()
+            })
         }
         
     }

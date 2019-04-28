@@ -41,7 +41,7 @@ class Help0ViewController: UIPageViewController {
         super.viewDidLoad()
         
         createImage()
-        createNextButton()
+        //createNextButton()
 
         // Do any additional setup after loading the view.
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var userIdsList = [String]()
@@ -17,7 +17,7 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -27,16 +27,16 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
         super.viewWillAppear(animated)
         self.navigationItem.title = "Pending Users"
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -54,6 +54,7 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
             imgView.image = UIImage(named: "AppIcon")
             imgView.clipsToBounds = true
             imgView.layer.cornerRadius = 40
+            imgView.contentMode = .scaleAspectFill
             // Get profile picture
             CloudKitHelper.instance.getProfilePic(for: self.userIdsList[indexPath.row]) { (image) in
                 if let img = image {
@@ -77,22 +78,23 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
         
         if let acceptButton = cell.viewWithTag(3) as? UIButton {
             acceptButton.setTitleColor(.white, for: .normal)
-            acceptButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-            acceptButton.backgroundColor = .green
-            acceptButton.layer.cornerRadius = acceptButton.frame.height/2
+            acceptButton.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
+            acceptButton.backgroundColor = UIColor(red: 0.0/255.0, green: 123.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+            acceptButton.layer.cornerRadius = 6
             
             acceptButton.addTarget(self, action: #selector(PrivateClubRequestViewController.acceptUser(sender:)), for: .touchUpInside)
         }
         
         if let declineButton = cell.viewWithTag(4) as? UIButton {
             declineButton.setTitleColor(.white, for: .normal)
-            declineButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
-            declineButton.backgroundColor = .red
-            declineButton.layer.cornerRadius = declineButton.frame.height/2
+            declineButton.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
+            declineButton.backgroundColor = .white
+            declineButton.layer.borderColor = UIColor(red: 196.0/255.0, green: 196.0/255.0, blue: 201.0/255.0, alpha: 1.0).cgColor
+            declineButton.layer.borderWidth = 1.0
+            declineButton.layer.cornerRadius = 6
             
             declineButton.addTarget(self, action: #selector(PrivateClubRequestViewController.declineUser(sender:)), for: .touchUpInside)
         }
-        
         
         return cell
     }
@@ -116,7 +118,7 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
     }
     
     @objc func declineUser(sender: UIButton) {
-
+        
         let pos = sender.convert(CGPoint.zero, to: self.tableView)
         if let row = self.tableView.indexPathForRow(at: pos)?.row {
             CloudKitHelper.instance.updateUserRequestToPrivateClub(accepted: false, clubId: self.selectedClub.id, userId: self.userIdsList[row]) { (error) in

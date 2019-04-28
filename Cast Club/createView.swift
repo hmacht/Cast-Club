@@ -48,7 +48,7 @@ class createView: UIView {
         self.addSubview(header)
         
         addDoneButtonOnKeyboard()
-        clubNameInput.becomeFirstResponder()
+        //clubNameInput.becomeFirstResponder()
     }
     
     required init?(coder aDecoder: NSCoder) {

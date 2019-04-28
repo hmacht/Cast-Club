@@ -66,7 +66,7 @@ class Help2ViewController: UIViewController {
         createImage()
         createHeaderLabel()
         createDetailesLabel()
-        createNextButton()
+        //createNextButton()
         // Do any additional setup after loading the view.
     }
     

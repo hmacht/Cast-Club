@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aAW-Rv-0TN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l64-Yd-XMN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1477,38 +1477,38 @@ Listen to podcasts that are related to their catagory.</string>
             </objects>
             <point key="canvasLocation" x="3567.1999999999998" y="1819.3403298350827"/>
         </scene>
-        <!--Launch Screen2 View Controller-->
-        <scene sceneID="6yU-4h-clV">
+        <!--Launch Screen View Controller-->
+        <scene sceneID="Zyy-G7-ZAt">
             <objects>
-                <viewController id="aAW-Rv-0TN" customClass="LaunchScreen2ViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="AAg-ae-0Od">
+                <viewController id="l64-Yd-XMN" customClass="LaunchScreenViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iWi-2N-aoQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PodTalkLogo" translatesAutoresizingMaskIntoConstraints="NO" id="uwg-8D-L8J">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PodTalkLogo" translatesAutoresizingMaskIntoConstraints="NO" id="wzE-Tq-eje">
                                 <rect key="frame" x="159" y="309" width="56" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="JXA-1B-qaB"/>
-                                    <constraint firstAttribute="width" constant="56" id="kLr-MS-Ztr"/>
+                                    <constraint firstAttribute="height" constant="48" id="OQD-4i-hWF"/>
+                                    <constraint firstAttribute="width" constant="56" id="dBd-rp-s3V"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="0HP-Es-rXz" firstAttribute="bottom" secondItem="uwg-8D-L8J" secondAttribute="bottom" constant="310" id="DJ4-Fc-Byj"/>
-                            <constraint firstItem="uwg-8D-L8J" firstAttribute="leading" secondItem="0HP-Es-rXz" secondAttribute="leading" constant="159" id="RAx-Qe-U46"/>
-                            <constraint firstItem="uwg-8D-L8J" firstAttribute="top" secondItem="0HP-Es-rXz" secondAttribute="top" constant="289" id="T4w-be-L8k"/>
-                            <constraint firstItem="0HP-Es-rXz" firstAttribute="trailing" secondItem="uwg-8D-L8J" secondAttribute="trailing" constant="160" id="wwW-bp-WMX"/>
+                            <constraint firstItem="wzE-Tq-eje" firstAttribute="leading" secondItem="MdB-21-603" secondAttribute="leading" constant="159" id="Ft0-AY-NxN"/>
+                            <constraint firstItem="MdB-21-603" firstAttribute="bottom" secondItem="wzE-Tq-eje" secondAttribute="bottom" constant="310" id="YVL-E9-ry2"/>
+                            <constraint firstItem="wzE-Tq-eje" firstAttribute="top" secondItem="MdB-21-603" secondAttribute="top" constant="289" id="gzq-jV-omb"/>
+                            <constraint firstItem="MdB-21-603" firstAttribute="trailing" secondItem="wzE-Tq-eje" secondAttribute="trailing" constant="160" id="rHB-Eo-f1K"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="0HP-Es-rXz"/>
+                        <viewLayoutGuide key="safeArea" id="MdB-21-603"/>
                     </view>
                     <connections>
-                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="startApp" modalTransitionStyle="crossDissolve" id="CUT-an-Z59"/>
+                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="startApp" modalTransitionStyle="crossDissolve" id="i4U-Cf-O3r"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mq0-n1-UDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HQQ-xp-spE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1574" y="742"/>
+            <point key="canvasLocation" x="-1566" y="742"/>
         </scene>
         <!--Podcast Tabl Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1635,7 +1635,7 @@ Listen to podcasts that are related to their catagory.</string>
         <image name="Rectangle 164" width="131" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CUT-an-Z59"/>
+        <segue reference="i4U-Cf-O3r"/>
         <segue reference="vx5-G8-YPP"/>
         <segue reference="UvS-CW-bYW"/>
         <segue reference="GPy-LR-DbP"/>

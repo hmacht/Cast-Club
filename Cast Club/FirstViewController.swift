@@ -53,7 +53,23 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         
         // TODO - very important to handle this if can't "authenticate" user
         // TODO - theoretically this logic should be moved to some sort of loading view
-        CloudKitHelper.instance.setCurrentUserId { (error) in
+        if !CloudKitHelper.instance.isAuthenticated {
+            // Not authenticated
+            self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 55, width: self.screenSize.width, height: 200), headerText: "Hello!", bodyText: "You must login to iCloud in your Settings to enjoy all the features of Pod Talk. Until you do that, you can still listen to podcasts and look at clubs.")
+            if let pop = self.errorPopUp {
+                self.view.addSubview(pop)
+                self.view.addSubview(self.discovewrBtn)
+            }
+        } else if subscriptionAlbum.count == 0 {
+            // No subscribed albums yet
+            self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 55, width: self.screenSize.width, height: 200), headerText: "Hello!", bodyText: "You haven't subscribed to any podcasts yet. When you do, they will show up here.")
+            if let pop = self.errorPopUp {
+                self.view.addSubview(pop)
+                self.view.addSubview(self.discovewrBtn)
+            }
+        }
+        
+        /*CloudKitHelper.instance.setCurrentUserId { (error) in
             if let e = error {
                 print(e)
                 
@@ -108,7 +124,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                 
                 
             }
-        }
+        }*/
         
         
         

@@ -28,6 +28,8 @@
 		CC7EB3C19D306844332EB570 /* Pods_Cast_Club.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87DFBC75432441FC2D0D22D3 /* Pods_Cast_Club.framework */; };
 		D70A84D122010ECE00893744 /* CreateUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A84D022010ECE00893744 /* CreateUsernameVC.swift */; };
 		D70A84D32201105800893744 /* createView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A84D22201105800893744 /* createView.swift */; };
+		D70D94A9227639AA006EF367 /* fadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70D94A8227639AA006EF367 /* fadeSegue.swift */; };
+		D70D94AB227658B0006EF367 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70D94AA227658B0006EF367 /* LaunchScreenViewController.swift */; };
 		D7101DC92272776F00F2C399 /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7101DC82272776F00F2C399 /* ReplyViewController.swift */; };
 		D715DAB921E27E6800C53708 /* DoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D715DAB821E27E6800C53708 /* DoneView.swift */; };
 		D7380BB821A62E21003D19F8 /* Mont-HeavyDEMO.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */; };
@@ -50,7 +52,6 @@
 		D760166D21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166C21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift */; };
 		D760166F21ACE20300CB25BB /* SearchBar+BarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D760166E21ACE20200CB25BB /* SearchBar+BarColor.swift */; };
 		D767DF3B21B8D2890027DA85 /* String+RemoveHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = D767DF3A21B8D2890027DA85 /* String+RemoveHTML.swift */; };
-		D77CDBD122761DD80092ECAA /* LaunchScreen2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77CDBD022761DD80092ECAA /* LaunchScreen2ViewController.swift */; };
 		D77D9D2121C7459400010AFC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77D9D2021C7459400010AFC /* TableViewCell.swift */; };
 		D77D9D2321C7576200010AFC /* UITableView+reloadSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77D9D2221C7576200010AFC /* UITableView+reloadSearch.swift */; };
 		D7870C4421E805B5008A7206 /* ClubChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7870C4321E805B5008A7206 /* ClubChatVC.swift */; };
@@ -115,6 +116,8 @@
 		CD19E3BB63A300D4CAAC00A6 /* Pods-Cast ClubUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubUITests/Pods-Cast ClubUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D70A84D022010ECE00893744 /* CreateUsernameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernameVC.swift; sourceTree = "<group>"; };
 		D70A84D22201105800893744 /* createView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createView.swift; sourceTree = "<group>"; };
+		D70D94A8227639AA006EF367 /* fadeSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fadeSegue.swift; sourceTree = "<group>"; };
+		D70D94AA227658B0006EF367 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		D7101DC82272776F00F2C399 /* ReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
 		D715DAB821E27E6800C53708 /* DoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneView.swift; sourceTree = "<group>"; };
 		D7380BB721A62E21003D19F8 /* Mont-HeavyDEMO.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mont-HeavyDEMO.otf"; sourceTree = "<group>"; };
@@ -143,7 +146,6 @@
 		D760166C21ACC22E00CB25BB /* UITableView+RelodeWithAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+RelodeWithAnimation.swift"; sourceTree = "<group>"; };
 		D760166E21ACE20200CB25BB /* SearchBar+BarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+BarColor.swift"; sourceTree = "<group>"; };
 		D767DF3A21B8D2890027DA85 /* String+RemoveHTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RemoveHTML.swift"; sourceTree = "<group>"; };
-		D77CDBD022761DD80092ECAA /* LaunchScreen2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen2ViewController.swift; sourceTree = "<group>"; };
 		D77D9D2021C7459400010AFC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		D77D9D2221C7576200010AFC /* UITableView+reloadSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+reloadSearch.swift"; sourceTree = "<group>"; };
 		D7870C4321E805B5008A7206 /* ClubChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubChatVC.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				D715DAB821E27E6800C53708 /* DoneView.swift */,
+				D70D94A8227639AA006EF367 /* fadeSegue.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -286,7 +289,7 @@
 				21C87D4421A87FD000F9E727 /* Model */,
 				D743D8512274C97B00EDA69F /* On Board */,
 				D744775621A4BB1D00270726 /* FirstViewController.swift */,
-				D77CDBD022761DD80092ECAA /* LaunchScreen2ViewController.swift */,
+				D70D94AA227658B0006EF367 /* LaunchScreenViewController.swift */,
 				D744775821A4BB1D00270726 /* SecondViewController.swift */,
 				D78FFBF02201374C00B9ABBF /* ProfileViewController.swift */,
 				D7E15D4F22027A3C006BA3F2 /* catagoryVC.swift */,
@@ -636,8 +639,8 @@
 				D7A20DC621DAAD2000304D86 /* LastStepVC.swift in Sources */,
 				D760166821AC9C6E00CB25BB /* CollectionViewCell.swift in Sources */,
 				21C87D4821A883DF00F9E727 /* PodcastAlbum.swift in Sources */,
-				D77CDBD122761DD80092ECAA /* LaunchScreen2ViewController.swift in Sources */,
 				D797BEE621E8224F005500DD /* ResponceTableViewCell.swift in Sources */,
+				D70D94AB227658B0006EF367 /* LaunchScreenViewController.swift in Sources */,
 				D7D119512272A1ED00E7D91F /* HelpPageViewController.swift in Sources */,
 				D7D1194F22729DB000E7D91F /* Help2ViewController.swift in Sources */,
 				D7E15D5022027A3C006BA3F2 /* catagoryVC.swift in Sources */,
@@ -656,6 +659,7 @@
 				D7D1194D227293D800E7D91F /* Help1ViewController.swift in Sources */,
 				2145CB7721F7D75B002F307A /* ErrorView.swift in Sources */,
 				D77D9D2121C7459400010AFC /* TableViewCell.swift in Sources */,
+				D70D94A9227639AA006EF367 /* fadeSegue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,14 +837,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Club/Pod Talk.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LCX682S6EY;
+				DEVELOPMENT_TEAM = 9832H7K9P2;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -854,14 +858,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Club/Pod Talk.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LCX682S6EY;
+				DEVELOPMENT_TEAM = 9832H7K9P2;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

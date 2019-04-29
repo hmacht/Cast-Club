@@ -1,5 +1,5 @@
 //
-//  LaunchScreen2ViewController.swift
+//  LaunchScreenViewController.swift
 //  Cast Club
 //
 //  Created by Henry Macht on 4/28/19.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class LaunchScreen2ViewController: UIPageViewController {
+class LaunchScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -39,7 +39,7 @@ class LaunchScreen2ViewController: UIPageViewController {
                     } else if albums.count > 0 {
                         subscriptionAlbum = albums
                         DispatchQueue.main.async {
-                           self.performSegue(withIdentifier: "startApp", sender: self)
+                            self.performSegue(withIdentifier: "startApp", sender: self)
                         }
                     } else if albums.count == 0 {
                         DispatchQueue.main.async {
@@ -62,15 +62,4 @@ class LaunchScreen2ViewController: UIPageViewController {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

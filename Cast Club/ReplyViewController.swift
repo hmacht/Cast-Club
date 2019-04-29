@@ -51,6 +51,22 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
             }
         }
+        
+        self.tableView.addRefreshCapability(target: self, selector: #selector(ReplyViewController.refresh))
+    }
+    
+    @objc func refresh() {
+        CloudKitHelper.instance.getMessagesInReply(to: self.selectedMessage.id, sortOption: .newest) { (results, error) in
+            if let e = error {
+                print(e)
+            } else {
+                self.messages = results
+                DispatchQueue.main.async {
+                    self.tableView.refreshControl?.endRefreshing()
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -104,7 +120,6 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         if let moreButton = myCell.viewWithTag(27) as? UIButton {
-            print("In here")
             moreButton.addTarget(self, action: #selector(ReplyViewController.moreButtonPressed(sender:)), for: .touchUpInside)
         }
         
@@ -254,7 +269,7 @@ class ReplyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @objc func share(sender: UIButton) {
         self.bucketView.close()
-        let initialText = "Come discuss podcasts on Pod Talk. You can chat with \(self.messages[self.moreMessageInd].fromUser)"
+        let initialText = "Come discuss podcasts on Pod Talk. You can chat with \(self.messages[self.moreMessageInd].fromUsername)"
         
         let activityViewController : UIActivityViewController = UIActivityViewController(
             activityItems: [initialText], applicationActivities: nil)

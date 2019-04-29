@@ -53,16 +53,31 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 654"), style: .done, target: self, action: #selector(ClubChatVC.filter))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        
+        self.tableView.addRefreshCapability(target: self, selector: #selector(ClubChatVC.refresh))
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
-        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: .newest) { (results, error) in
+        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: self.currentSortOption) { (results, error) in
             if let e = error {
                 print(e)
             } else {
                 self.messages = results.filter({ !CloudKitHelper.instance.blockedUsers.contains($0.fromUser) })
                 DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    @objc func refresh() {
+        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: self.currentSortOption) { (results, error) in
+            if let e = error {
+                print(e)
+            } else {
+                self.messages = results.filter({ !CloudKitHelper.instance.blockedUsers.contains($0.fromUser) })
+                DispatchQueue.main.async {
+                    self.tableView.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
                 }
             }
@@ -489,7 +504,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func share(sender: UIButton) {
         self.bucketView.close()
-        let initialText = "Come discuss podcasts on Pod Talk. You can chat with \(self.messages[self.moreMessageInd].fromUser)"
+        let initialText = "Come discuss podcasts on Pod Talk. You can chat with \(self.messages[self.moreMessageInd].fromUsername)"
         
         let activityViewController : UIActivityViewController = UIActivityViewController(
             activityItems: [initialText], applicationActivities: nil)

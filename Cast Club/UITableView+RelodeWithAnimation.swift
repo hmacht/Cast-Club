@@ -29,4 +29,9 @@ extension UITableView {
             delayCounter += 1
         }
     }
+    
+    func addRefreshCapability(target: Any?, selector: Selector) {
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(target, action: selector, for: .valueChanged)
+    }
 }

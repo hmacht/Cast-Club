@@ -10,6 +10,36 @@ import UIKit
 
 class HelpPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
+    override func viewDidAppear(_ animated: Bool) {
+        CloudKitHelper.instance.setCurrentUserId { (error) in
+            if let e = error {
+                print(e)
+            } else {
+                CloudKitHelper.instance.isAuthenticated = true
+                
+                // Get user subscriptions albums
+                CloudKitHelper.instance.getAlbums { (albums, error2) in
+                    if let e = error2 {
+                        print(e)
+                    } else if albums.count > 0 {
+                        subscriptionAlbum = albums
+                    }
+                }
+                
+                // Get user subscribed clubs
+                CloudKitHelper.instance.getClubIdsForCurrentUser(completion: { (results, error3) in
+                    if let e = error3 {
+                        print(e)
+                    } else {
+                        clubIds = results
+                    }
+                })
+                
+                
+            }
+        }
+    }
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         guard let viewControllerIndex = orderViewController.index(of: viewController) else {

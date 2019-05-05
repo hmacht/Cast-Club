@@ -31,7 +31,7 @@ class HelpPageViewController: UIPageViewController, UIPageViewControllerDelegate
                     if let e = error3 {
                         print(e)
                     } else {
-                        clubIds = results
+                        //clubIds = results
                     }
                 })
                 

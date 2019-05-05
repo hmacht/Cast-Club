@@ -112,7 +112,7 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        if !self.results[indexPath.row - 1].isPublic && !clubIds.contains(self.results[indexPath.row - 1].id) {
+        if !self.results[indexPath.row - 1].isPublic && !clubIds.contains(self.results[indexPath.row - 1].id) && !self.results[indexPath.row - 1].subscribedUsers.contains(CloudKitHelper.instance.userId.recordName) {
             if !CloudKitHelper.instance.isAuthenticated {
                 // User not logged in
                 self.tabBarController?.showError(with: "This club is private. Once you log in you can request to join this club.")

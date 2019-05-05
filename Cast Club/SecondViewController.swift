@@ -291,7 +291,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == 2 {
             tableView.deselectRow(at: indexPath, animated: true)
-            if self.results[indexPath.row].isPublic || clubIds.contains(self.results[indexPath.row].id) {
+            if self.results[indexPath.row].isPublic || clubIds.contains(self.results[indexPath.row].id) || self.results[indexPath.row].subscribedUsers.contains(CloudKitHelper.instance.userId.recordName) {
                 self.selectedClub = self.results[indexPath.row]
                 self.performSegue(withIdentifier: "fromSecondVCToChat", sender: self)
             } else if !CloudKitHelper.instance.isAuthenticated {
@@ -410,7 +410,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 tabController.showError(with: ErrorMessage.privateClub.rawValue)
             }*/
         } else {
-            if clubIds.contains(self.results[sender.tag].id) {
+            if clubIds.contains(self.results[sender.tag].id) || self.results[sender.tag].subscribedUsers.contains(CloudKitHelper.instance.userId.recordName){
                 // Already subscribed
                 self.tabBarController?.showError(with: "You are already subscribed to this club.")
             } else {
@@ -426,6 +426,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     } else {
                         
                         clubIds.append(self.results[tag].id)
+                        self.results[tag].subscribedUsers.append(CloudKitHelper.instance.userId.recordName)
                         // Tell clubvc that we have a new club to display
                         if let navController = self.tabBarController?.customizableViewControllers?[2] as? UINavigationController {
                             if let clubVC = navController.topViewController as? ClubVC {

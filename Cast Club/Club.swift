@@ -41,5 +41,6 @@ class Club {
     var currentAlbum: PodcastAlbum?
     var creatorId = ""
     var pendingUsersList = [String]()
+    var subscribedUsers = [String]()
 }
 

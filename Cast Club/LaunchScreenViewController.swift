@@ -53,7 +53,7 @@ class LaunchScreenViewController: UIViewController {
                     if let e = error3 {
                         self.tabBarController?.showError(with: e.localizedDescription)
                     } else {
-                        clubIds = results
+                        //clubIds = results
                     }
                 })
                 

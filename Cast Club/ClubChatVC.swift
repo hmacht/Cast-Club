@@ -53,16 +53,31 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 654"), style: .done, target: self, action: #selector(ClubChatVC.filter))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        
+        self.tableView.addRefreshCapability(target: self, selector: #selector(ClubChatVC.refresh))
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
-        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: .newest) { (results, error) in
+        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: self.currentSortOption) { (results, error) in
             if let e = error {
                 print(e)
             } else {
                 self.messages = results.filter({ !CloudKitHelper.instance.blockedUsers.contains($0.fromUser) })
                 DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    @objc func refresh() {
+        CloudKitHelper.instance.getMessagesForClub(self.selectedClub.id, sortOption: self.currentSortOption) { (results, error) in
+            if let e = error {
+                print(e)
+            } else {
+                self.messages = results.filter({ !CloudKitHelper.instance.blockedUsers.contains($0.fromUser) })
+                DispatchQueue.main.async {
+                    self.tableView.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
                 }
             }
@@ -130,7 +145,25 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 0 {
             let headerCell = self.tableView.dequeueReusableCell(withIdentifier: "headerCell", for:indexPath) as! ChatHeaderTableViewCell
-            headerCell.profileImage.image = self.selectedClub.coverImage
+            if let _ = self.selectedClub.imgUrl {
+                headerCell.profileImage.image = self.selectedClub.coverImage
+            } else {
+                headerCell.profileImage.image = UIImage(named: "Group 466")
+                
+                CloudKitHelper.instance.getClubCoverPhoto(id: self.selectedClub.id) { (image, url, error) in
+                    if error == nil {
+                        if let img = image {
+                            self.selectedClub.coverImage = img
+                            DispatchQueue.main.async {
+                                headerCell.profileImage.image = img
+                            }
+                        }
+                        if let link = url {
+                            self.selectedClub.imgUrl = link
+                        }
+                    }
+                }
+            }
             headerCell.profileImage.layer.cornerRadius = 30.0
             headerCell.profileImage.clipsToBounds = true
             headerCell.profileImage.contentMode = .scaleAspectFill
@@ -143,7 +176,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 headerCell.followButton.addTarget(self, action: #selector(ClubChatVC.edit), for: .touchUpInside)
             } else {
                 headerCell.followButton.addTarget(self, action: #selector(ClubChatVC.follow(sender:)), for: .touchUpInside)
-                if clubIds.contains(self.selectedClub.id) {
+                if clubIds.contains(self.selectedClub.id) || self.selectedClub.subscribedUsers.contains(CloudKitHelper.instance.userId.recordName){
                     // We follow it already
                     headerCell.followButton.setTitle("Unfollow", for: .normal)
                 } else {
@@ -395,11 +428,15 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return
         }
         
-        if clubIds.contains(self.selectedClub.id) {
+        if clubIds.contains(self.selectedClub.id) || self.selectedClub.subscribedUsers.contains(CloudKitHelper.instance.userId.recordName) {
             // We are already subscribed so unsubscribe
             if let ind = clubIds.firstIndex(of: self.selectedClub.id) {
                 clubIds.remove(at: ind)
             }
+            if let ind = self.selectedClub.subscribedUsers.firstIndex(of: CloudKitHelper.instance.userId.recordName) {
+                self.selectedClub.subscribedUsers.remove(at: ind)
+            }
+            
             CloudKitHelper.instance.unsubscribeFromClub(id: self.selectedClub.id) { (error) in
                 if let e = error {
                     print(e)
@@ -417,6 +454,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             // Subscribe to club
             clubIds.append(self.selectedClub.id)
+            self.selectedClub.subscribedUsers.append(CloudKitHelper.instance.userId.recordName)
             CloudKitHelper.instance.subscribeToClub(id: self.selectedClub.id.ckId()) { (error) in
                 if let e = error {
                     print(e)
@@ -489,7 +527,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func share(sender: UIButton) {
         self.bucketView.close()
-        let initialText = "Come discuss podcasts on Pod Talk. You can chat with \(self.messages[self.moreMessageInd].fromUser)"
+        let initialText = "Come discuss podcasts on Pod Talk. You can chat with \(self.messages[self.moreMessageInd].fromUsername)"
         
         let activityViewController : UIActivityViewController = UIActivityViewController(
             activityItems: [initialText], applicationActivities: nil)

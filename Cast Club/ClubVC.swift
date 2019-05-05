@@ -30,7 +30,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.tabBarController?.showActivity()
         }
         
-        if clubIds == ["none"] && CloudKitHelper.instance.isAuthenticated {
+        /*if clubIds == ["none"] && CloudKitHelper.instance.isAuthenticated {
             // Have not gotten club ids yet
             CloudKitHelper.instance.getClubIdsForCurrentUser { (ids, error) in
                 if let e = error {
@@ -73,6 +73,27 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             self.tabBarController?.stopActivity()
             self.tabBarController?.showNoResultsLabel(message: "When you log in, the clubs you follow will show up here!")
+        }*/
+        
+        if CloudKitHelper.instance.isAuthenticated {
+            CloudKitHelper.instance.getUserSubscribedClubsNoPic { (results) in
+            
+                if results.count == 0 {
+                    DispatchQueue.main.async {
+                        self.tabBarController?.stopActivity()
+                        self.tabBarController?.showNoResultsLabel(message: "You have not subscribed to any clubs yet!")
+                    }
+                } else {
+                    self.clubs = results
+                    DispatchQueue.main.async {
+                        self.tabBarController?.stopActivity()
+                        self.clubTabelView.reloadWithAnimation()
+                    }
+                }
+            }
+        } else {
+            self.tabBarController?.stopActivity()
+            self.tabBarController?.showNoResultsLabel(message: "When you log in, the clubs you follow will show up here!")
         }
     }
     
@@ -96,7 +117,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidAppear(_ animated: Bool) {
         self.userIds = clubIds
-        self.clubs = clubs.filter({self.userIds.contains($0.id)})
+        self.clubs = clubs.filter({$0.subscribedUsers.contains(CloudKitHelper.instance.userId.recordName)})
         self.clubTabelView.reloadData()
         
         if self.userIds.count > 0 && self.clubs.count == 0 && CloudKitHelper.instance.isAuthenticated {
@@ -136,7 +157,24 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let cell = self.clubTabelView.dequeueReusableCell(withIdentifier: "ClubCell", for:indexPath) as! ClubTableViewCell
         let club = self.clubs[indexPath.row]
-        cell.clubIMG.image = club.coverImage
+        
+        // Get cover photo
+        cell.clubIMG.image = UIImage(named: "Group 466")
+        
+        CloudKitHelper.instance.getClubCoverPhoto(id: club.id) { (image, url, error) in
+            if error == nil {
+                if let img = image {
+                    club.coverImage = img
+                    DispatchQueue.main.async {
+                        cell.clubIMG.image = img
+                    }
+                }
+                if let link = url {
+                    club.imgUrl = link
+                }
+            }
+        }
+        
         cell.clubIMG.contentMode = .scaleAspectFill
         cell.clubName.text = club.name
         cell.catagoryLabel.text = club.category.rawValue

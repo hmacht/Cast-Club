@@ -126,7 +126,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             }
         }*/
         
-        
+        self.tabBarController?.showActivity()
         
     }
     
@@ -179,12 +179,21 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             cell.imgView.image = img
         } else {
             // We do not have the image yet, download it
-            cell.imgView.image = UIImage(named: "Group 224")
-            DispatchQueue.global(qos: .background).async {
+            //cell.imgView.image = UIImage(named: "Group 224")
+            DispatchQueue.global(qos: .userInitiated).async {
                 _ = subscriptionAlbum[indexPath.row].getImageData(dimensions: .hundred, completion: { (image) in
                     if let img = image {
                         DispatchQueue.main.async {
+                            self.tabBarController?.stopActivity()
                             cell.imgView.image = img
+                            
+                            UIView.animate(withDuration: 0.25, animations: {() -> Void in
+                                cell.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
+                            }, completion: {(_ finished: Bool) -> Void in
+                                UIView.animate(withDuration: 0.25, animations: {() -> Void in
+                                    cell.transform = CGAffineTransform(scaleX: 1, y: 1)
+                                }, completion: nil)
+                            })
                         }
                     }
                 })

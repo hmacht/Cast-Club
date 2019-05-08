@@ -25,7 +25,7 @@ class SearchBar: UISearchBar {
         if let textField = self.value(forKey: "searchField") as? UITextField {
             if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
                 textFieldInsideSearchBarLabel.textColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
-                textField.font = UIFont(name: "Mont-HeavyDEMO", size: 16)
+                textField.font = UIFont(name: "Avenir-Black", size: 16)
             }
         }
         
@@ -38,7 +38,7 @@ class SearchBar: UISearchBar {
         if let textField = self.value(forKey: "searchField") as? UITextField {
             if let textFieldInsideSearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
                 textFieldInsideSearchBarLabel.textColor = UIColor(red: 59.0/255.0, green: 59.0/255.0, blue: 59.0/255.0, alpha: 1.0)
-                textField.font = UIFont(name: "Mont-HeavyDEMO", size: 16)
+                textField.font = UIFont(name: "Avenir-Black", size: 16)
             }
         }
         

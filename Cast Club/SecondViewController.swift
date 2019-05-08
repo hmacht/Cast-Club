@@ -403,6 +403,10 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @objc func addClub(sender: UIButton){
+        
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+        
         let tag = sender.tag
         // If private
         if !self.results[sender.tag].isPublic {
@@ -415,7 +419,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.tabBarController?.showError(with: "You are already subscribed to this club.")
             } else {
 
-                sender.setImage(UIImage(named: "Ellipse 121"), for: .normal)
+                sender.setImage(UIImage(named: "Group 463"), for: .normal)
                 sender.backgroundColor = UIColor(red: 237.0/255.0, green: 237.0/255.0, blue: 240.0/255.0, alpha: 1.0)
                 
                 CloudKitHelper.instance.subscribeToClub(id: CKRecord.ID(recordName: self.results[sender.tag].id)) { (error) in

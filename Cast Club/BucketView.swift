@@ -18,6 +18,7 @@ class BucketView: UIView {
     
     var reportButton = UIButton()
     var shareButton = UIButton()
+    var blockButton = UIButton()
     
     var latestFilterButton = UIButton()
     var likesFilterButton = UIButton()
@@ -34,6 +35,7 @@ class BucketView: UIView {
     var changePodcastButton = UIButton()
     var changeImageButton = UIButton()
     var changeNameButton = UIButton()
+    var deleteClubButton = UIButton()
     
     var questionLabel = UILabel()
     var yesButton = UIButton()
@@ -118,7 +120,7 @@ class BucketView: UIView {
     // Share Bucket ---
     
     //var buttonImages = ["Group 301", "Group 302", "Group 737"]
-    var buttonTitles = ["     Share", "     Report"]
+    var buttonTitles = ["     Share", "     Report", "     Block"]
     var yPos = 0
     
     func createShareBucket(){
@@ -128,7 +130,7 @@ class BucketView: UIView {
 //        title1.textColor = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0)
 //        self.view.addSubview(title1)
         
-        for i in 0...1 {
+        for i in 0...2 {
             var button = UIButton(frame: CGRect(x: 0, y: yPos, width: Int(screenSize.width - screenSize.width/15), height: 50))
             //button.setImage(UIImage(named: buttonImages[i]), for: .normal)
             //button.layer.cornerRadius = screenSize.width/12
@@ -143,6 +145,9 @@ class BucketView: UIView {
             
             if i == 0 {
                 self.shareButton = button
+                print("B1")
+            } else if i == 1 {
+                self.blockButton = button
                 print("B1")
             } else {
                 self.reportButton = button
@@ -303,16 +308,26 @@ class BucketView: UIView {
     }
     
     // Filter Bucket ---
-    var editButtonTitles = ["     Edit Podcast", "     Join Requests", "     Edit Name"]
+    var editButtonTitles = ["     Edit Podcast", "     Join Requests", "     Edit Name", "     Delete Club"]
+    var color = UIColor()
     func createEditBucket(){
-        for i in 0...2 {
+        for i in 0...3 {
+            
+            if i == 3 {
+                color = UIColor.red
+            } else {
+                color = UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0)
+            }
+            
+    
+        
             var button = UIButton(frame: CGRect(x: 0, y: yPos, width: Int(screenSize.width - screenSize.width/15), height: 50))
             button.center.x = screenSize.width/2
             button.backgroundColor = .white
             button.setTitle(editButtonTitles[i], for: .normal)
             button.contentHorizontalAlignment = .left
             button.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
-            button.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64/255.0, alpha: 1.0), for: .normal)
+            button.setTitleColor(color, for: .normal)
             button.tag = i
             
             if i == 0 {
@@ -321,8 +336,11 @@ class BucketView: UIView {
             } else if i == 1 {
                 self.changeImageButton = button
                 print("B2")
-            } else {
+            } else if i == 2 {
                 self.changeNameButton = button
+                print("B3")
+            } else {
+                self.deleteClubButton = button
             }
             
             self.view.addSubview(button)

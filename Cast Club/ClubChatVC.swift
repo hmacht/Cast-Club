@@ -484,7 +484,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         self.moreMessageInd = sender.tag
         
-        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 180, style: 1)
+        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 230, style: 1)
         bucketView.frame = UIApplication.shared.keyWindow!.frame
         UIApplication.shared.keyWindow!.addSubview(bucketView)
         
@@ -698,7 +698,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @objc func edit() {
         print("EDIT")
         
-        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 230, style: 5)
+        self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 280, style: 5)
         bucketView.frame = UIApplication.shared.keyWindow!.frame
         UIApplication.shared.keyWindow!.addSubview(bucketView)
         

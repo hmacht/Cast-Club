@@ -187,6 +187,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                             self.tabBarController?.stopActivity()
                             cell.imgView.image = img
                             
+                            /*
                             UIView.animate(withDuration: 0.25, animations: {() -> Void in
                                 cell.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
                             }, completion: {(_ finished: Bool) -> Void in
@@ -194,6 +195,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                                     cell.transform = CGAffineTransform(scaleX: 1, y: 1)
                                 }, completion: nil)
                             })
+                            */
                         }
                     }
                 })

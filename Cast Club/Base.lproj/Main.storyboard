@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l64-Yd-XMN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="l64-Yd-XMN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -242,7 +242,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="131" id="fnV-Su-Qbw"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="Mont-HeavyDEMO" family="Mont" pointSize="11"/>
                                                     <color key="tintColor" red="0.2313699722" green="0.23137080669999999" blue="0.23137262459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <state key="normal" title="            " backgroundImage="Rectangle 164">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -727,7 +727,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWc-go-Qr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7012" y="1331.784107946027"/>
+            <point key="canvasLocation" x="7634" y="1323"/>
         </scene>
         <!--PostVC-->
         <scene sceneID="WHm-Tn-a2z">
@@ -1637,9 +1637,9 @@ Listen to podcasts that are related to their catagory.</string>
     <inferredMetricsTieBreakers>
         <segue reference="i4U-Cf-O3r"/>
         <segue reference="vx5-G8-YPP"/>
-        <segue reference="UvS-CW-bYW"/>
+        <segue reference="aPP-qd-IP2"/>
         <segue reference="GPy-LR-DbP"/>
-        <segue reference="QTv-ZG-pl4"/>
-        <segue reference="XOF-A9-nIy"/>
+        <segue reference="UPa-Zj-iA9"/>
+        <segue reference="clu-BJ-Kq8"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -493,6 +493,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         //bucketView.facebookButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
         //bucketView.twitterButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
         bucketView.shareButton.addTarget(self, action: #selector(ClubChatVC.share(sender:)), for: .touchUpInside)
+        bucketView.blockButton.addTarget(self, action: #selector(ClubChatVC.blockUser), for: .touchUpInside)
         
     }
     
@@ -705,6 +706,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         bucketView.changePodcastButton.addTarget(self, action: #selector(ClubChatVC.editPodcast), for: .touchUpInside)
         bucketView.changeImageButton.addTarget(self, action: #selector(ClubChatVC.editImage), for: .touchUpInside)
         bucketView.changeNameButton.addTarget(self, action: #selector(ClubChatVC.editName), for: .touchUpInside)
+        bucketView.deleteClubButton.addTarget(self, action: #selector(ClubChatVC.deleteClub), for: .touchUpInside)
     }
     
     @objc func editPodcast() {
@@ -723,7 +725,56 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @objc func editName() {
         print("editName")
     }
-
+    
+    @objc func deleteClub() {
+        
+        self.bucketView.close()
+        
+        let alert = UIAlertController(title: "Delete Club", message: "Are you sure you want to delete this club? This action cannot be undone.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
+            CloudKitHelper.instance.deleteClub(id: self.selectedClub.id, completion: { (error) in
+                if let e = error {
+                    print(e)
+                }
+            })
+        }
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func blockUser() {
+        
+        self.bucketView.close()
+        
+        if !CloudKitHelper.instance.isAuthenticated {
+            self.tabBarController?.showError(with: "You must be logged in to block users!")
+            return
+        }
+        
+        if self.messages[self.moreMessageInd].fromUser == CloudKitHelper.instance.userId.recordName {
+            self.tabBarController?.showError(with: "You cannot block yourself!")
+            return
+        }
+        
+        let alert = UIAlertController(title: "Block user", message: "Are you sure you want to block user '\(self.messages[self.moreMessageInd].fromUsername)'? This action cannot be undone.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let blockAction = UIAlertAction(title: "Block", style: .destructive) { (_) in
+            CloudKitHelper.instance.blockedUsers.append(self.messages[self.moreMessageInd].fromUser)
+            self.messages = self.messages.filter({ !CloudKitHelper.instance.blockedUsers.contains($0.fromUser) })
+            CloudKitHelper.instance.blockUser(id: self.messages[self.moreMessageInd].fromUser, completion: { (error) in
+                if let e = error {
+                    print(e)
+                }
+            })
+        }
+        alert.addAction(blockAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
+        
+    }
 
     
 

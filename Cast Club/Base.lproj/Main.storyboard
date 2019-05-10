@@ -592,7 +592,7 @@
                                                         <constraint firstAttribute="height" constant="32" id="Zjd-be-0pz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
-                                                    <state key="normal" title=" " image="Path 1882">
+                                                    <state key="normal" title=" 0" image="Path 1882">
                                                         <color key="titleColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                 </button>
@@ -600,6 +600,7 @@
                                             <constraints>
                                                 <constraint firstItem="oSj-Ec-hMO" firstAttribute="leading" secondItem="nYv-d8-Ptw" secondAttribute="trailing" constant="7" id="71M-iH-fxk"/>
                                                 <constraint firstItem="4Bw-B8-4d9" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="topMargin" constant="13" id="EpX-v2-6wh"/>
+                                                <constraint firstItem="ryb-ug-K6z" firstAttribute="centerY" secondItem="Jal-7O-ccV" secondAttribute="centerY" id="G2l-Bo-lJS"/>
                                                 <constraint firstAttribute="bottom" secondItem="OY5-Q1-r8l" secondAttribute="bottom" id="LYF-X2-gYV"/>
                                                 <constraint firstItem="Jal-7O-ccV" firstAttribute="leading" secondItem="1YS-yD-b6f" secondAttribute="leading" constant="62" id="RgX-CX-PyV"/>
                                                 <constraint firstItem="nYv-d8-Ptw" firstAttribute="leading" secondItem="1YS-yD-b6f" secondAttribute="leadingMargin" id="Vey-h1-89u"/>
@@ -1402,7 +1403,7 @@ Listen to podcasts that are related to their catagory.</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iS6-Pf-mS4">
                                 <rect key="frame" x="16" y="0.0" width="343" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">The Basics
+                                <string key="text">The Basics
 Pod Talk allows you to stream or download your favorite podcast and discuss them with friends, family, or new people you meet.
 
 Clubs
@@ -1415,7 +1416,7 @@ Podcast
 To listen to a podcast go to the first tab and then select the search bar. Search for a podcast you know and select it. You can listen to any episode in the album and you can hit the blue button title subscribe to pin it to your home screen.
 
 More
-For any more help contact us at podtalkdevelopers@gmail.com. You can select the button in the top right to draft an email.</mutableString>
+For any more help contact us at podtalkdevelopers@gmail.com. You can select the button in the top right to draft an email.</string>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

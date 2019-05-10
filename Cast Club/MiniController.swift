@@ -23,6 +23,10 @@ class MiniController: UIView {
     var activityIndicator = UIActivityIndicatorView()
     var downloadButton = UIButton()
     
+    let podcastLengthLabel = UILabel()
+    let currentTimeLabel = UILabel()
+    
+    
     var yposition: CGFloat
     var title: String
     var art: UIImage = UIImage()
@@ -112,6 +116,8 @@ class MiniController: UIView {
         self.addSubview(self.activityIndicator)
         
         adjustSlider()
+        
+        
         
         
     }
@@ -359,8 +365,26 @@ class MiniController: UIView {
         //podcastSlider.center.x = self.frame.width/2
         //self.addSubview(podcastSlider)
         
-        podSlider?.center = CGPoint(x: self.frame.width/2, y: playButton.frame.minX - 30)
+        podSlider?.center = CGPoint(x: self.frame.width/2, y: playButton.frame.minX - 35)
         self.addSubview(podSlider!)
+        
+        podcastLengthLabel.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
+        podcastLengthLabel.center = CGPoint(x: self.frame.width/2 + ((screenSize.width - 55)/2) - 25, y: playButton.frame.minX - 23)
+        podcastLengthLabel.numberOfLines = 1
+        podcastLengthLabel.font = UIFont(name: "Avenir-Heavy", size: 12)
+        podcastLengthLabel.text = "00:00:00"
+        podcastLengthLabel.textColor = UIColor(red: 178.0/255.0, green: 178.0/255.0, blue: 178.0/255.0, alpha: 1.0)
+        self.addSubview(podcastLengthLabel)
+        
+        currentTimeLabel.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
+        currentTimeLabel.center = CGPoint(x: self.frame.width/2 - ((screenSize.width - 55)/2) + 25, y: playButton.frame.minX - 23)
+        currentTimeLabel.numberOfLines = 1
+        currentTimeLabel.font = UIFont(name: "Avenir-Heavy", size: 12)
+        currentTimeLabel.text = "00:00:00"
+        currentTimeLabel.textColor = UIColor(red: 178.0/255.0, green: 178.0/255.0, blue: 178.0/255.0, alpha: 1.0)
+        self.addSubview(currentTimeLabel)
+        
+        
         
         downloadButton.frame = CGRect(x: self.frame.width - 70, y: self.frame.height, width: 50, height: 50)
         
@@ -369,8 +393,6 @@ class MiniController: UIView {
             self.downloadButton.center.y = self.podcastTitle.frame.midY
             
         })
-        
-        
         
         downloadButton.setImage(UIImage(named: "Group 900"), for: .normal)
         downloadButton.contentMode = .scaleAspectFit
@@ -464,7 +486,10 @@ class MiniController: UIView {
         if let dur = self.avPlayer.currentItem?.duration {
             self.podSlider?.setValue(Float(CMTimeGetSeconds(self.avPlayer.currentTime()) / CMTimeGetSeconds(dur)), animated: true)
         }
+        
+        
     }
-
+    
+    
 
 }

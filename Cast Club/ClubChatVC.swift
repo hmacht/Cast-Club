@@ -157,7 +157,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let _ = self.selectedClub.imgUrl {
                 headerCell.profileImage.image = self.selectedClub.coverImage
             } else {
-                headerCell.profileImage.image = UIImage(named: "Group 466")
+                headerCell.profileImage.image = UIImage(named: "defaultImage")
                 
                 CloudKitHelper.instance.getClubCoverPhoto(id: self.selectedClub.id) { (image, url, error) in
                     if error == nil {
@@ -206,7 +206,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return headerCell
         } else {
             let myCell = self.tableView.dequeueReusableCell(withIdentifier: "responceCell", for:indexPath) as! ResponceTableViewCell
-            myCell.usersProfileImage.image = UIImage(named: "img1")
+            myCell.usersProfileImage.image = UIImage(named: "Group 466")
             // Get the profile picture
             CloudKitHelper.instance.getProfilePic(for: self.messages[indexPath.row - 1].fromUser) { (img) in
                 if let image = img {

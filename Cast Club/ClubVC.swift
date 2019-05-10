@@ -160,7 +160,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let club = self.clubs[indexPath.row]
         
         // Get cover photo
-        cell.clubIMG.image = UIImage(named: "Group 466")
+        cell.clubIMG.image = UIImage(named: "defaultImage")
         
         CloudKitHelper.instance.getClubCoverPhoto(id: club.id) { (image, url, error) in
             if error == nil {

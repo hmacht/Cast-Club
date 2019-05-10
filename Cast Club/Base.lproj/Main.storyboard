@@ -1530,20 +1530,20 @@ For any more help contact us at podtalkdevelopers@gmail.com. You can select the 
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 915" translatesAutoresizingMaskIntoConstraints="NO" id="wzE-Tq-eje">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 915" translatesAutoresizingMaskIntoConstraints="NO" id="gNM-MG-7oG">
                                 <rect key="frame" x="167" y="316" width="41" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="41" id="GbA-Hq-m6K"/>
-                                    <constraint firstAttribute="height" constant="35" id="sZy-we-GG5"/>
+                                    <constraint firstAttribute="height" constant="35" id="8Pt-ag-cPO"/>
+                                    <constraint firstAttribute="width" constant="41" id="e56-kC-HdD"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wzE-Tq-eje" firstAttribute="leading" secondItem="MdB-21-603" secondAttribute="leading" constant="167" id="2ck-ni-jX4"/>
-                            <constraint firstItem="MdB-21-603" firstAttribute="trailing" secondItem="wzE-Tq-eje" secondAttribute="trailing" constant="167" id="6B6-3b-ybf"/>
-                            <constraint firstItem="wzE-Tq-eje" firstAttribute="top" secondItem="MdB-21-603" secondAttribute="top" constant="296" id="U3t-z4-yaX"/>
-                            <constraint firstItem="MdB-21-603" firstAttribute="bottom" secondItem="wzE-Tq-eje" secondAttribute="bottom" constant="316" id="fbn-pd-qOR"/>
+                            <constraint firstItem="MdB-21-603" firstAttribute="bottom" secondItem="gNM-MG-7oG" secondAttribute="bottom" constant="316" id="8VZ-wd-ddE"/>
+                            <constraint firstItem="MdB-21-603" firstAttribute="trailing" secondItem="gNM-MG-7oG" secondAttribute="trailing" constant="167" id="LA0-yx-LPX"/>
+                            <constraint firstItem="gNM-MG-7oG" firstAttribute="top" secondItem="MdB-21-603" secondAttribute="top" constant="296" id="Yk3-Xl-mVh"/>
+                            <constraint firstItem="gNM-MG-7oG" firstAttribute="leading" secondItem="MdB-21-603" secondAttribute="leading" constant="167" id="aPE-Of-VsK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MdB-21-603"/>
                     </view>

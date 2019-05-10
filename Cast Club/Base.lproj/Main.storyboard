@@ -237,7 +237,7 @@
                                                         <constraint firstAttribute="height" constant="114" id="OSh-kq-MfA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-F8-ogh" customClass="SubscribeButton" customModule="Pod_Talk" customModuleProvider="target">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-F8-ogh" customClass="SubscribeButton" customModule="Pod_Talk" customModuleProvider="target">
                                                     <rect key="frame" x="137.5" y="82.5" width="131" height="43"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="131" id="fnV-Su-Qbw"/>
@@ -251,35 +251,37 @@
                                                         <action selector="subscribe:" destination="YnJ-Ln-gEA" eventType="touchUpInside" id="HVj-dB-Ifj"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHW-yB-Y2K">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHW-yB-Y2K">
                                                     <rect key="frame" x="134.5" y="41" width="220.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
                                                     <color key="textColor" red="0.76883810760000004" green="0.76821738480000001" blue="0.78823834660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcV-Vf-ETu">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcV-Vf-ETu">
                                                     <rect key="frame" x="134.5" y="18.5" width="220.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="N Episodes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuf-Oo-rZx">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="N Episodes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuf-Oo-rZx">
                                                     <rect key="frame" x="134.5" y="62" width="220.5" height="15.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                                                     <color key="textColor" red="0.76883810760000004" green="0.76821738480000001" blue="0.78823834660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iiJ-qS-iDD">
+                                                    <rect key="frame" x="135" y="4" width="240" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.95294117649999999" green="0.41960784309999999" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="rcV-Vf-ETu" secondAttribute="trailing" constant="5" id="2A8-sL-Ytv"/>
                                                 <constraint firstItem="jnC-F8-ogh" firstAttribute="top" secondItem="Zuf-Oo-rZx" secondAttribute="bottom" constant="5" id="BcL-Zq-2Er"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Zuf-Oo-rZx" secondAttribute="trailing" constant="5" id="ISk-Dr-mrD"/>
-                                                <constraint firstItem="rcV-Vf-ETu" firstAttribute="top" secondItem="Hgw-t9-KoX" secondAttribute="topMargin" constant="7.5" id="Pyk-eB-sd2"/>
                                                 <constraint firstItem="Zuf-Oo-rZx" firstAttribute="top" secondItem="zHW-yB-Y2K" secondAttribute="bottom" constant="3" id="U3y-pJ-UyL"/>
                                                 <constraint firstItem="zHW-yB-Y2K" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="5" id="Yrf-ji-R3T"/>
-                                                <constraint firstItem="zHW-yB-Y2K" firstAttribute="top" secondItem="rcV-Vf-ETu" secondAttribute="bottom" constant="2" id="cMZ-cV-3ex"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="zHW-yB-Y2K" secondAttribute="trailing" constant="5" id="dwH-ax-SNI"/>
-                                                <constraint firstItem="rcV-Vf-ETu" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="5" id="iL6-Gv-PjM"/>
                                                 <constraint firstItem="wui-SK-oGZ" firstAttribute="centerY" secondItem="Hgw-t9-KoX" secondAttribute="centerY" id="iZH-7l-wQs"/>
                                                 <constraint firstItem="wui-SK-oGZ" firstAttribute="centerX" secondItem="Hgw-t9-KoX" secondAttribute="centerX" constant="-115" id="lR9-P4-GG3"/>
                                                 <constraint firstItem="jnC-F8-ogh" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="8" symbolic="YES" id="vsn-s8-85A"/>

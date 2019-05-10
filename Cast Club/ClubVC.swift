@@ -87,7 +87,8 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.clubs = results
                     DispatchQueue.main.async {
                         self.tabBarController?.stopActivity()
-                        self.clubTabelView.reloadWithAnimation()
+                        //self.clubTabelView.reloadWithAnimation()
+                        self.clubTabelView.reloadData()
                     }
                 }
             }

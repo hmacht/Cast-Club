@@ -147,6 +147,7 @@ class PodcastTablBarController: UITabBarController {
     }
     
     
+    var delete = false
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.audioController?.hasExpanded ?? true {
@@ -154,39 +155,42 @@ class PodcastTablBarController: UITabBarController {
         }
         if let pos = touches.first?.location(in: self.view) {
             
-            print(pos.x - startPos.x)
+            print(abs(pos.x - startPos.x))
             if pos.x - startPos.x > 10 {
                 
                 if pos.x - startPos.x > 100 {
+                    
+                    delete = true
+                    self.audioController?.alpha = 0.8
+                    
+                    
                     // Dismiss right
-                    self.audioController?.avPlayer.pause()
-                    self.removingView = true
-                    self.isDeleted = true
-                    UIView.animate(withDuration: 0.5, animations: {
-                        self.audioController?.frame.origin.x += self.view.frame.width
-                    }) { (_) in
-                        self.audioController = nil
-                        self.removingView = false
-                    }
-                } else if pos.x - startPos.x < -100 {
-                    // Dismiss left
-                    self.audioController?.avPlayer.pause()
-                    self.removingView = true
-                    UIView.animate(withDuration: 0.5, animations: {
-                        self.audioController?.frame.origin.x -= self.view.frame.width
-                    }) { (_) in
-                        self.audioController = nil
-                        self.removingView = false
-                    }
+                    
                 } else if abs(pos.x - startPos.y) > 50 && isDeleted == false{
-                    self.audioController?.frame = CGRect(x: pos.x - startPos.x, y: self.tabBar.frame.minY - 90, width: self.audioController?.frame.width ?? 0, height: self.audioController?.frame.height ?? 0)
+                    delete = false
+                    self.audioController?.alpha = 1.0
+                    
                     
                 }
+                self.audioController?.frame = CGRect(x: pos.x - startPos.x, y: self.tabBar.frame.minY - 90, width: self.audioController?.frame.width ?? 0, height: self.audioController?.frame.height ?? 0)
             }
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if delete == true {
+            self.audioController?.avPlayer.pause()
+            self.removingView = true
+            self.isDeleted = true
+            UIView.animate(withDuration: 0.5, animations: {
+                self.audioController?.frame.origin.x += self.view.frame.width
+            }) { (_) in
+                self.audioController = nil
+                self.removingView = false
+            }
+        }
+        
         if self.audioController != nil  && !self.removingView && !(self.audioController?.hasExpanded ?? true) {
             UIView.animate(withDuration: 0.25) {
                 self.audioController?.frame.origin.x = 10

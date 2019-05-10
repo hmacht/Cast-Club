@@ -53,6 +53,8 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 654"), style: .done, target: self, action: #selector(ClubChatVC.filter))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
+        
+        
         self.tableView.addRefreshCapability(target: self, selector: #selector(ClubChatVC.refresh))
     }
     
@@ -77,11 +79,18 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             } else {
                 self.messages = results.filter({ !CloudKitHelper.instance.blockedUsers.contains($0.fromUser) })
                 DispatchQueue.main.async {
-                    self.tableView.refreshControl?.endRefreshing()
+                    
+                    //self.tableView.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
+                    self.tableView.refreshControl?.perform(#selector(self.endRefreshing), with: nil, afterDelay: 0.05)
+                    
                 }
             }
         }
+    }
+    
+    @objc func endRefreshing() {
+        self.tableView.refreshControl?.endRefreshing()
     }
     
     func getMessagesSorted(by sortOption: SortOption) {

@@ -120,7 +120,7 @@ class BucketView: UIView {
     // Share Bucket ---
     
     //var buttonImages = ["Group 301", "Group 302", "Group 737"]
-    var buttonTitles = ["     Share", "     Report", "     Block"]
+    var buttonTitles = ["     Share", "     Block User", "     Report Message"]
     var yPos = 0
     
     func createShareBucket(){

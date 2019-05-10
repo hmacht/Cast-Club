@@ -62,7 +62,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             }
         } else if subscriptionAlbum.count == 0 {
             // No subscribed albums yet
-            self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 55, width: self.screenSize.width, height: 200), headerText: "Hello!", bodyText: "You haven't subscribed to any podcasts yet. When you do, they will show up here.")
+            self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 55, width: self.screenSize.width, height: 200), headerText: "Welcome to Pod Talk!", bodyText: "Come back to this page when you are subscribed to a podcast")
             if let pop = self.errorPopUp {
                 self.view.addSubview(pop)
                 self.view.addSubview(self.discovewrBtn)
@@ -156,7 +156,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 135"), style: .done, target: self, action: #selector(FirstViewController.search))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 257"), style: .done, target: self, action: #selector(FirstViewController.settings))
+        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 916"), style: .done, target: self, action: #selector(FirstViewController.settings))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         
         //let whiteAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]

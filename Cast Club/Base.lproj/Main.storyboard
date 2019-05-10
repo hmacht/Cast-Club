@@ -237,7 +237,7 @@
                                                         <constraint firstAttribute="height" constant="114" id="OSh-kq-MfA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-F8-ogh" customClass="SubscribeButton" customModule="Pod_Talk" customModuleProvider="target">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnC-F8-ogh" customClass="SubscribeButton" customModule="Pod_Talk" customModuleProvider="target">
                                                     <rect key="frame" x="137.5" y="82.5" width="131" height="43"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="131" id="fnV-Su-Qbw"/>
@@ -251,37 +251,35 @@
                                                         <action selector="subscribe:" destination="YnJ-Ln-gEA" eventType="touchUpInside" id="HVj-dB-Ifj"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHW-yB-Y2K">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHW-yB-Y2K">
                                                     <rect key="frame" x="134.5" y="41" width="220.5" height="18"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="13"/>
                                                     <color key="textColor" red="0.76883810760000004" green="0.76821738480000001" blue="0.78823834660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcV-Vf-ETu">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcV-Vf-ETu">
                                                     <rect key="frame" x="134.5" y="18.5" width="220.5" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="N Episodes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuf-Oo-rZx">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="N Episodes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuf-Oo-rZx">
                                                     <rect key="frame" x="134.5" y="62" width="220.5" height="15.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="11"/>
                                                     <color key="textColor" red="0.76883810760000004" green="0.76821738480000001" blue="0.78823834660000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iiJ-qS-iDD">
-                                                    <rect key="frame" x="135" y="4" width="240" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.95294117649999999" green="0.41960784309999999" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="rcV-Vf-ETu" secondAttribute="trailing" constant="5" id="2A8-sL-Ytv"/>
                                                 <constraint firstItem="jnC-F8-ogh" firstAttribute="top" secondItem="Zuf-Oo-rZx" secondAttribute="bottom" constant="5" id="BcL-Zq-2Er"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Zuf-Oo-rZx" secondAttribute="trailing" constant="5" id="ISk-Dr-mrD"/>
+                                                <constraint firstItem="rcV-Vf-ETu" firstAttribute="top" secondItem="Hgw-t9-KoX" secondAttribute="topMargin" constant="7.5" id="Pyk-eB-sd2"/>
                                                 <constraint firstItem="Zuf-Oo-rZx" firstAttribute="top" secondItem="zHW-yB-Y2K" secondAttribute="bottom" constant="3" id="U3y-pJ-UyL"/>
                                                 <constraint firstItem="zHW-yB-Y2K" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="5" id="Yrf-ji-R3T"/>
+                                                <constraint firstItem="zHW-yB-Y2K" firstAttribute="top" secondItem="rcV-Vf-ETu" secondAttribute="bottom" constant="2" id="cMZ-cV-3ex"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="zHW-yB-Y2K" secondAttribute="trailing" constant="5" id="dwH-ax-SNI"/>
+                                                <constraint firstItem="rcV-Vf-ETu" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="5" id="iL6-Gv-PjM"/>
                                                 <constraint firstItem="wui-SK-oGZ" firstAttribute="centerY" secondItem="Hgw-t9-KoX" secondAttribute="centerY" id="iZH-7l-wQs"/>
                                                 <constraint firstItem="wui-SK-oGZ" firstAttribute="centerX" secondItem="Hgw-t9-KoX" secondAttribute="centerX" constant="-115" id="lR9-P4-GG3"/>
                                                 <constraint firstItem="jnC-F8-ogh" firstAttribute="leading" secondItem="wui-SK-oGZ" secondAttribute="trailing" constant="8" symbolic="YES" id="vsn-s8-85A"/>
@@ -672,12 +670,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nh-Ma-6ep">
-                                                    <rect key="frame" x="100" y="16" width="255" height="23"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cv9-a8-OrM">
                                                     <rect key="frame" x="10" y="10" width="80" height="80"/>
                                                     <constraints>
@@ -693,18 +685,24 @@
                                                     <rect key="frame" x="232.5" y="49" width="112.5" height="30"/>
                                                     <state key="normal" title="Decline"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nh-Ma-6ep">
+                                                    <rect key="frame" x="105" y="18" width="255" height="23"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="gzA-El-6Qk" firstAttribute="leading" secondItem="cv9-a8-OrM" secondAttribute="trailing" constant="15" id="BrX-dC-2xU"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="loL-m7-9kB" secondAttribute="bottom" constant="10" id="C0K-Sh-2YD"/>
-                                                <constraint firstItem="loL-m7-9kB" firstAttribute="top" secondItem="6nh-Ma-6ep" secondAttribute="bottom" constant="10" id="D1c-EJ-2Mw"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="6nh-Ma-6ep" secondAttribute="trailing" constant="5" id="DXD-bO-0YW"/>
+                                                <constraint firstItem="loL-m7-9kB" firstAttribute="top" secondItem="6nh-Ma-6ep" secondAttribute="bottom" constant="8" id="D1c-EJ-2Mw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6nh-Ma-6ep" secondAttribute="trailing" id="DXD-bO-0YW"/>
                                                 <constraint firstItem="loL-m7-9kB" firstAttribute="leading" secondItem="gzA-El-6Qk" secondAttribute="trailing" constant="15" id="HLV-Ni-jy8"/>
-                                                <constraint firstItem="6nh-Ma-6ep" firstAttribute="leading" secondItem="cv9-a8-OrM" secondAttribute="trailing" constant="10" id="QBj-0E-5zE"/>
+                                                <constraint firstItem="6nh-Ma-6ep" firstAttribute="leading" secondItem="cv9-a8-OrM" secondAttribute="trailing" constant="15" id="QBj-0E-5zE"/>
                                                 <constraint firstItem="cv9-a8-OrM" firstAttribute="top" secondItem="KbP-CM-UMP" secondAttribute="top" constant="10" id="QIJ-WS-JDm"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="loL-m7-9kB" secondAttribute="trailing" constant="15" id="VdB-zT-CYe"/>
-                                                <constraint firstItem="6nh-Ma-6ep" firstAttribute="top" secondItem="KbP-CM-UMP" secondAttribute="topMargin" constant="5" id="Vpi-GK-sri"/>
-                                                <constraint firstItem="gzA-El-6Qk" firstAttribute="top" secondItem="6nh-Ma-6ep" secondAttribute="bottom" constant="10" id="huF-eJ-Gxe"/>
+                                                <constraint firstItem="6nh-Ma-6ep" firstAttribute="top" secondItem="KbP-CM-UMP" secondAttribute="topMargin" constant="7" id="Vpi-GK-sri"/>
+                                                <constraint firstItem="gzA-El-6Qk" firstAttribute="top" secondItem="6nh-Ma-6ep" secondAttribute="bottom" constant="8" id="huF-eJ-Gxe"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="gzA-El-6Qk" secondAttribute="bottom" constant="10" id="k6c-Nb-abG"/>
                                                 <constraint firstItem="loL-m7-9kB" firstAttribute="width" secondItem="gzA-El-6Qk" secondAttribute="width" id="pq3-HB-HWz"/>
                                                 <constraint firstItem="cv9-a8-OrM" firstAttribute="leading" secondItem="KbP-CM-UMP" secondAttribute="leading" constant="10" id="qoo-Qk-im2"/>
@@ -729,7 +727,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWc-go-Qr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7634" y="1323"/>
+            <point key="canvasLocation" x="6073" y="1356"/>
         </scene>
         <!--PostVC-->
         <scene sceneID="WHm-Tn-a2z">
@@ -1386,11 +1384,55 @@ Listen to podcasts that are related to their catagory.</string>
                     <connections>
                         <outlet property="tableView" destination="UoP-Fc-Cna" id="j30-M1-yuz"/>
                         <segue destination="QZH-Yy-EYG" kind="show" identifier="toUsername" id="0ee-Tb-LTK"/>
+                        <segue destination="k2Q-ce-mMS" kind="show" identifier="toHelp" id="8aq-20-Wic"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKA-TP-LuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2628" y="1820.2398800599701"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="Hjw-xg-kv8">
+            <objects>
+                <viewController id="k2Q-ce-mMS" customClass="HelpViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xFL-8C-j11">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iS6-Pf-mS4">
+                                <rect key="frame" x="16" y="0.0" width="343" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">The Basics
+Pod Talk allows you to stream or download your favorite podcast and discuss them with friends, family, or new people you meet.
+
+Clubs
+Clubs are places for you to go and talk about a podcast. You can create or join a club and start talking. The function like a book club, the owner assigned a podcast for people to listen to and the members listen and discuss. 
+
+How to join a club 
+To join a club all you need to do is go to the second bar and either select a category or search for a club. Once there you can select the club and then hit the blue button titled follow. Then club will then be saved and will appear in your third tab.
+
+Podcast
+To listen to a podcast go to the first tab and then select the search bar. Search for a podcast you know and select it. You can listen to any episode in the album and you can hit the blue button title subscribe to pin it to your home screen.
+
+More
+For any more help contact us at podtalkdevelopers@gmail.com. You can select the button in the top right to draft an email.</mutableString>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iS6-Pf-mS4" firstAttribute="leading" secondItem="gav-wQ-1VL" secondAttribute="leading" constant="16" id="bOU-11-Ctz"/>
+                            <constraint firstItem="iS6-Pf-mS4" firstAttribute="top" secondItem="gav-wQ-1VL" secondAttribute="top" id="osr-6N-CAh"/>
+                            <constraint firstItem="iS6-Pf-mS4" firstAttribute="bottom" secondItem="gav-wQ-1VL" secondAttribute="bottom" id="rfb-Z4-8t3"/>
+                            <constraint firstItem="gav-wQ-1VL" firstAttribute="trailing" secondItem="iS6-Pf-mS4" secondAttribute="trailing" constant="16" id="uSX-YP-zx7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gav-wQ-1VL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FR6-8E-FGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="2582.1589205397304"/>
         </scene>
         <!--Help Page View Controller-->
         <scene sceneID="052-UM-GLN">
@@ -1487,20 +1529,20 @@ Listen to podcasts that are related to their catagory.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PodTalkLogo" translatesAutoresizingMaskIntoConstraints="NO" id="wzE-Tq-eje">
-                                <rect key="frame" x="159" y="309" width="56" height="48"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 915" translatesAutoresizingMaskIntoConstraints="NO" id="wzE-Tq-eje">
+                                <rect key="frame" x="167" y="316" width="41" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="OQD-4i-hWF"/>
-                                    <constraint firstAttribute="width" constant="56" id="dBd-rp-s3V"/>
+                                    <constraint firstAttribute="width" constant="41" id="GbA-Hq-m6K"/>
+                                    <constraint firstAttribute="height" constant="35" id="sZy-we-GG5"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wzE-Tq-eje" firstAttribute="leading" secondItem="MdB-21-603" secondAttribute="leading" constant="159" id="Ft0-AY-NxN"/>
-                            <constraint firstItem="MdB-21-603" firstAttribute="bottom" secondItem="wzE-Tq-eje" secondAttribute="bottom" constant="310" id="YVL-E9-ry2"/>
-                            <constraint firstItem="wzE-Tq-eje" firstAttribute="top" secondItem="MdB-21-603" secondAttribute="top" constant="289" id="gzq-jV-omb"/>
-                            <constraint firstItem="MdB-21-603" firstAttribute="trailing" secondItem="wzE-Tq-eje" secondAttribute="trailing" constant="160" id="rHB-Eo-f1K"/>
+                            <constraint firstItem="wzE-Tq-eje" firstAttribute="leading" secondItem="MdB-21-603" secondAttribute="leading" constant="167" id="2ck-ni-jX4"/>
+                            <constraint firstItem="MdB-21-603" firstAttribute="trailing" secondItem="wzE-Tq-eje" secondAttribute="trailing" constant="167" id="6B6-3b-ybf"/>
+                            <constraint firstItem="wzE-Tq-eje" firstAttribute="top" secondItem="MdB-21-603" secondAttribute="top" constant="296" id="U3t-z4-yaX"/>
+                            <constraint firstItem="MdB-21-603" firstAttribute="bottom" secondItem="wzE-Tq-eje" secondAttribute="bottom" constant="316" id="fbn-pd-qOR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MdB-21-603"/>
                     </view>
@@ -1510,7 +1552,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQQ-xp-spE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1566" y="742"/>
+            <point key="canvasLocation" x="-1567.2" y="741.67916041979015"/>
         </scene>
         <!--Podcast Tabl Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1629,9 +1671,9 @@ Listen to podcasts that are related to their catagory.</string>
         <image name="Group 653" width="33.5" height="33.5"/>
         <image name="Group 664" width="24.5" height="28"/>
         <image name="Group 733" width="59" height="43"/>
+        <image name="Group 915" width="34.5" height="43.5"/>
         <image name="Path 1700" width="15.5" height="14"/>
         <image name="Path 1882" width="14.5" height="13.5"/>
-        <image name="PodTalkLogo" width="59.5" height="47.5"/>
         <image name="Profile-D" width="24" height="26.5"/>
         <image name="Profile-L" width="24" height="26.5"/>
         <image name="Rectangle 164" width="131" height="43"/>

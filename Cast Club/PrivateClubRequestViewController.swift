@@ -86,8 +86,9 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
         }
         
         if let declineButton = cell.viewWithTag(4) as? UIButton {
-            declineButton.setTitleColor(.white, for: .normal)
+            declineButton.setTitleColor(UIColor(red: 64.0/255.0, green: 64.0/255.0, blue: 64.0/255.0, alpha: 1.0), for: .normal)
             declineButton.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
+            
             declineButton.backgroundColor = .white
             declineButton.layer.borderColor = UIColor(red: 196.0/255.0, green: 196.0/255.0, blue: 201.0/255.0, alpha: 1.0).cgColor
             declineButton.layer.borderWidth = 1.0

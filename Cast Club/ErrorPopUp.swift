@@ -30,7 +30,7 @@ class ErrorPopUp: UIView {
         let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 50))
         headerLabel.center = CGPoint(x: self.frame.width/2, y: 0)
         headerLabel.numberOfLines = 1
-        headerLabel.font = UIFont(name: "Mont-HeavyDEMO", size: 28)
+        headerLabel.font = UIFont(name: "Mont-HeavyDEMO", size: 22)
         headerLabel.text = headerText
         headerLabel.textAlignment = .center
         //headerLabel.sizeToFit()
@@ -39,8 +39,8 @@ class ErrorPopUp: UIView {
         
         let bodyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width - screenSize.width/5, height: 50))
         bodyLabel.center = CGPoint(x: self.frame.width/2, y: 45)
-        bodyLabel.numberOfLines = 4
-        bodyLabel.font = UIFont(name: "Avenir-Black", size: 15)
+        bodyLabel.numberOfLines = 2
+        bodyLabel.font = UIFont(name: "Avenir-Heavy", size: 15)
         bodyLabel.text = bodyText
         bodyLabel.textAlignment = .center
         bodyLabel.sizeToFit()

@@ -53,11 +53,18 @@ class catagoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func retrieveTopClubs() {
         self.newCat = false
         self.tabBarController?.showActivity()
-        CloudKitHelper.instance.getTopClubs(n: 20, category: self.selectedCategory) { (club) in
+        CloudKitHelper.instance.getTopClubs(n: 20, category: self.selectedCategory, completion: { (club) in
+            // Record fetched (called multiple times)
             self.results.append(club)
             DispatchQueue.main.async {
                 self.tabBarController?.stopActivity()
                 self.tableView.reloadData()
+            }
+        }) {
+            // Query completion
+            print("Donzo")
+            DispatchQueue.main.async {
+                self.tabBarController?.stopActivity()
             }
         }
     }

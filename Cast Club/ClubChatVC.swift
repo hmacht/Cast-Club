@@ -772,6 +772,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let blockAction = UIAlertAction(title: "Block", style: .destructive) { (_) in
             CloudKitHelper.instance.blockedUsers.append(self.messages[self.moreMessageInd].fromUser)
             self.messages = self.messages.filter({ !CloudKitHelper.instance.blockedUsers.contains($0.fromUser) })
+            self.tableView.reloadData()
             CloudKitHelper.instance.blockUser(id: self.messages[self.moreMessageInd].fromUser, completion: { (error) in
                 if let e = error {
                     print(e)

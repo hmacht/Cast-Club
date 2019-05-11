@@ -69,65 +69,6 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             }
         }
         
-        /*CloudKitHelper.instance.setCurrentUserId { (error) in
-            if let e = error {
-                print(e)
-                
-                DispatchQueue.main.async {
-                    self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 55, width: self.screenSize.width, height: 200), headerText: "Hello!", bodyText: "You must login to iCloud in your Settings to enjoy all the features of Pod Talk. Until you do that, you can still listen to podcasts and look at clubs.")
-                    if let pop = self.errorPopUp {
-                        self.view.addSubview(pop)
-                        self.view.addSubview(self.discovewrBtn)
-                    }
-                }
-                
-                self.tabBarController?.showError(with: e.localizedDescription)
-                
-            } else {
-                CloudKitHelper.instance.isAuthenticated = true
-                // Get user subscriptions albums
-                CloudKitHelper.instance.getAlbums { (albums, error2) in
-                    if let e = error2 {
-                        print(e)
-                        
-                        DispatchQueue.main.async {
-                            if let pop = self.errorPopUp {
-                                self.view.addSubview(pop)
-                                self.view.addSubview(self.discovewrBtn)
-                            }
-                        }
-                        
-                        self.tabBarController?.showError(with: e.localizedDescription)
-                    } else if albums.count > 0 {
-                        subscriptionAlbum = albums
-                        DispatchQueue.main.async {
-                            self.myCollectionView.reloadData()
-                        }
-                    } else if albums.count == 0 {
-                        DispatchQueue.main.async {
-                            if let pop = self.errorPopUp {
-                                self.view.addSubview(pop)
-                                self.view.addSubview(self.discovewrBtn)
-                            }
-                        }
-                    }
-                }
-                
-                // Get user subscribed clubs
-                CloudKitHelper.instance.getClubIdsForCurrentUser(completion: { (results, error3) in
-                    if let e = error3 {
-                        self.tabBarController?.showError(with: e.localizedDescription)
-                    } else {
-                        clubIds = results
-                    }
-                })
-                
-                
-            }
-        }*/
-        
-        self.tabBarController?.showActivity()
-        
     }
     
     var didShow = false
@@ -179,12 +120,11 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             cell.imgView.image = img
         } else {
             // We do not have the image yet, download it
-            //cell.imgView.image = UIImage(named: "Group 224")
+            cell.imgView.image = UIImage(named: "Group 224")
             DispatchQueue.global(qos: .userInitiated).async {
                 _ = subscriptionAlbum[indexPath.row].getImageData(dimensions: .hundred, completion: { (image) in
                     if let img = image {
                         DispatchQueue.main.async {
-                            self.tabBarController?.stopActivity()
                             cell.imgView.image = img
                             
                             /*

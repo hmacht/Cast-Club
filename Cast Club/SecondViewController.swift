@@ -101,14 +101,16 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+        
+        self.tabBarController?.hideNoResultsLabel()
     }
     func retrieveTopClubs() {
         // Gets called one by one for each club
         // Can reload after each club comes in
         // And perform animation to each new cell
-        CloudKitHelper.instance.getTopClubs(n: 3) { (club) in
-            self.topClubs.append(club)
-        }
+        //CloudKitHelper.instance.getTopClubs(n: 3) { (club) in
+       //     self.topClubs.append(club)
+        //}
     }
     
     override func viewDidLayoutSubviews() {
@@ -196,7 +198,10 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             if let addButton = cell.viewWithTag(4) as? UIButton {
-                if club.isPublic {
+                if club.subscribedUsers.contains(CloudKitHelper.instance.userId.recordName) {
+                    // We are already subscribed to club
+                    addButton.setImage(UIImage(named: "Group 463"), for: .normal)
+                } else if club.isPublic {
                     addButton.clipsToBounds = true
                     addButton.layer.cornerRadius = 15
                     addButton.layer.borderWidth = 1
@@ -204,6 +209,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 } else {
                     addButton.setImage(UIImage(named: "Group 845"), for: .normal)
                 }
+                
                 addButton.tag = indexPath.row
                 addButton.addTarget(self, action: #selector(SecondViewController.addClub), for: .touchUpInside)
             }
@@ -330,7 +336,6 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        
         self.searchBar.setShowsCancelButton(false, animated: true)
         self.searchBar.endEditing(true)
         self.results = []
@@ -350,6 +355,9 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.results = records
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
+                            if self.results.count == 0 {
+                                self.tabBarController?.showNoResultsLabel(message: "No clubs matched your search. Check your spelling and try again.")
+                            }
                         }
                     }
                 }
@@ -362,6 +370,9 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.results = records
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
+                            if self.results.count == 0 {
+                                self.tabBarController?.showNoResultsLabel(message: "No clubs matched your search. Check your spelling and try again.")
+                            }
                         }
                     }
                 }
@@ -391,6 +402,8 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         catagoryTableView.isHidden = true
         tableView.isHidden = false
+        
+        self.tabBarController?.hideNoResultsLabel()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -399,6 +412,8 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         catagoryTableView.isHidden = false
         tableView.isHidden = true
+        
+        self.tabBarController?.hideNoResultsLabel()
     }
     
     

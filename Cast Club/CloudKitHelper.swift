@@ -713,7 +713,7 @@ class CloudKitHelper {
         completion(Club(), nil)
     }
     
-    func getTopClubs(n: Int, category: ClubCategory = .none, completion: @escaping (Club) -> ()) {
+    func getTopClubs(n: Int, category: ClubCategory = .none, completion: @escaping (Club) -> (), queryFinished: @escaping () -> ()) {
         var predicate = NSPredicate(value: true)
         if category != .none {
             predicate = NSPredicate(format: "category = %@", category.rawValue)
@@ -726,6 +726,11 @@ class CloudKitHelper {
         operation.resultsLimit = n
         operation.queuePriority = .veryHigh
         operation.qualityOfService = .userInitiated
+        
+        
+        operation.completionBlock = {
+            queryFinished()
+        }
         
         // Gets called once for each record
         operation.recordFetchedBlock = { r in

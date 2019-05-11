@@ -477,19 +477,33 @@ class MiniController: UIView {
     
     
     func updateSlider() {
-        /*
-        if let time = self.player?.currentTime {
-            if let dur = self.player?.duration {
-                self.podSlider?.setValue(Float(time/dur), animated: true)
-            }
-        }*/
+    
         if let dur = self.avPlayer.currentItem?.duration {
             self.podSlider?.setValue(Float(CMTimeGetSeconds(self.avPlayer.currentTime()) / CMTimeGetSeconds(dur)), animated: true)
+            
+            
+            let result = CMTimeGetSeconds(self.avPlayer.currentTime())
+            
+            guard result != 0 else {
+                return
+            }
+            
+            let (h,m,s) = secondsToHoursMinutesSeconds(seconds: Int(CMTimeGetSeconds(dur)) - Int(CMTimeGetSeconds(self.avPlayer.currentTime())))
+            // Current
+            let (cH, cM, cS) = secondsToHoursMinutesSeconds(seconds: Int(CMTimeGetSeconds(self.avPlayer.currentTime())))
+            
+            // Format numbers so always shown with 2 digits
+            let currentString = String.init(format: "%02d:%02d:%02d", arguments: [cH, cM, cS])
+            self.currentTimeLabel.text = currentString
+            let remainingString = String.init(format: "%02d:%02d:%02d", arguments: [h, m, s])
+            self.podcastLengthLabel.text = remainingString
         }
         
         
     }
     
-    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
 
 }

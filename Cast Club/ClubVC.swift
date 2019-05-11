@@ -87,7 +87,8 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.clubs = results
                     DispatchQueue.main.async {
                         self.tabBarController?.stopActivity()
-                        self.clubTabelView.reloadWithAnimation()
+                        //self.clubTabelView.reloadWithAnimation()
+                        self.clubTabelView.reloadData()
                     }
                 }
             }
@@ -104,9 +105,9 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let yourBackImage = UIImage(named: "Group 29")
         self.navigationController?.navigationBar.backIndicatorImage = yourBackImage
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
-        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 32"), style: .done, target: self, action: #selector(ClubVC.add))
+        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 31"), style: .done, target: self, action: #selector(ClubVC.add))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 257"), style: .done, target: self, action: #selector(ClubVC.playlist))
+        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 916"), style: .done, target: self, action: #selector(ClubVC.playlist))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationItem.title = "Podcast Clubs"
         
@@ -159,7 +160,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let club = self.clubs[indexPath.row]
         
         // Get cover photo
-        cell.clubIMG.image = UIImage(named: "Group 466")
+        cell.clubIMG.image = UIImage(named: "defaultImage")
         
         CloudKitHelper.instance.getClubCoverPhoto(id: club.id) { (image, url, error) in
             if error == nil {

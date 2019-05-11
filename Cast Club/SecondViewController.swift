@@ -62,7 +62,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         searchBar.searchBarStyle = UISearchBar.Style.default
-        searchBar.placeholder = " Search for a club"
+        searchBar.placeholder = "Search for a club"
         searchBar.sizeToFit()
         searchBar.isTranslucent = false
         searchBar.delegate = self

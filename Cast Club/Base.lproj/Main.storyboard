@@ -592,7 +592,7 @@
                                                         <constraint firstAttribute="height" constant="32" id="Zjd-be-0pz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
-                                                    <state key="normal" title=" " image="Path 1882">
+                                                    <state key="normal" title=" 0" image="Path 1882">
                                                         <color key="titleColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                 </button>
@@ -600,6 +600,7 @@
                                             <constraints>
                                                 <constraint firstItem="oSj-Ec-hMO" firstAttribute="leading" secondItem="nYv-d8-Ptw" secondAttribute="trailing" constant="7" id="71M-iH-fxk"/>
                                                 <constraint firstItem="4Bw-B8-4d9" firstAttribute="top" secondItem="1YS-yD-b6f" secondAttribute="topMargin" constant="13" id="EpX-v2-6wh"/>
+                                                <constraint firstItem="ryb-ug-K6z" firstAttribute="centerY" secondItem="Jal-7O-ccV" secondAttribute="centerY" id="G2l-Bo-lJS"/>
                                                 <constraint firstAttribute="bottom" secondItem="OY5-Q1-r8l" secondAttribute="bottom" id="LYF-X2-gYV"/>
                                                 <constraint firstItem="Jal-7O-ccV" firstAttribute="leading" secondItem="1YS-yD-b6f" secondAttribute="leading" constant="62" id="RgX-CX-PyV"/>
                                                 <constraint firstItem="nYv-d8-Ptw" firstAttribute="leading" secondItem="1YS-yD-b6f" secondAttribute="leadingMargin" id="Vey-h1-89u"/>
@@ -670,12 +671,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nh-Ma-6ep">
-                                                    <rect key="frame" x="100" y="16" width="255" height="23"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cv9-a8-OrM">
                                                     <rect key="frame" x="10" y="10" width="80" height="80"/>
                                                     <constraints>
@@ -691,18 +686,24 @@
                                                     <rect key="frame" x="232.5" y="49" width="112.5" height="30"/>
                                                     <state key="normal" title="Decline"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nh-Ma-6ep">
+                                                    <rect key="frame" x="105" y="18" width="255" height="23"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="gzA-El-6Qk" firstAttribute="leading" secondItem="cv9-a8-OrM" secondAttribute="trailing" constant="15" id="BrX-dC-2xU"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="loL-m7-9kB" secondAttribute="bottom" constant="10" id="C0K-Sh-2YD"/>
-                                                <constraint firstItem="loL-m7-9kB" firstAttribute="top" secondItem="6nh-Ma-6ep" secondAttribute="bottom" constant="10" id="D1c-EJ-2Mw"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="6nh-Ma-6ep" secondAttribute="trailing" constant="5" id="DXD-bO-0YW"/>
+                                                <constraint firstItem="loL-m7-9kB" firstAttribute="top" secondItem="6nh-Ma-6ep" secondAttribute="bottom" constant="8" id="D1c-EJ-2Mw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6nh-Ma-6ep" secondAttribute="trailing" id="DXD-bO-0YW"/>
                                                 <constraint firstItem="loL-m7-9kB" firstAttribute="leading" secondItem="gzA-El-6Qk" secondAttribute="trailing" constant="15" id="HLV-Ni-jy8"/>
-                                                <constraint firstItem="6nh-Ma-6ep" firstAttribute="leading" secondItem="cv9-a8-OrM" secondAttribute="trailing" constant="10" id="QBj-0E-5zE"/>
+                                                <constraint firstItem="6nh-Ma-6ep" firstAttribute="leading" secondItem="cv9-a8-OrM" secondAttribute="trailing" constant="15" id="QBj-0E-5zE"/>
                                                 <constraint firstItem="cv9-a8-OrM" firstAttribute="top" secondItem="KbP-CM-UMP" secondAttribute="top" constant="10" id="QIJ-WS-JDm"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="loL-m7-9kB" secondAttribute="trailing" constant="15" id="VdB-zT-CYe"/>
-                                                <constraint firstItem="6nh-Ma-6ep" firstAttribute="top" secondItem="KbP-CM-UMP" secondAttribute="topMargin" constant="5" id="Vpi-GK-sri"/>
-                                                <constraint firstItem="gzA-El-6Qk" firstAttribute="top" secondItem="6nh-Ma-6ep" secondAttribute="bottom" constant="10" id="huF-eJ-Gxe"/>
+                                                <constraint firstItem="6nh-Ma-6ep" firstAttribute="top" secondItem="KbP-CM-UMP" secondAttribute="topMargin" constant="7" id="Vpi-GK-sri"/>
+                                                <constraint firstItem="gzA-El-6Qk" firstAttribute="top" secondItem="6nh-Ma-6ep" secondAttribute="bottom" constant="8" id="huF-eJ-Gxe"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="gzA-El-6Qk" secondAttribute="bottom" constant="10" id="k6c-Nb-abG"/>
                                                 <constraint firstItem="loL-m7-9kB" firstAttribute="width" secondItem="gzA-El-6Qk" secondAttribute="width" id="pq3-HB-HWz"/>
                                                 <constraint firstItem="cv9-a8-OrM" firstAttribute="leading" secondItem="KbP-CM-UMP" secondAttribute="leading" constant="10" id="qoo-Qk-im2"/>
@@ -727,7 +728,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XWc-go-Qr7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7634" y="1323"/>
+            <point key="canvasLocation" x="6073" y="1356"/>
         </scene>
         <!--PostVC-->
         <scene sceneID="WHm-Tn-a2z">
@@ -1384,11 +1385,55 @@ Listen to podcasts that are related to their catagory.</string>
                     <connections>
                         <outlet property="tableView" destination="UoP-Fc-Cna" id="j30-M1-yuz"/>
                         <segue destination="QZH-Yy-EYG" kind="show" identifier="toUsername" id="0ee-Tb-LTK"/>
+                        <segue destination="k2Q-ce-mMS" kind="show" identifier="toHelp" id="8aq-20-Wic"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKA-TP-LuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2628" y="1820.2398800599701"/>
+        </scene>
+        <!--Help View Controller-->
+        <scene sceneID="Hjw-xg-kv8">
+            <objects>
+                <viewController id="k2Q-ce-mMS" customClass="HelpViewController" customModule="Pod_Talk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xFL-8C-j11">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iS6-Pf-mS4">
+                                <rect key="frame" x="16" y="0.0" width="343" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">The Basics
+Pod Talk allows you to stream or download your favorite podcast and discuss them with friends, family, or new people you meet.
+
+Clubs
+Clubs are places for you to go and talk about a podcast. You can create or join a club and start talking. The function like a book club, the owner assigned a podcast for people to listen to and the members listen and discuss. 
+
+How to join a club 
+To join a club all you need to do is go to the second bar and either select a category or search for a club. Once there you can select the club and then hit the blue button titled follow. Then club will then be saved and will appear in your third tab.
+
+Podcast
+To listen to a podcast go to the first tab and then select the search bar. Search for a podcast you know and select it. You can listen to any episode in the album and you can hit the blue button title subscribe to pin it to your home screen.
+
+More
+For any more help contact us at podtalkdevelopers@gmail.com. You can select the button in the top right to draft an email.</string>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iS6-Pf-mS4" firstAttribute="leading" secondItem="gav-wQ-1VL" secondAttribute="leading" constant="16" id="bOU-11-Ctz"/>
+                            <constraint firstItem="iS6-Pf-mS4" firstAttribute="top" secondItem="gav-wQ-1VL" secondAttribute="top" id="osr-6N-CAh"/>
+                            <constraint firstItem="iS6-Pf-mS4" firstAttribute="bottom" secondItem="gav-wQ-1VL" secondAttribute="bottom" id="rfb-Z4-8t3"/>
+                            <constraint firstItem="gav-wQ-1VL" firstAttribute="trailing" secondItem="iS6-Pf-mS4" secondAttribute="trailing" constant="16" id="uSX-YP-zx7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gav-wQ-1VL"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FR6-8E-FGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="2582.1589205397304"/>
         </scene>
         <!--Help Page View Controller-->
         <scene sceneID="052-UM-GLN">
@@ -1485,20 +1530,20 @@ Listen to podcasts that are related to their catagory.</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PodTalkLogo" translatesAutoresizingMaskIntoConstraints="NO" id="wzE-Tq-eje">
-                                <rect key="frame" x="159" y="309" width="56" height="48"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 915" translatesAutoresizingMaskIntoConstraints="NO" id="gNM-MG-7oG">
+                                <rect key="frame" x="167" y="316" width="41" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="OQD-4i-hWF"/>
-                                    <constraint firstAttribute="width" constant="56" id="dBd-rp-s3V"/>
+                                    <constraint firstAttribute="height" constant="35" id="8Pt-ag-cPO"/>
+                                    <constraint firstAttribute="width" constant="41" id="e56-kC-HdD"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wzE-Tq-eje" firstAttribute="leading" secondItem="MdB-21-603" secondAttribute="leading" constant="159" id="Ft0-AY-NxN"/>
-                            <constraint firstItem="MdB-21-603" firstAttribute="bottom" secondItem="wzE-Tq-eje" secondAttribute="bottom" constant="310" id="YVL-E9-ry2"/>
-                            <constraint firstItem="wzE-Tq-eje" firstAttribute="top" secondItem="MdB-21-603" secondAttribute="top" constant="289" id="gzq-jV-omb"/>
-                            <constraint firstItem="MdB-21-603" firstAttribute="trailing" secondItem="wzE-Tq-eje" secondAttribute="trailing" constant="160" id="rHB-Eo-f1K"/>
+                            <constraint firstItem="MdB-21-603" firstAttribute="bottom" secondItem="gNM-MG-7oG" secondAttribute="bottom" constant="316" id="8VZ-wd-ddE"/>
+                            <constraint firstItem="MdB-21-603" firstAttribute="trailing" secondItem="gNM-MG-7oG" secondAttribute="trailing" constant="167" id="LA0-yx-LPX"/>
+                            <constraint firstItem="gNM-MG-7oG" firstAttribute="top" secondItem="MdB-21-603" secondAttribute="top" constant="296" id="Yk3-Xl-mVh"/>
+                            <constraint firstItem="gNM-MG-7oG" firstAttribute="leading" secondItem="MdB-21-603" secondAttribute="leading" constant="167" id="aPE-Of-VsK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MdB-21-603"/>
                     </view>
@@ -1508,7 +1553,7 @@ Listen to podcasts that are related to their catagory.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQQ-xp-spE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1566" y="742"/>
+            <point key="canvasLocation" x="-1567.2" y="741.67916041979015"/>
         </scene>
         <!--Podcast Tabl Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1627,9 +1672,9 @@ Listen to podcasts that are related to their catagory.</string>
         <image name="Group 653" width="33.5" height="33.5"/>
         <image name="Group 664" width="24.5" height="28"/>
         <image name="Group 733" width="59" height="43"/>
+        <image name="Group 915" width="34.5" height="43.5"/>
         <image name="Path 1700" width="15.5" height="14"/>
         <image name="Path 1882" width="14.5" height="13.5"/>
-        <image name="PodTalkLogo" width="59.5" height="47.5"/>
         <image name="Profile-D" width="24" height="26.5"/>
         <image name="Profile-L" width="24" height="26.5"/>
         <image name="Rectangle 164" width="131" height="43"/>

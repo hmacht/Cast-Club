@@ -56,7 +56,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             if CloudKitHelper.instance.username.count > 0 {
                 label.text = CloudKitHelper.instance.username
             } else {
-                label.text = "Set your username"
+                label.text = "Username"
             }
         }
     }
@@ -81,7 +81,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if indexPath.row == 0 {
             let headerCell = self.tableView.dequeueReusableCell(withIdentifier: "headerCell", for:indexPath)
             if let profileImg = headerCell.viewWithTag(3) as? UIImageView {
-                profileImg.image = UIImage(named: "AppIcon")
+                profileImg.image = UIImage(named: "headshot")
                 profileImg.clipsToBounds = true
                 profileImg.layer.cornerRadius = 60
                 profileImg.contentMode = .scaleAspectFill
@@ -89,7 +89,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 CloudKitHelper.instance.getProfilePic(for: CloudKitHelper.instance.userId.recordName) { (image) in
                     if let img = image {
                         DispatchQueue.main.async {
-                            if profileImg.image?.size == UIImage(named: "AppIcon")?.size {
+                            if profileImg.image?.size == UIImage(named: "headshot")?.size {
                                 profileImg.image = img
                             }
                         }
@@ -101,7 +101,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if CloudKitHelper.instance.username.count > 0 {
                     usernameLabel.text = CloudKitHelper.instance.username
                 } else {
-                    usernameLabel.text = "Set your username"
+                    usernameLabel.text = "Username"
                 }
             }
         

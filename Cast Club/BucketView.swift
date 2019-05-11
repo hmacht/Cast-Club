@@ -266,7 +266,7 @@ class BucketView: UIView {
     func createUpdateBucket(){
         
         var button = UIButton(frame: CGRect(x: closeButton.frame.minX, y: closeButton.frame.minY - 90, width: 70, height: 70))
-        button.setImage(UIImage(named: "Group 439"), for: .normal)
+        button.setImage(UIImage(named: "podcastDefault"), for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 6.0
         button.contentMode = .scaleAspectFill

@@ -18,20 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PodTalkLogo" translatesAutoresizingMaskIntoConstraints="NO" id="qoa-DW-egB">
-                                <rect key="frame" x="159" y="309" width="56" height="48"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 915" translatesAutoresizingMaskIntoConstraints="NO" id="rr6-hi-7de">
+                                <rect key="frame" x="167" y="316" width="41" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="CX1-qi-P9w"/>
-                                    <constraint firstAttribute="width" constant="56" id="yFT-Kt-0ZC"/>
+                                    <constraint firstAttribute="width" constant="41" id="5iT-C4-Lfg"/>
+                                    <constraint firstAttribute="height" constant="35" id="dfe-dO-Nrm"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qoa-DW-egB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="289" id="FSS-I3-WgU"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qoa-DW-egB" secondAttribute="trailing" constant="160" id="Hwa-0K-Oe0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qoa-DW-egB" secondAttribute="bottom" constant="310" id="Z6m-cB-Gde"/>
-                            <constraint firstItem="qoa-DW-egB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="159" id="ubu-0f-XMR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rr6-hi-7de" secondAttribute="trailing" constant="167" id="BH8-nB-h1A"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rr6-hi-7de" secondAttribute="bottom" constant="316" id="Cr0-hy-lnL"/>
+                            <constraint firstItem="rr6-hi-7de" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="167" id="JOU-lv-pXp"/>
+                            <constraint firstItem="rr6-hi-7de" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="296" id="mKh-RV-pvL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -42,6 +42,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="PodTalkLogo" width="59.5" height="47.5"/>
+        <image name="Group 915" width="34.5" height="43.5"/>
     </resources>
 </document>

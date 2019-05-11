@@ -120,7 +120,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             cell.imgView.image = img
         } else {
             // We do not have the image yet, download it
-            cell.imgView.image = UIImage(named: "Group 224")
+            cell.imgView.image = UIImage(named: "Group 932")
             DispatchQueue.global(qos: .userInitiated).async {
                 _ = subscriptionAlbum[indexPath.row].getImageData(dimensions: .hundred, completion: { (image) in
                     if let img = image {

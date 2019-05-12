@@ -106,7 +106,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             headerCell.imgView.image = UIImage(named: "Group 224")
             //self.imgView.image = self.album.getImageData(dimensions: .hundred)
-            _ = self.album.getImageData(dimensions: .hundred, completion: { (image) in
+            _ = self.album.getImageData(dimensions: .hundred, completion: { (image, _) in
                 headerCell.imgView.image = image
             })
             headerCell.imgView.layer.cornerRadius = 6.0

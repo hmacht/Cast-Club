@@ -39,7 +39,7 @@ class ErrorPopUp: UIView {
         
         let bodyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: screenSize.width - screenSize.width/5, height: 50))
         bodyLabel.center = CGPoint(x: self.frame.width/2, y: 45)
-        bodyLabel.numberOfLines = 2
+        bodyLabel.numberOfLines = 0
         bodyLabel.font = UIFont(name: "Avenir-Heavy", size: 15)
         bodyLabel.text = bodyText
         bodyLabel.textAlignment = .center

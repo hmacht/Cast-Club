@@ -25,7 +25,7 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     var selectedCategory = ClubCategory.none
     var isPublic = true
     
-    let catagories = [" ", "Everything", "News", "Comedy", "Arts", "Business", "Education", "Games & Hobbies", "Health", "Kids", "Music", "Science", "Sports", "TV & Film", "Technology"]
+    let catagories = [" ", "Everything", "News", "Culture", "Comedy", "Education", "Art", "Business", "Politics", "Kids",  "Music", "TV & Film", "Technology", "Sports", "Health", "Games & Hobbies"]
     
     var buttons = [UIButton]()
     

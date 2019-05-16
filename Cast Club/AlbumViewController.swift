@@ -203,6 +203,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 if let url = URL(string: self.selectedPodcast.contentUrl) {
                     miniController.avPlayer = AVPlayer(url: url)
+                    miniController.playButton.setImage(UIImage(named: "Path 74"), for: .normal)
+                    miniController.playButton.isUserInteractionEnabled = false
                     miniController.avPlayer.play()
                     
                     if let tab = self.tabBarController as? PodcastTablBarController {

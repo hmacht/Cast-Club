@@ -232,13 +232,18 @@ class MiniController: UIView {
         self.player?.stop()
         self.avPlayer.rate = 0
         
+        
+        // Set the button to "play button"
+        playButton.setImage(UIImage(named: "Path 74"), for: .normal)
+        self.playButton.isUserInteractionEnabled = false
+        
         self.podcast = podcast
         if let img = artwork {
             self.coverArt.image = img
         }
         
         self.podcastTitle.text = self.podcast.title
-        playButton.setImage(UIImage(named: "Group 240"), for: .normal)
+        //playButton.setImage(UIImage(named: "Group 240"), for: .normal)
         
         // Show loading
         //self.showActivity()

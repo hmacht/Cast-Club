@@ -575,7 +575,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.bucketView.podcastButton.setImage(img, for: .normal)
             } else {
                 DispatchQueue.global(qos: .background).async {
-                    _ = album.getImageData(dimensions: .hundred, completion: { (image) in
+                    _ = album.getImageData(dimensions: .hundred, completion: { (image, _) in
                         if let img = image {
                             self.selectedClub.currentAlbum?.artworkImage = img
                             DispatchQueue.main.async {
@@ -604,7 +604,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                                 }
                             } else {
                                 DispatchQueue.global(qos: .background).async {
-                                    _ = album.getImageData(dimensions: .hundred, completion: { (image) in
+                                    _ = album.getImageData(dimensions: .hundred, completion: { (image, _) in
                                         if let img = image {
                                             self.selectedClub.currentAlbum?.artworkImage = img
                                             DispatchQueue.main.async {

@@ -12,18 +12,23 @@ enum ClubCategory: String {
     case none = " "
     case everything = "Everything"
     case news = "News"
+    case culture = "Culture"
     case comedy = "Comedy"
-    case arts = "Arts"
-    case business = "Business"
     case education = "Education"
-    case gamesAndHobbies = "Games & Hobbies"
-    case health = "Health"
+    case art = "Art"
+    case business = "Business"
+    case politics = "Politics"
     case kids = "Kids"
     case music = "Music"
-    case science = "Science"
-    case sports = "Sports"
     case tvAndFilm = "TV & Film"
     case technology = "Technology"
+    case sports = "Sports"
+    case health = "Health"
+    case gamesAndHobbies = "Games & Hobbies"
+    
+    
+    
+    case science = "Science"
     case other = "Other"
 }
 

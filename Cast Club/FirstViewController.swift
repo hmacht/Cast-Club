@@ -121,21 +121,16 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         } else {
             // We do not have the image yet, download it
             cell.imgView.image = UIImage(named: "Group 932")
+            cell.imgView.imgUrl = subscriptionAlbum[indexPath.row].artworkUrl
+            cell.imgView.imgUrl100 = subscriptionAlbum[indexPath.row].artworkUrl100
             DispatchQueue.global(qos: .userInitiated).async {
-                _ = subscriptionAlbum[indexPath.row].getImageData(dimensions: .hundred, completion: { (image) in
+                _ = subscriptionAlbum[indexPath.row].getImageData(dimensions: .hundred, completion: { (image, url) in
                     if let img = image {
-                        DispatchQueue.main.async {
-                            cell.imgView.image = img
-                            
-                            /*
-                            UIView.animate(withDuration: 0.25, animations: {() -> Void in
-                                cell.transform = CGAffineTransform(scaleX: 1.08, y: 1.08)
-                            }, completion: {(_ finished: Bool) -> Void in
-                                UIView.animate(withDuration: 0.25, animations: {() -> Void in
-                                    cell.transform = CGAffineTransform(scaleX: 1, y: 1)
-                                }, completion: nil)
-                            })
-                            */
+                        // Make sure we are setting the correct image
+                        if url == cell.imgView.imgUrl || url == cell.imgView.imgUrl100 {
+                            DispatchQueue.main.async {
+                                cell.imgView.image = img
+                            }
                         }
                     }
                 })

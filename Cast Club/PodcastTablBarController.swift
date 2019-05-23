@@ -63,6 +63,8 @@ class PodcastTablBarController: UITabBarController {
         self.audioController?.avPlayer.currentItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
         self.audioController?.avPlayer.currentItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
         self.audioController?.avPlayer.currentItem?.addObserver(self, forKeyPath: "playbackBufferFull", options: .new, context: nil)
+        
+        self.audioController?.avPlayer.addObserver(self, forKeyPath: "status", options: .new, context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -87,6 +89,14 @@ class PodcastTablBarController: UITabBarController {
                 break
             default:
                 break
+            }
+        } else if object is AVPlayer && keyPath == "status" {
+            if self.audioController?.avPlayer.status == AVPlayer.Status.readyToPlay {
+                self.audioController?.playButton.isUserInteractionEnabled = true
+                self.audioController?.playButton.setImage(UIImage(named: "Group 240"), for: .normal)
+                
+            } else if self.audioController?.avPlayer.status == AVPlayer.Status.failed {
+                print("failed")
             }
         }
     }

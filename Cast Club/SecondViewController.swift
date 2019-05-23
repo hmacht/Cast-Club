@@ -132,7 +132,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        return testList.count
 //    }
     
-    var testList = ["Most Popular", "Everything", "News", "Cuture", "Comedy", "Education", "Art", "Business", "Politics", "Kids", "Music", "TV & Film", "Technology", "Sports", "Health", "Games & Hobbies"]
+    var testList = ["Most Popular", "Everything", "News", "Culture", "Comedy", "Education", "Art", "Business", "Politics", "Kids", "Music", "TV & Film", "Technology", "Sports", "Health", "Games & Hobbies"]
     
     var catagoryIcons: [UIImage] = [UIImage(named: "Path 1914")!, UIImage(named: "Path 1954")!, UIImage(named: "Path 1907")!, UIImage(named: "Path 1930")!, UIImage(named: "Group 661")!, UIImage(named: "Path 1945")!, UIImage(named: "Path 1935")!, UIImage(named: "Group 660")!, UIImage(named: "Path 1955")!, UIImage(named: "Group 663")!, UIImage(named: "Path 1943")!, UIImage(named: "Path 1927")!, UIImage(named: "Group 662")!, UIImage(named: "Group 658")!, UIImage(named: "Path 1932")!, UIImage(named: "Path 1950")!]
     

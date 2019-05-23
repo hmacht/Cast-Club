@@ -640,6 +640,7 @@ class CloudKitHelper {
     
     func requestPrivateClubJoin(clubId: String, completion: @escaping (Error?) -> ()) {
         
+        // Retrieve pending users list
         let fetchOperation = CKFetchRecordsOperation(recordIDs: [clubId.ckId()])
         fetchOperation.desiredKeys = ["pendingUsersList"]
         

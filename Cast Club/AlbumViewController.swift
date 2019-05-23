@@ -106,7 +106,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             headerCell.imgView.image = UIImage(named: "Group 224")
             //self.imgView.image = self.album.getImageData(dimensions: .hundred)
-            _ = self.album.getImageData(dimensions: .hundred, completion: { (image) in
+            _ = self.album.getImageData(dimensions: .hundred, completion: { (image, _) in
                 headerCell.imgView.image = image
             })
             headerCell.imgView.layer.cornerRadius = 6.0
@@ -203,6 +203,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 if let url = URL(string: self.selectedPodcast.contentUrl) {
                     miniController.avPlayer = AVPlayer(url: url)
+                    miniController.playButton.setImage(UIImage(named: "Path 74"), for: .normal)
+                    miniController.playButton.isUserInteractionEnabled = false
                     miniController.avPlayer.play()
                     
                     if let tab = self.tabBarController as? PodcastTablBarController {

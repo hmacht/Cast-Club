@@ -9,6 +9,11 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var imgView: AlbumImageView!
     
+}
+
+class AlbumImageView: UIImageView {
+    var imgUrl = ""
+    var imgUrl100 = ""
 }

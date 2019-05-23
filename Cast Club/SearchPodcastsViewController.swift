@@ -85,7 +85,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
             } else {
                 imgView.image = UIImage(named: "Group 224")
                 DispatchQueue.global(qos: .background).async {
-                    _ = self.searchResults[indexPath.row].getImageData { (image) in
+                    _ = self.searchResults[indexPath.row].getImageData { (image, _) in
                         if let img = image {
                             DispatchQueue.main.async {
                                 imgView.image = img
@@ -160,7 +160,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
                     
                     if self.searchResults.count == 0{
                         print("No Results")
-                        self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 100, width: self.screenSize.width, height: 200), headerText: "No Results", bodyText: "The term you entered does not match anything we know. Try searching again with a different keyword or check your spelling.")
+                        self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 100, width: self.screenSize.width, height: 300), headerText: "No Results", bodyText: "The term you entered does not match anything we know. Try searching again with a different keyword or check your spelling.")
                         self.view.addSubview(self.errorPopUp)
                         
                     }else{

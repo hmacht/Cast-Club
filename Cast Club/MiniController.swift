@@ -370,11 +370,11 @@ class MiniController: UIView {
         //podcastSlider.center.x = self.frame.width/2
         //self.addSubview(podcastSlider)
         
-        podSlider?.center = CGPoint(x: self.frame.width/2, y: playButton.frame.minX - 35)
+        podSlider?.center = CGPoint(x: self.frame.width/2, y: coverArt.frame.maxY + 35)
         self.addSubview(podSlider!)
         
         podcastLengthLabel.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
-        podcastLengthLabel.center = CGPoint(x: self.frame.width/2 + ((screenSize.width - 55)/2) - 25, y: playButton.frame.minX - 23)
+        podcastLengthLabel.center = CGPoint(x: self.frame.width/2 + ((screenSize.width - 55)/2) - 25, y: coverArt.frame.maxY + 50)
         podcastLengthLabel.numberOfLines = 1
         podcastLengthLabel.font = UIFont(name: "Avenir-Heavy", size: 12)
         podcastLengthLabel.text = "00:00:00"
@@ -382,7 +382,7 @@ class MiniController: UIView {
         self.addSubview(podcastLengthLabel)
         
         currentTimeLabel.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
-        currentTimeLabel.center = CGPoint(x: self.frame.width/2 - ((screenSize.width - 55)/2) + 25, y: playButton.frame.minX - 23)
+        currentTimeLabel.center = CGPoint(x: self.frame.width/2 - ((screenSize.width - 55)/2) + 25, y: coverArt.frame.maxY + 50)
         currentTimeLabel.numberOfLines = 1
         currentTimeLabel.font = UIFont(name: "Avenir-Heavy", size: 12)
         currentTimeLabel.text = "00:00:00"

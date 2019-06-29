@@ -272,15 +272,31 @@ class MiniController: UIView {
             */
         }
         
-        if let url = URL(string: self.podcast.contentUrl) {
-            self.avPlayer = AVPlayer(url: url)
-            self.avPlayer.play()
-            
-            RemoteControlsHelper.instance.currentPodcast = self.podcast
-            RemoteControlsHelper.instance.player = self.avPlayer
-            RemoteControlsHelper.instance.setupRemoteTransportControls()
-            RemoteControlsHelper.instance.setupNowPlaying(img: artwork)
+        if self.podcast.fileUrl != "" {
+            // The podcast is downloaded on device so we can play it from there
+            if let url = AudioDownloadHelper.instance.currentFileDirecory(baseUrl: self.podcast.fileUrl) {
+                
+                self.avPlayer = AVPlayer(url: url)
+                self.avPlayer.play()
+                
+                RemoteControlsHelper.instance.currentPodcast = self.podcast
+                RemoteControlsHelper.instance.player = self.avPlayer
+                RemoteControlsHelper.instance.setupRemoteTransportControls()
+                RemoteControlsHelper.instance.setupNowPlaying(img: artwork)
+            }
+        } else {
+            if let url = URL(string: self.podcast.contentUrl) {
+               
+                self.avPlayer = AVPlayer(url: url)
+                self.avPlayer.play()
+                
+                RemoteControlsHelper.instance.currentPodcast = self.podcast
+                RemoteControlsHelper.instance.player = self.avPlayer
+                RemoteControlsHelper.instance.setupRemoteTransportControls()
+                RemoteControlsHelper.instance.setupNowPlaying(img: artwork)
+            }
         }
+       
         
         /*
         AudioDownloadHelper.instance.getAudio(from: self.podcast.contentUrl) { (url, initialUrl) in
@@ -402,7 +418,7 @@ class MiniController: UIView {
         downloadButton.setImage(UIImage(named: "Group 900"), for: .normal)
         downloadButton.contentMode = .scaleAspectFit
         //downloadButton.addTarget(self, action: #selector(MiniController.download), for: .touchUpInside)
-        self.addSubview(downloadButton)
+        //self.addSubview(downloadButton)
        
     }
     func shrinkView(){

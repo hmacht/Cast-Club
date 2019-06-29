@@ -104,11 +104,15 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "cellHeader") as! TableViewCell
             
             
-            headerCell.imgView.image = UIImage(named: "Group 224")
-            //self.imgView.image = self.album.getImageData(dimensions: .hundred)
-            _ = self.album.getImageData(dimensions: .hundred, completion: { (image, _) in
-                headerCell.imgView.image = image
-            })
+            if let img = self.album.artworkImage {
+                headerCell.imgView.image = img
+            } else {
+                headerCell.imgView.image = UIImage(named: "Group 224")
+                _ = self.album.getImageData(dimensions: .hundred, completion: { (image, _) in
+                    headerCell.imgView.image = image
+                })
+            }
+            
             headerCell.imgView.layer.cornerRadius = 6.0
             headerCell.imgView.clipsToBounds = true
             headerCell.titleLabel.text = self.album.title
@@ -120,6 +124,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             if let b = headerCell.viewWithTag(1) as? SubscribeButton {
                 self.subscribeButton = b
+                
                 if subscriptionAlbum.contains(where: {$0.title == self.album.title && $0.artistName == self.album.artistName && $0.feedUrl == self.album.feedUrl}) {
                     // We are already subscribed
                     self.subscribeButton.setTextUnsubscribe()
@@ -141,8 +146,32 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             if let descriptionLabel = cell.viewWithTag(2) as? UILabel {
                 descriptionLabel.numberOfLines = 50
-                let trimmedDescription = podcast.description.trimmingCharacters(in: .whitespacesAndNewlines)
+                let trimmedDescription = podcast.podcastDescription.trimmingCharacters(in: .whitespacesAndNewlines)
                 descriptionLabel.text = trimmedDescription.deleteHTMLTags(tags: ["p", "a", "br", "em"])
+            }
+            
+            if let dowloadButton = cell.viewWithTag(3) as? UIButton {
+                
+                var alreadyDownloaded = false
+                
+                for downloadedPodcast in AudioDownloadHelper.instance.downloadedPodcasts {
+                    if downloadedPodcast.title == podcast.title && downloadedPodcast.author == podcast.author && downloadedPodcast.contentUrl == podcast.contentUrl {
+                        // Podcast has already been downloaded
+                        dowloadButton.setImage(UIImage(named: "Group 463"), for: .normal)
+                        dowloadButton.isUserInteractionEnabled = false
+                        
+                        
+                        podcast.fileUrl = downloadedPodcast.fileUrl
+                        alreadyDownloaded = true
+                        
+                        break
+                    }
+                }
+                
+                if !alreadyDownloaded {
+                    dowloadButton.setImage(UIImage(named: "Group 900"), for: .normal)
+                    dowloadButton.addTarget(self, action: #selector(AlbumViewController.downloadPodcast(sender:)), for: .touchUpInside)
+                }
             }
             
             let backgroundView = UIView()
@@ -201,21 +230,48 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     print("Error", error)
                 }
                 
-                if let url = URL(string: self.selectedPodcast.contentUrl) {
-                    miniController.avPlayer = AVPlayer(url: url)
-                    miniController.playButton.setImage(UIImage(named: "Path 74"), for: .normal)
-                    miniController.playButton.isUserInteractionEnabled = false
-                    miniController.avPlayer.play()
+                
+                
+                var podcastUrlString = self.selectedPodcast.contentUrl
+                if self.selectedPodcast.fileUrl != "" {
+                    // The podcast is downloaded on device so we can play it from there
                     
-                    if let tab = self.tabBarController as? PodcastTablBarController {
-                        tab.setObserverForMinicontroller()
+                    if let url = AudioDownloadHelper.instance.currentFileDirecory(baseUrl: self.selectedPodcast.fileUrl) {
+                        
+                        miniController.avPlayer = AVPlayer(url: url)
+                        miniController.playButton.setImage(UIImage(named: "Path 74"), for: .normal)
+                        miniController.playButton.isUserInteractionEnabled = false
+                        miniController.avPlayer.play()
+                        
+                        if let tab = self.tabBarController as? PodcastTablBarController {
+                            tab.setObserverForMinicontroller()
+                        }
+                        
+                        RemoteControlsHelper.instance.currentPodcast = self.selectedPodcast
+                        RemoteControlsHelper.instance.player = miniController.avPlayer
+                        RemoteControlsHelper.instance.setupRemoteTransportControls()
+                        RemoteControlsHelper.instance.setupNowPlaying(img: self.album.artworkImage)
                     }
-                    
-                    RemoteControlsHelper.instance.currentPodcast = self.selectedPodcast
-                    RemoteControlsHelper.instance.player = miniController.avPlayer
-                    RemoteControlsHelper.instance.setupRemoteTransportControls()
-                    RemoteControlsHelper.instance.setupNowPlaying(img: self.album.artworkImage)
+                } else {
+                    if let url = URL(string: self.selectedPodcast.contentUrl) {
+                        
+                        miniController.avPlayer = AVPlayer(url: url)
+                        miniController.playButton.setImage(UIImage(named: "Path 74"), for: .normal)
+                        miniController.playButton.isUserInteractionEnabled = false
+                        miniController.avPlayer.play()
+                        
+                        if let tab = self.tabBarController as? PodcastTablBarController {
+                            tab.setObserverForMinicontroller()
+                        }
+                        
+                        RemoteControlsHelper.instance.currentPodcast = self.selectedPodcast
+                        RemoteControlsHelper.instance.player = miniController.avPlayer
+                        RemoteControlsHelper.instance.setupRemoteTransportControls()
+                        RemoteControlsHelper.instance.setupNowPlaying(img: self.album.artworkImage)
+                    }
                 }
+                
+                
                 
                 /*
                 // Get audio
@@ -251,6 +307,7 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     }
                 }*/
             } else {
+                
                 tabController.audioController?.switchToPlay(podcast: self.selectedPodcast, artwork: self.album.artworkImage)
                 if let tab = self.tabBarController as? PodcastTablBarController {
                     tab.setObserverForMinicontroller()
@@ -364,5 +421,33 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    @objc func downloadPodcast (sender: UIButton) {
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+        if let path = tableView.indexPathForRow(at: buttonPosition) {
+            let podcast = self.podcastResults[path.row - 1]
+            
+            if let img = self.album.artworkImage {
+                podcast.albumImage = img
+            }
+            print("Downloading", podcast.title)
+            
+            let loadingView = LoadingView(frame: sender.frame)
+            sender.superview?.addSubview(loadingView)
+            sender.isHidden = true
+            sender.isUserInteractionEnabled = false
+            
+            if let contentUrl = URL(string: podcast.contentUrl) {
+                if let docDirec = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+                    // Path where the file will be saved on the phone
+                    let path = docDirec.appendingPathComponent(contentUrl.lastPathComponent, isDirectory: false)
+                    AudioDownloadHelper.instance.downLoadFileWithProgress(withUrl: contentUrl, andFilePath: path, loadingView: loadingView, podcast: podcast)
+                }
+            }
+        }
+    }
+    
 }
+
+
+
 

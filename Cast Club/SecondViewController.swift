@@ -314,6 +314,7 @@ class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     CloudKitHelper.instance.requestPrivateClubJoin(clubId: self.results[indexPath.row].id, completion: { (error) in
                         if let e = error {
                             print(e)
+                            self.tabBarController?.showError(with: e.localizedDescription)
                         }
                     })
                 }

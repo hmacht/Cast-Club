@@ -121,16 +121,10 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.clubs = clubs.filter({$0.subscribedUsers.contains(CloudKitHelper.instance.userId.recordName)})
         self.clubTabelView.reloadData()
         
-        if self.userIds.count > 0 && self.clubs.count == 0 && CloudKitHelper.instance.isAuthenticated {
-            self.tabBarController?.showActivity()
-            self.tabBarController?.hideNoResultsLabel()
-        } else if self.userIds.count == 0 && CloudKitHelper.instance.isAuthenticated {
-            self.tabBarController?.showNoResultsLabel(message: "You have not subscribed to any clubs yet!")
-        }
-        
         if !CloudKitHelper.instance.isAuthenticated {
             self.tabBarController?.showNoResultsLabel(message: "When you log in, the clubs you follow will show up here!")
         }
+        
     }
     
     

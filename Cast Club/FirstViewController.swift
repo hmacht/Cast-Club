@@ -13,7 +13,9 @@ var subscriptionAlbum = [PodcastAlbum]()
 var newSubscriptions = 0
 
 // The clubs the user is subscribed to
-var clubIds = ["none"]
+//var clubIds = ["none"]
+var clubIds = [String]()
+
 
 class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
@@ -21,6 +23,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     var homeSelection = PodcastAlbum()
     var discovewrBtn = UIButton()
     var errorPopUp: ErrorPopUp?
+    
     
     @IBOutlet weak var myCollectionView: UICollectionView!
     override func viewDidLoad() {
@@ -60,6 +63,13 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
                 self.view.addSubview(pop)
                 self.view.addSubview(self.discovewrBtn)
             }
+        } else if CloudKitHelper.instance.internetErrorDescription != "" {
+            // Some sort of error in launch screen
+            self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 55, width: self.screenSize.width, height: 200), headerText: "Internet Connection", bodyText: CloudKitHelper.instance.internetErrorDescription)
+            if let pop = self.errorPopUp {
+                self.view.addSubview(pop)
+                self.view.addSubview(self.discovewrBtn)
+            }
         } else if subscriptionAlbum.count == 0 {
             // No subscribed albums yet
             self.errorPopUp = ErrorPopUp(frame: CGRect(x: 0, y: self.screenSize.height/2 - 55, width: self.screenSize.width, height: 200), headerText: "Welcome to Pod Talk!", bodyText: "Come back to this page when you are subscribed to a podcast")
@@ -69,6 +79,21 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
             }
         }
         
+        if let data = UserDefaults.standard.data(forKey: "dowloadedPodcasts") {
+            
+            if let decodedPodcasts = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Podcast] {
+                
+                AudioDownloadHelper.instance.downloadedPodcasts = decodedPodcasts
+                for p in decodedPodcasts {
+                    print(p.title)
+                }
+            }
+        }
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("Touch adad")
     }
     
     var didShow = false
@@ -97,7 +122,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 135"), style: .done, target: self, action: #selector(FirstViewController.search))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 916"), style: .done, target: self, action: #selector(FirstViewController.settings))
+        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 748"), style: .done, target: self, action: #selector(FirstViewController.settings))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         
         //let whiteAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
@@ -171,7 +196,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
     }
     
     @objc func settings() {
-        print("Playlist")
+        self.performSegue(withIdentifier: "toDownloadedPodcasts", sender: self)
     }
     
     @objc func discover() {

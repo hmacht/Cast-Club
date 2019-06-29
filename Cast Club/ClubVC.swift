@@ -108,7 +108,7 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 31"), style: .done, target: self, action: #selector(ClubVC.add))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 916"), style: .done, target: self, action: #selector(ClubVC.playlist))
-        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        //self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationItem.title = "Podcast Clubs"
         
         //let whiteAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]

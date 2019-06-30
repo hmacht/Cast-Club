@@ -152,7 +152,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             bucketView.cameraButton.addTarget(self, action: #selector(ProfileViewController.accessCamera(sender:)), for: .touchUpInside)
             bucketView.libraryButton.addTarget(self, action: #selector(ProfileViewController.accessPhotoLib(sender:)), for: .touchUpInside)
         } else if indexPath.row == 3 {
-            let alertController = UIAlertController (title: "Go to Settings", message: "Would you like to view the setting for this app? Doing so will take you out of the app and into your settings.", preferredStyle: .alert)
+            let alertController = UIAlertController (title: "Go to Settings", message: "Would you like to view the settings for this app? Doing so will take you out of the app and into your settings.", preferredStyle: .alert)
             
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
@@ -172,7 +172,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             present(alertController, animated: true, completion: nil)
             
         } else if indexPath.row == 4 {
-            createEmail(reasoning: "Report A Problem", explanation: "Tell us anything you think whe should know. It could be a bug in the app or a problem with the way it works, we listen to everything")
+            createEmail(reasoning: "Report A Problem", explanation: "Tell us anything you think we should know. It could be a bug in the app or a problem with the way it works, we listen to everything")
         }
         else if indexPath.row == 5 {
             performSegue(withIdentifier: "toHelp", sender: self)

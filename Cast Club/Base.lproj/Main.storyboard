@@ -1612,7 +1612,7 @@ For any more help contact us at podtalkdevelopers@gmail.com. You can select the 
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7LK-i1-dZe" userLabel="TitleLabel">
-                                                    <rect key="frame" x="80" y="11" width="285" height="60"/>
+                                                    <rect key="frame" x="80" y="11" width="253" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="JVl-LW-h5F"/>
                                                     </constraints>
@@ -1627,17 +1627,27 @@ For any more help contact us at podtalkdevelopers@gmail.com. You can select the 
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INh-HX-zgd">
+                                                    <rect key="frame" x="338" y="31" width="17" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="17" id="a3e-TI-iF8"/>
+                                                        <constraint firstAttribute="height" constant="20" id="ywn-d8-hHM"/>
+                                                    </constraints>
+                                                    <state key="normal" image="TrashCan"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="7LK-i1-dZe" firstAttribute="trailing" secondItem="gFY-Oa-Oas" secondAttribute="trailingMargin" constant="5" id="6jj-KH-EXy"/>
                                                 <constraint firstItem="7LK-i1-dZe" firstAttribute="top" secondItem="gFY-Oa-Oas" secondAttribute="topMargin" id="CSP-13-2bc"/>
                                                 <constraint firstItem="8c9-QV-tRA" firstAttribute="leading" secondItem="gFY-Oa-Oas" secondAttribute="leadingMargin" id="DGK-5Z-GW9"/>
                                                 <constraint firstItem="8c9-QV-tRA" firstAttribute="trailing" secondItem="gFY-Oa-Oas" secondAttribute="trailingMargin" id="GBg-zf-Fxx"/>
                                                 <constraint firstItem="8c9-QV-tRA" firstAttribute="bottom" secondItem="gFY-Oa-Oas" secondAttribute="bottomMargin" id="LwZ-2R-uLl"/>
+                                                <constraint firstItem="INh-HX-zgd" firstAttribute="leading" secondItem="7LK-i1-dZe" secondAttribute="trailing" constant="5" id="O1M-ZR-lBu"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="INh-HX-zgd" secondAttribute="trailing" constant="5" id="aRP-PM-T9f"/>
                                                 <constraint firstItem="7LK-i1-dZe" firstAttribute="leading" secondItem="xKJ-bG-fRX" secondAttribute="trailing" constant="5" id="ijZ-aX-4uy"/>
                                                 <constraint firstItem="8c9-QV-tRA" firstAttribute="top" secondItem="xKJ-bG-fRX" secondAttribute="bottom" constant="5" id="luk-yD-tW4"/>
                                                 <constraint firstItem="xKJ-bG-fRX" firstAttribute="leading" secondItem="gFY-Oa-Oas" secondAttribute="leadingMargin" id="q18-N6-bb4"/>
                                                 <constraint firstItem="xKJ-bG-fRX" firstAttribute="top" secondItem="gFY-Oa-Oas" secondAttribute="topMargin" id="sig-Qk-P7u"/>
+                                                <constraint firstItem="INh-HX-zgd" firstAttribute="top" secondItem="gFY-Oa-Oas" secondAttribute="topMargin" constant="20" id="zwP-bg-MfV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1764,6 +1774,7 @@ For any more help contact us at podtalkdevelopers@gmail.com. You can select the 
         <image name="Profile-D" width="24" height="26.5"/>
         <image name="Profile-L" width="24" height="26.5"/>
         <image name="Rectangle 164" width="131" height="43"/>
+        <image name="TrashCan" width="96" height="111.5"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="i4U-Cf-O3r"/>

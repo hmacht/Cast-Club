@@ -83,7 +83,10 @@ class DowloadedPodcastsViewController: UIViewController, UITableViewDelegate, UI
         if let descriptionLabel = cell.viewWithTag(3) as? UILabel {
             let trimmedDescription = podcast.podcastDescription.trimmingCharacters(in: .whitespacesAndNewlines)
             descriptionLabel.text = trimmedDescription.deleteHTMLTags(tags: ["p", "a", "br", "em"])
-            
+        }
+        
+        if let deleteButton = cell.viewWithTag(4) as? UIButton {
+            deleteButton.addTarget(self, action: #selector(DowloadedPodcastsViewController.deleteDownloadedPodcast(sender:)), for: .touchUpInside)
         }
         
         
@@ -173,6 +176,40 @@ class DowloadedPodcastsViewController: UIViewController, UITableViewDelegate, UI
         }
     }
     
+    
+    @objc func deleteDownloadedPodcast(sender: UIButton) {
+        let buttonPosition = sender.convert(CGPoint.zero, to: self.tableView)
+        if let path = tableView.indexPathForRow(at: buttonPosition) {
+            let podcast = AudioDownloadHelper.instance.downloadedPodcasts[path.row]
+            
+            
+            // Delete file from system
+            if let currentUrl = AudioDownloadHelper.instance.currentFileDirecory(baseUrl: podcast.fileUrl) {
+                do  {
+                    try FileManager.default.removeItem(at: currentUrl)
+                } catch {
+                    self.tabBarController?.showError(with: "Oops! There was an error deleting the file.")
+                }
+            } else {
+                self.tabBarController?.showError(with: "Oops! There was an error deleting the file.")
+            }
+            
+            // Remove podcast from user defaults
+            if let data = UserDefaults.standard.data(forKey: "dowloadedPodcasts") {
+                if var decodedPodcasts = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Podcast] {
+                    decodedPodcasts.remove(at: path.row)
+                    
+                    let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: decodedPodcasts)
+                    UserDefaults.standard.set(encodedData, forKey: "dowloadedPodcasts")
+                }
+            }
+            
+            // Remove podcast from instance
+            AudioDownloadHelper.instance.downloadedPodcasts.remove(at: path.row)
+            
+            self.tableView.deleteRows(at: [path], with: .automatic)
+        }
+    }
     
 
 }

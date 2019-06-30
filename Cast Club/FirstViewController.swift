@@ -122,7 +122,7 @@ class FirstViewController: UIViewController, UICollectionViewDelegateFlowLayout,
         let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 135"), style: .done, target: self, action: #selector(FirstViewController.search))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 748"), style: .done, target: self, action: #selector(FirstViewController.settings))
+        let leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "Group 916"), style: .done, target: self, action: #selector(FirstViewController.settings))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         
         //let whiteAttributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]

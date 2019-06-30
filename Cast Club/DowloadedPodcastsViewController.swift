@@ -46,7 +46,16 @@ class DowloadedPodcastsViewController: UIViewController, UITableViewDelegate, UI
         // Pass the selected object to the new view controller.
     }
     */
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            // Delete Podcast
+        }
+    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return AudioDownloadHelper.instance.downloadedPodcasts.count
@@ -72,7 +81,9 @@ class DowloadedPodcastsViewController: UIViewController, UITableViewDelegate, UI
         }
         
         if let descriptionLabel = cell.viewWithTag(3) as? UILabel {
-            descriptionLabel.text = podcast.podcastDescription
+            let trimmedDescription = podcast.podcastDescription.trimmingCharacters(in: .whitespacesAndNewlines)
+            descriptionLabel.text = trimmedDescription.deleteHTMLTags(tags: ["p", "a", "br", "em"])
+            
         }
         
         

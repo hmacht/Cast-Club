@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CloudKit
 
 class LaunchScreenViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +32,9 @@ class LaunchScreenViewController: UIViewController {
                 CloudKitHelper.instance.getAlbums { (albums, error2) in
                     if let e = error2 {
                         print(e)
+                        
+                        
+                        CloudKitHelper.instance.internetErrorDescription = "Oops, there was an error connecting to the server. Check your internet connection."
                         // If error, start app
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "startApp", sender: self)
@@ -42,6 +46,7 @@ class LaunchScreenViewController: UIViewController {
                             self.performSegue(withIdentifier: "startApp", sender: self)
                         }
                     } else if albums.count == 0 {
+                        print("here")
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "startApp", sender: self)
                         }
@@ -54,6 +59,7 @@ class LaunchScreenViewController: UIViewController {
                         self.tabBarController?.showError(with: e.localizedDescription)
                     } else {
                         //clubIds = results
+                        print("Done here")
                     }
                 })
                 

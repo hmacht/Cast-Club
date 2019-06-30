@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		127AD3A5EE784F7684203773 /* Pods_Cast_ClubTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCF7D563C98ACDE4735780BC /* Pods_Cast_ClubTests.framework */; };
+		2103863622C1624B00861CC6 /* DowloadedPodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2103863522C1624B00861CC6 /* DowloadedPodcastsViewController.swift */; };
+		210C5D2422B981EE00320F43 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C5D2322B981EE00320F43 /* LoadingView.swift */; };
 		211BDD7721A9F1560025A132 /* PlayPodcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */; };
 		212C621E21DEE8E5002B6AF9 /* SubscribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212C621D21DEE8E4002B6AF9 /* SubscribeButton.swift */; };
 		213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */; };
@@ -92,6 +94,8 @@
 
 /* Begin PBXFileReference section */
 		132A83E24B1AA60FADB60849 /* Pods-Cast ClubTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cast ClubTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cast ClubTests/Pods-Cast ClubTests.release.xcconfig"; sourceTree = "<group>"; };
+		2103863522C1624B00861CC6 /* DowloadedPodcastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DowloadedPodcastsViewController.swift; sourceTree = "<group>"; };
+		210C5D2322B981EE00320F43 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayPodcastViewController.swift; sourceTree = "<group>"; };
 		212C621D21DEE8E4002B6AF9 /* SubscribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeButton.swift; sourceTree = "<group>"; };
 		213AE1E421AA4F140007251B /* AudioDownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDownloadHelper.swift; sourceTree = "<group>"; };
@@ -308,6 +312,7 @@
 				211BDD7621A9F1560025A132 /* PlayPodcastViewController.swift */,
 				21CB313921AF53D7006677F8 /* PodcastTablBarController.swift */,
 				21A021A9226CFE85005AD3E7 /* PrivateClubRequestViewController.swift */,
+				2103863522C1624B00861CC6 /* DowloadedPodcastsViewController.swift */,
 				D744775421A4BB1D00270726 /* AppDelegate.swift */,
 				D744775A21A4BB1D00270726 /* Main.storyboard */,
 				D744775D21A4BB1F00270726 /* Assets.xcassets */,
@@ -354,6 +359,7 @@
 				2145CB7621F7D75B002F307A /* ErrorView.swift */,
 				D70A84D22201105800893744 /* createView.swift */,
 				D7A4389722069593007F9F7A /* BucketView.swift */,
+				210C5D2322B981EE00320F43 /* LoadingView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -613,6 +619,7 @@
 				D7870C4621E80D0F008A7206 /* ChatHeaderTableViewCell.swift in Sources */,
 				212C621E21DEE8E5002B6AF9 /* SubscribeButton.swift in Sources */,
 				D7870C4421E805B5008A7206 /* ClubChatVC.swift in Sources */,
+				210C5D2422B981EE00320F43 /* LoadingView.swift in Sources */,
 				213AE1E521AA4F140007251B /* AudioDownloadHelper.swift in Sources */,
 				D744775921A4BB1D00270726 /* SecondViewController.swift in Sources */,
 				D7A20DC421DA8EC300304D86 /* UITextFeild+LineColor.swift in Sources */,
@@ -644,6 +651,7 @@
 				D760166821AC9C6E00CB25BB /* CollectionViewCell.swift in Sources */,
 				21C87D4821A883DF00F9E727 /* PodcastAlbum.swift in Sources */,
 				D797BEE621E8224F005500DD /* ResponceTableViewCell.swift in Sources */,
+				2103863622C1624B00861CC6 /* DowloadedPodcastsViewController.swift in Sources */,
 				D70D94AB227658B0006EF367 /* LaunchScreenViewController.swift in Sources */,
 				D7D119512272A1ED00E7D91F /* HelpPageViewController.swift in Sources */,
 				D7D1194F22729DB000E7D91F /* Help2ViewController.swift in Sources */,
@@ -841,14 +849,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Club/Pod Talk.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9832H7K9P2;
+				DEVELOPMENT_TEAM = LCX682S6EY;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -862,14 +870,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Cast Club/Pod Talk.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9832H7K9P2;
+				DEVELOPMENT_TEAM = LCX682S6EY;
 				INFOPLIST_FILE = "Cast Club/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub";
+				PRODUCT_BUNDLE_IDENTIFIER = "HT-Developement.CastClub2";
 				PRODUCT_NAME = "Pod Talk";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

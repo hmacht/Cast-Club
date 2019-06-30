@@ -29,7 +29,7 @@ class FeedHelper {
                                 podcast.contentUrl = mediaLink
                             }
                             if let description = item.description {
-                                podcast.description = description
+                                podcast.podcastDescription = description
                             }
                             podcasts.append(podcast)
                         }

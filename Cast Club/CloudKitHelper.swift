@@ -30,6 +30,8 @@ class CloudKitHelper {
     var usernamesDic = [String : String]()
     var clubCoverPhotos = [String : (UIImage, URL)]()
     
+    var internetErrorDescription = ""
+    
     // Club stuff
     func searchClubsWithName(_ name: String, category: ClubCategory = ClubCategory.everything, completion: @escaping ([Club]?) -> ()) {
         var predicate = NSPredicate(format: "name BEGINSWITH %@", name)
@@ -276,18 +278,24 @@ class CloudKitHelper {
         }
         
         operation.recordFetchedBlock = { firstRec in
-            if let username = firstRec["username"] as? String {
-                self.username = username
-            }
-            if let blockedUsers = firstRec["blockedUsers"] as? [String] {
-                self.blockedUsers = blockedUsers
-            }
-            if let clubIds = firstRec["clubIds"] as? [String] {
-                print("completion")
+            if numResults == 0 {
+                if let username = firstRec["username"] as? String {
+                    self.username = username
+                    print("username", username)
+                }
+                if let blockedUsers = firstRec["blockedUsers"] as? [String] {
+                    self.blockedUsers = blockedUsers
+                }
                 numResults += 1
-                completion(clubIds, nil)
-            } else {
                 completion([String](), nil)
+                /*
+                if let clubIds = firstRec["clubIds"] as? [String] {
+                    print("completion")
+                    
+                    completion(clubIds, nil)
+                } else {
+                    completion([String](), nil)
+                }*/
             }
         }
         
@@ -308,6 +316,9 @@ class CloudKitHelper {
             operation.qualityOfService = .userInitiated
             operation.queuePriority = .veryHigh
             
+            operation.completionBlock = {
+                completion(nil)
+            }
             
             operation.recordFetchedBlock = { rec in
                 if let asset = rec["profileImage"] as? CKAsset {
@@ -878,6 +889,7 @@ class CloudKitHelper {
     func getAlbums(completion: @escaping ([PodcastAlbum], Error?) -> ()) {
         // Get all albums from private data base
         let query = CKQuery(recordType: AlbumType, predicate: NSPredicate(format: "subscribedUsers CONTAINS %@", self.userId.recordName))
+        
         self.publicDB.perform(query, inZoneWith: nil) { (records, error) in
             if let recs = records {
                 var results = [PodcastAlbum]()

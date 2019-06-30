@@ -60,11 +60,8 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell") as! UITableViewCell
-        
-        
-        
-        
         
         if let titleLabel = cell.viewWithTag(1) as? UILabel {
             titleLabel.text = searchResults[indexPath.row].title
@@ -169,6 +166,7 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
                 }
             } else {
                 print("error in itunes api helper")
+                self.tabBarController?.showError(with: "There was an error searching for albums! Check your internet connection and try again.")
             }
         }
         hintLabel.isHidden = true
@@ -190,12 +188,14 @@ class SearchPodcastsViewController: UIViewController, UITableViewDelegate, UITab
             CloudKitHelper.instance.setAlbumAsCurrentAlbum(album: self.searchResults[selectedPodcastIndex], club: self.currentClub.id) { (error) in
                 if let e = error {
                     print(e)
+                    self.tabBarController?.showError(with: e.localizedDescription)
                 } else {
                     print("Done setting podcast")
                 }
             }
         } else {
             print("This is already the podcast for your club")
+            self.tabBarController?.showError(with: "This is already the podcast for your club")
         }
         
         currentClub.currentAlbum = self.searchResults[selectedPodcastIndex]

@@ -306,27 +306,35 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     
     @objc func accessCamera(sender: UIButton!) {
         print("Camera")
-        requestAccess()
-        camera()
+        
+        requestAccess { (success) in
+            if success {
+                self.camera()
+            }
+        }
     }
     
     @objc func accessPhotoLib(sender: UIButton!) {
         print("Lib")
-        requestAccess()
-        photoLibrary()
+        requestAccess { (success) in
+            if success {
+                self.photoLibrary()
+            }
+        }
     }
     
     @objc func addFriend(sender: UIButton!) {
         print("add")
     }
     
-    func requestAccess(){
+    func requestAccess(completion: @escaping (Bool) -> ()){
         //Camera
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
             if response {
                 //access granted
+                completion(true)
             } else {
-                
+                completion(false)
             }
         }
         

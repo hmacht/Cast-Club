@@ -190,13 +190,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func requestAccess(){
+    func requestAccess(completion: @escaping (Bool) -> ()){
         //Camera
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
             if response {
                 //access granted
+                completion(true)
             } else {
-                
+                completion(false)
             }
         }
         
@@ -206,14 +207,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @objc func accessCamera(sender: UIButton!) {
         bucketView.close()
-        requestAccess()
-        openCamera()
+        requestAccess { (success) in
+            if success {
+                self.openCamera()
+            }
+        }
     }
     
     @objc func accessPhotoLib(sender: UIButton!) {
         bucketView.close()
-        requestAccess()
-        openLibrary()
+        requestAccess { (success) in
+            if success {
+                self.openLibrary()
+            }
+        }
+        
     }
     
     @objc func openCamera(){

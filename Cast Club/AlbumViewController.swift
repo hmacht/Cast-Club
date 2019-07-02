@@ -148,6 +148,8 @@ class AlbumViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 descriptionLabel.numberOfLines = 50
                 let trimmedDescription = podcast.podcastDescription.trimmingCharacters(in: .whitespacesAndNewlines)
                 descriptionLabel.text = trimmedDescription.deleteHTMLTags(tags: ["p", "a", "br", "em"])
+                //descriptionLabel.attributedText = podcast.podcastDescription.htmlToAttributedString
+                
             }
             
             if let dowloadButton = cell.viewWithTag(3) as? UIButton {

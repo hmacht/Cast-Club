@@ -104,9 +104,9 @@ class CloudKitHelper {
         }
     }
     
-    func writeClub(name: String, image: UIImage?, isPublic: Bool, category: ClubCategory, completion: @escaping (Error?) -> ()) {
+    func writeClub(name: String, image: UIImage?, isPublic: Bool, category: ClubCategory, completion: @escaping (Error?, Club?) -> ()) {
         let record = CKRecord(recordType: ClubType)
-        record["numFollowers"] = 0
+        record["numFollowers"] = 1
         record["name"] = name
         
         if isPublic {
@@ -135,8 +135,11 @@ class CloudKitHelper {
                 CloudKitHelper.instance.subscribeToClub(id: rec.recordID, completion: { (_) in
                     
                 })
+                completion(error, Club(record: rec))
+            } else {
+                completion(error, nil)
             }
-            completion(error)
+            
         }
     }
     

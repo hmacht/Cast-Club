@@ -6,6 +6,7 @@
 //  Copyright © 2018 Henry Macht. All rights reserved.
 //
 
+import CloudKit
 import UIKit
 
 enum ClubCategory: String {
@@ -47,5 +48,50 @@ class Club {
     var creatorId = ""
     var pendingUsersList = [String]()
     var subscribedUsers = [String]()
+    
+    
+    init() {
+        
+    }
+    
+    init(record: CKRecord) {
+        if let n = record["name"] as? String {
+            self.name = n
+        }
+        if let f = record["numFollowers"] as? Int {
+            self.numFollowers = f
+        }
+        if let category = record["category"] as? String {
+            if let cat = ClubCategory(rawValue: category) {
+                self.category = cat
+            } else {
+                self.category = ClubCategory.none
+            }
+        }
+        if let isPublic = record["isPublic"] as? Int {
+            if isPublic == 1 {
+                self.isPublic = true
+            } else {
+                self.isPublic = false
+            }
+        }
+        if let update = record["update"] as? String {
+            self.update = update
+        }
+        if let albumId = record["currentAlbum"] as? String {
+            self.currentAlbumId = albumId
+        }
+        if let creator = record["creator"] as? String {
+            self.creatorId = creator
+        }
+        if let pendingUsers = record["pendingUsersList"] as? [String] {
+            self.pendingUsersList = pendingUsers
+        }
+        if let subscribedUsers = record["subscribedUsers"] as? [String] {
+            self.subscribedUsers = subscribedUsers
+        }
+        self.id = record.recordID.recordName
+
+    }
 }
 

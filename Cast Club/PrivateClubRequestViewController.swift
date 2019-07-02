@@ -28,6 +28,16 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
         self.navigationItem.title = "Pending Users"
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if self.userIdsList.count == 0 {
+            self.tabBarController?.showNoResultsLabel(message: "No users have requested to join the club.")
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.hideNoResultsLabel()
+    }
+    
     /*
      // MARK: - Navigation
      

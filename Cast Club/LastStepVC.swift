@@ -259,20 +259,48 @@ class LastStepVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     @objc func create() {
         print("Create")
         
+        self.createButton.setTitle("", for: .normal)
+        let activity = UIActivityIndicatorView(frame: CGRect(x: self.view.frame.width/2 - 20, y: self.createButton.center.y - 20, width: 40, height: 40))
+        activity.color = .white
+        
+        self.view.addSubview(activity)
+        activity.startAnimating()
+        
         if let img = profileImageView.image?.resizedImageWithinRect(rectSize: CGSize(width: 250, height: 250)) {
             var imgToUse: UIImage? = img
             if !self.hasEditedImage {
                 imgToUse = nil
             } 
-            CloudKitHelper.instance.writeClub(name: clubeName, image: imgToUse, isPublic: self.isPublic, category: self.selectedCategory) { (error) in
+            CloudKitHelper.instance.writeClub(name: clubeName, image: imgToUse, isPublic: self.isPublic, category: self.selectedCategory) { (error, club) in
                 if let e = error {
                     print(e)
+                    DispatchQueue.main.async {
+                        self.tabBarController?.showError(with: e.localizedDescription)
+                        self.performSegue(withIdentifier: "doneWithCreation", sender: self)
+                    }
                 } else {
                     print("Good")
+                    
+                    // Add the club to the table view
+                    if let navController = self.tabBarController?.customizableViewControllers?[2] as? UINavigationController {
+                        print("1")
+                        for vc in navController.viewControllers {
+                            if let clubVC = vc as? ClubVC {
+                                print("2")
+                                if let c = club {
+                                    print("3")
+                                    clubVC.clubs.append(c)
+                                }
+                                break
+                            }
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "doneWithCreation", sender: self)
+                    }
                 }
             }
-        
-            self.performSegue(withIdentifier: "doneWithCreation", sender: self)
+            
         
         } else {
             print("Error with image")

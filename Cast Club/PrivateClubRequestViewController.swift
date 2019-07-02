@@ -117,6 +117,9 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
             CloudKitHelper.instance.updateUserRequestToPrivateClub(accepted: true, clubId: self.selectedClub.id, userId: self.userIdsList[row]) { (error) in
                 if let e = error {
                     print(e)
+                    DispatchQueue.main.async {
+                        self.tabBarController?.showError(with: e.localizedDescription)
+                    }
                 } else {
                     self.removeUserFromPendingList(self.userIdsList[row])
                     DispatchQueue.main.async {
@@ -135,6 +138,9 @@ class PrivateClubRequestViewController: UIViewController, UITableViewDelegate, U
             CloudKitHelper.instance.updateUserRequestToPrivateClub(accepted: false, clubId: self.selectedClub.id, userId: self.userIdsList[row]) { (error) in
                 if let e = error {
                     print(e)
+                    DispatchQueue.main.async {
+                        self.tabBarController?.showError(with: e.localizedDescription)
+                    }
                 } else {
                     self.removeUserFromPendingList(self.userIdsList[row])
                     DispatchQueue.main.async {

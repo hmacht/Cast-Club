@@ -680,7 +680,7 @@ class CloudKitHelper {
     func updateUserRequestToPrivateClub(accepted: Bool, clubId: String, userId: String, completion: @escaping (Error?) -> ()) {
         // Remove id from pendingUsersListInClub
         let fetchOperation = CKFetchRecordsOperation(recordIDs: [clubId.ckId()])
-        fetchOperation.desiredKeys = ["pendingUsersList"]
+        fetchOperation.desiredKeys = ["pendingUsersList", "subscribedUsers", "numFollowers"]
         
         fetchOperation.perRecordCompletionBlock = { rec, r2, error in
             if let r = rec {
@@ -692,16 +692,29 @@ class CloudKitHelper {
                     }
                     r["pendingUsersList"] = pendingUsers
                 }
+                
+                // Subscribe user
+                if accepted {
+                    if var subscribedUsers = r["subscribedUsers"] as? [String] {
+                        subscribedUsers.append(userId)
+                        r["subscribedUsers"] = subscribedUsers
+                    }
+                    if let numFollowers = r["numFollowers"] as? Int {
+                        r["numFollowers"] = numFollowers + 1
+                    }
+                }
+                
                 self.publicDB.save(r) { (_, error2) in
                     completion(error2)
                 }
                 
+                /*
                 // Subscribe user to club
                 if accepted {
                     self.subscribeToClub(id: clubId.ckId(), userId: userId, completion: { (_) in
                         
                     })
-                }
+                }*/
             } else {
                 completion(error)
             }

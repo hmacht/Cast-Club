@@ -15,6 +15,8 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.clubTabelView.delegate = self
         self.clubTabelView.dataSource = self
         
+        self.clubTabelView.addRefreshCapability(target: self, selector: #selector(ClubVC.refreshClubs))
+        
         clubTabelView.tableFooterView = UIView()
         //self.clubTabelView.separatorStyle = UITableViewCell.SeparatorStyle.none
         //clubTabelView.layoutMargins = UIEdgeInsets.zero
@@ -261,6 +263,37 @@ class ClubVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let destination = segue.destination as? ClubChatVC {
                 destination.selectedClub = self.selectedClub
             }
+        }
+    }
+    
+    @objc func refreshClubs() {
+        self.tabBarController?.hideNoResultsLabel()
+        
+        if CloudKitHelper.instance.isAuthenticated {
+            CloudKitHelper.instance.getUserSubscribedClubsNoPic { (results) in
+                
+                DispatchQueue.main.async {
+                    self.clubTabelView.refreshControl?.endRefreshing()
+                }
+                
+                if results.count == 0 {
+                    DispatchQueue.main.async {
+                        self.tabBarController?.stopActivity()
+                        self.tabBarController?.showNoResultsLabel(message: "You have not subscribed to any clubs yet!")
+                    }
+                } else {
+                    self.clubs = results
+                    DispatchQueue.main.async {
+                        self.tabBarController?.stopActivity()
+                        //self.clubTabelView.reloadWithAnimation()
+                        self.clubTabelView.reloadData()
+                    }
+                }
+            }
+        } else {
+            self.clubTabelView.refreshControl?.endRefreshing()
+            self.tabBarController?.stopActivity()
+            self.tabBarController?.showNoResultsLabel(message: "When you log in, the clubs you follow will show up here!")
         }
     }
     

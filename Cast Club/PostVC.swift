@@ -20,6 +20,8 @@ class PostVC: UIViewController, UITextViewDelegate {
     var isUpdate = Bool()
     var currentClub = Club()
     
+    var characterCountLabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,24 @@ class PostVC: UIViewController, UITextViewDelegate {
         
         // Do any additional setup after loading the view.
         textView.delegate = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if isUpdate {
+            self.createCharacterCountLabel()
+        } else {
+            self.characterCountLabel.removeFromSuperview()
+        }
+    }
+    
+    func createCharacterCountLabel() {
+        characterCountLabel = UILabel(frame: CGRect(x: self.view.frame.width/2 - 125, y: textView.frame.minY - 28, width: 250, height: 20))
+        characterCountLabel.font = UIFont(name: "Avenir-Heavy", size: 15)
+        characterCountLabel.text = "Characters Remaining: 280"
+        characterCountLabel.textAlignment = .center
+        
+        self.view.addSubview(characterCountLabel)
     }
     
     func createCloseButton() {
@@ -111,7 +131,13 @@ class PostVC: UIViewController, UITextViewDelegate {
         let currentText:String = textView.text
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
         
+        if isUpdate {
+            self.characterCountLabel.text = "Characters Remaining: " + String(280 - self.textView.text.count)
+        }
+        
         if updatedText.isEmpty {
+            self.characterCountLabel.text = "Characters Remaining: 280"
+            
             if isUpdate {
                 textView.text = "Tell your members what going on"
             } else {
@@ -150,6 +176,14 @@ class PostVC: UIViewController, UITextViewDelegate {
     @objc func post() {
         
         if isUpdate {
+            if self.textView.text.count > 280 {
+                
+                let alert = UIAlertController(title: "Error", message: "Updates cannot be more than 280 characters long!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+                return
+            }
             if self.textView.text.count > 0 {
                 currentClub.update = self.textView.text
                 CloudKitHelper.instance.writeClubUpdate(message: self.currentClub.update, clubId: self.currentClub.id) { (error) in

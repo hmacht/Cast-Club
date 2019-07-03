@@ -563,6 +563,7 @@ class ClubChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         self.bucketView = BucketView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), viewHeight: 330, style: 4)
         if self.selectedClub.update == "" {
+            // 280 characters max
             self.bucketView.updateMessageLabel.text = "The club creator has not sent out an update."
         } else {
             self.bucketView.updateMessageLabel.text = self.selectedClub.update
